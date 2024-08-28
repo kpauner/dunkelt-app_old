@@ -1,0 +1,34 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "login": "Log In",
+    "signup": "Sign Up",
+    "logout": "Log Out"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "home": {
+    "title": "Welcome to Our Website",
+    "description": "This is a brief description of our site."
+  },
+  "about": {
+    "title": "About Us",
+    "content": "We are a company dedicated to..."
+  },
+  "contact": {
+    "title": "Contact Us",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submit": "Send"
+    }
+  },
+  "errors": {
+    "404": "Page not found",
+    "500": "Server error"
+  }
+}
