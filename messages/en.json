@@ -12,7 +12,29 @@
   },
   "home": {
     "title": "Welcome to Our Website",
-    "description": "This is a brief description of our site."
+    "description": "This is a brief description of our site.",
+    "bento": [
+      {
+        "title": "Save as image",
+        "content": "Save you schedule as an image and share it on twitter.",
+        "image": "/images/download-image.png"
+      },
+      {
+        "title": "Custom design and branding",
+        "content": "Customize your schedule to suit your style, lore and audience. Make it your own with custom backgrounds, colors, fonts and more.",
+        "image": "/images/custom-branding.png"
+      },
+      {
+        "title": "Twitch connected",
+        "content": "Schedule is connected to your twitch account, as you update your twitch schedule, the schedule will be updated here.",
+        "image": "/images/twitch-connected.png"
+      },
+      {
+        "title": "Boost Productivity",
+        "content": "No more messing around with bulky photo editing tools. Quickly create a schedule with a couple of clicks, and then export it as an image for sharing on social media.",
+        "image": "/images/theming.png"
+      }
+    ]
   },
   "about": {
     "title": "About Us",

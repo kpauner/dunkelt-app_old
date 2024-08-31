@@ -5,6 +5,7 @@ import { z } from "zod";
 export const env = createEnv({
   server: {
     DATABASE_URL: z.string().optional(),
+    DB_AUTH_TOKEN: z.string().optional(),
     LOGTAIL_SOURCE_TOKEN: z.string().optional(),
   },
   client: {
@@ -16,6 +17,7 @@ export const env = createEnv({
   // You need to destructure all the keys manually
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
+    DB_AUTH_TOKEN: process.env.DB_AUTH_TOKEN,
     LOGTAIL_SOURCE_TOKEN: process.env.LOGTAIL_SOURCE_TOKEN,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
     NODE_ENV: process.env.NODE_ENV,
