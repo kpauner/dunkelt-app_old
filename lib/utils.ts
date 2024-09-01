@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-
+import { customAlphabet } from "nanoid";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -14,6 +14,13 @@ export const computeSHA256 = async (file: File) => {
     .join("");
   return hashHex;
 };
+
+const alphabet = "0123456789abcdefghijklmnopqrstuvwxyz";
+const nanoid = customAlphabet(alphabet, 16);
+
+export function generatePublicId() {
+  return nanoid();
+}
 
 export const getBaseUrl = () => {
   if (process.env.NEXT_PUBLIC_APP_URL) {
