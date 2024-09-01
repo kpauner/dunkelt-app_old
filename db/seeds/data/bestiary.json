@@ -1,0 +1,154 @@
+[
+  {
+    "name": "Vampire",
+    "type": "Undead",
+    "motivation": "To feed on the blood of the living and spread their curse",
+    "powers": [
+      {
+        "name": "Immortality",
+        "description": "Vampires are undead creatures that feed on the blood of the living to sustain their immortality."
+      },
+      {
+        "name": "Hypnotic gaze",
+        "description": "When it commands you, roll +Cool. On a 10+, you can choose whether to do it or not. If you do, mark experience and take +1 forward. On a 7-9, you can choose whether you do it or not. If you do, mark experience. If you don’t, take +1 the next time it tries to mesmerize you. On a miss, you do what it asks."
+      },
+      {
+        "name": "Shape-shifting into a bat or mist",
+        "description": "Vampires are undead creatures that feed on the blood of the living to sustain their immortality."
+      },
+      {
+        "name": "Superhuman strength and speed",
+        "description": "Vampires are undead creatures that feed on the blood of the living to sustain their immortality."
+      },
+      {
+        "name": "Regeneration",
+        "description": "victims bitten three times become vampires themselves."
+      },
+      {
+        "name": "Vampiric Bite",
+        "description": "When a vampire bites a victim, they must Act Under Pressure or be mesmerized, unable to act for a moment."
+      },
+      {
+        "name": "Master Vampire",
+        "description": "The Vampire controls all the vampires they has created."
+      }
+    ],
+    "weaknesses": [
+      "Vulnerable to sunlight",
+      "Decapitation",
+      "Wooden stake through the heart",
+      "Must rest in a coffin with soil from their homeland"
+    ],
+    "attacks": [
+      {
+        "name": "Bite",
+        "harm": 3,
+        "tags": ["intimate", "vampiric"]
+      },
+      {
+        "name": "Punch/throw",
+        "harm": 4,
+        "tags": ["hand"]
+      }
+    ],
+    "armor": 1,
+    "harmCapacity": 9,
+    "customMoves": [
+      {
+        "name": "Hypnotic Gaze",
+        "description": "When the Vampire locks eyes with a victim, they must Act Under Pressure or be mesmerized, unable to act for a moment."
+      }
+    ],
+    "description": "A pale, gaunt figure with sharp fangs and glowing red eyes. Vampires are undead creatures that feed on the blood of the living to sustain their immortality.",
+    "habitat": "Dark, secluded places such as abandoned buildings, crypts, and castles",
+    "signs": [
+      "Pale, drained corpses with puncture wounds on the neck",
+      "Unexplained disappearances at night",
+      "Sightings of a bat or mist moving unnaturally",
+      "Reports of a charming stranger with an aversion to sunlight"
+    ],
+    "history": "Vampires are ancient creatures of legend, with stories of their existence dating back to ancient civilizations. They are often depicted as noble or aristocratic figures who prey on the living to maintain their immortality.",
+    "countermeasures": [
+      "Expose them to sunlight",
+      "Use garlic and holy symbols to repel them",
+      "Trap them in running water",
+      "Destroy their resting place and scatter the soil"
+    ]
+  },
+  {
+    "name": "Chupacabra",
+    "type": "Wild",
+    "motivation": "To feed on the blood of the living and spread their curse",
+    "powers": [
+      {
+        "name": "Immortality",
+        "description": "Vampires are undead creatures that feed on the blood of the living to sustain their immortality."
+      },
+      {
+        "name": "Hypnotic gaze",
+        "description": "When it commands you, roll +Cool. On a 10+, you can choose whether to do it or not. If you do, mark experience and take +1 forward. On a 7-9, you can choose whether you do it or not. If you do, mark experience. If you don’t, take +1 the next time it tries to mesmerize you. On a miss, you do what it asks."
+      },
+      {
+        "name": "Shape-shifting into a bat or mist",
+        "description": "Vampires are undead creatures that feed on the blood of the living to sustain their immortality."
+      },
+      {
+        "name": "Superhuman strength and speed",
+        "description": "Vampires are undead creatures that feed on the blood of the living to sustain their immortality."
+      },
+      {
+        "name": "Regeneration",
+        "description": "victims bitten three times become vampires themselves."
+      },
+      {
+        "name": "Vampiric Bite",
+        "description": "When a vampire bites a victim, they must Act Under Pressure or be mesmerized, unable to act for a moment."
+      },
+      {
+        "name": "Master Vampire",
+        "description": "The Vampire controls all the vampires they has created."
+      }
+    ],
+    "weaknesses": [
+      "Vulnerable to sunlight",
+      "Decapitation",
+      "Wooden stake through the heart",
+      "Must rest in a coffin with soil from their homeland"
+    ],
+    "attacks": [
+      {
+        "name": "Bite",
+        "harm": 3,
+        "tags": ["intimate", "vampiric"]
+      },
+      {
+        "name": "Punch/throw",
+        "harm": 4,
+        "tags": ["hand"]
+      }
+    ],
+    "armor": 1,
+    "harmCapacity": 9,
+    "customMoves": [
+      {
+        "name": "Hypnotic Gaze",
+        "description": "When the Vampire locks eyes with a victim, they must Act Under Pressure or be mesmerized, unable to act for a moment."
+      }
+    ],
+    "description": "A pale, gaunt figure with sharp fangs and glowing red eyes. Vampires are undead creatures that feed on the blood of the living to sustain their immortality.",
+    "habitat": "Dark, secluded places such as abandoned buildings, crypts, and castles",
+    "signs": [
+      "Pale, drained corpses with puncture wounds on the neck",
+      "Unexplained disappearances at night",
+      "Sightings of a bat or mist moving unnaturally",
+      "Reports of a charming stranger with an aversion to sunlight"
+    ],
+    "history": "Vampires are ancient creatures of legend, with stories of their existence dating back to ancient civilizations. They are often depicted as noble or aristocratic figures who prey on the living to maintain their immortality.",
+    "countermeasures": [
+      "Expose them to sunlight",
+      "Use garlic and holy symbols to repel them",
+      "Trap them in running water",
+      "Destroy their resting place and scatter the soil"
+    ]
+  }
+]

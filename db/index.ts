@@ -9,4 +9,5 @@ export const client = createClient({
   authToken: env.DB_AUTH_TOKEN as string,
 });
 
+export type db = typeof db;
 export const db = drizzle(client, { schema });
