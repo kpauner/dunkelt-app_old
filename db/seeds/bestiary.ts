@@ -7,6 +7,7 @@ export default async function seed(db: db) {
   const formattedData: BestiaryEntry[] = data.map((beast) => ({
     name: beast.name,
     type: beast.type,
+    description: beast.description,
     motivation: beast.motivation,
     powers: beast.powers,
     weaknesses: beast.weaknesses,
@@ -14,7 +15,6 @@ export default async function seed(db: db) {
     armor: beast.armor,
     harmCapacity: beast.harmCapacity,
     customMoves: beast.customMoves,
-    description: beast.description,
     habitat: beast.habitat,
     signs: beast.signs,
     history: beast.history,

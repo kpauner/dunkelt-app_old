@@ -1,5 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/theme-provider";
+import TooltipProvider from "@/providers/tooltip-provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 
@@ -15,17 +16,20 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} suppressHydrationWarning className="dark:bg-primary">
+    <html lang={locale} suppressHydrationWarning>
       <body>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
-            enableSystem={true}
+            // defaultTheme="system"
+            // enableSystem={true}
+            forcedTheme="dark"
             // disableTransitionOnChange
           >
-            {children}
-            <Toaster />
+            <TooltipProvider>
+              <main className="bg-primary dark:bg-primary">{children}</main>
+              <Toaster />
+            </TooltipProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>
