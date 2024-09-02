@@ -2,6 +2,7 @@
   {
     "name": "Vampire",
     "type": "Undead",
+    "description": "A pale, gaunt figure with sharp fangs and glowing red eyes. Vampires are undead creatures that feed on the blood of the living to sustain their immortality.",
     "motivation": "To feed on the blood of the living and spread their curse",
     "powers": [
       {
@@ -59,7 +60,7 @@
         "description": "When the Vampire locks eyes with a victim, they must Act Under Pressure or be mesmerized, unable to act for a moment."
       }
     ],
-    "description": "A pale, gaunt figure with sharp fangs and glowing red eyes. Vampires are undead creatures that feed on the blood of the living to sustain their immortality.",
+
     "habitat": "Dark, secluded places such as abandoned buildings, crypts, and castles",
     "signs": [
       "Pale, drained corpses with puncture wounds on the neck",
@@ -76,79 +77,64 @@
     ]
   },
   {
-    "name": "Chupacabra",
-    "type": "Wild",
-    "motivation": "To feed on the blood of the living and spread their curse",
+    "name": "Werewolf",
+    "type": "Lycanthrope",
+    "description": "A fearsome creature that transforms from human to wolf-like beast under the full moon. Werewolves possess incredible strength and heightened senses.",
+    "motivation": "To hunt and feed on living creatures, driven by primal instincts",
     "powers": [
       {
-        "name": "Immortality",
-        "description": "Vampires are undead creatures that feed on the blood of the living to sustain their immortality."
+        "name": "Transformation",
+        "description": "Transforms into a powerful wolf-like creature under the full moon."
       },
       {
-        "name": "Hypnotic gaze",
-        "description": "When it commands you, roll +Cool. On a 10+, you can choose whether to do it or not. If you do, mark experience and take +1 forward. On a 7-9, you can choose whether you do it or not. If you do, mark experience. If you don’t, take +1 the next time it tries to mesmerize you. On a miss, you do what it asks."
+        "name": "Superhuman strength",
+        "description": "Possesses strength far beyond that of a normal human."
       },
       {
-        "name": "Shape-shifting into a bat or mist",
-        "description": "Vampires are undead creatures that feed on the blood of the living to sustain their immortality."
-      },
-      {
-        "name": "Superhuman strength and speed",
-        "description": "Vampires are undead creatures that feed on the blood of the living to sustain their immortality."
+        "name": "Heightened senses",
+        "description": "Has enhanced senses of smell, hearing, and sight."
       },
       {
         "name": "Regeneration",
-        "description": "victims bitten three times become vampires themselves."
-      },
-      {
-        "name": "Vampiric Bite",
-        "description": "When a vampire bites a victim, they must Act Under Pressure or be mesmerized, unable to act for a moment."
-      },
-      {
-        "name": "Master Vampire",
-        "description": "The Vampire controls all the vampires they has created."
+        "description": "Can rapidly heal from most injuries."
       }
     ],
     "weaknesses": [
-      "Vulnerable to sunlight",
-      "Decapitation",
-      "Wooden stake through the heart",
-      "Must rest in a coffin with soil from their homeland"
+      "Vulnerable to silver",
+      "Transformation is uncontrollable during the full moon"
     ],
     "attacks": [
       {
-        "name": "Bite",
+        "name": "Claw swipe",
         "harm": 3,
-        "tags": ["intimate", "vampiric"]
+        "tags": ["hand", "messy"]
       },
       {
-        "name": "Punch/throw",
+        "name": "Bite",
         "harm": 4,
-        "tags": ["hand"]
+        "tags": ["intimate", "infectious"]
       }
     ],
-    "armor": 1,
-    "harmCapacity": 9,
+    "armor": 2,
+    "harmCapacity": 10,
     "customMoves": [
       {
-        "name": "Hypnotic Gaze",
-        "description": "When the Vampire locks eyes with a victim, they must Act Under Pressure or be mesmerized, unable to act for a moment."
+        "name": "Howl",
+        "description": "When the Werewolf howls, all nearby creatures must Act Under Pressure or be paralyzed with fear for a moment."
       }
     ],
-    "description": "A pale, gaunt figure with sharp fangs and glowing red eyes. Vampires are undead creatures that feed on the blood of the living to sustain their immortality.",
-    "habitat": "Dark, secluded places such as abandoned buildings, crypts, and castles",
+    "habitat": "Forests, rural areas, and places with minimal human activity",
     "signs": [
-      "Pale, drained corpses with puncture wounds on the neck",
-      "Unexplained disappearances at night",
-      "Sightings of a bat or mist moving unnaturally",
-      "Reports of a charming stranger with an aversion to sunlight"
+      "Large, wolf-like tracks",
+      "Reports of livestock being slaughtered",
+      "Sightings of a large, wolf-like creature",
+      "Unexplained disappearances during the full moon"
     ],
-    "history": "Vampires are ancient creatures of legend, with stories of their existence dating back to ancient civilizations. They are often depicted as noble or aristocratic figures who prey on the living to maintain their immortality.",
+    "history": "Werewolves are creatures of folklore, often depicted as humans cursed to transform into wolves during the full moon. Legends of werewolves date back to ancient times and are prevalent in many cultures.",
     "countermeasures": [
-      "Expose them to sunlight",
-      "Use garlic and holy symbols to repel them",
-      "Trap them in running water",
-      "Destroy their resting place and scatter the soil"
+      "Use silver weapons to harm them",
+      "Avoid areas where werewolves are known to hunt during the full moon",
+      "Set traps with silver bait"
     ]
   }
 ]

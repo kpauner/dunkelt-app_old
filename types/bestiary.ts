@@ -20,6 +20,8 @@ export type BestiaryEntry = {
   armor: number;
   harmCapacity: number;
   history: string;
+  habitat: string;
+  signs: string[];
   customMoves: Powers[];
   countermeasures: string[];
 };
