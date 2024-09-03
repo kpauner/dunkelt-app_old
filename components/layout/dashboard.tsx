@@ -14,6 +14,18 @@ const Dashboard = React.forwardRef<
 ));
 Dashboard.displayName = "Dashboard";
 
+const DashboardWrapper = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <p
+    ref={ref}
+    className={cn("flex flex-col sm:gap-4 sm:py-4 sm:pl-20", className)}
+    {...props}
+  />
+));
+DashboardWrapper.displayName = "DashboardWrapper";
+
 const DashboardSidebar = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -29,17 +41,20 @@ const DashboardSidebar = React.forwardRef<
 ));
 DashboardSidebar.displayName = "DashboardSidebar";
 
-const CardHeader = React.forwardRef<
+const DashboardHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    className={cn(
+      "sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6",
+      className
+    )}
     {...props}
   />
 ));
-CardHeader.displayName = "CardHeader";
+DashboardHeader.displayName = "DashboardHeader";
 
 const CardTitle = React.forwardRef<
   HTMLParagraphElement,
@@ -53,25 +68,20 @@ const CardTitle = React.forwardRef<
 ));
 CardTitle.displayName = "CardTitle";
 
-const CardDescription = React.forwardRef<
-  HTMLParagraphElement,
-  React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-  <p
-    ref={ref}
-    className={cn("text-sm text-muted-foreground", className)}
-    {...props}
-  />
-));
-CardDescription.displayName = "CardDescription";
-
-const CardContent = React.forwardRef<
+const DashboardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+  <div
+    ref={ref}
+    className={cn(
+      "grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8",
+      className
+    )}
+    {...props}
+  />
 ));
-CardContent.displayName = "CardContent";
+DashboardContent.displayName = "DashboardContent";
 
 const CardFooter = React.forwardRef<
   HTMLDivElement,
@@ -88,9 +98,9 @@ CardFooter.displayName = "CardFooter";
 export {
   Dashboard,
   DashboardSidebar,
-  CardHeader,
+  DashboardHeader,
   CardFooter,
   CardTitle,
-  CardDescription,
-  CardContent,
+  DashboardWrapper,
+  DashboardContent,
 };

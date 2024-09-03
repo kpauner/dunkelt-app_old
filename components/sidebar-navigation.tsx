@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Icons from "./icons";
 import {
   File,
   Home,
@@ -22,8 +23,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import Link from "next/link";
-import Icons from "./icons";
 import { usePathname } from "next/navigation";
+import UserDropdown from "./user-dropdown";
+import { useLocale } from "next-intl";
 
 type MenuItemProps = {
   href: string;
@@ -44,6 +46,7 @@ function MenuItem({
     <Tooltip>
       <TooltipTrigger asChild>
         <Link
+          prefetch={false}
           href={href}
           className={`group relative  flex h-9 w-full items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-12 md:w-full ${
             isActive ? "text-secondary-light" : "text-accent-light"
@@ -63,6 +66,16 @@ function MenuItem({
 
 export default function SidebarNavigation() {
   const pathname = usePathname();
+  const locale = useLocale();
+
+  const isActive = (href: string) => {
+    const path = href === "/" ? `/${locale}` : `/${locale}${href}`;
+    return pathname === path || pathname.startsWith(path);
+  };
+
+  console.log(isActive("/"));
+  console.log(pathname);
+  console.log(locale);
   return (
     <>
       <nav className="flex flex-col items-center gap-8 py-8 w-full">
@@ -73,11 +86,36 @@ export default function SidebarNavigation() {
           <Icons.logo className="h-8 w-8 transition-all group-hover:scale-110 fill-secondary-light" />
           <span className="sr-only">Acme Inc</span>
         </Link>
-        <MenuItem href="#" icon={Home} label="Dashboard" />
-        <MenuItem href="#" icon={ShoppingCart} label="Orders" />
-        <MenuItem href="#" icon={Package} label="Products" isActive={true} />
-        <MenuItem href="#" icon={Users2} label="Customers" />
-        <MenuItem href="#" icon={LineChart} label="Analytics" />
+        <MenuItem
+          href="/"
+          icon={Icons.home}
+          label="Dashboard"
+          isActive={isActive("/")}
+        />
+        <MenuItem
+          href="/orders"
+          icon={Icons.cart}
+          label="Orders"
+          isActive={isActive("/orders")}
+        />
+        <MenuItem
+          href={`/${locale}/codex`}
+          icon={Icons.library}
+          label="Codex"
+          isActive={isActive("/codex")}
+        />
+        <MenuItem
+          href="/customers"
+          icon={Users2}
+          label="Customers"
+          isActive={isActive("/customers")}
+        />
+        <MenuItem
+          href="/analytics"
+          icon={LineChart}
+          label="Analytics"
+          isActive={isActive("/analytics")}
+        />
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-8">
         <Tooltip>
@@ -92,6 +130,7 @@ export default function SidebarNavigation() {
           </TooltipTrigger>
           <TooltipContent side="right">Settings</TooltipContent>
         </Tooltip>
+        <UserDropdown />
       </nav>
     </>
   );

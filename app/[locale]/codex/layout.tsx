@@ -4,13 +4,6 @@ type Props = {
   children: ReactNode;
 };
 
-// Since we have a `not-found.tsx` page on the root, a layout file
-// is required, even if it's just passing children through.
-export default function BestiaryLayout({ children }: Props) {
-  return (
-    <div>
-      <h1>Bestiary layout</h1>
-      {children}
-    </div>
-  );
+export default function CodexLayout({ children }: Props) {
+  return <>{children}</>;
 }

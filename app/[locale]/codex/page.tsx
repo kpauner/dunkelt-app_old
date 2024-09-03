@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Dashboard,
   DashboardContent,
@@ -5,16 +6,11 @@ import {
   DashboardSidebar,
   DashboardWrapper,
 } from "@/components/layout/dashboard";
-import Header from "@/components/header";
-import Hero from "@/components/marketing/hero";
 import SidebarNavigation from "@/components/sidebar-navigation";
-import ThemeToggle from "@/components/theme-toggle";
-import { useTranslations } from "next-intl";
-import Image from "next/image";
+import Header from "@/components/header";
 import { Card, CardHeader } from "@/components/ui/card";
 
-export default function HomePage() {
-  const t = useTranslations("home");
+export default function Bestiary() {
   return (
     <Dashboard>
       <DashboardSidebar>
