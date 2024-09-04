@@ -1,9 +1,9 @@
 [
   {
     "name": "Vampire",
-    "type": "Undead",
+    "type": "Queen",
     "description": "A pale, gaunt figure with sharp fangs and glowing red eyes. Vampires are undead creatures that feed on the blood of the living to sustain their immortality.",
-    "motivation": "To feed on the blood of the living and spread their curse",
+    "motivation": "Queen",
     "powers": [
       {
         "name": "Immortality",
@@ -78,7 +78,7 @@
   },
   {
     "name": "Werewolf",
-    "type": "Lycanthrope",
+    "type": "Beast",
     "description": "A fearsome creature that transforms from human to wolf-like beast under the full moon. Werewolves possess incredible strength and heightened senses.",
     "motivation": "To hunt and feed on living creatures, driven by primal instincts",
     "powers": [

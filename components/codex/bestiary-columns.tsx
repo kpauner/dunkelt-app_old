@@ -5,7 +5,7 @@ import { SelectBestiary } from "@/types/bestiary";
 import { ArrowUpDown, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import { CellDescriptions, CellStringArray } from "./cells";
+import { CellDescriptions, CellStringArray, CellTooltip } from "./cells";
 
 export const bestiaryColumns: ColumnDef<SelectBestiary>[] = [
   {
@@ -83,7 +83,7 @@ export const bestiaryColumns: ColumnDef<SelectBestiary>[] = [
     },
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
-        <span>{row.getValue("type")}</span>
+        <CellTooltip value={row.getValue("type")} translation="motivations" />
       </div>
     ),
   },

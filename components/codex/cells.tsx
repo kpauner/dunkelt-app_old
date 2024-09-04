@@ -3,6 +3,8 @@ import { Column, Row } from "@tanstack/react-table";
 // import { format } from "date-fns";
 import { cn, truncateText } from "@/lib/utils";
 import { Badge } from "../ui/badge";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
+import { useTranslations } from "next-intl";
 
 type CellHeaderProps = {
   column: any;
@@ -58,5 +60,38 @@ export function CellStringArray({ value, className }: CellStringArrayProps) {
         </Badge>
       )}
     </div>
+  );
+}
+
+type CellTooltipProps = {
+  value: string;
+  translation: string;
+  className?: string;
+};
+
+export function CellTooltip({
+  value,
+  translation,
+  className,
+}: CellTooltipProps) {
+  const t = useTranslations(translation);
+
+  const lowerCaseValue = value.toLowerCase();
+  const translatedValue = t(lowerCaseValue);
+  console.log("Value:", value);
+  console.log("Lowercase Value:", lowerCaseValue);
+  console.log("Translated Value:", translatedValue);
+
+  return (
+    <Tooltip>
+      <TooltipTrigger>
+        <Badge variant="secondary" className={cn("capitalize", className)}>
+          {value}
+        </Badge>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p>{t(value)}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 }
