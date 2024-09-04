@@ -6,7 +6,6 @@ import {
   DashboardWrapper,
 } from "@/components/layout/dashboard";
 import Header from "@/components/header";
-import Hero from "@/components/marketing/hero";
 import SidebarNavigation from "@/components/sidebar-navigation";
 import ThemeToggle from "@/components/theme-toggle";
 import { useTranslations } from "next-intl";

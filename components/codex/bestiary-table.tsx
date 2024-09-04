@@ -1,0 +1,159 @@
+"use client";
+
+import {
+  ColumnDef,
+  ExpandedState,
+  flexRender,
+  getCoreRowModel,
+  getExpandedRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  getSortedRowModel,
+  SortingState,
+  useReactTable,
+} from "@tanstack/react-table";
+import React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "../ui/table";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+
+type DataTableProps<TData, TValue> = {
+  columns: ColumnDef<TData, TValue>[];
+  data: TData[];
+};
+
+export default function BestiaryTable<TData, TValue>({
+  columns,
+  data,
+}: DataTableProps<TData, TValue>) {
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+  const [expanded, setExpanded] = React.useState<ExpandedState>({});
+  const [globalFilter, setGlobalFilter] = React.useState("");
+  const table = useReactTable({
+    data,
+    columns,
+    state: {
+      expanded,
+      globalFilter,
+      sorting,
+    },
+    onExpandedChange: (newExpanded) => {
+      setExpanded(newExpanded);
+    },
+    onSortingChange: setSorting,
+    getSortedRowModel: getSortedRowModel(),
+    getCoreRowModel: getCoreRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(), // Add this line
+  });
+
+  return (
+    <div className="col-span-full">
+      <div className="pb-6">
+        <Input
+          placeholder="Filter ..."
+          value={globalFilter}
+          onChange={(e) => setGlobalFilter(e.target.value)}
+          className="w-full lg:w-80"
+        />
+      </div>
+      <Card>
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow
+                key={headerGroup.id}
+                className="dark:hover:bg-transparent"
+              >
+                {headerGroup.headers.map((header) => (
+                  <TableHead key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                  </TableHead>
+                ))}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <React.Fragment key={row.id}>
+                  <TableRow
+                    data-state={row.getIsSelected() && "selected"}
+                    className={row.getIsExpanded() ? "bg-accent-dark" : ""}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                  {row.getIsExpanded() && (
+                    <TableRow className="expanded-content">
+                      <TableCell
+                        colSpan={columns.length}
+                        className="p-0 hover:bg-transparent"
+                      >
+                        <div className="p-4 bg-transparent">
+                          <h3 className="text-lg font-semibold mb-2">
+                            Expanded Content for {(row.original as any).name}
+                          </h3>
+                          <pre className="p-2 mt-2 rounded">
+                            {JSON.stringify(row.original, null, 2)}
+                          </pre>
+                        </div>
+                      </TableCell>
+                    </TableRow>
+                  )}
+                </React.Fragment>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </Card>
+      <div className="flex items-center justify-end space-x-2 py-4">
+        <Button
+          variant="default"
+          size="sm"
+          onClick={() => table.previousPage()}
+          disabled={!table.getCanPreviousPage()}
+        >
+          Previous
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => table.nextPage()}
+          disabled={!table.getCanNextPage()}
+        >
+          Next
+        </Button>
+      </div>
+    </div>
+  );
+}

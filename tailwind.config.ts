@@ -19,20 +19,25 @@ const config = {
     },
     extend: {
       colors: {
+        background: "var(--background)",
         primary: {
-          DEFAULT: "#020E10",
-          light: "#28333A",
+          DEFAULT: "#277780",
+          foreground: "#A9FFF3",
+          light: "#9df2f0",
           dark: "#142027",
         },
+        muted: {
+          DEFAULT: "#101D22",
+          foreground: "#136972",
+        },
         secondary: {
-          DEFAULT: "#DF9B0A",
-          light: "#FFBE0C",
-          dark: "#2E2210",
+          DEFAULT: "#15474c",
+          foreground: "#9df2f0",
         },
         accent: {
-          DEFAULT: "#54DBE9",
-          light: "#A9FFF3",
-          dark: "#173A40",
+          DEFAULT: "#DF9B0A",
+          foreground: "#FFBE0C",
+          dark: "#2E2210",
         },
       },
       keyframes: {

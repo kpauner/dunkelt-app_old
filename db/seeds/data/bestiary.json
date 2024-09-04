@@ -35,10 +35,10 @@
       }
     ],
     "weaknesses": [
-      "Vulnerable to sunlight",
-      "Decapitation",
-      "Wooden stake through the heart",
-      "Must rest in a coffin with soil from their homeland"
+      "sunlight",
+      "decapitation",
+      "wooden stake through the heart",
+      "must rest in a coffin with soil from their homeland"
     ],
     "attacks": [
       {

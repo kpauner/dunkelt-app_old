@@ -15,6 +15,11 @@ export const computeSHA256 = async (file: File) => {
   return hashHex;
 };
 
+export function truncateText(text: string, maxLength: number) {
+  if (text.length <= maxLength) return text;
+  return `${text.slice(0, maxLength)}...`;
+}
+
 const alphabet = "0123456789abcdefghijklmnopqrstuvwxyz";
 const nanoid = customAlphabet(alphabet, 16);
 

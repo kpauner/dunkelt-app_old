@@ -8,9 +8,13 @@ import {
 } from "@/components/layout/dashboard";
 import SidebarNavigation from "@/components/sidebar-navigation";
 import Header from "@/components/header";
-import { Card, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { getBestiaries } from "@/data-access/bestiary";
+import BestiaryTable from "@/components/codex/bestiary-table";
+import { bestiaryColumns } from "@/components/codex/bestiary-columns";
 
-export default function Bestiary() {
+export default async function CodexPage() {
+  const bestiaries = await getBestiaries();
   return (
     <Dashboard>
       <DashboardSidebar>
@@ -22,21 +26,7 @@ export default function Bestiary() {
         </DashboardHeader>
         <DashboardContent>
           <div className="grid w-full gap-6 grid-cols-3 grid-rows-2">
-            <Card className="col-span-2 row-span-2">
-              <CardHeader>
-                <h3>Large Card</h3>
-              </CardHeader>
-            </Card>
-            <Card className="col-span-1 row-span-1">
-              <CardHeader>
-                <h3>Card 1</h3>
-              </CardHeader>
-            </Card>
-            <Card className="col-span-1 row-span-1">
-              <CardHeader>
-                <h3>Card 2</h3>
-              </CardHeader>
-            </Card>
+            <BestiaryTable data={bestiaries} columns={bestiaryColumns} />
           </div>
         </DashboardContent>
       </DashboardWrapper>

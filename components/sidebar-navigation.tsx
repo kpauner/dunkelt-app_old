@@ -49,11 +49,13 @@ function MenuItem({
           prefetch={false}
           href={href}
           className={`group relative  flex h-9 w-full items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-12 md:w-full ${
-            isActive ? "text-secondary-light" : "text-accent-light"
+            isActive
+              ? "text-accent"
+              : "fill-primary-foreground text-primary-foreground"
           }`}
         >
           {isActive && (
-            <span className="absolute left-0 h-full w-1  bg-secondary-light " />
+            <span className="absolute left-0 h-full w-1  bg-accent" />
           )}
           <Icon className="h-5 w-5" />
           <span className="sr-only">{label}</span>
@@ -70,20 +72,21 @@ export default function SidebarNavigation() {
 
   const isActive = (href: string) => {
     const path = href === "/" ? `/${locale}` : `/${locale}${href}`;
-    return pathname === path || pathname.startsWith(path);
+    return href === "/"
+      ? pathname === `/${locale}` || pathname === `/${locale}/`
+      : pathname.startsWith(path);
   };
 
   console.log(isActive("/"));
-  console.log(pathname);
-  console.log(locale);
+
   return (
     <>
       <nav className="flex flex-col items-center gap-8 py-8 w-full">
         <Link
           href="#"
-          className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+          className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
-          <Icons.logo className="h-8 w-8 transition-all group-hover:scale-110 fill-secondary-light" />
+          <Icons.logo className="h-8 w-8 transition-all group-hover:scale-110 fill-accent" />
           <span className="sr-only">Acme Inc</span>
         </Link>
         <MenuItem

@@ -18,7 +18,7 @@ const DashboardWrapper = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement>
 >(({ className, ...props }, ref) => (
-  <p
+  <div
     ref={ref}
     className={cn("flex flex-col sm:gap-4 sm:py-4 sm:pl-20", className)}
     {...props}
@@ -33,7 +33,7 @@ const DashboardSidebar = React.forwardRef<
   <aside
     ref={ref}
     className={cn(
-      "fixed inset-y-0 left-0 z-10 hidden w-20 flex-col border-r border-primary-dark bg-primary sm:flex",
+      "fixed inset-y-0 left-0 z-10 hidden w-20 flex-col border-r border-primary-dark  sm:flex",
       className
     )}
     {...props}
