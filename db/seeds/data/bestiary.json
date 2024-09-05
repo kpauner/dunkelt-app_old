@@ -1,9 +1,8 @@
 [
   {
-    "name": "Vampire",
-    "type": "Queen",
+    "name": "vampire",
+    "type": "queen",
     "description": "A pale, gaunt figure with sharp fangs and glowing red eyes. Vampires are undead creatures that feed on the blood of the living to sustain their immortality.",
-    "motivation": "Queen",
     "powers": [
       {
         "name": "Immortality",

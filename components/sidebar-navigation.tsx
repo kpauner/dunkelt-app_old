@@ -83,10 +83,10 @@ export default function SidebarNavigation() {
     <>
       <nav className="flex flex-col items-center gap-8 py-8 w-full">
         <Link
-          href="#"
-          className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
+          href="/"
+          className="group flex w-8 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold text-accent-foreground md:w-8 md:text-base"
         >
-          <Icons.logo className="h-8 w-8 transition-all group-hover:scale-110 fill-accent" />
+          <Icons.logo className="w-8 transition-all group-hover:scale-110 fill-accent" />
           <span className="sr-only">Acme Inc</span>
         </Link>
         <MenuItem
@@ -109,10 +109,10 @@ export default function SidebarNavigation() {
         />
 
         <MenuItem
-          href="/customers"
-          icon={Users2}
-          label="Customers"
-          isActive={isActive("/customers")}
+          href={`/${locale}/characters`}
+          icon={Icons.characters}
+          label="Characters"
+          isActive={isActive("/characters")}
         />
         <MenuItem
           href="/games"
@@ -122,18 +122,12 @@ export default function SidebarNavigation() {
         />
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-8">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Link
-              href="#"
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-            >
-              <Settings className="h-5 w-5" />
-              <span className="sr-only">Settings</span>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right">Settings</TooltipContent>
-        </Tooltip>
+        <MenuItem
+          href="/settings"
+          icon={Icons.settings}
+          label="Settings"
+          isActive={isActive("/settings")}
+        />
         <UserDropdown />
       </nav>
     </>

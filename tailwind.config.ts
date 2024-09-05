@@ -20,6 +20,7 @@ const config = {
     extend: {
       colors: {
         background: "var(--background)",
+        foreground: "var(--foreground)",
         primary: {
           DEFAULT: "#277780",
           foreground: "#A9FFF3",

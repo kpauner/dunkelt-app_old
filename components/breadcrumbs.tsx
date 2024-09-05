@@ -30,13 +30,13 @@ export default function Breadcrumbs() {
                 <BreadcrumbPage>{displayedPath}</BreadcrumbPage>
               ) : (
                 <>
-                  <BreadcrumbItem>
+                  <BreadcrumbItem className="text-accent">
                     <BreadcrumbLink asChild>
                       <Link
                         href={`/${path}`}
                         className={cn(
-                          "text-neutral-500",
-                          isLast && "text-neutral-900"
+                          "text-primary-foreground/30",
+                          isLast && "text-primary-foreground"
                         )}
                       >
                         {displayedPath}

@@ -9,7 +9,6 @@ import tags from "./tags";
 const tagToEntity = sqliteTable(
   "tag_to_entity",
   {
-    id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
     tagId: integer("tag_id")
       .notNull()
       .references(() => tags.id),

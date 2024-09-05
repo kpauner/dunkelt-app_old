@@ -27,21 +27,22 @@ export function generatePublicId() {
   return nanoid();
 }
 
-export const getBaseUrl = () => {
-  if (process.env.NEXT_PUBLIC_APP_URL) {
-    return process.env.NEXT_PUBLIC_APP_URL;
-  }
+export const getBaseUrl = (path: string = "") => {
+  let baseUrl = "http://localhost:3000";
 
-  if (
+  if (process.env.NEXT_PUBLIC_APP_URL) {
+    baseUrl = process.env.NEXT_PUBLIC_APP_URL;
+  } else if (
     process.env.VERCEL_ENV === "production" &&
     process.env.VERCEL_PROJECT_PRODUCTION_URL
   ) {
-    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+    baseUrl = `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  } else if (process.env.VERCEL_URL) {
+    baseUrl = `https://${process.env.VERCEL_URL}`;
   }
 
-  if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL}`;
-  }
+  // Ensure path starts with a slash if it's not empty
+  const normalizedPath = path ? (path.startsWith("/") ? path : `/${path}`) : "";
 
-  return "http://localhost:3000";
+  return `${baseUrl}${normalizedPath}`;
 };

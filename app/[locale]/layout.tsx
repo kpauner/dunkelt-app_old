@@ -30,7 +30,7 @@ export default async function LocaleLayout({
             // disableTransitionOnChange
           >
             <TooltipProvider>
-              <main className="bg-background dark:bg-background">
+              <main className="bg-background dark:bg-background text-foreground">
                 {children}
               </main>
               <Toaster />

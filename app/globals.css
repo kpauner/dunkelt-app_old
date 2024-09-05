@@ -3,12 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  --background: #e6f3f5;
+  --foreground: #0a3d42;
 }
 
 .dark {
   --background: #020e10;
+  --foreground: #d0d9d6;
 }
 
 .expanded-content:hover {

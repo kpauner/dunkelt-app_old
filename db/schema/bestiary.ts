@@ -17,7 +17,6 @@ const bestiary = sqliteTable("bestiary", {
   name: text("name").notNull(),
   type: text("type").notNull(),
   description: text("description").notNull(),
-  motivation: text("motivation").notNull(),
   powers: text("powers", { mode: "json" }).$type<Powers[]>().notNull(),
   weaknesses: text("weaknesses", { mode: "json" }).$type<string[]>().notNull(),
   attacks: text("attacks", { mode: "json" }).$type<Attack[]>().notNull(),
@@ -26,7 +25,7 @@ const bestiary = sqliteTable("bestiary", {
   customMoves: text("custom_moves", { mode: "json" })
     .$type<Powers[]>()
     .notNull(),
-  habitat: text("habitat"),
+  origins: text("origins", { mode: "json" }).$type<string[]>().notNull(),
   signs: text("signs", { mode: "json" }).$type<string[]>().notNull(),
   history: text("history"),
   countermeasures: text("countermeasures", { mode: "json" })
