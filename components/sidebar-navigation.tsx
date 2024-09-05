@@ -96,17 +96,18 @@ export default function SidebarNavigation() {
           isActive={isActive("/")}
         />
         <MenuItem
+          href={`/${locale}/codex`}
+          icon={Icons.codex}
+          label="Codex"
+          isActive={isActive("/codex")}
+        />
+        <MenuItem
           href="/orders"
           icon={Icons.cart}
           label="Orders"
           isActive={isActive("/orders")}
         />
-        <MenuItem
-          href={`/${locale}/codex`}
-          icon={Icons.library}
-          label="Codex"
-          isActive={isActive("/codex")}
-        />
+
         <MenuItem
           href="/customers"
           icon={Users2}
@@ -114,10 +115,10 @@ export default function SidebarNavigation() {
           isActive={isActive("/customers")}
         />
         <MenuItem
-          href="/analytics"
-          icon={LineChart}
-          label="Analytics"
-          isActive={isActive("/analytics")}
+          href="/games"
+          icon={Icons.dice}
+          label="Games"
+          isActive={isActive("/games")}
         />
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-8">

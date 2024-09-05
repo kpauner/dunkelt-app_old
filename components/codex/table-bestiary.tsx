@@ -24,13 +24,17 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { TableFacetedFilter } from "./table-faceted-filter";
+import { TableViewOptions } from "./table-view-options";
+import TableToolbar from "./table-toolbar";
+import { filters } from "@/config/filters.config";
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 };
 
-export default function BestiaryTable<TData, TValue>({
+export default function TableBestiary<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -56,16 +60,26 @@ export default function BestiaryTable<TData, TValue>({
     getFilteredRowModel: getFilteredRowModel(), // Add this line
   });
 
+  const type = [
+    {
+      label: "beast",
+      value: "beast",
+    },
+    {
+      label: "Queen",
+      value: "queen",
+    },
+  ];
+
   return (
-    <div className="col-span-full">
-      <div className="pb-6">
-        <Input
-          placeholder="Filter ..."
-          value={globalFilter}
-          onChange={(e) => setGlobalFilter(e.target.value)}
-          className="w-full lg:w-80"
-        />
-      </div>
+    <div className="col-span-full space-y-4">
+      <TableToolbar
+        table={table}
+        globalFilter={globalFilter}
+        setGlobalFilter={setGlobalFilter}
+        filters={filters}
+      />
+
       <Card>
         <Table>
           <TableHeader>

@@ -8,10 +8,10 @@ import {
 } from "@/components/layout/dashboard";
 import SidebarNavigation from "@/components/sidebar-navigation";
 import Header from "@/components/header";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { getBestiaries } from "@/data-access/bestiary";
-import BestiaryTable from "@/components/codex/bestiary-table";
 import { bestiaryColumns } from "@/components/codex/bestiary-columns";
+import TableBestiary from "@/components/codex/table-bestiary";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default async function CodexPage() {
   const bestiaries = await getBestiaries();
@@ -25,9 +25,23 @@ export default async function CodexPage() {
           <Header />
         </DashboardHeader>
         <DashboardContent>
-          <div className="grid w-full gap-6 grid-cols-3 grid-rows-2">
-            <BestiaryTable data={bestiaries} columns={bestiaryColumns} />
-          </div>
+          <Tabs defaultValue="all">
+            <div className="flex items-center">
+              <TabsList>
+                <TabsTrigger value="all">All</TabsTrigger>
+                <TabsTrigger value="active">Active</TabsTrigger>
+                <TabsTrigger value="draft">Draft</TabsTrigger>
+                <TabsTrigger value="archived" className="hidden sm:flex">
+                  Archived
+                </TabsTrigger>
+              </TabsList>
+            </div>
+            <TabsContent value="all">
+              <div className="grid w-full gap-6 grid-cols-3 grid-rows-2">
+                <TableBestiary data={bestiaries} columns={bestiaryColumns} />
+              </div>
+            </TabsContent>
+          </Tabs>
         </DashboardContent>
       </DashboardWrapper>
     </Dashboard>
