@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { customAlphabet } from "nanoid";
+import { getLocale } from "next-intl/server";
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
@@ -25,6 +26,13 @@ const nanoid = customAlphabet(alphabet, 16);
 
 export function generatePublicId() {
   return nanoid();
+}
+
+export function getIsActive(href: string, pathname: string, locale: string) {
+  const path = href === "/" ? `/${locale}` : `/${locale}${href}`;
+  return href === "/"
+    ? pathname === `/${locale}` || pathname === `/${locale}/`
+    : pathname.startsWith(path);
 }
 
 export const getBaseUrl = (path: string = "") => {

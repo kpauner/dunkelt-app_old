@@ -2,7 +2,8 @@
   {
     "name": "vampire",
     "type": "queen",
-    "description": "A pale, gaunt figure with sharp fangs and glowing red eyes. Vampires are undead creatures that feed on the blood of the living to sustain their immortality.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SCP-049.png/640px-SCP-049.png",
+    "description": "A pale, gaunt figure with sharp fangs and glowing red eyes. Vampires are undead creatures that feed on the blood of the living to sustain their immortality. Ancient creatures of legend, with stories of their existence dating back to ancient civilizations. They are often depicted as noble or aristocratic figures who prey on the living to maintain their immortality.",
     "powers": [
       {
         "name": "Immortality",
@@ -59,81 +60,149 @@
         "description": "When the Vampire locks eyes with a victim, they must Act Under Pressure or be mesmerized, unable to act for a moment."
       }
     ],
-
-    "habitat": "Dark, secluded places such as abandoned buildings, crypts, and castles",
+    "origins": ["romania", "transylvania"],
     "signs": [
       "Pale, drained corpses with puncture wounds on the neck",
       "Unexplained disappearances at night",
       "Sightings of a bat or mist moving unnaturally",
       "Reports of a charming stranger with an aversion to sunlight"
     ],
-    "history": "Vampires are ancient creatures of legend, with stories of their existence dating back to ancient civilizations. They are often depicted as noble or aristocratic figures who prey on the living to maintain their immortality.",
     "countermeasures": [
       "Expose them to sunlight",
       "Use garlic and holy symbols to repel them",
       "Trap them in running water",
       "Destroy their resting place and scatter the soil"
-    ]
+    ],
+    "userId": "ecf52ab2-abb2-44c5-b3a7-04b73bde97ee",
+    "isPublic": true
   },
   {
-    "name": "Werewolf",
-    "type": "Beast",
-    "description": "A fearsome creature that transforms from human to wolf-like beast under the full moon. Werewolves possess incredible strength and heightened senses.",
-    "motivation": "To hunt and feed on living creatures, driven by primal instincts",
+    "name": "werewolf",
+    "type": "shapeshifter",
+    "image": "https://static.wikia.nocookie.net/scp-fanon/images/3/30/SCP-106-B.jpg/revision/latest?cb=20240511002332",
+    "description": "A human who transforms into a wolf-like creature during the full moon. Werewolves are known for their superhuman strength, speed, and ferocity. They are often portrayed as cursed individuals struggling with their dual nature.",
     "powers": [
       {
-        "name": "Transformation",
-        "description": "Transforms into a powerful wolf-like creature under the full moon."
+        "name": "Shapeshifting",
+        "description": "Can transform into a wolf-like creature, especially during the full moon."
       },
       {
-        "name": "Superhuman strength",
-        "description": "Possesses strength far beyond that of a normal human."
-      },
-      {
-        "name": "Heightened senses",
-        "description": "Has enhanced senses of smell, hearing, and sight."
+        "name": "Enhanced Senses",
+        "description": "Heightened smell, hearing, and night vision in both human and wolf form."
       },
       {
         "name": "Regeneration",
-        "description": "Can rapidly heal from most injuries."
+        "description": "Rapid healing of wounds, except those caused by silver."
+      },
+      {
+        "name": "Pack Mentality",
+        "description": "Can communicate telepathically with other werewolves in their pack."
       }
     ],
     "weaknesses": [
-      "Vulnerable to silver",
-      "Transformation is uncontrollable during the full moon"
+      "silver",
+      "wolfsbane",
+      "inability to control transformation during full moon"
     ],
     "attacks": [
       {
-        "name": "Claw swipe",
+        "name": "Bite",
         "harm": 3,
-        "tags": ["hand", "messy"]
+        "tags": ["messy", "infectious"]
       },
       {
-        "name": "Bite",
-        "harm": 4,
-        "tags": ["intimate", "infectious"]
+        "name": "Claw",
+        "harm": 2,
+        "tags": ["close"]
       }
     ],
-    "armor": 2,
-    "harmCapacity": 10,
+    "armor": 1,
+    "harmCapacity": 8,
     "customMoves": [
       {
-        "name": "Howl",
-        "description": "When the Werewolf howls, all nearby creatures must Act Under Pressure or be paralyzed with fear for a moment."
+        "name": "Lunar Rage",
+        "description": "When the werewolf is under the full moon, they must Act Under Pressure to resist transforming and going on a rampage."
       }
     ],
-    "habitat": "Forests, rural areas, and places with minimal human activity",
+    "origins": ["europe", "north america"],
     "signs": [
-      "Large, wolf-like tracks",
-      "Reports of livestock being slaughtered",
-      "Sightings of a large, wolf-like creature",
-      "Unexplained disappearances during the full moon"
+      "Animal attacks coinciding with the full moon",
+      "Missing persons in wooded areas",
+      "Howling sounds from uninhabited regions",
+      "Claw marks on trees or buildings"
     ],
-    "history": "Werewolves are creatures of folklore, often depicted as humans cursed to transform into wolves during the full moon. Legends of werewolves date back to ancient times and are prevalent in many cultures.",
     "countermeasures": [
-      "Use silver weapons to harm them",
-      "Avoid areas where werewolves are known to hunt during the full moon",
-      "Set traps with silver bait"
-    ]
+      "Use silver weapons",
+      "Create barriers with mountain ash",
+      "Play recordings of wolf howls to confuse them",
+      "Trap them in enclosed spaces during full moon"
+    ],
+    "userId": "ecf52ab2-abb2-44c5-b3a7-04b73bde97ee",
+    "isPublic": true
+  },
+  {
+    "name": "ghost",
+    "type": "spirit",
+    "image": "https://static.wikia.nocookie.net/scp-fanon/images/3/30/SCP-106-B.jpg/revision/latest?cb=20240511002332",
+    "description": "The spectral remnant of a deceased person, often bound to a specific location or object. Ghosts are incorporeal beings that can pass through solid matter and are often associated with unfinished business or tragic deaths.",
+    "powers": [
+      {
+        "name": "Intangibility",
+        "description": "Can pass through solid objects and walls."
+      },
+      {
+        "name": "Invisibility",
+        "description": "Can become invisible at will, though may be visible to certain individuals or under specific circumstances."
+      },
+      {
+        "name": "Possession",
+        "description": "Can temporarily take control of a living being's body."
+      },
+      {
+        "name": "Telekinesis",
+        "description": "Ability to move objects without physical contact."
+      }
+    ],
+    "weaknesses": [
+      "salt",
+      "iron",
+      "exorcism rituals",
+      "resolving their unfinished business"
+    ],
+    "attacks": [
+      {
+        "name": "Spectral Touch",
+        "harm": 1,
+        "tags": ["chilling", "ignores-armor"]
+      },
+      {
+        "name": "Terrifying Visage",
+        "harm": 0,
+        "tags": ["emotional", "debilitating"]
+      }
+    ],
+    "armor": 0,
+    "harmCapacity": 5,
+    "customMoves": [
+      {
+        "name": "Haunting Presence",
+        "description": "When a ghost manifests, all living beings in the vicinity must Act Under Pressure or flee in terror."
+      }
+    ],
+    "origins": ["global"],
+    "signs": [
+      "Unexplained cold spots",
+      "Objects moving on their own",
+      "Disembodied voices or whispers",
+      "Recurring nightmares about a specific person or event"
+    ],
+    "countermeasures": [
+      "Perform an exorcism ritual",
+      "Create barriers with salt lines",
+      "Use iron objects to disrupt spectral energy",
+      "Research and resolve the ghost's unfinished business"
+    ],
+    "userId": "ecf52ab2-abb2-44c5-b3a7-04b73bde97ee",
+    "isPublic": true
   }
 ]

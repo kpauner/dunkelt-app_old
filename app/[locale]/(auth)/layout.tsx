@@ -6,7 +6,7 @@ type Props = {
 
 export default function CodexLayout({ children }: Props) {
   return (
-    <div className="min-h-screen w-full bg-background items-center justify-center flex">
+    <div className="min-h-screen w-full bg-background items-center justify-center flex flex-col">
       {children}
     </div>
   );

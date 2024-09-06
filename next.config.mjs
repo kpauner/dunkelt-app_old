@@ -5,7 +5,10 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [{ hostname: "static.wikia.nocookie.net" }],
+    remotePatterns: [
+      { hostname: "static.wikia.nocookie.net" },
+      { hostname: "lh3.googleusercontent.com" },
+    ],
   },
 };
 

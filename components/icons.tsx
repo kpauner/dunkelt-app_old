@@ -12,6 +12,8 @@ import {
   MessageSquare,
   LogOut,
   LogIn,
+  ArrowLeft,
+  User,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
@@ -20,13 +22,15 @@ const Icons = {
   filter: FilterIcon,
   dice: Dice6Icon,
   codex: BookCopyIcon,
-  users: Users2,
+  bystanders: Users2,
+  user: User,
   location: MapPin,
   characters: ContactIcon,
   settings: Settings,
   feedback: MessageSquare,
   signout: LogOut,
   signin: LogIn,
+  leftarrow: ArrowLeft,
   monster: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +68,7 @@ const Icons = {
       {...props}
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_150_25)">
+      <g clipPath="url(#clip0_150_25)">
         <path
           d="M72 36C81.9411 36 90 27.9411 90 18C90 8.05887 81.9411 0 72 0C62.0589 0 54 8.05887 54 18C54 27.9411 62.0589 36 72 36Z"
           fill="currentColor"
@@ -76,6 +80,32 @@ const Icons = {
       </g>
       <defs>
         <clipPath id="clip0_150_25">
+          <rect width="100%" height="100%" fill="currentColor" />
+        </clipPath>
+      </defs>
+    </svg>
+  ),
+  logooutline: ({ ...props }: IconProps) => (
+    <svg
+      width="100%"
+      height="100%"
+      viewBox="0 0 287 296"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <g clipPath="url(#clip0_153_8)">
+        <path
+          d="M139 0H13C5.82 0 0 5.82 0 13V283C0 290.18 5.82 296 13 296H139C220.61 296 287 229.61 287 148C287 66.39 220.61 0 139 0ZM26 89H143.5C176.03 89 202.5 115.47 202.5 148C202.5 180.53 176.03 207 143.5 207H94C86.82 207 81 212.82 81 220V270H26V89ZM139 270H107V233H143.5C190.37 233 228.5 194.87 228.5 148C228.5 101.13 190.37 63 143.5 63H26V26H139C206.27 26 261 80.73 261 148C261 215.27 206.27 270 139 270Z"
+          fill="currentColor"
+        />
+        <path
+          d="M121 184C140.882 184 157 167.882 157 148C157 128.118 140.882 112 121 112C101.118 112 85 128.118 85 148C85 167.882 101.118 184 121 184Z"
+          fill="currentColor"
+        />
+      </g>
+      <defs>
+        <clipPath id="clip0_153_8">
           <rect width="100%" height="100%" fill="currentColor" />
         </clipPath>
       </defs>

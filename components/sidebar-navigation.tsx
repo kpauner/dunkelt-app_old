@@ -3,21 +3,6 @@
 import React from "react";
 import Icons from "./icons";
 import {
-  File,
-  Home,
-  LineChart,
-  ListFilter,
-  MoreHorizontal,
-  Package,
-  Package2,
-  PanelLeft,
-  PlusCircle,
-  Search,
-  Settings,
-  ShoppingCart,
-  Users2,
-} from "lucide-react";
-import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
@@ -26,6 +11,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import UserDropdown from "./user-dropdown";
 import { useLocale } from "next-intl";
+import { useSession } from "next-auth/react";
+import { Session } from "next-auth";
+import { getIsActive } from "@/lib/utils";
 
 type MenuItemProps = {
   href: string;
@@ -66,18 +54,20 @@ function MenuItem({
   );
 }
 
-export default function SidebarNavigation() {
+type SidebarNavigationProps = {
+  session: Session | null;
+};
+
+export default function SidebarNavigation({ session }: SidebarNavigationProps) {
   const pathname = usePathname();
   const locale = useLocale();
 
-  const isActive = (href: string) => {
-    const path = href === "/" ? `/${locale}` : `/${locale}${href}`;
-    return href === "/"
-      ? pathname === `/${locale}` || pathname === `/${locale}/`
-      : pathname.startsWith(path);
-  };
-
-  console.log(isActive("/"));
+  const menuItems = [
+    { href: "/", icon: Icons.home, label: "Dashboard" },
+    { href: "/codex", icon: Icons.codex, label: "Codex" },
+    { href: "/games", icon: Icons.dice, label: "Games" },
+    { href: "/orders", icon: Icons.cart, label: "Orders" },
+  ];
 
   return (
     <>
@@ -86,49 +76,30 @@ export default function SidebarNavigation() {
           href="/"
           className="group flex w-8 shrink-0 items-center justify-center gap-2 rounded-full text-lg font-semibold text-accent-foreground md:w-8 md:text-base"
         >
-          <Icons.logo className="w-8 transition-all group-hover:scale-110 fill-accent" />
+          <Icons.logooutline className="w-6 transition-all group-hover:scale-110 fill-accent" />
           <span className="sr-only">Acme Inc</span>
         </Link>
-        <MenuItem
-          href="/"
-          icon={Icons.home}
-          label="Dashboard"
-          isActive={isActive("/")}
-        />
-        <MenuItem
-          href={`/${locale}/codex`}
-          icon={Icons.codex}
-          label="Codex"
-          isActive={isActive("/codex")}
-        />
-        <MenuItem
-          href="/orders"
-          icon={Icons.cart}
-          label="Orders"
-          isActive={isActive("/orders")}
-        />
-
-        <MenuItem
-          href={`/${locale}/characters`}
-          icon={Icons.characters}
-          label="Characters"
-          isActive={isActive("/characters")}
-        />
-        <MenuItem
-          href="/games"
-          icon={Icons.dice}
-          label="Games"
-          isActive={isActive("/games")}
-        />
+        {menuItems.map((item) => {
+          const isActive = getIsActive(item.href, pathname, locale);
+          return (
+            <MenuItem
+              key={item.href}
+              href={`/${locale}${item.href}`}
+              icon={item.icon}
+              label={item.label}
+              isActive={isActive}
+            />
+          );
+        })}
       </nav>
-      <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-8">
+      <nav className="mt-auto flex flex-col items-center gap-4 py-8">
         <MenuItem
-          href="/settings"
+          href={`/${locale}/settings`}
           icon={Icons.settings}
           label="Settings"
-          isActive={isActive("/settings")}
+          isActive={getIsActive("/settings", pathname, locale)}
         />
-        <UserDropdown />
+        <UserDropdown session={session} />
       </nav>
     </>
   );

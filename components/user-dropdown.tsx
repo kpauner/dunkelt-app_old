@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
 import { Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
 import { Button } from "./ui/button";
@@ -27,14 +27,6 @@ type UserDropdownProps = {
 export default function UserDropdown({ session }: UserDropdownProps) {
   const locale = useLocale();
   const router = useRouter();
-  // const session = {
-  //   user: {
-  //     name: "John Doe",
-  //     email: "john@example.com",
-  //     image: "/images/placeholder-avatar.png",
-  //   },
-  //   expires: "2024-12-31",
-  // };
 
   return (
     <>
@@ -42,12 +34,10 @@ export default function UserDropdown({ session }: UserDropdownProps) {
         <>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Avatar className="bg-gray-400 cursor-pointer">
-                <AvatarImage
-                  src={session?.user?.image || "/images/placeholder.svg"}
-                />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
+              <Avatar
+                variant="rounded"
+                src={session?.user?.image || undefined}
+              />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" sideOffset={10} className="w-72">
               <DropdownMenuLabel className="space-y-1">

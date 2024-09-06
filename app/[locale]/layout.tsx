@@ -4,6 +4,19 @@ import TooltipProvider from "@/providers/tooltip-provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { GeistMono } from "geist/font/mono";
+import AuthProvider from "@/providers/session-provider";
+import {
+  Dashboard,
+  DashboardContent,
+  DashboardHeader,
+  DashboardSidebar,
+  DashboardWrapper,
+} from "@/components/layout/dashboard";
+import SidebarNavigation from "@/components/sidebar-navigation";
+import Header from "@/components/header";
+import { Suspense } from "react";
+import LoadingLogo from "@/components/layout/loading-logo";
+import { auth } from "@/lib/auth";
 
 export default async function LocaleLayout({
   children,
@@ -12,6 +25,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
+  const session = await auth();
   const messages = await getMessages();
 
   return (
@@ -29,12 +43,27 @@ export default async function LocaleLayout({
             forcedTheme="dark"
             // disableTransitionOnChange
           >
-            <TooltipProvider>
-              <main className="bg-background dark:bg-background text-foreground">
-                {children}
-              </main>
-              <Toaster />
-            </TooltipProvider>
+            <AuthProvider>
+              <TooltipProvider>
+                <Dashboard className="bg-background dark:bg-background text-foreground">
+                  <DashboardSidebar>
+                    <SidebarNavigation session={session} />
+                  </DashboardSidebar>
+                  <DashboardWrapper>
+                    <DashboardHeader>
+                      <Header />
+                    </DashboardHeader>
+                    <DashboardContent>
+                      <Suspense fallback={<LoadingLogo />}>
+                        <main className="">{children}</main>
+                      </Suspense>
+                    </DashboardContent>
+                  </DashboardWrapper>
+                </Dashboard>
+
+                <Toaster />
+              </TooltipProvider>
+            </AuthProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

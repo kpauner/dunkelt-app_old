@@ -6,6 +6,7 @@ import {
   text,
   primaryKey,
 } from "drizzle-orm/sqlite-core";
+import { users } from "./users";
 
 /* Create the monster: name, description, type & motivation,
 then define its powers, weaknesses, attacks, armour, harm
@@ -16,6 +17,7 @@ const bestiary = sqliteTable("bestiary", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   name: text("name").notNull(),
   type: text("type").notNull(),
+  image: text("image"),
   description: text("description").notNull(),
   powers: text("powers", { mode: "json" }).$type<Powers[]>().notNull(),
   weaknesses: text("weaknesses", { mode: "json" }).$type<string[]>().notNull(),
@@ -27,10 +29,11 @@ const bestiary = sqliteTable("bestiary", {
     .notNull(),
   origins: text("origins", { mode: "json" }).$type<string[]>().notNull(),
   signs: text("signs", { mode: "json" }).$type<string[]>().notNull(),
-  history: text("history"),
   countermeasures: text("countermeasures", { mode: "json" })
     .$type<string[]>()
     .notNull(),
+  userId: text("user_id").references(() => users.id),
+  isPublic: integer("is_public", { mode: "boolean" }).default(false).notNull(),
 });
 
 export default bestiary;

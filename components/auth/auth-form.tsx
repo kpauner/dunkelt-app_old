@@ -27,7 +27,6 @@ export default function AuthForm() {
         Continue with Google
         <Icons.google className="size-3 fill-secondary-100" />
       </Button>
-      <Separator className="mt-6" />
     </div>
   );
 }
