@@ -94,10 +94,10 @@ export default function SidebarNavigation({ session }: SidebarNavigationProps) {
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 py-8">
         <MenuItem
-          href={`/${locale}/settings`}
-          icon={Icons.settings}
+          href={`/${locale}/support`}
+          icon={Icons.support}
           label="Settings"
-          isActive={getIsActive("/settings", pathname, locale)}
+          isActive={getIsActive("/support", pathname, locale)}
         />
         <UserDropdown session={session} />
       </nav>

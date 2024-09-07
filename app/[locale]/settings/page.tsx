@@ -1,3 +1,4 @@
+import { DashboardContentLayout } from "@/components/layout/dashboard";
 import Heading from "@/components/layout/heading";
 import ProfileForm from "@/components/settings/profile-form";
 import SubNavigation from "@/components/sub-navigation";
@@ -38,11 +39,15 @@ export default async function SettingsPage() {
   }
 
   return (
-    <main className="flex flex-1 flex-col gap-4  p-4 md:gap-8 md:p-10">
-      <div className="mx-auto grid w-full max-w-6xl gap-2">
-        <h1 className="text-3xl font-semibold">Settings</h1>
-      </div>
-      <div className="mx-auto grid w-full max-w-6xl items-start gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[250px_1fr]">
+    <DashboardContentLayout
+      variant="page"
+      className="flex flex-1 flex-col gap-4 md:gap-8 pt-8"
+    >
+      <Heading as="h1" size="md">
+        Settings
+      </Heading>
+
+      <div className="mx-auto grid w-full items-start gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[250px_1fr]">
         <SubNavigation menuItems={settingsMenuItems} session={session} />
         <div className="grid gap-6">
           <ProfileForm
@@ -83,6 +88,6 @@ export default async function SettingsPage() {
           </Card>
         </div>
       </div>
-    </main>
+    </DashboardContentLayout>
   );
 }

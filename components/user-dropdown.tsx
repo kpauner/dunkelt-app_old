@@ -51,11 +51,11 @@ export default function UserDropdown({ session }: UserDropdownProps) {
                 icon={
                   <Icons.characters className="size-5 text-primary-foreground" />
                 }
-                onClick={() => router.push(`${locale}/characters`)}
+                onClick={() => router.push(`/${locale}/characters`)}
                 className="flex items-center gap-4"
               />
               <DropdownMenuItem
-                onClick={() => router.push(`${locale}/dashboard/settings`)}
+                onClick={() => router.push(`/${locale}/settings`)}
                 className="flex items-center gap-4"
               >
                 <Icons.settings className="size-5 text-primary-foreground" />{" "}

@@ -14,6 +14,7 @@ import {
   LogIn,
   ArrowLeft,
   User,
+  LifeBuoy,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
@@ -31,6 +32,7 @@ const Icons = {
   signout: LogOut,
   signin: LogIn,
   leftarrow: ArrowLeft,
+  support: LifeBuoy,
   monster: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

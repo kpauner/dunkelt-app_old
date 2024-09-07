@@ -79,5 +79,11 @@
     "tempter": "to tempt people into evil or self-destruction",
     "torturer": "to hurt and terrify",
     "trickster": "to create chaos"
+  },
+  "playbook": {
+    "thechosenone": {
+      "title": "The Chosen One",
+      "description": "a once-ordinary person who discovered they have a special destiny, and who has been given the power to accomplish it. The Chosen is good in a fight, with some weird powers."
+    }
   }
 }

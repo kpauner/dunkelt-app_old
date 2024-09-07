@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { cn } from "@/lib/utils";
+import { cva, VariantProps } from "class-variance-authority";
 
 const Dashboard = React.forwardRef<
   HTMLDivElement,
@@ -80,6 +81,34 @@ const DashboardContent = React.forwardRef<
 ));
 DashboardContent.displayName = "DashboardContent";
 
+const dashboardLayoutVariants = cva("mx-auto", {
+  variants: {
+    variant: {
+      default: "w-full",
+      page: "max-w-screen-xl flex flex-1 flex-col gap-4 md:gap-8 pt-8",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
+
+interface DashboardContentLayoutProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof dashboardLayoutVariants> {}
+
+const DashboardContentLayout = React.forwardRef<
+  HTMLDivElement,
+  DashboardContentLayoutProps
+>(({ className, variant, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(dashboardLayoutVariants({ variant, className }))}
+    {...props}
+  />
+));
+DashboardContentLayout.displayName = "DashboardContentLayout";
+
 const DashboardFooter = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -100,4 +129,5 @@ export {
   DashboardTitle,
   DashboardWrapper,
   DashboardContent,
+  DashboardContentLayout,
 };
