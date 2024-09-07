@@ -1,4 +1,5 @@
 import Heading from "@/components/layout/heading";
+import UserForm from "@/components/settings/user-form";
 import SubNavigation from "@/components/sub-navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,30 +11,28 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { settingsMenuItems } from "@/constants/navigation";
+import { getUser } from "@/data-access/users";
 import { auth } from "@/lib/auth";
-import { CircleUser, Menu, Package2, Search } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { getLocale } from "next-intl/server";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
 export default async function SettingsPage() {
   const session = await auth();
   const locale = getLocale();
-  if (!session) {
+  if (!session?.user?.id) {
     redirect(`/${locale}/sign-in`);
   }
+  const user = await getUser(session.user.id);
+
+  console.log(user);
   return (
     <main className="flex flex-1 flex-col gap-4  p-4 md:gap-8 md:p-10">
       <div className="mx-auto grid w-full max-w-6xl gap-2">
@@ -44,20 +43,17 @@ export default async function SettingsPage() {
         <div className="grid gap-6">
           <Card x-chunk="dashboard-04-chunk-1">
             <CardHeader>
-              <CardTitle>Store Name</CardTitle>
+              <CardTitle>Username</CardTitle>
               <CardDescription>
                 Used to identify your store in the marketplace.
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <form>
-                <Input placeholder="Store Name" />
-              </form>
-            </CardContent>
+            <CardContent>{/* <UserForm /> */}</CardContent>
             <CardFooter className="border-t px-6 py-4">
               <Button>Save</Button>
             </CardFooter>
           </Card>
+
           <Card x-chunk="dashboard-04-chunk-2">
             <CardHeader>
               <CardTitle>Plugins Directory</CardTitle>
