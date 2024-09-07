@@ -11,9 +11,14 @@ export const users = sqliteTable("users", {
     .primaryKey()
     .$defaultFn(() => crypto.randomUUID()),
   name: text("name"),
+  role: text("role", { enum: ["user", "admin"] })
+    .default("user")
+    .notNull(),
   email: text("email").unique(),
   emailVerified: integer("emailVerified", { mode: "timestamp_ms" }),
   image: text("image"),
+  country: text("country"),
+  bannedUntil: integer("banned_until", { mode: "timestamp_ms" }),
 });
 
 export const accounts = sqliteTable(

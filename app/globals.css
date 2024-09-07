@@ -5,11 +5,19 @@
 :root {
   --background: #e6f3f5;
   --foreground: #0a3d42;
+  --muted: #101d22;
+  --muted-foreground: #136972;
+  --card: #101d22a7;
+  --card-foreground: 222.2 47.4% 11.2%;
 }
 
 .dark {
   --background: #020e10;
   --foreground: #d0d9d6;
+  --muted: #101d22;
+  --muted-foreground: #136972;
+  --card: rgba(16, 29, 34, 0.4);
+  --card-foreground: 222.2 47.4% 11.2%;
 }
 
 .expanded-content:hover {

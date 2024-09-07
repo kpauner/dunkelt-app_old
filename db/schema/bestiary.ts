@@ -32,7 +32,7 @@ const bestiary = sqliteTable("bestiary", {
   countermeasures: text("countermeasures", { mode: "json" })
     .$type<string[]>()
     .notNull(),
-  userId: text("user_id").references(() => users.id),
+  userId: text("user_id").references(() => users.id, { onDelete: "cascade" }),
   isPublic: integer("is_public", { mode: "boolean" }).default(false).notNull(),
 });
 

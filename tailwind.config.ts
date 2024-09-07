@@ -28,9 +28,18 @@ const config = {
           dark: "#142027",
         },
         muted: {
-          DEFAULT: "#101D22",
-          foreground: "#136972",
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
         },
+        card: {
+          DEFAULT: "var(--card)",
+          foreground: "var(--card-foreground)",
+        },
+
+        // muted: {
+        //   DEFAULT: "#101D22",
+        //   foreground: "#136972",
+        // },
         secondary: {
           DEFAULT: "#15474c",
           foreground: "#9df2f0",

@@ -17,7 +17,7 @@ export default async function CodexPage() {
               Bestiary
             </TabsTrigger>
             <TabsTrigger value="active">
-              <Icons.users className="mr-2 h-4 w-4" />
+              <Icons.bystanders className="mr-2 h-4 w-4" />
               Bystander
             </TabsTrigger>
             <TabsTrigger value="locations">

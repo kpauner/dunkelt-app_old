@@ -1,5 +1,5 @@
 import Heading from "@/components/layout/heading";
-import UserForm from "@/components/settings/user-form";
+import ProfileForm from "@/components/settings/profile-form";
 import SubNavigation from "@/components/sub-navigation";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,7 +18,7 @@ import { settingsMenuItems } from "@/constants/navigation";
 import { getUser } from "@/data-access/users";
 import { auth } from "@/lib/auth";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { getLocale } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -27,12 +27,16 @@ import { z } from "zod";
 export default async function SettingsPage() {
   const session = await auth();
   const locale = getLocale();
+  const t = await getTranslations(["settings", "common"]);
+  console.log(t);
   if (!session?.user?.id) {
     redirect(`/${locale}/sign-in`);
   }
   const user = await getUser(session.user.id);
+  if (!user) {
+    redirect(`/${locale}/sign-in`);
+  }
 
-  console.log(user);
   return (
     <main className="flex flex-1 flex-col gap-4  p-4 md:gap-8 md:p-10">
       <div className="mx-auto grid w-full max-w-6xl gap-2">
@@ -41,18 +45,12 @@ export default async function SettingsPage() {
       <div className="mx-auto grid w-full max-w-6xl items-start gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[250px_1fr]">
         <SubNavigation menuItems={settingsMenuItems} session={session} />
         <div className="grid gap-6">
-          <Card x-chunk="dashboard-04-chunk-1">
-            <CardHeader>
-              <CardTitle>Username</CardTitle>
-              <CardDescription>
-                Used to identify your store in the marketplace.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>{/* <UserForm /> */}</CardContent>
-            <CardFooter className="border-t px-6 py-4">
-              <Button>Save</Button>
-            </CardFooter>
-          </Card>
+          <ProfileForm
+            title={t("settings.profile.title")}
+            description={t("settings.profile.description")}
+            buttonText={t("common.save")}
+            user={user}
+          />
 
           <Card x-chunk="dashboard-04-chunk-2">
             <CardHeader>

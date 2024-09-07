@@ -24,6 +24,7 @@ async function seedDatabase() {
 
   await seeds.tags(db);
   await seeds.bestiary(db);
+  // await seeds.users(db);
 }
 
 seedDatabase()
