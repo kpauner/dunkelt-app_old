@@ -1,25 +1,51 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import PickPlaybook from "@/components/characters/pick-playbook";
-import AssignRatings from "@/components/characters/assign-ratings";
 import { DashboardContentLayout } from "@/components/layout/dashboard";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-// import ChooseMoves from '@/components/characters/choose-moves'
+import PickPlaybook from "@/components/characters/pick-playbook";
+import AssignRatings from "@/components/characters/assign-ratings";
+import ChooseMoves from "@/components/characters/choose-moves";
+import { Avatar } from "@/components/ui/avatar";
+import Heading from "@/components/layout/heading";
+import { Input } from "@/components/ui/input";
+import { MotWCharacter } from "@/types/characters";
 // import DefineHistory from './steps/DefineHistory'
 // import ReviewCharacter from './steps/ReviewCharacter'
 
 const steps = [
   { id: "playbook", label: "1. Playbook", component: PickPlaybook },
   { id: "ratings", label: "2. Ratings", component: AssignRatings },
-  // { id: 'moves', label: 'Moves', component: ChooseMoves },
+  { id: "moves", label: "Moves", component: ChooseMoves },
   // { id: 'history', label: 'History', component: DefineHistory },
   // { id: 'review', label: 'Review', component: ReviewCharacter },
 ];
 
-export default function BuilderPage() {
+type BuilderPageProps = {
+  userCharacter: MotWCharacter;
+};
+
+export default function BuilderPage({ userCharacter }: BuilderPageProps) {
   const [currentStep, setCurrentStep] = useState("playbook");
-  const [character, setCharacter] = useState({});
+  const [character, setCharacter] = useState<MotWCharacter>({
+    name: userCharacter.name || "",
+    playbook: userCharacter.playbook || "Unknown",
+    look: userCharacter.look || "",
+    ratings: userCharacter.ratings || {
+      Cool: 0,
+      Tough: 0,
+      Charm: 0,
+      Sharp: 0,
+      Weird: 0,
+    },
+    luck: userCharacter.luck || 0,
+    harm: userCharacter.harm || 0,
+    experience: userCharacter.experience || 0,
+    moves: userCharacter.moves || [],
+    improvements: userCharacter.improvements || [],
+    gear: userCharacter.gear || [],
+    history: userCharacter.history || {},
+  });
 
   // Load saved data on component mount
   useEffect(() => {
@@ -64,6 +90,19 @@ export default function BuilderPage() {
             </TabsTrigger>
           ))}
         </TabsList>
+        <section className="flex gap-2 pt-4">
+          <Avatar
+            variant="rounded"
+            size="xl"
+            src="/images/the-chosen-one.png"
+          />
+          <div className="space-y-2">
+            <Input placeholder="Name" />
+            <Heading as="h6" size="xs">
+              The Chosen One
+            </Heading>
+          </div>
+        </section>
         {steps.map((step) => (
           <TabsContent key={step.id} value={step.id} className="mt-4">
             <step.component

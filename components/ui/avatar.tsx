@@ -14,8 +14,15 @@ const avatarVariants = cva(
         square: "rounded-md",
         rounded: "rounded-full",
       },
+      size: {
+        default: "h-10 w-10",
+        sm: "h-8 w-8",
+        lg: "h-12 w-12",
+        xl: "h-16 w-16",
+      },
       defaultVariants: {
         variant: "rounded",
+        size: "default",
       },
     },
   }
@@ -25,15 +32,19 @@ interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
   alt?: string;
   variant?: "rounded" | "square";
+  size?: "default" | "sm" | "lg" | "xl";
   fallback?: React.ReactNode;
 }
 
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
-  ({ className, src, alt, variant, ...props }, ref) => {
+  ({ className, src, alt, variant, size, ...props }, ref) => {
     return (
       <div
         ref={ref}
-        className={cn("relative", avatarVariants({ variant, className }))}
+        className={cn(
+          "relative border-2 border-muted",
+          avatarVariants({ variant, size, className })
+        )}
         {...props}
       >
         {src ? (
