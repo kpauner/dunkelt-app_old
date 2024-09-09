@@ -2,54 +2,11 @@
   {
     "name": "Luna Shadowwhisper",
     "playbook": "The Spooky",
-    "look": "man",
-    "appearance": "Haunted eyes, messy hair, worn clothes, thin build",
-    "ratings": {
-      "Cool": -1,
-      "Tough": 0,
-      "Charm": 1,
-      "Sharp": 1,
-      "Weird": 2
-    },
+    "look": "haunted eyes, messy hair, worn clothes, thin build",
     "luck": 7,
     "harm": 0,
     "experience": 3,
-    "moves": [
-      {
-        "name": "Telepathy",
-        "description": "You can read people's thoughts and project your own into their minds. Whenever you have time and physical contact, you can read someone's surface thoughts."
-      },
-      {
-        "name": "Hex",
-        "description": "When you cast a spell (with Use Magic), as well as the normal effects, you may pick from the following: Inflict 1-harm on the target, ignoring armour; The target contracts a disease; One of the target's limbs is crippled."
-      }
-    ],
-    "gear": [
-      "Old leather-bound spellbook",
-      "Silver pendant (protective charm)",
-      "Ritual dagger",
-      "Backpack with basic supplies"
-    ],
-    "history": {
-      "Alex (The Chosen)": 2,
-      "Sam (The Expert)": 1,
-      "Jordan (The Flake)": -1
-    },
-    "improvements": [
-      {
-        "description": "Get +1 Weird, max +3",
-        "applied": true
-      },
-      {
-        "description": "Take another Spooky move",
-        "applied": false
-      }
-    ],
-    "playbookSpecial": {
-      "darkSide": "Paranoia",
-      "darkSideDescription": "You are always on edge, expecting danger at every turn. You have trouble trusting others and may see threats where none exist."
-    },
-    "notes": "Recently had a vision of an impending supernatural disaster. Need to warn the team.",
-    "backstory": "Discovered psychic abilities at a young age. Trained in secret by a coven of witches before striking out on my own to hunt monsters."
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   }
 ]

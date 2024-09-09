@@ -1,7 +1,10 @@
 export { users, sessions, accounts, verificationTokens } from "./users";
-export { default as characters } from "./characters";
-export { default as moves } from "./moves";
-export { default as characterMoves } from "./characterMoves";
+export { default as characters, charactersRelations } from "./characters";
+export { default as moves, movesRelations } from "./moves";
+export {
+  default as characterMoves,
+  characterMovesRelations,
+} from "./characterMoves";
 export { default as characterRatings } from "./characterRatings";
 export { default as bestiary } from "./bestiary";
 export { default as tags } from "./tags";

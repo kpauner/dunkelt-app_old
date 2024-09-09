@@ -14,7 +14,12 @@ if (!env.DB_SEEDING) {
 // }
 
 async function seedDatabase() {
-  for (const table of [schema.tags, schema.bestiary]) {
+  for (const table of [
+    schema.tags,
+    schema.bestiary,
+    schema.moves,
+    schema.characterMoves,
+  ]) {
     if (table === schema.bestiary) {
       console.log("harm capacity", table.harmCapacity.name);
     }
@@ -22,6 +27,9 @@ async function seedDatabase() {
     // await resetTable(db, table);
   }
 
+  await seeds.characters(db);
+  await seeds.moves(db);
+  await seeds.characterMoves(db);
   await seeds.tags(db);
   await seeds.bestiary(db);
   // await seeds.users(db);

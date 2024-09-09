@@ -10,7 +10,6 @@ import characters from "./characters";
 const characterRatings = sqliteTable(
   "character_ratings",
   {
-    id: integer("id").primaryKey({ autoIncrement: true }),
     characterId: integer("character_id")
       .notNull()
       .references(() => characters.id),

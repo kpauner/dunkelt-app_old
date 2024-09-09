@@ -1,3 +1,6 @@
+import { characters } from "@/db/schema";
+import { InferSelectModel } from "drizzle-orm";
+
 export type Ratings = "Cool" | "Tough" | "Charm" | "Sharp" | "Weird";
 
 type PlaybookType =
@@ -24,36 +27,8 @@ interface Improvement {
   applied: boolean;
 }
 
-export type MotWCharacter = {
-  // Basic Info
-  name: string;
-  playbook: PlaybookType;
-  look: string;
+export type SelectCharacter = InferSelectModel<typeof characters>;
 
-  // Ratings
-  ratings: Record<Ratings, number>;
-
-  // Derived Stats
-  luck: number;
-  harm: number;
-  experience: number;
-
-  // Moves
-  moves: Move[];
-
-  // Gear
-  gear: string[];
-
-  // History
-  history: Record<string, number>;
-
-  // Improvements
-  improvements: Improvement[];
-
-  // Playbook-specific fields
-  playbookSpecial?: any; // This could be further defined based on each playbook's unique features
-
-  // Optional fields that might be useful
-  notes?: string;
-  backstory?: string;
+export type CharacterSheetType = SelectCharacter & {
+  characterMoves: Move[];
 };

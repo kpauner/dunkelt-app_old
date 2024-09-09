@@ -18,7 +18,7 @@ const avatarVariants = cva(
         default: "h-10 w-10",
         sm: "h-8 w-8",
         lg: "h-12 w-12",
-        xl: "h-16 w-16",
+        xl: "h-20 w-20",
       },
       defaultVariants: {
         variant: "rounded",

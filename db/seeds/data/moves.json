@@ -2,36 +2,36 @@
   {
     "name": "destiny's plaything",
     "description": "At the beginning of each mystery, roll +Weird to see what is revealed about your immediate future. On a 10+, the Keeper will reveal a useful detail about the coming mystery. On a 7-9 you get a vague hint about it. On a miss, something bad is going to happen to you.",
-    "playbookType": "the chosen"
+    "playbook": "the chosen"
   },
   {
     "name": "i'm here for a reason",
     "description": "There's something you are destined to do. Work out the details with the Keeper, based on your fate. You cannot die until it comes to pass. If you die in play, then you must spend a Luck point. You will then, somehow, recover or be returned to life. Once your task is done (or you use up all your Luck), all bets are off.",
-    "playbookType": "the chosen"
+    "playbook": "the chosen"
   },
   {
     "name": "the big entrance",
     "description": "When you make a showy entrance into a dangerous situation, roll +Cool. On 10+ everyone stops to watch and listen until you finish your opening speech. On a 7-9, you pick one person or monster to stop, watch and listen until you finish talking. On a miss, you're marked as the biggest threat by all enemies who are present.",
-    "playbookType": "the chosen"
+    "playbook": "the chosen"
   },
   {
     "name": "devastating",
     "description": "When you inflict harm, you may inflict +1 harm.",
-    "playbookType": "the chosen"
+    "playbook": "the chosen"
   },
   {
     "name": "dutiful",
     "description": "When your fate rears its ugly head, and you act in accordance with any of your fate tags (either heroic or doom) then mark experience. If it's a heroic tag, take +1 forward.",
-    "playbookType": "the chosen"
+    "playbook": "the chosen"
   },
   {
     "name": "invincible",
     "description": "You always count as having 2-armour. This doesn't stack with other protection.",
-    "playbookType": "the chosen"
+    "playbook": "the chosen"
   },
   {
     "name": "resilience",
     "description": "You heal faster than normal people. Any time your harm gets healed, heal an extra point. Additionally, your wounds count as 1-harm less for the purpose of the Keeper's harm moves.",
-    "playbookType": "the chosen"
+    "playbook": "the chosen"
   }
 ]
