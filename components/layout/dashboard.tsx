@@ -84,7 +84,7 @@ DashboardContent.displayName = "DashboardContent";
 const dashboardLayoutVariants = cva("mx-auto", {
   variants: {
     variant: {
-      default: "w-full",
+      default: "w-full flex-1",
       page: "max-w-screen-xl flex flex-1 flex-col gap-4 md:gap-8 pt-8",
     },
   },
@@ -101,7 +101,7 @@ const DashboardContentLayout = React.forwardRef<
   HTMLDivElement,
   DashboardContentLayoutProps
 >(({ className, variant, ...props }, ref) => (
-  <div
+  <main
     ref={ref}
     className={cn(dashboardLayoutVariants({ variant, className }))}
     {...props}

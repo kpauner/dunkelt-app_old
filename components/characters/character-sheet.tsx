@@ -10,6 +10,17 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import React from "react";
 import { CharacterSheetType } from "@/types/characters";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "../ui/collapsible";
 
 type CharacterSheetProps = {
   character: CharacterSheetType;
@@ -91,11 +102,22 @@ export default function CharacterSheet({ character }: CharacterSheetProps) {
             hello
           </SheetSection>
           <SheetSection
-            label="Background"
+            label="Moves"
             description="Luck is a measure of how lucky a character is."
             tooltip="Luck is a measure of how lucky a character is."
           >
-            hello
+            <Accordion type="multiple" className="w-full">
+              {character.characterMoves.map((move) => (
+                <AccordionItem key={move.id} value={move.name}>
+                  <AccordionTrigger className="text-sm capitalize">
+                    {move.name}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground text-xs">
+                    {move.description}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </SheetSection>
         </SheetSectionContainer>
 

@@ -45,18 +45,16 @@ export default async function LocaleLayout({
           >
             <AuthProvider>
               <TooltipProvider>
-                <Dashboard className="bg-background dark:bg-background text-foreground">
+                <Dashboard className="bg-background dark:bg-background text-foreground flex">
                   <DashboardSidebar>
                     <SidebarNavigation session={session} />
                   </DashboardSidebar>
-                  <DashboardWrapper>
+                  <DashboardWrapper className="flex min-h-screen">
                     <DashboardHeader>
                       <Header />
                     </DashboardHeader>
-                    <DashboardContent>
-                      <Suspense fallback={<LoadingLogo />}>
-                        <main className="">{children}</main>
-                      </Suspense>
+                    <DashboardContent className="flex-1 flex flex-col">
+                      <Suspense fallback={<LoadingLogo />}>{children}</Suspense>
                     </DashboardContent>
                   </DashboardWrapper>
                 </Dashboard>

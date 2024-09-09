@@ -6,6 +6,7 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "./card";
@@ -56,6 +57,9 @@ const SheetSection = ({
       <CardDescription>{description}</CardDescription>
     </CardHeader>
     <CardContent>{children}</CardContent>
+    <CardFooter>
+      <Button>Edit</Button>
+    </CardFooter>
   </Card>
 );
 SheetSection.displayName = "SheetSection";

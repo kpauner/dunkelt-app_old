@@ -15,13 +15,19 @@ type CharacterSheetPageProps = {
 export default async function CharacterSheetPage({
   params,
 }: CharacterSheetPageProps) {
-  // const character = await getCharacterSheet(parseInt(params.characterId));
-  const character = {
-    success: false,
-    message: "Character not found",
-  };
+  const character = await getCharacterSheet(parseInt(params.characterId));
+  // const character = {
+  //   success: false,
+  //   message: "Character does not exist or you do not have access to it.",
+  // };
   if (!character.success) {
-    return <div>{character.message}</div>;
+    return (
+      <DashboardContentLayout className="flex flex-col flex-1">
+        <div className="flex-1 flex items-center justify-center text-primary-foreground font-bold text-xl text-center">
+          {character.message}
+        </div>
+      </DashboardContentLayout>
+    );
   }
 
   return (
