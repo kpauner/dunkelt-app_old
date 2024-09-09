@@ -9,5 +9,10 @@ type BuilderPageProps = {
 };
 
 export default function BuilderPage({ params }: BuilderPageProps) {
-  return <MotwBuilder character={motwCharacter[0]} />;
+  return (
+    <>
+      <h1>Builder</h1>
+      {/* <MotwBuilder character={motwCharacter[0]} /> */}
+    </>
+  );
 }

@@ -2,7 +2,8 @@
   {
     "name": "Luna Shadowwhisper",
     "playbook": "The Spooky",
-    "look": "Haunted eyes, messy hair, worn clothes, thin build",
+    "look": "man",
+    "appearance": "Haunted eyes, messy hair, worn clothes, thin build",
     "ratings": {
       "Cool": -1,
       "Tough": 0,
