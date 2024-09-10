@@ -1,0 +1,4 @@
+
+
+- never do typescript interfaces, always use types
+- when possible write comments explaining what the code does

@@ -54,3 +54,14 @@ export const getBaseUrl = (path: string = "") => {
 
   return `${baseUrl}${normalizedPath}`;
 };
+
+// Playbook utils
+export function calculateLevel(experience: number) {
+  const level = Math.floor(experience / 5) + 1;
+  const experienceInCurrentLevel = experience % 5;
+
+  return {
+    level,
+    experienceInCurrentLevel,
+  };
+}

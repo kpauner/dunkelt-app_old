@@ -11,58 +11,88 @@ import {
   CardTitle,
 } from "./card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
-import Icons from "../icons";
-import { Button } from "./button";
+import ActionBar from "../characters/action-bar";
 
-type SheetSectionProps = {
+const CharacterSheet = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex min-h-screen w-full flex-col ", className)}
+    {...props}
+  />
+));
+CharacterSheet.displayName = "CharacterSheet";
+
+const CharacterSheetHeader = React.forwardRef<
+  HTMLElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <header ref={ref} className={cn("", className)} {...props} />
+));
+CharacterSheetHeader.displayName = "CharacterSheetHeader";
+
+const CharacterSheetContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "grid grid-cols-1 sm:grid-cols-3 auto-rows-min gap-6",
+      className
+    )}
+    {...props}
+  />
+));
+CharacterSheetContent.displayName = "CharacterSheetContent";
+
+const CharacterSheetColumn = ({
+  children,
+  className,
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={cn("flex flex-col gap-6", className)}>{children}</div>
+);
+CharacterSheetColumn.displayName = "CharacterSheetColumn";
+
+type CharacterSheetBlockProps = {
   label: string;
   description: string;
   children: React.ReactNode;
-  tooltip?: string;
   className?: string;
+  footer?: React.ReactNode;
+  tooltip?: string;
+  notice?: string;
+  alert?: string;
 };
 
-function ActionBar({ tooltip }: { tooltip?: string }) {
-  return (
-    <div className="flex gap-2 items-center absolute top-2 right-2 ">
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Icons.alert className="text-accent-foreground animate-pulse" />
-        </TooltipTrigger>
-        <TooltipContent>{tooltip}</TooltipContent>
-      </Tooltip>
-      {tooltip && (
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Icons.help />
-          </TooltipTrigger>
-          <TooltipContent>{tooltip}</TooltipContent>
-        </Tooltip>
-      )}
-    </div>
-  );
-}
-
-const SheetSection = ({
+const CharacterSheetBlock = ({
   className,
   label,
   description,
   children,
+  footer,
   tooltip,
-}: SheetSectionProps) => (
-  <Card className={cn("relative", className)}>
+  notice,
+  alert,
+}: CharacterSheetBlockProps) => (
+  <Card className={cn("flex flex-col", className)}>
     <CardHeader>
-      <ActionBar tooltip={tooltip} />
       <CardTitle>{label}</CardTitle>
       <CardDescription>{description}</CardDescription>
     </CardHeader>
-    <CardContent>{children}</CardContent>
-    <CardFooter>
-      <Button>Edit</Button>
-    </CardFooter>
+    <CardContent className="flex-grow">{children}</CardContent>
+
+    {(footer || tooltip || notice || alert) && (
+      <CardFooter>
+        {footer}
+        <ActionBar tooltip={tooltip} notice={notice} alert={alert} />
+      </CardFooter>
+    )}
   </Card>
 );
-SheetSection.displayName = "SheetSection";
+CharacterSheetBlock.displayName = "CharacterSheetBlock";
 
 const SheetSectionContainer = ({
   children,
@@ -79,7 +109,7 @@ SheetSectionContainer.displayName = "SheetSectionContainer";
 
 type SheetBlockProps = {
   label: string;
-  value: string;
+  value: string | number;
   tooltip?: string;
   className?: string;
 };
@@ -107,4 +137,12 @@ const SheetBlock = ({ label, value, tooltip, className }: SheetBlockProps) => (
 );
 SheetBlock.displayName = "SheetBlock";
 
-export { SheetSection, SheetSectionContainer, SheetBlock };
+export {
+  CharacterSheet,
+  CharacterSheetHeader,
+  CharacterSheetContent,
+  CharacterSheetColumn,
+  CharacterSheetBlock,
+  SheetSectionContainer,
+  SheetBlock,
+};

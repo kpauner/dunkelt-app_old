@@ -17,6 +17,7 @@ import {
   LifeBuoy,
   CircleHelp,
   CircleAlertIcon,
+  AlertTriangleIcon,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
@@ -36,7 +37,8 @@ const Icons = {
   leftarrow: ArrowLeft,
   support: LifeBuoy,
   help: CircleHelp,
-  alert: CircleAlertIcon,
+  notice: CircleAlertIcon,
+  alert: AlertTriangleIcon,
   monster: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

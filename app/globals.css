@@ -9,6 +9,9 @@
   --muted-foreground: #136972;
   --card: #101d22a7;
   --card-foreground: 222.2 47.4% 11.2%;
+  --border: #101d22;
+  --destructive: #95180d;
+  --destructive-foreground: rgb(190, 30, 15);
 }
 
 .dark {
@@ -18,6 +21,9 @@
   --muted-foreground: #136972;
   --card: rgba(16, 29, 34, 0.4);
   --card-foreground: 222.2 47.4% 11.2%;
+  --border: #101d22;
+  --destructive: #39070296;
+  --destructive-foreground: hsl(5, 85%, 40%);
 }
 
 .expanded-content:hover {

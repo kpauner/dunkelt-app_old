@@ -80,10 +80,27 @@
     "torturer": "to hurt and terrify",
     "trickster": "to create chaos"
   },
-  "playbook": {
-    "thechosenone": {
-      "title": "The Chosen One",
-      "description": "a once-ordinary person who discovered they have a special destiny, and who has been given the power to accomplish it. The Chosen is good in a fight, with some weird powers."
+  "charactersheet": {
+    "luck": {
+      "label": "Luck",
+      "description": "Mark luck to change a roll to 12 or avoid all harm from an injury",
+      "tooltip": {
+        "The Chosen": "When you spend a point of Luck, the Keeper will bring your fate into play",
+        "fenrir": "When you spend a point of Luck, the Keeper will bring your fate into play",
+        "fire-bringer": "When you spend a point of Luck, the Keeper will bring your fate into play",
+        "queen": "When you spend a point of Luck, the Keeper will bring your fate into play",
+        "sorcerer": "When you spend a point of Luck, the Keeper will bring your fate into play",
+        "tempter": "When you spend a point of Luck, the Keeper will bring your fate into play",
+        "torturer": "When you spend a point of Luck, the Keeper will bring your fate into play",
+        "trickster": "When you spend a point of Luck, the Keeper will bring your fate into play"
+      }
+    },
+    "harm": {
+      "tooltip": "When you suffer harm, mark off the number of boxes equal to harm suffered."
+    },
+    "experience": {
+      "tooltip": "Whenever you roll and get a total of 6 or less, or when a move tells you to, mark an experience box. When you have filled all five experience boxes, you level up. Erase the marks and pick an improvement",
+      "alert": "You are a criminal"
     }
   }
 }

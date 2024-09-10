@@ -2,6 +2,7 @@ import { db } from "@/db";
 import { characters, moves } from "@/db/schema";
 import { auth } from "@/lib/auth";
 import { CharacterSheetType } from "@/types/characters";
+import { SelectMoves } from "@/types/moves";
 import { eq } from "drizzle-orm";
 
 export async function getCharacter(characterId: number) {

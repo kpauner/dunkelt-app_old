@@ -1,5 +1,5 @@
 import React from "react";
-import CharacterSheet from "@/components/characters/character-sheet";
+import UserCharacterSheet from "@/components/characters/user-character-sheet";
 import { getCharacterSheet } from "@/data-access/characters";
 import { DashboardContentLayout } from "@/components/layout/dashboard";
 
@@ -32,9 +32,7 @@ export default async function CharacterSheetPage({
 
   return (
     <DashboardContentLayout variant="page" className="gap-6 md:gap-6">
-      <CharacterSheet character={character.data} />
-
-      <pre>{JSON.stringify(character, null, 2)}</pre>
+      <UserCharacterSheet characterSheet={character.data} />
     </DashboardContentLayout>
   );
 }

@@ -35,7 +35,11 @@ const config = {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
-
+        border: "var(--border)",
+        destructive: {
+          DEFAULT: "var(--destructive)",
+          foreground: "var(--destructive-foreground)",
+        },
         // muted: {
         //   DEFAULT: "#101D22",
         //   foreground: "#136972",

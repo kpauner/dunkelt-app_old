@@ -81,7 +81,7 @@ const DashboardContent = React.forwardRef<
 ));
 DashboardContent.displayName = "DashboardContent";
 
-const dashboardLayoutVariants = cva("mx-auto", {
+const dashboardLayoutVariants = cva("mx-auto w-full", {
   variants: {
     variant: {
       default: "w-full flex-1",
