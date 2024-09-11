@@ -26,6 +26,7 @@ import { useTranslations } from "next-intl";
 import PlaybookSheet from "./playbook-sheet";
 import { Label } from "../ui/label";
 import Harm from "./harm";
+import CharacterAvatar from "./character-avatar";
 
 type UserCharacterSheetProps = {
   characterSheet: CharacterSheetType;
@@ -46,20 +47,7 @@ export default function UserCharacterSheet({
   return (
     <>
       <CharacterSheetHeader className="flex flex-col sm:flex-row justify-between gap-4">
-        <div className="flex gap-2">
-          <Avatar
-            className="h-full w-full aspect-square size-20"
-            variant="square"
-            size="xl"
-            src={character?.avatar || "/images/avatars/default.png"}
-          />
-          <div>
-            <Heading as="h1" size="sm" className="text-primary-foreground">
-              {character?.name}
-            </Heading>
-            <p>{character?.playbook}</p>
-          </div>
-        </div>
+        <CharacterAvatar character={character} size="xl" variant="square" />
         <div className="flex gap-2">
           {Array.from({ length: 5 }).map((_, index) => (
             <SheetBlock
@@ -83,7 +71,11 @@ export default function UserCharacterSheet({
             label="Luck"
             description={t("luck.description")}
             tooltip={t(`luck.tooltip.${character.playbook}`)}
-            notice="You haven't selected 3 moves"
+            alert={
+              character.luck === 7
+                ? "Doomed: You have spent all your luck"
+                : undefined
+            }
           >
             <Luck
               data={character.luck}

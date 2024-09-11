@@ -40,7 +40,7 @@ const CharacterSheetContent = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "grid grid-cols-1 sm:grid-cols-3 auto-rows-min gap-6",
+      "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-min gap-6",
       className
     )}
     {...props}
