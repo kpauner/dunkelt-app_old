@@ -2,7 +2,6 @@ import React from "react";
 import { CharacterSheetBlock } from "@/components/ui/character-sheet";
 import { Label } from "../ui/label";
 import { Input } from "../ui/input";
-import ActionBar from "./action-bar";
 import PlaybookSheet from "./playbook-sheet";
 
 type PlaybookSectionsProps = {
@@ -13,8 +12,8 @@ export function PlaybookSections({ playbook }: PlaybookSectionsProps) {
   switch (playbook.toLowerCase()) {
     case "the chosen":
       return <ChosenSections />;
-    case "the spooky":
-      return <SpookySections />;
+    case "the crooked":
+      return <CrookedSections />;
     // Add more cases for other playbooks
     default:
       return null;

@@ -80,6 +80,59 @@
     "torturer": "to hurt and terrify",
     "trickster": "to create chaos"
   },
+  "motw": {
+    "playbooks": [
+      {
+        "id": "thechosen",
+        "name": "The Chosen",
+        "description": "You are the chosen, the one who will save the world from the darkness. You are the hero, the one who will defeat the evil. You are the one who will bring peace to the world."
+      },
+      {
+        "id": "thecrooked",
+        "name": "The Crooked"
+      },
+      {
+        "id": "thedivine",
+        "name": "The Divine"
+      },
+      {
+        "id": "theexpert",
+        "name": "The Expert"
+      },
+      {
+        "id": "thefallen",
+        "name": "The Fallen"
+      },
+      {
+        "id": "theinitiate",
+        "name": "The Initiate"
+      },
+      {
+        "id": "themonstrous",
+        "name": "The Monstrous"
+      },
+      {
+        "id": "themundane",
+        "name": "The Mundane"
+      },
+      {
+        "id": "theprofessional",
+        "name": "The Professional"
+      },
+      {
+        "id": "thespellslinger",
+        "name": "The Spellslinger"
+      },
+      {
+        "id": "thespooky",
+        "name": "The Spooky"
+      },
+      {
+        "id": "thewronged",
+        "name": "The Wronged"
+      }
+    ]
+  },
   "charactersheet": {
     "luck": {
       "label": "Luck",

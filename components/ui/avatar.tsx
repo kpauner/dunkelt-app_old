@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority";
 import Icons from "../icons";
 
 const avatarVariants = cva(
-  "relative flex h-10 w-10 shrink-0 overflow-hidden cursor-pointer",
+  "relative flex h-10 w-10 shrink-0 overflow-hidden cursor-pointer aspect-square",
   {
     variants: {
       variant: {
@@ -18,7 +18,7 @@ const avatarVariants = cva(
         default: "h-10 w-10",
         sm: "h-8 w-8",
         lg: "h-12 w-12",
-        xl: "h-20 w-20",
+        xl: "h-28 w-28",
       },
       defaultVariants: {
         variant: "rounded",

@@ -16,10 +16,11 @@ capacity, optionally custom moves.
 const characters = sqliteTable("characters", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name").default("my character").notNull(),
-  playbook: text("playbook").notNull(),
+  playbook: text("playbook").default("The Chosen").notNull(),
+  pronouns: text("pronouns"),
   avatar: text("avatar"),
-  look: text("look").notNull(),
-  luck: integer("luck").notNull().default(7),
+  look: text("look"),
+  luck: integer("luck").notNull().default(0),
   harm: integer("harm").notNull().default(0),
   experience: integer("experience").notNull().default(0),
   userId: text("user_id")

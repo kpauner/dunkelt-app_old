@@ -1,7 +1,5 @@
 "use client";
-import { Avatar } from "@/components/ui/avatar";
-import Heading from "@/components/layout/heading";
-import { Checkbox } from "@/components/ui/checkbox";
+
 import {
   CharacterSheetBlock,
   CharacterSheetColumn,
@@ -9,7 +7,7 @@ import {
   CharacterSheetHeader,
   SheetBlock,
 } from "@/components/ui/character-sheet";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CharacterSheetType } from "@/types/characters";
 import {
   Accordion,
@@ -20,13 +18,13 @@ import {
 import { PlaybookSections } from "./playbook-sections";
 import { calculateLevel } from "@/lib/utils";
 import { Experience } from "./experience";
-import ActionBar from "./action-bar";
 import Luck from "./luck";
 import { useTranslations } from "next-intl";
 import PlaybookSheet from "./playbook-sheet";
 import { Label } from "../ui/label";
 import Harm from "./harm";
 import CharacterAvatar from "./character-avatar";
+import { toast } from "sonner";
 
 type UserCharacterSheetProps = {
   characterSheet: CharacterSheetType;
@@ -35,6 +33,7 @@ export default function UserCharacterSheet({
   characterSheet,
 }: UserCharacterSheetProps) {
   const [character, setCharacter] = useState(characterSheet);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
   const t = useTranslations("charactersheet");
 
   const handleCharacterChange = (updatedCharacter: CharacterSheetType) => {
@@ -42,12 +41,44 @@ export default function UserCharacterSheet({
       ...prev,
       ...updatedCharacter,
     }));
+    setHasUnsavedChanges(true);
   };
+
+  const handleSave = async () => {
+    try {
+      // Implement your save logic here
+      // For example: await saveCharacterToDatabase(character);
+      setHasUnsavedChanges(false);
+      toast.success("Changes saved successfully!");
+    } catch (error) {
+      toast.error("Failed to save changes. Please try again.");
+    }
+  };
+
+  useEffect(() => {
+    if (hasUnsavedChanges) {
+      toast.info("You have unsaved changes", {
+        duration: Infinity, // Keep the toast visible until dismissed
+        id: "unsaved-changes",
+        action: {
+          label: "Save",
+          onClick: handleSave,
+        },
+      });
+    } else {
+      toast.dismiss("unsaved-changes");
+    }
+  }, [hasUnsavedChanges]);
 
   return (
     <>
       <CharacterSheetHeader className="flex flex-col sm:flex-row justify-between gap-4">
-        <CharacterAvatar character={character} size="xl" variant="square" />
+        <CharacterAvatar
+          character={character}
+          size="xl"
+          variant="square"
+          handleCharacterChange={handleCharacterChange}
+        />
         <div className="flex gap-2">
           {Array.from({ length: 5 }).map((_, index) => (
             <SheetBlock
@@ -90,7 +121,11 @@ export default function UserCharacterSheet({
           <CharacterSheetBlock
             label="Harm"
             description="When you suffer harm, mark off the number of boxes equal to harm suffered."
-            alert="You have reached 4 or more Harm. You are now unstable."
+            alert={
+              character.harm >= 4
+                ? "You have reached 4 or more Harm. You are now unstable."
+                : undefined
+            }
             tooltip={t("harm.tooltip")}
           >
             <Harm
@@ -126,7 +161,45 @@ export default function UserCharacterSheet({
         <CharacterSheetColumn>
           <CharacterSheetBlock
             label="Moves"
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+            tooltip="Moves are actions that your character can perform."
+            notice={
+              character.characterMoves.length < 3
+                ? "You haven't selected 3 moves"
+                : undefined
+            }
+            footer={
+              <PlaybookSheet
+                title="Moves"
+                description="Moves are actions that your character can perform."
+                buttonText="Add move"
+              >
+                <div className="grid gap-4 py-4">
+                  <div className="grid grid-cols-4 items-center gap-4">
+                    <Label htmlFor="name" className="text-right">
+                      Name
+                    </Label>
+                  </div>
+                </div>
+              </PlaybookSheet>
+            }
+          >
+            <Accordion type="multiple" className="w-full">
+              {character.characterMoves.map((move) => (
+                <AccordionItem key={move.id} value={move.name}>
+                  <AccordionTrigger className="text-sm capitalize">
+                    {move.name}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground text-xs">
+                    {move.description}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </CharacterSheetBlock>
+          <CharacterSheetBlock
+            label="Inventory/Gear"
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
             tooltip="Moves are actions that your character can perform."
             notice={
               character.characterMoves.length < 3
