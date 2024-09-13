@@ -16,6 +16,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useTranslations } from "next-intl";
+import { FormItem, FormLabel } from "../ui/form";
+import { Label } from "../ui/label";
 
 type CharacterAvatarProps = {
   character: CharacterSheetType;
@@ -73,9 +75,11 @@ export default function CharacterAvatar({
               {character?.playbook}
             </p>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             <Input placeholder="Name" defaultValue={character.name} />
+
             <Input placeholder="Pronouns" defaultValue={""} />
+
             <Select
               onValueChange={(value) => {
                 handleCharacterChange({
@@ -98,6 +102,23 @@ export default function CharacterAvatar({
                 </SelectGroup>
               </SelectContent>
             </Select>
+
+            <div className="flex flex-col gap-2">
+              <Label>Look</Label>
+              <Input placeholder="Look" defaultValue={character.look || ""} />
+              <Select
+                onValueChange={(value) => {
+                  handleCharacterChange({
+                    ...character,
+                    look: value,
+                  });
+                }}
+              >
+                <SelectTrigger>
+                  <SelectValue placeholder="Or select from list" />
+                </SelectTrigger>
+              </Select>
+            </div>
           </div>
         </PlaybookSheet>
       </div>

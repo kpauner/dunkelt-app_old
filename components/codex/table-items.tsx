@@ -31,7 +31,7 @@ type DataTableProps<TData, TValue> = {
   data: TData[];
 };
 
-export default function TableBestiary<TData, TValue>({
+export default function TableItems<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {

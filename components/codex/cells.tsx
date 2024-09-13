@@ -5,6 +5,7 @@ import { cn, truncateText } from "@/lib/utils";
 import { Badge } from "../ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { useTranslations } from "next-intl";
+import TagCloud from "../tag-cloud";
 
 type CellHeaderProps = {
   column: any;
@@ -44,23 +45,7 @@ type CellStringArrayProps = {
 };
 
 export function CellStringArray({ value, className }: CellStringArrayProps) {
-  const displayItems = value.slice(0, 3);
-  const remainingCount = value.length - 3;
-
-  return (
-    <div className="flex flex-wrap gap-1">
-      {displayItems.map((item) => (
-        <Badge variant="secondary" key={item} className={cn("", className)}>
-          {item}
-        </Badge>
-      ))}
-      {remainingCount > 0 && (
-        <Badge variant="outline" className={cn("", className)}>
-          +{remainingCount} more
-        </Badge>
-      )}
-    </div>
-  );
+  return <TagCloud value={value} visibleTags={3} className={className} />;
 }
 
 type CellTooltipProps = {

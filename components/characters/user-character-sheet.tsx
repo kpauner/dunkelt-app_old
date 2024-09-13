@@ -25,6 +25,8 @@ import { Label } from "../ui/label";
 import Harm from "./harm";
 import CharacterAvatar from "./character-avatar";
 import { toast } from "sonner";
+import { Inventory } from "./inventory";
+import placeholderItems from "@/db/seeds/data/items.json";
 
 type UserCharacterSheetProps = {
   characterSheet: CharacterSheetType;
@@ -222,18 +224,7 @@ export default function UserCharacterSheet({
               </PlaybookSheet>
             }
           >
-            <Accordion type="multiple" className="w-full">
-              {character.characterMoves.map((move) => (
-                <AccordionItem key={move.id} value={move.name}>
-                  <AccordionTrigger className="text-sm capitalize">
-                    {move.name}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-xs">
-                    {move.description}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
+            <Inventory items={placeholderItems} />
           </CharacterSheetBlock>
         </CharacterSheetColumn>
       </CharacterSheetContent>
