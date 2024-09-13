@@ -7,6 +7,7 @@ import { Button } from "../ui/button";
 import Image from "next/image";
 import { CellDescriptions, CellStringArray, CellTooltip } from "./cells";
 import Icons from "../icons";
+import TagCloud from "../tag-cloud";
 
 export const itemsColumns: ColumnDef<SelectItems>[] = [
   {
@@ -45,29 +46,29 @@ export const itemsColumns: ColumnDef<SelectItems>[] = [
       </div>
     ),
   },
-  {
-    accessorKey: "id",
-    header: ({ column }) => {
-      return (
-        <Button variant="ghost" className="my-1 ">
-          image
-        </Button>
-      );
-    },
-    cell: ({ row }) => (
-      <div className="flex items-center gap-2">
-        <span className="capitalize font-bold tracking-wider">
-          <Image
-            alt="Product image"
-            className="aspect-square rounded-md object-cover bg-black"
-            height="64"
-            src="https://static.wikia.nocookie.net/secure-contain-protect/images/b/b6/SCP-049.png/revision/latest?cb=20211121023917"
-            width="64"
-          />
-        </span>
-      </div>
-    ),
-  },
+  // {
+  //   accessorKey: "id",
+  //   header: ({ column }) => {
+  //     return (
+  //       <Button variant="ghost" className="my-1 ">
+  //         image
+  //       </Button>
+  //     );
+  //   },
+  //   cell: ({ row }) => (
+  //     <div className="flex items-center gap-2">
+  //       <span className="capitalize font-bold tracking-wider">
+  //         <Image
+  //           alt="Product image"
+  //           className="aspect-square rounded-md object-cover bg-black"
+  //           height="64"
+  //           src="https://static.wikia.nocookie.net/secure-contain-protect/images/b/b6/SCP-049.png/revision/latest?cb=20211121023917"
+  //           width="64"
+  //         />
+  //       </span>
+  //     </div>
+  //   ),
+  // },
   {
     accessorKey: "type",
     header: ({ column }) => {
@@ -122,11 +123,12 @@ export const itemsColumns: ColumnDef<SelectItems>[] = [
         </Button>
       );
     },
-    cell: ({ row, column }) => (
-      <div className="flex gap-2 flex-wrap">
-        {row.getValue("tags")}
-        {/* <CellStringArray value={row.getValue("tags")} /> */}
-      </div>
-    ),
+    cell: ({ row, column }) => {
+      return (
+        <div className="flex gap-2 flex-wrap">
+          <TagCloud data={row.getValue("tags") as string[]} visibleTags={3} />
+        </div>
+      );
+    },
   },
 ];

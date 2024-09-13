@@ -4,7 +4,7 @@
     "description": "A sharp dagger made of pure silver, effective against werewolves and other supernatural creatures.",
     "type": "weapon",
     "value": 2,
-    "tags": "silver,close,small",
+    "tags": ["silver", "close", "small"],
     "weight": 1,
     "rarity": "uncommon",
     "notes": "Deals extra damage to werewolves"
@@ -14,7 +14,7 @@
     "description": "A powerful shotgun, great for close-range combat against monsters.",
     "type": "weapon",
     "value": 3,
-    "tags": "loud,messy,reload,close",
+    "tags": ["loud", "messy", "reload", "close"],
     "weight": 2,
     "rarity": "common",
     "notes": "Requires ammunition"
@@ -24,7 +24,7 @@
     "description": "Blessed water that can harm unholy creatures.",
     "type": "consumable",
     "value": 1,
-    "tags": "holy,thrown,area",
+    "tags": ["holy", "thrown", "area"],
     "weight": 1,
     "rarity": "uncommon",
     "notes": "One-time use"
@@ -34,7 +34,7 @@
     "description": "A sturdy leather jacket that provides some protection against physical attacks.",
     "type": "armor",
     "value": 1,
-    "tags": "durable",
+    "tags": ["durable"],
     "weight": 1,
     "rarity": "common",
     "notes": "Reduces harm by 1"
@@ -44,7 +44,7 @@
     "description": "A device that detects electromagnetic fields, useful for ghost hunting.",
     "type": "tool",
     "value": 0,
-    "tags": "electronic",
+    "tags": ["electronic"],
     "weight": 1,
     "rarity": "uncommon",
     "notes": "Helps in investigating supernatural activity"
@@ -54,7 +54,7 @@
     "description": "An ancient tome containing various spells and rituals.",
     "type": "magical",
     "value": 0,
-    "tags": "magic,heavy",
+    "tags": ["magic", "heavy"],
     "weight": 2,
     "rarity": "rare",
     "notes": "Allows casting of various spells"
@@ -64,7 +64,7 @@
     "description": "A basic medical kit for treating injuries.",
     "type": "consumable",
     "value": 1,
-    "tags": "healing",
+    "tags": ["healing"],
     "weight": 1,
     "rarity": "common",
     "notes": "Can be used to treat minor injuries"
@@ -74,7 +74,7 @@
     "description": "Ammunition made of silver, effective against supernatural creatures.",
     "type": "ammo",
     "value": 2,
-    "tags": "silver,ammo",
+    "tags": ["silver", "ammo"],
     "weight": 1,
     "rarity": "uncommon",
     "notes": "Used with firearms"
@@ -84,7 +84,7 @@
     "description": "A magical amulet that provides protection against curses and hexes.",
     "type": "magical",
     "value": 0,
-    "tags": "magic,worn",
+    "tags": ["magic", "worn"],
     "weight": 1,
     "rarity": "rare",
     "notes": "Provides +1 against magical attacks"
@@ -94,7 +94,7 @@
     "description": "A powerful weapon that shoots streams of fire.",
     "type": "weapon",
     "value": 3,
-    "tags": "fire,area,messy,heavy",
+    "tags": ["fire", "area", "messy", "heavy"],
     "weight": 3,
     "rarity": "rare",
     "notes": "Effective against many monster types"
