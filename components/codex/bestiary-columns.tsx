@@ -28,7 +28,6 @@ export const bestiaryColumns: ColumnDef<SelectBestiary>[] = [
         <button
           onClick={() => {
             row.toggleExpanded();
-            console.log("Row expanded state:", row.getIsExpanded());
           }}
           className="cursor-pointer"
         >

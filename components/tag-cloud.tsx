@@ -9,7 +9,7 @@ import {
 import { useTranslations } from "next-intl";
 
 type TagCloudProps = {
-  data: string[];
+  data: string | string[];
   className?: string;
   visibleTags?: number;
 };
@@ -23,15 +23,25 @@ export default function TagCloud({
   if (!data || data.length === 0) {
     return null;
   }
-  console.log("DATA", data);
-  const displayItems = data.slice(0, visibleTags);
-  const remainingCount = Math.max(data.length - visibleTags, 0);
+  const tagsArray =
+    typeof data === "string" ? data.split(",") : (data as string[]);
 
+  // Filter out empty strings and trim whitespace
+  const cleanedTags = tagsArray
+    .map((tag) => tag.trim())
+    .filter((tag) => tag !== "");
+
+  if (cleanedTags.length === 0) {
+    return null;
+  }
+
+  const displayItems = cleanedTags.slice(0, visibleTags);
+  const remainingCount = Math.max(cleanedTags.length - visibleTags, 0);
   return (
     <div className="flex flex-wrap gap-1">
       {displayItems.map((item) => {
         const tagName = t(`${item}.name`);
-        const tagDescription = t(`${item}.description` || "");
+        const tagDescription = t(`${item}.description`);
         return (
           <>
             <Tooltip>

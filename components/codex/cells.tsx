@@ -45,7 +45,7 @@ type CellStringArrayProps = {
 };
 
 export function CellStringArray({ value, className }: CellStringArrayProps) {
-  return <TagCloud value={value} visibleTags={3} className={className} />;
+  return <TagCloud data={value} visibleTags={3} className={className} />;
 }
 
 type CellTooltipProps = {
@@ -63,9 +63,6 @@ export function CellTooltip({
 
   const lowerCaseValue = value.toLowerCase();
   const translatedValue = t(lowerCaseValue);
-  console.log("Value:", value);
-  console.log("Lowercase Value:", lowerCaseValue);
-  console.log("Translated Value:", translatedValue);
 
   return (
     <Tooltip>

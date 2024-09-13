@@ -12,24 +12,19 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-
 import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { settingsMenuItems } from "@/constants/navigation";
 import { getUser } from "@/data-access/users";
 import { auth } from "@/lib/auth";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { getLocale, getTranslations } from "next-intl/server";
 import { redirect } from "next/navigation";
 import React from "react";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
 
 export default async function SettingsPage() {
   const session = await auth();
   const locale = getLocale();
   const t = await getTranslations(["settings", "common"]);
-  console.log(t);
+
   if (!session?.user?.id) {
     redirect(`/${locale}/sign-in`);
   }

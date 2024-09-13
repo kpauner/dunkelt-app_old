@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import TableToolbar from "./table-toolbar";
 import { filters } from "@/config/filters.config";
+import { rankItem } from "@tanstack/match-sorter-utils";
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
@@ -38,6 +39,7 @@ export default function TableItems<TData, TValue>({
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [expanded, setExpanded] = React.useState<ExpandedState>({});
   const [globalFilter, setGlobalFilter] = React.useState("");
+
   const table = useReactTable({
     data,
     columns,
@@ -50,6 +52,7 @@ export default function TableItems<TData, TValue>({
       setExpanded(newExpanded);
     },
     onSortingChange: setSorting,
+    onGlobalFilterChange: setGlobalFilter,
     getSortedRowModel: getSortedRowModel(),
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),

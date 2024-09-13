@@ -142,9 +142,109 @@
       "name": "Balanced",
       "description": "Easy to wield and keep your grip on."
     },
+    "barrier": {
+      "name": "Barrier",
+      "description": "Does harm to anything that passes through. Counts as armour against any attacks that pass through it."
+    },
+    "close": {
+      "name": "Close",
+      "description": "Effective at fairly close quarters—outside arms’ reach, but not too far"
+    },
+    "far": {
+      "name": "Far",
+      "description": "Effective at long range."
+    },
+    "fire": {
+      "name": "Fire",
+      "description": "Sets things on fire."
+    },
+    "forceful": {
+      "name": "Forceful",
+      "description": "Pushes things around, allowing you to “force them where you want them” in addition to normal attack effects."
+    },
+    "hand": {
+      "name": "Hand",
+      "description": "Effective within arms’ reach."
+    },
+    "life-drain": {
+      "name": "Life-Drain",
+      "description": "Transfers life energy: the wielder is healed for as many points of harm as were inflicted. E.g. if you inflict 2-harm, then you heal 2-harm from your injuries."
+    },
+    "heavy": {
+      "name": "Heavy",
+      "description": "This weapon is heavy and difficult to wield."
+    },
+    "holy": {
+      "name": "Holy",
+      "description": "This will be more effective against monsters with a weakness to holy items."
+    },
+    "ignore-armour": {
+      "name": "Ignore Armour",
+      "description": "Ignores protective armour. Armour has no effect on this harm."
+    },
+    "innocuous": {
+      "name": "Innocuous",
+      "description": "Doesn’t draw suspicion."
+    },
+    "intimate": {
+      "name": "Intimate",
+      "description": "Effective at the closest of quarters—within the embrace of your foe."
+    },
+    "loud": {
+      "name": "Loud",
+      "description": "Loud enough that it draws attention."
+    },
+    "magic": {
+      "name": "Magic",
+      "description": "Enchanted, and so can affect certain creatures and armours that are proof against normal weapons."
+    },
+    "many": {
+      "name": "Many",
+      "description": "These weapons are small enough you can carry a large number of them."
+    },
+    "material": {
+      "name": "Material",
+      "description": "This weapon is made from the named material, and is thus useful against monsters with that weakness."
+    },
     "messy": {
       "name": "Messy",
       "description": "Causes extra collateral damage or is particularly gory."
+    },
+    "quick": {
+      "name": "Quick",
+      "description": "Fast to prepare and attack with, giving you a better chance of going first."
+    },
+    "reload": {
+      "name": "Reload",
+      "description": "This weapon has limited ammunition, and may run out otherwise it just isn’t gonna work."
+    },
+    "restraining": {
+      "name": "Restraining",
+      "description": "A successful attack entangles or grabs the victim."
+    },
+    "slow": {
+      "name": "Slow",
+      "description": "This weapon is slow to prepare and attack with."
+    },
+    "small": {
+      "name": "Small",
+      "description": "This weapon is tiny and easy to conceal."
+    },
+    "unreliable": {
+      "name": "Unreliable",
+      "description": "This weapon needs regular cleaning and maintenance, otherwise it just isn’t gonna work."
+    },
+    "useful": {
+      "name": "Useful",
+      "description": "This weapon has other uses aside from violence."
+    },
+    "valuable": {
+      "name": "Valuable",
+      "description": "This weapon is antique, or made of valuable materials."
+    },
+    "volatile": {
+      "name": "Volatile",
+      "description": "This weapon is dangerous and unstable."
     }
   },
   "charactersheet": {

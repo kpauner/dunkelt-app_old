@@ -32,7 +32,10 @@ export default function TableToolbar<TData>({
         <Input
           placeholder="Filter ..."
           value={globalFilter}
-          onChange={(e) => setGlobalFilter(e.target.value)}
+          onChange={(e) => {
+            console.log("Global filter changed:", e.target.value);
+            setGlobalFilter(e.target.value);
+          }}
           className="w-full lg:w-80"
         />
         {availableFilters.map((filter) => {

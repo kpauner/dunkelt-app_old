@@ -5,7 +5,7 @@ import { SelectItems } from "@/types/items";
 import { ArrowUpDown, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import { CellDescriptions, CellStringArray, CellTooltip } from "./cells";
+import { CellDescriptions, CellTooltip } from "./cells";
 import Icons from "../icons";
 import TagCloud from "../tag-cloud";
 
@@ -30,7 +30,6 @@ export const itemsColumns: ColumnDef<SelectItems>[] = [
         <button
           onClick={() => {
             row.toggleExpanded();
-            console.log("Row expanded state:", row.getIsExpanded());
           }}
           className="cursor-pointer"
         >
@@ -110,7 +109,8 @@ export const itemsColumns: ColumnDef<SelectItems>[] = [
     ),
   },
   {
-    accessorKey: "tags",
+    accessorFn: (row) => row.tags?.join(","), // Join tags with a separator
+    id: "tags",
     header: ({ column }) => {
       return (
         <Button
@@ -124,11 +124,22 @@ export const itemsColumns: ColumnDef<SelectItems>[] = [
       );
     },
     cell: ({ row, column }) => {
+      console.log("TAGS", row.getValue("tags"));
       return (
         <div className="flex gap-2 flex-wrap">
           <TagCloud data={row.getValue("tags") as string[]} visibleTags={3} />
         </div>
       );
     },
+
+    enableColumnFilter: true,
+    enableGlobalFilter: true,
+    filterFn: (row, columnId, filterValue) => {
+      const tags = row.getValue(columnId) as string[];
+      return tags.some((tag) =>
+        tag.toLowerCase().includes(filterValue.toLowerCase())
+      );
+    },
   },
 ];
+// accessorFn: (row) => row.tags?.join(", "),

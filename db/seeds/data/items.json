@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "Silver Dagger",
     "description": "A sharp dagger made of pure silver, effective against werewolves and other supernatural creatures.",
     "type": "weapon",
@@ -10,6 +11,7 @@
     "notes": "Deals extra damage to werewolves"
   },
   {
+    "id": 2,
     "name": "Shotgun",
     "description": "A powerful shotgun, great for close-range combat against monsters.",
     "type": "weapon",
@@ -20,16 +22,18 @@
     "notes": "Requires ammunition"
   },
   {
+    "id": 3,
     "name": "Holy Water",
     "description": "Blessed water that can harm unholy creatures.",
     "type": "consumable",
     "value": 1,
-    "tags": ["holy", "thrown", "area"],
+    "tags": ["holy", "area"],
     "weight": 1,
     "rarity": "uncommon",
     "notes": "One-time use"
   },
   {
+    "id": 4,
     "name": "Leather Jacket",
     "description": "A sturdy leather jacket that provides some protection against physical attacks.",
     "type": "armor",
@@ -40,6 +44,7 @@
     "notes": "Reduces harm by 1"
   },
   {
+    "id": 5,
     "name": "EMF Detector",
     "description": "A device that detects electromagnetic fields, useful for ghost hunting.",
     "type": "tool",
@@ -50,6 +55,7 @@
     "notes": "Helps in investigating supernatural activity"
   },
   {
+    "id": 6,
     "name": "Spellbook",
     "description": "An ancient tome containing various spells and rituals.",
     "type": "magical",
@@ -60,6 +66,7 @@
     "notes": "Allows casting of various spells"
   },
   {
+    "id": 7,
     "name": "First Aid Kit",
     "description": "A basic medical kit for treating injuries.",
     "type": "consumable",
@@ -70,6 +77,7 @@
     "notes": "Can be used to treat minor injuries"
   },
   {
+    "id": 8,
     "name": "Silver Bullets",
     "description": "Ammunition made of silver, effective against supernatural creatures.",
     "type": "ammo",
@@ -80,6 +88,7 @@
     "notes": "Used with firearms"
   },
   {
+    "id": 9,
     "name": "Protective Amulet",
     "description": "A magical amulet that provides protection against curses and hexes.",
     "type": "magical",
@@ -90,6 +99,7 @@
     "notes": "Provides +1 against magical attacks"
   },
   {
+    "id": 10,
     "name": "Flamethrower",
     "description": "A powerful weapon that shoots streams of fire.",
     "type": "weapon",
