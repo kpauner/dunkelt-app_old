@@ -10,8 +10,6 @@ export const items = sqliteTable("items", {
   armor: integer("armor").default(0),
   value: integer("value"),
   tags: text("tags", { mode: "json" }).$type<string[]>(),
-  weight: integer("weight").default(0),
-  rarity: text("rarity").default("common"),
   homebrew: integer("homebrew", { mode: "boolean" }).default(true).notNull(),
   userId: text("userId").references(() => users.id),
   isPublic: integer("is_public", { mode: "boolean" }).default(false).notNull(),

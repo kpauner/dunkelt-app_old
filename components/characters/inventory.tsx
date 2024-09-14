@@ -1,5 +1,4 @@
 import { SelectItems } from "@/types/items";
-import { ColumnDef } from "@tanstack/react-table";
 import InventoryTable from "./inventory-table";
 import data from "@/db/seeds/data/items.json";
 

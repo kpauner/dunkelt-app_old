@@ -9,11 +9,13 @@ export default async function seed(db: db) {
     name: item.name,
     description: item.description,
     type: item.type,
+    harm: item.harm,
+    armor: item.armor,
     value: item.value,
     tags: item.tags,
-    weight: item.weight,
-    rarity: item.rarity,
-    notes: item.notes,
+    homebrew: item.homebrew,
+    userId: item.userId,
+    isPublic: item.isPublic,
   }));
   if (!formattedData) {
     return;

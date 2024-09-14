@@ -6,6 +6,8 @@ import {
   flexRender,
   getCoreRowModel,
   getExpandedRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { SelectItems } from "@/types/items";
@@ -22,6 +24,7 @@ import TagCloud from "@/components/tag-cloud";
 import { Input } from "@/components/ui/input";
 import Icons from "@/components/icons";
 import Heading from "@/components/layout/heading";
+import { DataTablePagination } from "../table-pagination";
 const columnHelper = createColumnHelper<SelectItems>();
 
 type DataTableProps = {
@@ -57,12 +60,14 @@ export default function InventoryTable({ data }: DataTableProps) {
   const table = useReactTable({
     data,
     columns,
-    getCoreRowModel: getCoreRowModel(),
-    getExpandedRowModel: getExpandedRowModel(),
     state: {
       expanded,
       globalFilter,
     },
+    getCoreRowModel: getCoreRowModel(),
+    getExpandedRowModel: getExpandedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     onExpandedChange: (newExpanded) => {
       setExpanded(newExpanded);
     },
@@ -70,11 +75,12 @@ export default function InventoryTable({ data }: DataTableProps) {
   });
 
   return (
-    <Sheet>
+    <div>
       <Input
         placeholder="Filter ..."
         value={globalFilter}
         onChange={(e) => {
+          console.log("Global filter changed:", e.target.value);
           setGlobalFilter(e.target.value);
         }}
         className="w-full "
@@ -119,19 +125,8 @@ export default function InventoryTable({ data }: DataTableProps) {
           ))}
         </TableBody>
       </Table>
-      <SheetContent>
-        {selectedItem && (
-          <div>
-            <h2>{selectedItem.name}</h2>
-            <p>Type: {selectedItem.type}</p>
-            <p>Value: {selectedItem.value}</p>
-            <p>Weight: {selectedItem.weight}</p>
-            <p>Rarity: {selectedItem.rarity}</p>
-            {/* Add more details as needed */}
-          </div>
-        )}
-      </SheetContent>
-    </Sheet>
+      <DataTablePagination table={table} />
+    </div>
   );
 }
 

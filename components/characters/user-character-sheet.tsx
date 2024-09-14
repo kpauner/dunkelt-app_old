@@ -221,6 +221,9 @@ export default function UserCharacterSheet({
                     </Label>
                   </div>
                 </div>
+                <div>
+                  <Inventory items={placeholderItems} />
+                </div>
               </PlaybookSheet>
             }
           >

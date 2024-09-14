@@ -1,4 +1,8 @@
-import { TrashIcon } from "@radix-ui/react-icons";
+import {
+  DoubleArrowLeftIcon,
+  DoubleArrowRightIcon,
+  TrashIcon,
+} from "@radix-ui/react-icons";
 import {
   HomeIcon,
   ShoppingCartIcon,
@@ -25,6 +29,8 @@ import {
   ChevronUp,
   Sword,
   Shield,
+  ChevronLeftIcon,
+  ChevronRightIcon,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
@@ -51,6 +57,10 @@ const Icons = {
   verticaldots: EllipsisVertical,
   chevronDown: ChevronDown,
   chevronUp: ChevronUp,
+  left: ChevronLeftIcon,
+  doubleleft: DoubleArrowLeftIcon,
+  right: ChevronRightIcon,
+  doubleright: DoubleArrowRightIcon,
   weapon: Sword,
   armor: Shield,
   monster: ({ ...props }: IconProps) => (

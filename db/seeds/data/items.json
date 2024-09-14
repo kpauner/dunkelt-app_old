@@ -8,8 +8,9 @@
     "armor": 0,
     "value": 2,
     "tags": ["silver", "close", "small"],
-    "weight": 1,
-    "rarity": "uncommon"
+    "homebrew": true,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "id": 2,
@@ -20,8 +21,9 @@
     "armor": 0,
     "value": 3,
     "tags": ["loud", "messy", "reload", "close"],
-    "weight": 2,
-    "rarity": "common"
+    "homebrew": true,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "id": 3,
@@ -32,8 +34,9 @@
     "armor": 0,
     "value": 1,
     "tags": ["holy", "area"],
-    "weight": 1,
-    "rarity": "uncommon"
+    "homebrew": true,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "id": 4,
@@ -44,8 +47,9 @@
     "armor": 1,
     "value": 1,
     "tags": ["durable"],
-    "weight": 1,
-    "rarity": "common"
+    "homebrew": true,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "id": 5,
@@ -56,8 +60,9 @@
     "armor": 0,
     "value": 0,
     "tags": ["electronic"],
-    "weight": 1,
-    "rarity": "uncommon"
+    "homebrew": true,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "id": 6,
@@ -68,8 +73,9 @@
     "armor": 0,
     "value": 0,
     "tags": ["magic", "heavy"],
-    "weight": 2,
-    "rarity": "rare"
+    "homebrew": true,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "id": 7,
@@ -80,8 +86,9 @@
     "armor": 0,
     "value": 1,
     "tags": ["healing"],
-    "weight": 1,
-    "rarity": "common"
+    "homebrew": true,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "id": 8,
@@ -92,8 +99,9 @@
     "armor": 0,
     "value": 2,
     "tags": ["silver", "ammo"],
-    "weight": 1,
-    "rarity": "uncommon"
+    "homebrew": true,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "id": 9,
@@ -103,9 +111,10 @@
     "harm": 0,
     "armor": 0,
     "value": 0,
-    "tags": ["magic", "worn"],
-    "weight": 1,
-    "rarity": "rare"
+    "tags": ["magic"],
+    "homebrew": true,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "id": 10,
@@ -116,7 +125,8 @@
     "armor": 0,
     "value": 3,
     "tags": ["fire", "area", "messy", "heavy"],
-    "weight": 3,
-    "rarity": "rare"
+    "homebrew": true,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   }
 ]

@@ -4,7 +4,8 @@
     "save": "Save",
     "signup": "Sign Up",
     "signin": "Sign In",
-    "logout": "Sign Out"
+    "logout": "Sign Out",
+    "pagination": "Page {current} of {total}"
   },
   "navigation": {
     "home": "Home",
