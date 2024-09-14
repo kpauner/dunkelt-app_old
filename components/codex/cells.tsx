@@ -22,21 +22,6 @@ export function CellHeader({ column, value, className }: CellHeaderProps) {
   );
 }
 
-type CellDescriptionsProps = {
-  column?: any;
-  value: string;
-  className?: string;
-};
-
-export function CellDescriptions({
-  column,
-  value,
-  className,
-}: CellDescriptionsProps) {
-  const text = truncateText(value, 100);
-  return <div className={cn("px-2 py-1.5", className)}>{text}</div>;
-}
-
 type CellStringArrayProps = {
   value: string[];
   className?: string;

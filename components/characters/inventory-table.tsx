@@ -25,37 +25,19 @@ import { Input } from "@/components/ui/input";
 import Icons from "@/components/icons";
 import Heading from "@/components/layout/heading";
 import { DataTablePagination } from "../table-pagination";
-const columnHelper = createColumnHelper<SelectItems>();
+import { Paragraph } from "../ui/paragraph";
 
-type DataTableProps = {
+const columnHelper = createColumnHelper<SelectItems>();
+type InventoryColumns = ReturnType<typeof columnHelper.accessor>[];
+
+type InventoryTableProps = {
   data: SelectItems[];
+  columns: any;
 };
 
-export default function InventoryTable({ data }: DataTableProps) {
-  const [selectedItem, setSelectedItem] = useState<SelectItems | null>(null);
+export default function InventoryTable({ data, columns }: InventoryTableProps) {
   const [expanded, setExpanded] = React.useState<ExpandedState>({});
   const [globalFilter, setGlobalFilter] = useState("");
-
-  const columns = [
-    columnHelper.accessor("name", {
-      header: "Name",
-      cell: ({ row, getValue }) => (
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => row.toggleExpanded()}
-            className="cursor-pointer"
-          >
-            {row.getIsExpanded() ? <Icons.chevronUp /> : <Icons.chevronDown />}
-          </button>
-          <span>{getValue()}</span>
-        </div>
-      ),
-    }),
-    columnHelper.accessor("tags", {
-      header: "Tags",
-      cell: (info) => <TagCloud data={info.getValue() || []} />,
-    }),
-  ];
 
   const table = useReactTable({
     data,
@@ -63,6 +45,11 @@ export default function InventoryTable({ data }: DataTableProps) {
     state: {
       expanded,
       globalFilter,
+    },
+    initialState: {
+      pagination: {
+        pageSize: 5, // Set your desired default page size here
+      },
     },
     getCoreRowModel: getCoreRowModel(),
     getExpandedRowModel: getExpandedRowModel(),
@@ -80,7 +67,6 @@ export default function InventoryTable({ data }: DataTableProps) {
         placeholder="Filter ..."
         value={globalFilter}
         onChange={(e) => {
-          console.log("Global filter changed:", e.target.value);
           setGlobalFilter(e.target.value);
         }}
         className="w-full "
@@ -125,7 +111,7 @@ export default function InventoryTable({ data }: DataTableProps) {
           ))}
         </TableBody>
       </Table>
-      <DataTablePagination table={table} />
+      <DataTablePagination table={table} showRowsPerPage={false} />
     </div>
   );
 }
@@ -155,7 +141,11 @@ const ExpandedRow = (item: SelectItems) => {
 
         {/* <p>€: {item.value}</p>
               <p>Weight: {item.weight}</p> */}
-        {item?.description && <p>{item.description}</p>}
+        {item?.description && (
+          <Paragraph variant="default" size="xs">
+            {item.description}
+          </Paragraph>
+        )}
       </div>
 
       <TagCloud data={item.tags || []} showAllTags={true} harm={item.harm} />

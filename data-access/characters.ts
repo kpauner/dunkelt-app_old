@@ -38,6 +38,11 @@ export async function getCharacterSheet(
           // Exclude all columns from characterMoves
         },
       },
+      characterRatings: {
+        with: {
+          ratingType: true,
+        },
+      },
     },
   });
 
@@ -61,6 +66,7 @@ export async function getCharacterSheet(
       ...characterSheet,
       characterMoves:
         characterSheet.characterMoves?.map((move) => move.move) || [],
+      characterRatings: characterSheet.characterRatings || [],
     },
   };
 }

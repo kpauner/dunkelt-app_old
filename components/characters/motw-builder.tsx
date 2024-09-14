@@ -9,7 +9,7 @@ import ChooseMoves from "@/components/characters/choose-moves";
 import { Avatar } from "@/components/ui/avatar";
 import Heading from "@/components/layout/heading";
 import { Input } from "@/components/ui/input";
-import { MotWCharacter } from "@/types/characters";
+import { CharacterSheetType, SelectCharacter } from "@/types/characters";
 // import DefineHistory from './steps/DefineHistory'
 // import ReviewCharacter from './steps/ReviewCharacter'
 
@@ -22,30 +22,12 @@ const steps = [
 ];
 
 type BuilderPageProps = {
-  userCharacter: MotWCharacter;
+  userCharacter: CharacterSheetType;
 };
 
 export default function MotwBuilder({ userCharacter }: BuilderPageProps) {
   const [currentStep, setCurrentStep] = useState("playbook");
-  const [character, setCharacter] = useState<MotWCharacter>({
-    name: userCharacter.name || "",
-    playbook: userCharacter.playbook || "Unknown",
-    look: userCharacter.look || "",
-    ratings: userCharacter.ratings || {
-      Cool: 0,
-      Tough: 0,
-      Charm: 0,
-      Sharp: 0,
-      Weird: 0,
-    },
-    luck: userCharacter.luck || 0,
-    harm: userCharacter.harm || 0,
-    experience: userCharacter.experience || 0,
-    moves: userCharacter.moves || [],
-    improvements: userCharacter.improvements || [],
-    gear: userCharacter.gear || [],
-    history: userCharacter.history || {},
-  });
+  const [character, setCharacter] = useState<CharacterSheetType>();
 
   // Load saved data on component mount
   useEffect(() => {

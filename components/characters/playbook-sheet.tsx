@@ -31,7 +31,7 @@ export default function PlaybookSheet({
           <Icons.settings />
         </Button>
       </SheetTrigger>
-      <SheetContent className="border-border ">
+      <SheetContent>
         <SheetHeader>
           <SheetTitle>{title}</SheetTitle>
           <SheetDescription>{description}</SheetDescription>

@@ -214,16 +214,7 @@ export default function UserCharacterSheet({
                 description="Moves are actions that your character can perform."
                 buttonText="Add move"
               >
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="name" className="text-right">
-                      Name
-                    </Label>
-                  </div>
-                </div>
-                <div>
-                  <Inventory items={placeholderItems} />
-                </div>
+                <Inventory items={placeholderItems} />
               </PlaybookSheet>
             }
           >

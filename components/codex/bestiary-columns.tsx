@@ -3,9 +3,11 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { SelectBestiary } from "@/types/bestiary";
 import { ArrowUpDown, ChevronDown, ChevronRight } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { CellDescriptions, CellStringArray, CellTooltip } from "./cells";
+import { CellStringArray, CellTooltip } from "./cells";
+import { Paragraph } from "@/components/ui/paragraph";
+import { truncateText } from "@/lib/utils";
 
 export const bestiaryColumns: ColumnDef<SelectBestiary>[] = [
   {
@@ -101,9 +103,9 @@ export const bestiaryColumns: ColumnDef<SelectBestiary>[] = [
       );
     },
     cell: ({ row, column }) => (
-      <div className="flex items-center gap-2">
-        <CellDescriptions column={column} value={row.getValue("description")} />
-      </div>
+      <Paragraph variant="default" size="xs">
+        {truncateText(row.getValue("description"), 180)}
+      </Paragraph>
     ),
   },
   {

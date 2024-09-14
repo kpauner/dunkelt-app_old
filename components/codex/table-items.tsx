@@ -25,6 +25,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import TableToolbar from "@/components/codex/table-toolbar";
 import { filters } from "@/config/filters.config";
+import { DataTablePagination } from "../table-pagination";
 
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[];
@@ -138,24 +139,8 @@ export default function TableItems<TData, TValue>({
           </TableBody>
         </Table>
       </Card>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
-          variant="default"
-          size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
-        >
-          Previous
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
-        >
-          Next
-        </Button>
-      </div>
+
+      <DataTablePagination table={table} />
     </div>
   );
 }

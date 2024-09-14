@@ -7,6 +7,7 @@ import {
 import { users } from "./users";
 import characterMoves from "./characterMoves";
 import { relations } from "drizzle-orm";
+import characterRatings from "./characterRatings";
 
 /* Create the monster: name, description, type & motivation,
 then define its powers, weaknesses, attacks, armour, harm
@@ -31,6 +32,7 @@ const characters = sqliteTable("characters", {
 
 export const charactersRelations = relations(characters, ({ many }) => ({
   characterMoves: many(characterMoves),
+  ratings: many(characterRatings),
 }));
 
 export default characters;

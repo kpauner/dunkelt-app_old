@@ -5,9 +5,10 @@ import { SelectItems } from "@/types/items";
 import { ArrowUpDown, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
-import { CellDescriptions, CellTooltip } from "./cells";
+import { CellTooltip } from "./cells";
 import Icons from "../icons";
 import TagCloud from "../tag-cloud";
+import { Paragraph } from "../ui/paragraph";
 
 export const itemsColumns: ColumnDef<SelectItems>[] = [
   {
@@ -103,13 +104,11 @@ export const itemsColumns: ColumnDef<SelectItems>[] = [
       );
     },
     cell: ({ row, column }) => (
-      <div className="flex items-center gap-2">
-        <CellDescriptions column={column} value={row.getValue("description")} />
-      </div>
+      <Paragraph size="xs">{row.getValue("description")}</Paragraph>
     ),
   },
   {
-    accessorFn: (row) => row.tags?.join(","), // Join tags with a separator
+    accessorFn: (row) => row.tags?.join(","),
     id: "tags",
     header: ({ column }) => {
       return (
