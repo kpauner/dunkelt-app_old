@@ -36,14 +36,14 @@ const config = {
           foreground: "var(--card-foreground)",
         },
         border: "var(--border)",
+        warning: {
+          DEFAULT: "hsl(var(--warning))",
+          foreground: "hsl(var(--warning-foreground))",
+        },
         destructive: {
           DEFAULT: "var(--destructive)",
           foreground: "var(--destructive-foreground)",
         },
-        // muted: {
-        //   DEFAULT: "#101D22",
-        //   foreground: "#136972",
-        // },
         secondary: {
           DEFAULT: "#15474c",
           foreground: "#9df2f0",

@@ -24,6 +24,8 @@
   --border: #101d22;
   --destructive: #39070296;
   --destructive-foreground: hsl(5, 85%, 40%);
+  --warning: 41 91% 46%;
+  --warning-foreground: hsl(5, 85%, 40%);
 }
 
 .expanded-content:hover {

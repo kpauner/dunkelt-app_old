@@ -1,12 +1,14 @@
 [
   {
     "name": "Luna Shadowwhisper",
-    "playbook": "The Spooky",
+    "pronouns": "she/her",
+    "avatar": "https://placehold.co/100x100",
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "playbook": "The Chosen",
     "look": "haunted eyes, messy hair, worn clothes, thin build",
     "luck": 7,
     "harm": 0,
     "experience": 3,
-    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
     "isPublic": true
   }
 ]

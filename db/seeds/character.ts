@@ -7,6 +7,8 @@ export default async function seed(db: db) {
   const formattedData: SelectCharacter[] = data.map((character, index) => ({
     id: index + 1,
     name: character.name,
+    pronouns: character.pronouns,
+    avatar: character.avatar,
     userId: character.userId,
     playbook: character.playbook,
     look: character.look,

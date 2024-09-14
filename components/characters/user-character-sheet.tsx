@@ -27,6 +27,7 @@ import CharacterAvatar from "./character-avatar";
 import { toast } from "sonner";
 import { Inventory } from "./inventory";
 import placeholderItems from "@/db/seeds/data/items.json";
+import { Paragraph } from "../ui/paragraph";
 
 type UserCharacterSheetProps = {
   characterSheet: CharacterSheetType;
@@ -48,8 +49,6 @@ export default function UserCharacterSheet({
 
   const handleSave = async () => {
     try {
-      // Implement your save logic here
-      // For example: await saveCharacterToDatabase(character);
       setHasUnsavedChanges(false);
       toast.success("Changes saved successfully!");
     } catch (error) {
@@ -60,7 +59,7 @@ export default function UserCharacterSheet({
   useEffect(() => {
     if (hasUnsavedChanges) {
       toast.info("You have unsaved changes", {
-        duration: Infinity, // Keep the toast visible until dismissed
+        duration: Infinity,
         id: "unsaved-changes",
         action: {
           label: "Save",
@@ -157,13 +156,16 @@ export default function UserCharacterSheet({
         </CharacterSheetColumn>
 
         <CharacterSheetColumn>
-          <PlaybookSections playbook={character.playbook} />
+          <PlaybookSections
+            character={character}
+            updateCharacter={handleCharacterChange}
+          />
         </CharacterSheetColumn>
 
         <CharacterSheetColumn>
           <CharacterSheetBlock
             label="Moves"
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."
+            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
             tooltip="Moves are actions that your character can perform."
             notice={
               character.characterMoves.length < 3
@@ -192,15 +194,15 @@ export default function UserCharacterSheet({
                   <AccordionTrigger className="text-sm capitalize">
                     {move.name}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground text-xs">
-                    {move.description}
+                  <AccordionContent>
+                    <Paragraph size="xs">{move.description}</Paragraph>
                   </AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
           </CharacterSheetBlock>
           <CharacterSheetBlock
-            label="Inventory/Gear"
+            label="Gear"
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
             tooltip="Moves are actions that your character can perform."
             notice={
