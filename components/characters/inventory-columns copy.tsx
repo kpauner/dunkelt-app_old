@@ -3,15 +3,31 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { SelectItems } from "@/types/items";
 import { ArrowUpDown, ChevronDown, ChevronRight } from "lucide-react";
-import { Button } from "../ui/button";
-import Image from "next/image";
-import { CellDescriptions, CellTooltip } from "./cells";
-import Icons from "../icons";
-import TagCloud from "../tag-cloud";
+import { Button } from "@/components/ui/button";
+import { CellDescriptions, CellTooltip } from "@/components/codex/cells";
+import Icons from "@/components/icons";
+import TagCloud from "@/components/tag-cloud";
 
-export const itemsColumns: ColumnDef<SelectItems>[] = [
+export const InventoryColumns: ColumnDef<SelectItems>[] = [
   {
-    accessorFn: (row) => row.name.toLowerCase(),
+    accessorKey: "id",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          className="my-1"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          ID
+          <Icons.arrowupdown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => (
+      <div className="flex items-center gap-2">{row.getValue("id")}</div>
+    ),
+  },
+  {
     accessorKey: "name",
     header: ({ column }) => {
       return (
@@ -45,29 +61,6 @@ export const itemsColumns: ColumnDef<SelectItems>[] = [
       </div>
     ),
   },
-  // {
-  //   accessorKey: "id",
-  //   header: ({ column }) => {
-  //     return (
-  //       <Button variant="ghost" className="my-1 ">
-  //         image
-  //       </Button>
-  //     );
-  //   },
-  //   cell: ({ row }) => (
-  //     <div className="flex items-center gap-2">
-  //       <span className="capitalize font-bold tracking-wider">
-  //         <Image
-  //           alt="Product image"
-  //           className="aspect-square rounded-md object-cover bg-black"
-  //           height="64"
-  //           src="https://static.wikia.nocookie.net/secure-contain-protect/images/b/b6/SCP-049.png/revision/latest?cb=20211121023917"
-  //           width="64"
-  //         />
-  //       </span>
-  //     </div>
-  //   ),
-  // },
   {
     accessorKey: "type",
     header: ({ column }) => {
@@ -130,14 +123,6 @@ export const itemsColumns: ColumnDef<SelectItems>[] = [
         </div>
       );
     },
-
-    enableColumnFilter: true,
     enableGlobalFilter: true,
-    filterFn: (row, columnId, filterValue) => {
-      const tags = row.getValue(columnId) as string[];
-      return tags.some((tag) =>
-        tag.toLowerCase().includes(filterValue.toLowerCase())
-      );
-    },
   },
 ];

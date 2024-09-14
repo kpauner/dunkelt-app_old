@@ -23,7 +23,7 @@ import {
 } from "../ui/table";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import TableToolbar from "./table-toolbar";
+import TableToolbar from "@/components/codex/table-toolbar";
 import { filters } from "@/config/filters.config";
 import { rankItem } from "@tanstack/match-sorter-utils";
 

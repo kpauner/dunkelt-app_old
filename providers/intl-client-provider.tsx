@@ -34,9 +34,9 @@ export default function IntlClientProvider({
     error: IntlError;
   }) {
     const path = [namespace, key].filter((part) => part != null).join(".");
-
+    const rawKey = key.split(".").slice(-2)[0];
     if (error.code === IntlErrorCode.MISSING_MESSAGE) {
-      return path + " is not yet translated";
+      return rawKey;
     } else {
       return "Dear developer, please fix this message: " + path;
     }

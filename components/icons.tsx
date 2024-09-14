@@ -20,6 +20,11 @@ import {
   AlertTriangleIcon,
   BriefcaseIcon,
   ArrowUpDown,
+  EllipsisVertical,
+  ChevronDown,
+  ChevronUp,
+  Sword,
+  Shield,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
@@ -43,6 +48,11 @@ const Icons = {
   alert: AlertTriangleIcon,
   item: BriefcaseIcon,
   arrowupdown: ArrowUpDown,
+  verticaldots: EllipsisVertical,
+  chevronDown: ChevronDown,
+  chevronUp: ChevronUp,
+  weapon: Sword,
+  armor: Shield,
   monster: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

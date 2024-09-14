@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { Column, Row } from "@tanstack/react-table";
-// import { format } from "date-fns";
 import { cn, truncateText } from "@/lib/utils";
 import { Badge } from "../ui/badge";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";

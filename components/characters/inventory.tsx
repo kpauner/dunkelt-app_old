@@ -1,25 +1,14 @@
-import { useTranslations } from "next-intl";
-
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
+import { SelectItems } from "@/types/items";
+import { ColumnDef } from "@tanstack/react-table";
+import InventoryTable from "./inventory-table";
+import data from "@/db/seeds/data/items.json";
 
 type InventoryProps = {
-  items: any;
+  items: SelectItems[];
 };
 
 export function Inventory({ items }: InventoryProps) {
-  const t = useTranslations("tags");
   const displayItems = items.slice(0, 2);
-  return (
-    <div>
-      {/* {JSON.stringify(items)} */}
-      <ul>
-        {displayItems.map((tag: any) => (
-          <li key={tag.id} title={tag.description}>
-            {tag.id}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+
+  return <InventoryTable data={data} />;
 }

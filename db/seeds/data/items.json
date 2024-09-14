@@ -4,109 +4,119 @@
     "name": "Silver Dagger",
     "description": "A sharp dagger made of pure silver, effective against werewolves and other supernatural creatures.",
     "type": "weapon",
+    "harm": 1,
+    "armor": 0,
     "value": 2,
     "tags": ["silver", "close", "small"],
     "weight": 1,
-    "rarity": "uncommon",
-    "notes": "Deals extra damage to werewolves"
+    "rarity": "uncommon"
   },
   {
     "id": 2,
     "name": "Shotgun",
     "description": "A powerful shotgun, great for close-range combat against monsters.",
     "type": "weapon",
+    "harm": 1,
+    "armor": 0,
     "value": 3,
     "tags": ["loud", "messy", "reload", "close"],
     "weight": 2,
-    "rarity": "common",
-    "notes": "Requires ammunition"
+    "rarity": "common"
   },
   {
     "id": 3,
     "name": "Holy Water",
     "description": "Blessed water that can harm unholy creatures.",
     "type": "consumable",
+    "harm": 0,
+    "armor": 0,
     "value": 1,
     "tags": ["holy", "area"],
     "weight": 1,
-    "rarity": "uncommon",
-    "notes": "One-time use"
+    "rarity": "uncommon"
   },
   {
     "id": 4,
     "name": "Leather Jacket",
     "description": "A sturdy leather jacket that provides some protection against physical attacks.",
     "type": "armor",
+    "harm": 0,
+    "armor": 1,
     "value": 1,
     "tags": ["durable"],
     "weight": 1,
-    "rarity": "common",
-    "notes": "Reduces harm by 1"
+    "rarity": "common"
   },
   {
     "id": 5,
     "name": "EMF Detector",
     "description": "A device that detects electromagnetic fields, useful for ghost hunting.",
     "type": "tool",
+    "harm": 0,
+    "armor": 0,
     "value": 0,
     "tags": ["electronic"],
     "weight": 1,
-    "rarity": "uncommon",
-    "notes": "Helps in investigating supernatural activity"
+    "rarity": "uncommon"
   },
   {
     "id": 6,
     "name": "Spellbook",
     "description": "An ancient tome containing various spells and rituals.",
     "type": "magical",
+    "harm": 0,
+    "armor": 0,
     "value": 0,
     "tags": ["magic", "heavy"],
     "weight": 2,
-    "rarity": "rare",
-    "notes": "Allows casting of various spells"
+    "rarity": "rare"
   },
   {
     "id": 7,
     "name": "First Aid Kit",
     "description": "A basic medical kit for treating injuries.",
     "type": "consumable",
+    "harm": 0,
+    "armor": 0,
     "value": 1,
     "tags": ["healing"],
     "weight": 1,
-    "rarity": "common",
-    "notes": "Can be used to treat minor injuries"
+    "rarity": "common"
   },
   {
     "id": 8,
     "name": "Silver Bullets",
     "description": "Ammunition made of silver, effective against supernatural creatures.",
     "type": "ammo",
+    "harm": 0,
+    "armor": 0,
     "value": 2,
     "tags": ["silver", "ammo"],
     "weight": 1,
-    "rarity": "uncommon",
-    "notes": "Used with firearms"
+    "rarity": "uncommon"
   },
   {
     "id": 9,
     "name": "Protective Amulet",
     "description": "A magical amulet that provides protection against curses and hexes.",
     "type": "magical",
+    "harm": 0,
+    "armor": 0,
     "value": 0,
     "tags": ["magic", "worn"],
     "weight": 1,
-    "rarity": "rare",
-    "notes": "Provides +1 against magical attacks"
+    "rarity": "rare"
   },
   {
     "id": 10,
     "name": "Flamethrower",
     "description": "A powerful weapon that shoots streams of fire.",
     "type": "weapon",
+    "harm": 1,
+    "armor": 0,
     "value": 3,
     "tags": ["fire", "area", "messy", "heavy"],
     "weight": 3,
-    "rarity": "rare",
-    "notes": "Effective against many monster types"
+    "rarity": "rare"
   }
 ]

@@ -12,12 +12,18 @@ type TagCloudProps = {
   data: string | string[];
   className?: string;
   visibleTags?: number;
+  showAllTags?: boolean;
+  harm?: number | null;
+  armor?: number | null;
 };
 
 export default function TagCloud({
   data,
   visibleTags = 3,
   className,
+  showAllTags = false,
+  harm,
+  armor,
 }: TagCloudProps) {
   const t = useTranslations("tags");
   if (!data || data.length === 0) {
@@ -35,10 +41,25 @@ export default function TagCloud({
     return null;
   }
 
-  const displayItems = cleanedTags.slice(0, visibleTags);
-  const remainingCount = Math.max(cleanedTags.length - visibleTags, 0);
+  const displayItems = showAllTags
+    ? cleanedTags
+    : cleanedTags.slice(0, visibleTags);
+  const remainingCount = showAllTags
+    ? 0
+    : Math.max(cleanedTags.length - visibleTags, 0);
+
   return (
     <div className="flex flex-wrap gap-1">
+      {harm !== undefined && harm !== null && harm > 0 && (
+        <Badge className={cn("inline-block", className)} variant="destructive">
+          {harm}-harm
+        </Badge>
+      )}
+      {armor !== undefined && armor !== null && armor > 0 && (
+        <Badge className={cn("inline-block", className)} variant="outline">
+          {armor}-armor
+        </Badge>
+      )}
       {displayItems.map((item) => {
         const tagName = t(`${item}.name`);
         const tagDescription = t(`${item}.description`);
@@ -49,7 +70,7 @@ export default function TagCloud({
                 <Badge
                   variant="secondary"
                   key={item}
-                  className={cn("", className)}
+                  className={cn("capitalize", className)}
                 >
                   {tagName}
                 </Badge>
@@ -61,7 +82,7 @@ export default function TagCloud({
           </>
         );
       })}
-      {remainingCount > 0 && (
+      {!showAllTags && remainingCount > 0 && (
         <Badge variant="outline" className={cn("", className)}>
           +{remainingCount} more
         </Badge>
