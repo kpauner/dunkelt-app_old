@@ -38,11 +38,7 @@ export async function getCharacterSheet(
           // Exclude all columns from characterMoves
         },
       },
-      characterRatings: {
-        with: {
-          ratingType: true,
-        },
-      },
+      characterRatings: true,
     },
   });
 

@@ -32,7 +32,7 @@ const characters = sqliteTable("characters", {
 
 export const charactersRelations = relations(characters, ({ many }) => ({
   characterMoves: many(characterMoves),
-  ratings: many(characterRatings),
+  characterRatings: many(characterRatings),
 }));
 
 export default characters;

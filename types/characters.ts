@@ -1,6 +1,6 @@
-import { characterRatings, characters } from "@/db/schema";
+import { characterMoves, characterRatings, characters } from "@/db/schema";
 import { InferSelectModel } from "drizzle-orm";
-import { SelectCharacterMoves, SelectMoves } from "./moves";
+import { SelectMoves } from "./moves";
 
 type PlaybookType =
   | "The Chosen"
@@ -23,6 +23,7 @@ interface Improvement {
 
 export type SelectCharacter = InferSelectModel<typeof characters>;
 export type SelectCharacterRatings = InferSelectModel<typeof characterRatings>;
+export type SelectCharacterMoves = InferSelectModel<typeof characterMoves>;
 
 export type CharacterSheetType = SelectCharacter & {
   characterMoves: SelectMoves[];

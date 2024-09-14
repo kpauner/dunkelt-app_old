@@ -1,6 +1,5 @@
 import { env } from "@/lib/env";
-import { db, client } from ".";
-import { getTableName, sql, Table } from "drizzle-orm";
+import { db } from ".";
 import * as schema from "@/db/schema";
 import * as seeds from "./seeds";
 
@@ -15,24 +14,25 @@ if (!env.DB_SEEDING) {
 
 async function seedDatabase() {
   for (const table of [
+    schema.characterMoves,
+    schema.characterRatings,
+    schema.characters,
+    schema.moves,
     schema.tags,
     schema.bestiary,
-    schema.moves,
-    schema.characterMoves,
   ]) {
-    if (table === schema.bestiary) {
-      console.log("harm capacity", table.harmCapacity.name);
-    }
-    await db.delete(table); // clear tables without truncating / resetting ids
-    // await resetTable(db, table);
+    // if (table === schema.bestiary) {
+    //   console.log("harm capacity", table.harmCapacity.name);
+    // }
+    await db.delete(table);
   }
 
-  await seeds.characters(db);
   await seeds.moves(db);
+  await seeds.characters(db);
   await seeds.characterMoves(db);
+  await seeds.characterRatings(db);
   await seeds.tags(db);
   await seeds.bestiary(db);
-  // await seeds.users(db);
 }
 
 seedDatabase()
