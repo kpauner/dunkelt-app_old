@@ -1,7 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/providers/theme-provider";
 import TooltipProvider from "@/providers/tooltip-provider";
-import { NextIntlClientProvider, IntlErrorCode, IntlError } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { GeistMono } from "geist/font/mono";
 import AuthProvider from "@/providers/session-provider";
@@ -18,6 +17,7 @@ import { Suspense } from "react";
 import LoadingLogo from "@/components/layout/loading-logo";
 import { auth } from "@/lib/auth";
 import IntlClientProvider from "@/providers/intl-client-provider";
+import QueryProvider from "@/providers/query-provider";
 
 export default async function LocaleLayout({
   children,
@@ -44,25 +44,29 @@ export default async function LocaleLayout({
             forcedTheme="dark"
             // disableTransitionOnChange
           >
-            <AuthProvider>
-              <TooltipProvider>
-                <Dashboard className="bg-background dark:bg-background text-foreground flex">
-                  <DashboardSidebar>
-                    <SidebarNavigation session={session} />
-                  </DashboardSidebar>
-                  <DashboardWrapper className="flex min-h-screen">
-                    <DashboardHeader>
-                      <Header />
-                    </DashboardHeader>
-                    <DashboardContent className="flex-1 flex flex-col">
-                      <Suspense fallback={<LoadingLogo />}>{children}</Suspense>
-                    </DashboardContent>
-                  </DashboardWrapper>
-                </Dashboard>
+            <QueryProvider>
+              <AuthProvider>
+                <TooltipProvider>
+                  <Dashboard className="bg-background dark:bg-background text-foreground flex">
+                    <DashboardSidebar>
+                      <SidebarNavigation session={session} />
+                    </DashboardSidebar>
+                    <DashboardWrapper className="flex min-h-screen">
+                      <DashboardHeader>
+                        <Header />
+                      </DashboardHeader>
+                      <DashboardContent className="flex-1 flex flex-col">
+                        <Suspense fallback={<LoadingLogo />}>
+                          {children}
+                        </Suspense>
+                      </DashboardContent>
+                    </DashboardWrapper>
+                  </Dashboard>
 
-                <Toaster />
-              </TooltipProvider>
-            </AuthProvider>
+                  <Toaster />
+                </TooltipProvider>
+              </AuthProvider>
+            </QueryProvider>
           </ThemeProvider>
         </IntlClientProvider>
       </body>

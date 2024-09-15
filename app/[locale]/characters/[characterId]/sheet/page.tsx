@@ -2,6 +2,13 @@ import React from "react";
 import UserCharacterSheet from "@/components/characters/user-character-sheet";
 import { getCharacterSheet } from "@/data-access/characters";
 import { DashboardContentLayout } from "@/components/layout/dashboard";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+import TempItems from "@/components/characters/temp-items";
+import { useItems } from "@/hooks/use-items";
 
 type CharacterSheetPageProps = {
   params: {
@@ -15,6 +22,13 @@ export default async function CharacterSheetPage({
 }: CharacterSheetPageProps) {
   const character = await getCharacterSheet(parseInt(params.characterId));
 
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ["items"],
+    queryFn: useItems,
+  });
+
   if (!character.success) {
     return (
       <DashboardContentLayout className="flex flex-col flex-1">
@@ -27,7 +41,10 @@ export default async function CharacterSheetPage({
 
   return (
     <DashboardContentLayout variant="page" className="gap-6 md:gap-6">
-      <UserCharacterSheet characterSheet={character.data} />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <TempItems />
+        <UserCharacterSheet characterSheet={character.data} />
+      </HydrationBoundary>
     </DashboardContentLayout>
   );
 }

@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import data from "@/db/seeds/data/items.json";
 import { SelectItems } from "@/types/items";
-import { items } from "../schema/items";
+import { items } from "../schema";
 
 export default async function seed(db: db) {
   const formattedData: SelectItems[] = data.map((item, index) => ({

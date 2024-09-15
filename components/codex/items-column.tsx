@@ -9,6 +9,7 @@ import { CellTooltip } from "./cells";
 import Icons from "../icons";
 import TagCloud from "../tag-cloud";
 import { Paragraph } from "../ui/paragraph";
+import { AddItemToCharacter } from "./add-item-to-character";
 
 export const itemsColumns: ColumnDef<SelectItems>[] = [
   {

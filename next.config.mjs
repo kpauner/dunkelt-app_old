@@ -8,6 +8,7 @@ const nextConfig = {
     remotePatterns: [
       { hostname: "static.wikia.nocookie.net" },
       { hostname: "lh3.googleusercontent.com" },
+      { hostname: "placehold.co" },
     ],
   },
 };

@@ -28,6 +28,7 @@ import { toast } from "sonner";
 import { Inventory } from "./inventory";
 import placeholderItems from "@/db/seeds/data/items.json";
 import { Paragraph } from "../ui/paragraph";
+import InventorySheet from "./inventory-sheet";
 
 type UserCharacterSheetProps = {
   characterSheet: CharacterSheetType;
@@ -211,13 +212,13 @@ export default function UserCharacterSheet({
                 : undefined
             }
             footer={
-              <PlaybookSheet
+              <InventorySheet
                 title="Moves"
                 description="Moves are actions that your character can perform."
                 buttonText="Add move"
               >
-                <Inventory items={placeholderItems} />
-              </PlaybookSheet>
+                dd
+              </InventorySheet>
             }
           >
             <Inventory items={placeholderItems} />

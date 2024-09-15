@@ -75,9 +75,9 @@ export default function UserDropdown({ session }: UserDropdownProps) {
               <DropdownMenuItem
                 className="flex items-center gap-4"
                 onClick={() => {
-                  // signOut({
-                  //   callbackUrl: getBaseUrl(`/${locale}`),
-                  // });
+                  signOut({
+                    callbackUrl: getBaseUrl(`/${locale}`),
+                  });
                 }}
               >
                 <Icons.signout className="size-5 text-red-500" /> Sign out

@@ -1,7 +1,7 @@
 import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 import { users } from "./users";
 
-export const items = sqliteTable("items", {
+const items = sqliteTable("items", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name").notNull(),
   description: text("description"),
@@ -14,3 +14,5 @@ export const items = sqliteTable("items", {
   userId: text("userId").references(() => users.id),
   isPublic: integer("is_public", { mode: "boolean" }).default(false).notNull(),
 });
+
+export default items;
