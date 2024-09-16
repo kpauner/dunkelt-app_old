@@ -5,6 +5,8 @@ import { auth } from "@/lib/auth";
 import { logger } from "hono/logger";
 import { Session } from "next-auth";
 import items from "./items";
+import inventory from "./inventory";
+import characters from "./characters";
 
 type CustomVariableMap = {
   session: Session | null;
@@ -20,7 +22,10 @@ app.use("*", async (c, next) => {
   await next();
 });
 
-const routes = app.route("/items", items);
+const routes = app
+  .route("/items", items)
+  .route("/inventory", inventory)
+  .route("/characters", characters);
 
 export const GET = handle(app);
 export const POST = handle(app);

@@ -7,10 +7,14 @@ export {
   characterMovesRelations,
 } from "./characterMoves";
 export {
-  default as characterRatings,
-  characterRatingsRelations,
-} from "./characterRatings";
+  default as characterAttributes,
+  characterAttributesRelations,
+} from "./characterAttributes";
 export { default as bestiary } from "./bestiary";
-export { default as items } from "./items";
+export { default as items, itemsRelations } from "./items";
+export {
+  default as characterItems,
+  characterItemsRelations,
+} from "./characterItems";
 export { default as tags } from "./tags";
 export { default as tagToEntities } from "./tag-to-entity";

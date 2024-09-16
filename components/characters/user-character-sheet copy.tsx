@@ -34,7 +34,6 @@ import { useManageInventory } from "@/features/items/hooks/use-manage-inventory-
 import { useQuery } from "@tanstack/react-query";
 import { useGetCharacters } from "@/features/characters/hooks/use-get-characters";
 import { Input } from "../ui/input";
-import useCharacterStore from "@/features/characters/hooks/use-character-store";
 
 type UserCharacterSheetProps = {
   characterId: string;
@@ -44,28 +43,33 @@ export default function UserCharacterSheet({
   characterId,
   characterSheet,
 }: UserCharacterSheetProps) {
-  const {
-    character,
-    setCharacter,
-    updateCharacter,
-    hasUnsavedChanges,
-    saveChanges,
-  } = useCharacterStore();
-
-  const t = useTranslations("Character");
-  const { data, isLoading, error } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["characters"],
     queryFn: useGetCharacters,
   });
 
-  React.useEffect(() => {
-    if (data) {
-      const foundCharacter = data.find(
-        (c: CharacterSheetType) => c.id.toString() === characterId.toString()
-      );
-      setCharacter(foundCharacter || null);
+  const filteredCharacter: CharacterSheetType | undefined =
+    React.useMemo(() => {
+      if (Array.isArray(data)) {
+        return data.find(
+          (character: CharacterSheetType) =>
+            character.id.toString() === characterId.toString()
+        );
+      }
+      return undefined;
+    }, [data, characterId]);
+
+  const [character, setCharacter] = useState<CharacterSheetType | null>(null);
+
+  const [hasUnsavedChanges, setHasUnsavedChanges] = useState(false);
+  const { onOpen } = useManageInventory();
+  const t = useTranslations("charactersheet");
+
+  useEffect(() => {
+    if (filteredCharacter) {
+      setCharacter(filteredCharacter);
     }
-  }, [data, characterId, setCharacter]);
+  }, [filteredCharacter]);
 
   useEffect(() => {
     if (hasUnsavedChanges) {
@@ -74,24 +78,15 @@ export default function UserCharacterSheet({
         id: "unsaved-changes",
         action: {
           label: "Save",
-          onClick: saveChanges,
+          onClick: handleSave,
         },
       });
     } else {
       toast.dismiss("unsaved-changes");
     }
-  }, [hasUnsavedChanges, saveChanges]);
+  }, [hasUnsavedChanges]);
 
-  const handleSave = async () => {
-    try {
-      await saveChanges();
-      toast.success("Changes saved successfully!");
-    } catch (error) {
-      toast.error("Failed to save changes. Please try again.");
-    }
-  };
-
-  if (isLoading) {
+  if (isLoading || !character) {
     return (
       <div className="flex-1 flex items-center justify-center text-primary-foreground font-bold text-xl text-center">
         loading...
@@ -99,13 +94,22 @@ export default function UserCharacterSheet({
     );
   }
 
-  if (error) {
-    return <div>Failed to load character data</div>;
-  }
+  const handleCharacterChange = (updatedCharacter: CharacterSheetType) => {
+    setCharacter((prev) => ({
+      ...prev,
+      ...updatedCharacter,
+    }));
+    setHasUnsavedChanges(true);
+  };
 
-  if (!character) {
-    return <div>Character not found</div>;
-  }
+  const handleSave = async () => {
+    try {
+      setHasUnsavedChanges(false);
+      toast.success("Changes saved successfully!");
+    } catch (error) {
+      toast.error("Failed to save changes. Please try again.");
+    }
+  };
 
   return (
     <>
@@ -114,7 +118,7 @@ export default function UserCharacterSheet({
           character={character}
           size="xl"
           variant="square"
-          handleCharacterChange={updateCharacter}
+          handleCharacterChange={handleCharacterChange}
         />
         <div className="flex gap-2">
           {Array.from({ length: 5 }).map((_, index) => (
@@ -148,7 +152,7 @@ export default function UserCharacterSheet({
             <Luck
               data={character.luck}
               handleCharacterChange={(newLuck) =>
-                updateCharacter({
+                handleCharacterChange({
                   ...character,
                   luck: newLuck,
                 })
@@ -168,7 +172,7 @@ export default function UserCharacterSheet({
             <Harm
               data={character.harm}
               handleCharacterChange={(newHarm) =>
-                updateCharacter({
+                handleCharacterChange({
                   ...character,
                   harm: newHarm,
                 })
@@ -182,7 +186,7 @@ export default function UserCharacterSheet({
             <Experience
               experience={character.experience}
               handleCharacterChange={(newExperience) =>
-                updateCharacter({
+                handleCharacterChange({
                   ...character,
                   experience: newExperience,
                 })
@@ -194,7 +198,7 @@ export default function UserCharacterSheet({
         <CharacterSheetColumn>
           <PlaybookSections
             character={character}
-            updateCharacter={updateCharacter}
+            updateCharacter={handleCharacterChange}
           />
           <CharacterSheetBlock
             label="Improvements"
@@ -236,7 +240,7 @@ export default function UserCharacterSheet({
           >
             fate here
           </CharacterSheetBlock>
-          <pre>{JSON.stringify(character, null, 2)}</pre>
+          {/* <pre>{JSON.stringify(character, null, 2)}</pre> */}
         </CharacterSheetColumn>
 
         <CharacterSheetColumn>
@@ -278,7 +282,7 @@ export default function UserCharacterSheet({
               ))}
             </Accordion>
           </CharacterSheetBlock>
-          {/* <CharacterSheetBlock
+          <CharacterSheetBlock
             label="Gear"
             description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
             tooltip="Moves are actions that your character can perform."
@@ -298,7 +302,7 @@ export default function UserCharacterSheet({
             }
           >
             <Inventory items={placeholderItems} />
-          </CharacterSheetBlock> */}
+          </CharacterSheetBlock>
         </CharacterSheetColumn>
       </CharacterSheetContent>
     </>

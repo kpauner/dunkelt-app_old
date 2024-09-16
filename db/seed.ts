@@ -15,9 +15,10 @@ if (!env.DB_SEEDING) {
 async function seedDatabase() {
   for (const table of [
     schema.characterMoves,
-    schema.characterRatings,
+    schema.characterItems,
     schema.characters,
     schema.moves,
+    schema.characterAttributes,
     schema.tags,
     schema.bestiary,
     schema.items,
@@ -31,10 +32,11 @@ async function seedDatabase() {
   await seeds.moves(db);
   await seeds.characters(db);
   await seeds.characterMoves(db);
-  await seeds.characterRatings(db);
+  await seeds.characterAttributes(db);
   await seeds.tags(db);
   await seeds.bestiary(db);
   await seeds.items(db);
+  await seeds.characterItems(db);
 }
 
 seedDatabase()

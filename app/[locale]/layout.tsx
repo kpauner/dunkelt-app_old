@@ -18,6 +18,7 @@ import LoadingLogo from "@/components/layout/loading-logo";
 import { auth } from "@/lib/auth";
 import IntlClientProvider from "@/providers/intl-client-provider";
 import QueryProvider from "@/providers/query-provider";
+import SheetProvider from "@/providers/sheet-provider";
 
 export default async function LocaleLayout({
   children,
@@ -62,7 +63,7 @@ export default async function LocaleLayout({
                       </DashboardContent>
                     </DashboardWrapper>
                   </Dashboard>
-
+                  <SheetProvider />
                   <Toaster />
                 </TooltipProvider>
               </AuthProvider>

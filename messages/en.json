@@ -2,6 +2,7 @@
   "common": {
     "welcome": "Welcome",
     "save": "Save",
+    "close": "Close",
     "signup": "Sign Up",
     "signin": "Sign In",
     "logout": "Sign Out",
@@ -64,6 +65,16 @@
   "errors": {
     "404": "Page not found",
     "500": "Server error"
+  },
+  "features": {
+    "items": {
+      "title": "Items",
+      "description": "Manage your items.",
+      "add-new-item": {
+        "title": "Add New Item",
+        "description": "Add a new item to your inventory."
+      }
+    }
   },
   "motivations": {
     "beast": "to run wild, destroying and killing",

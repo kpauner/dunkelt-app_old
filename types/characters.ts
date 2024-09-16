@@ -1,4 +1,9 @@
-import { characterMoves, characterRatings, characters } from "@/db/schema";
+import {
+  characterAttributes,
+  characterItems,
+  characterMoves,
+  characters,
+} from "@/db/schema";
 import { InferSelectModel } from "drizzle-orm";
 import { SelectMoves } from "./moves";
 
@@ -22,10 +27,14 @@ interface Improvement {
 }
 
 export type SelectCharacter = InferSelectModel<typeof characters>;
-export type SelectCharacterRatings = InferSelectModel<typeof characterRatings>;
+export type SelectCharacterAttributes = InferSelectModel<
+  typeof characterAttributes
+>;
 export type SelectCharacterMoves = InferSelectModel<typeof characterMoves>;
+export type SelectCharacterItems = InferSelectModel<typeof characterItems>;
 
 export type CharacterSheetType = SelectCharacter & {
   characterMoves: SelectMoves[];
-  characterRatings: SelectCharacterRatings[];
+  characterItems: SelectCharacterItems[];
+  characterAttributes: SelectCharacterAttributes[];
 };
