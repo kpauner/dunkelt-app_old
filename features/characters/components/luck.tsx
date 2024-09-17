@@ -10,8 +10,9 @@ export default function Luck() {
   const { character, setCharacter } = useCharacterStore();
   const t = useTranslations("characters.luck");
 
-  if (!character)
+  if (!character) {
     return <Skeleton className="w-full h-40 mb-2 " height={180} />;
+  }
 
   return (
     <CharacterSheetBlock

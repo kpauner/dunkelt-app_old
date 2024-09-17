@@ -2,19 +2,20 @@
 
 import React, { useEffect } from "react";
 
-import { useGetCharacterById } from "@/features/characters/queries";
-import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { toast } from "sonner";
-import PlaybookSheet from "@/components/characters/playbook-sheet";
-import { PlaybookSections } from "@/components/characters/playbook-sections";
+import { useTranslations } from "next-intl";
+
+import CharacterInventory from "@/features/characters/components/character-inventory";
+import { CharacterPlaybookBlocks } from "@/features/characters/components/character-playbook-blocks";
 import Harm from "@/features/characters/components/harm";
+import CharacterMoves from "@/features/characters/components/character-moves";
+import useCharacterStore from "@/features/characters/hooks/use-character-store";
+import Luck from "@/features/characters/components/luck";
+import { useGetCharacterById } from "@/features/characters/queries";
+import PlaybookSheet from "@/components/characters/playbook-sheet";
 import CharacterRatings from "@/features/characters/components/character-ratings";
 import { Experience } from "@/components/characters/experience";
-import Luck from "@/features/characters/components/luck";
-import { useTranslations } from "next-intl";
-import { Label } from "../ui/label";
 import CharacterAvatar from "./character-avatar";
-import { Paragraph } from "@/components/ui/paragraph";
 import {
   CharacterSheetBlock,
   CharacterSheetColumn,
@@ -22,12 +23,6 @@ import {
   CharacterSheetHeader,
   SheetBlock,
 } from "@/components/ui/character-sheet";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 type UserCharacterSheetProps = {
   characterId: string;
@@ -80,7 +75,7 @@ export default function UserCharacterSheet({
     }
   };
 
-  if (isLoading) {
+  if (isLoading || !character) {
     return (
       <div className="flex-1 flex items-center justify-center text-primary-foreground font-bold text-xl text-center">
         loading...
@@ -90,10 +85,6 @@ export default function UserCharacterSheet({
 
   if (error) {
     return <div>Failed to load character data</div>;
-  }
-
-  if (!character) {
-    return <div>Character not found</div>;
   }
 
   return (
@@ -126,113 +117,13 @@ export default function UserCharacterSheet({
         </CharacterSheetColumn>
 
         <CharacterSheetColumn>
-          {/* <PlaybookSections
-            character={character}
-            updateCharacter={updateCharacter}
-          />
-          <CharacterSheetBlock
-            label="Improvements"
-            description="The Chosen's fate"
-            tooltip="Fate is a measure of how lucky a character is."
-            notice="You haven't selected 3 moves"
-            footer={
-              <>
-                <PlaybookSheet
-                  title="Fate"
-                  description="The Chosen's fate"
-                  buttonText="Save changes"
-                >
-                  <div className="grid gap-4 py-4">
-                    <div className="grid grid-cols-4 items-center gap-4">
-                      <Label htmlFor="name" className="text-right">
-                        Name
-                      </Label>
-                      <Input
-                        id="name"
-                        value="Pedro Duarte"
-                        className="col-span-3"
-                      />
-                    </div>
-                    <div className="grid grid-cols-4 items-center gap-4">
-                      <Label htmlFor="username" className="text-right">
-                        Username
-                      </Label>
-                      <Input
-                        id="username"
-                        value="@peduarte"
-                        className="col-span-3"
-                      />
-                    </div>
-                  </div>
-                </PlaybookSheet>
-              </>
-            }
-          >
-            fate here
-          </CharacterSheetBlock> */}
+          <CharacterPlaybookBlocks />
           <pre>{JSON.stringify(character, null, 2)}</pre>
         </CharacterSheetColumn>
 
         <CharacterSheetColumn>
-          <CharacterSheetBlock
-            label="Moves"
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-            tooltip="Moves are actions that your character can perform."
-            notice={
-              character.characterMoves.length < 3
-                ? "You haven't selected 3 moves"
-                : undefined
-            }
-            footer={
-              <PlaybookSheet
-                title="Moves"
-                description="Moves are actions that your character can perform."
-                buttonText="Add move"
-              >
-                <div className="grid gap-4 py-4">
-                  <div className="grid grid-cols-4 items-center gap-4">
-                    <Label htmlFor="name" className="text-right">
-                      Name
-                    </Label>
-                  </div>
-                </div>
-              </PlaybookSheet>
-            }
-          >
-            <Accordion type="multiple" className="w-full">
-              {character.characterMoves.map((move) => (
-                <AccordionItem key={move.id} value={move.name}>
-                  <AccordionTrigger className="text-sm capitalize">
-                    {move.name}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    <Paragraph size="xs">{move.description}</Paragraph>
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </CharacterSheetBlock>
-          {/* <CharacterSheetBlock
-            label="Gear"
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
-            tooltip="Moves are actions that your character can perform."
-            notice={
-              character.characterMoves.length < 3
-                ? "You haven't selected 3 moves"
-                : undefined
-            }
-            footer={
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => onOpen(character.id)} // Pass character.id to onOpen
-              >
-                <Icons.settings />
-              </Button>
-            }
-          >
-            <Inventory items={placeholderItems} />
-          </CharacterSheetBlock> */}
+          <CharacterMoves />
+          <CharacterInventory />
         </CharacterSheetColumn>
       </CharacterSheetContent>
     </>
