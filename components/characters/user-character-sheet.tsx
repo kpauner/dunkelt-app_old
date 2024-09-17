@@ -5,6 +5,16 @@ import React, { useEffect } from "react";
 import { useGetCharacterById } from "@/features/characters/queries";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { toast } from "sonner";
+import PlaybookSheet from "@/components/characters/playbook-sheet";
+import { PlaybookSections } from "@/components/characters/playbook-sections";
+import Harm from "@/features/characters/components/harm";
+import CharacterRatings from "@/features/characters/components/character-ratings";
+import { Experience } from "@/components/characters/experience";
+import Luck from "@/features/characters/components/luck";
+import { useTranslations } from "next-intl";
+import { Label } from "../ui/label";
+import CharacterAvatar from "./character-avatar";
+import { Paragraph } from "@/components/ui/paragraph";
 import {
   CharacterSheetBlock,
   CharacterSheetColumn,
@@ -18,16 +28,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { PlaybookSections } from "@/components/characters/playbook-sections";
-import { calculateLevel } from "@/lib/utils";
-import { Experience } from "@/components/characters/experience";
-import Luck from "@/features/characters/components/luck";
-import { useTranslations } from "next-intl";
-import PlaybookSheet from "@/components/characters/playbook-sheet";
-import { Label } from "../ui/label";
-import Harm from "./harm";
-import CharacterAvatar from "./character-avatar";
-import { Paragraph } from "@/components/ui/paragraph";
 
 type UserCharacterSheetProps = {
   characterId: string;
@@ -100,46 +100,15 @@ export default function UserCharacterSheet({
     <>
       <CharacterSheetHeader className="flex flex-col sm:flex-row justify-between gap-4">
         <CharacterAvatar size="xl" variant="square" />
-        <div className="flex gap-2">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <SheetBlock
-              key={index}
-              label="Luck"
-              value="3"
-              tooltip="Luck is a measure of how lucky a character is."
-            />
-          ))}
-          <SheetBlock
-            label="Level"
-            value={calculateLevel(character.experience).level}
-            tooltip="For every 5 experience points, a character gains a level."
-          />
+        <div className="grid grid-cols-6 gap-2 ">
+          <CharacterRatings />
         </div>
       </CharacterSheetHeader>
 
       <CharacterSheetContent>
         <CharacterSheetColumn>
           <Luck />
-          <CharacterSheetBlock
-            label="Harm"
-            description="When you suffer harm, mark off the number of boxes equal to harm suffered."
-            alert={
-              character.harm >= 4
-                ? "You have reached 4 or more Harm. You are now unstable."
-                : undefined
-            }
-            tooltip={t("harm.tooltip")}
-          >
-            <Harm
-              data={character.harm}
-              handleCharacterChange={(newHarm) =>
-                updateCharacter({
-                  ...character,
-                  harm: newHarm,
-                })
-              }
-            />
-          </CharacterSheetBlock>
+          <Harm />
           <CharacterSheetBlock
             label="Experience"
             description="Track your character's growth"

@@ -2,89 +2,81 @@
   {
     "id": 1,
     "characterId": 1,
-    "attributeType": "charm",
+    "type": "charm",
     "value": "-1",
-    "isInitial": true,
     "level": 0,
-    "description": "Initial Charm rating",
+    "description": "At the start of each mystery, roll +Weird.",
+
     "isSelected": true
   },
   {
     "id": 2,
     "characterId": 1,
-    "attributeType": "cool",
+    "type": "cool",
     "value": "+1",
-    "isInitial": true,
     "level": 0,
-    "description": "Initial Cool rating",
+    "description": "At the start of each mystery, roll +Weird.",
     "isSelected": true
   },
   {
     "id": 3,
     "characterId": 1,
-    "attributeType": "sharp",
+    "type": "sharp",
     "value": "+2",
-    "isInitial": true,
     "level": 0,
-    "description": "Initial Sharp rating",
+    "description": "At the start of each mystery, roll +Weird.",
     "isSelected": true
   },
   {
     "id": 4,
     "characterId": 1,
-    "attributeType": "tough",
+    "type": "tough",
     "value": "0",
-    "isInitial": true,
     "level": 0,
-    "description": "Initial Tough rating",
+    "description": "At the start of each mystery, roll +Weird.",
     "isSelected": true
   },
   {
     "id": 5,
     "characterId": 1,
-    "attributeType": "weird",
+    "type": "weird",
     "value": "+2",
-    "isInitial": true,
     "level": 0,
-    "description": "Initial Weird rating",
+    "description": "At the start of each mystery, roll +Weird.",
     "isSelected": true
   },
   {
     "id": 6,
     "characterId": 1,
-    "attributeType": "move",
+    "type": "move",
     "value": "Telepathy",
-    "isInitial": true,
     "level": 0,
-    "description": "You can read people's thoughts and put words in their mind.",
+    "description": "At the start of each mystery, roll +Weird.",
     "isSelected": true
   },
   {
     "id": 7,
     "characterId": 1,
-    "attributeType": "move",
+    "type": "move",
     "value": "Hex",
-    "isInitial": true,
     "level": 0,
-    "description": "When you cast a spell of harm on someone, roll +Weird.",
+    "description": "At the start of each mystery, roll +Weird.",
     "isSelected": true
   },
   {
     "id": 8,
     "characterId": 1,
-    "attributeType": "improvement",
-    "value": "+1 Weird",
-    "isInitial": false,
+    "type": "weird",
+    "value": "1",
     "level": 1,
-    "description": "Increase Weird by 1",
+    "description": "At the start of each mystery, roll +Weird.",
     "isSelected": true
   },
   {
     "id": 9,
     "characterId": 1,
-    "attributeType": "improvement",
+    "type": "move",
     "value": "new_move",
-    "isInitial": false,
     "level": 1,
     "description": "Take another Spooky move",
     "isSelected": true
@@ -92,9 +84,8 @@
   {
     "id": 10,
     "characterId": 1,
-    "attributeType": "move",
+    "type": "move",
     "value": "Premonitions",
-    "isInitial": false,
     "level": 2,
     "description": "At the start of each mystery, roll +Weird.",
     "isSelected": true
@@ -102,9 +93,8 @@
   {
     "id": 11,
     "characterId": 1,
-    "attributeType": "improvement",
-    "value": "+1 Cool",
-    "isInitial": false,
+    "type": "cool",
+    "value": "1",
     "level": 2,
     "description": "Increase Cool by 1",
     "isSelected": true
@@ -112,9 +102,8 @@
   {
     "id": 12,
     "characterId": 1,
-    "attributeType": "improvement",
-    "value": "+1 Sharp",
-    "isInitial": false,
+    "type": "sharp",
+    "value": "1",
     "level": 3,
     "description": "Increase Sharp by 1",
     "isSelected": true
@@ -122,19 +111,17 @@
   {
     "id": 13,
     "characterId": 1,
-    "attributeType": "improvement",
+    "type": "move",
     "value": "new_move",
-    "isInitial": false,
     "level": 3,
-    "description": "Take a move from another playbook",
+    "description": "Take another Spooky move",
     "isSelected": true
   },
   {
     "id": 14,
     "characterId": 1,
-    "attributeType": "move",
+    "type": "move",
     "value": "Kick Some Ass",
-    "isInitial": false,
     "level": 4,
     "description": "When you get into a fight and kick some ass, roll +Tough.",
     "isSelected": true
@@ -142,9 +129,8 @@
   {
     "id": 15,
     "characterId": 1,
-    "attributeType": "improvement",
-    "value": "+1 Weird",
-    "isInitial": false,
+    "type": "weird",
+    "value": "1",
     "level": 4,
     "description": "Increase Weird by 1",
     "isSelected": true
@@ -152,9 +138,8 @@
   {
     "id": 16,
     "characterId": 1,
-    "attributeType": "improvement",
-    "value": "advanced_improvement1",
-    "isInitial": false,
+    "type": "luck",
+    "value": "1",
     "level": 5,
     "description": "Get back one used Luck point",
     "isSelected": true
@@ -162,9 +147,8 @@
   {
     "id": 17,
     "characterId": 1,
-    "attributeType": "improvement",
+    "type": "improvement",
     "value": "advanced_improvement2",
-    "isInitial": false,
     "level": 5,
     "description": "Change this hunter to a new type",
     "isSelected": false
@@ -172,9 +156,8 @@
   {
     "id": 18,
     "characterId": 1,
-    "attributeType": "improvement",
+    "type": "improvement",
     "value": "advanced_improvement3",
-    "isInitial": false,
     "level": 5,
     "description": "Create a second hunter to play as well as this one",
     "isSelected": false

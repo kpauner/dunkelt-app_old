@@ -25,6 +25,11 @@ const characters = sqliteTable("characters", {
   luck: integer("luck").notNull().default(0),
   harm: integer("harm").notNull().default(0),
   experience: integer("experience").notNull().default(0),
+  dob: text("dob").default("unknown"),
+  height: integer("height").default(0),
+  weight: integer("weight").default(0),
+  eyes: text("eyes").default("unknown"),
+  hair: text("hair").default("unknown"),
   userId: text("user_id")
     .references(() => users.id, { onDelete: "cascade" })
     .notNull(),

@@ -1,16 +1,12 @@
 import React from "react";
+import { GetCharacterById } from "@/features/characters/api";
 import UserCharacterSheet from "@/components/characters/user-character-sheet";
-import {
-  useGetCharacterById,
-  useGetCharacters,
-} from "@/features/characters/queries";
 import { DashboardContentLayout } from "@/components/layout/dashboard";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import { GetCharacterById } from "@/features/characters/api";
 
 type CharacterSheetPageProps = {
   params: {
@@ -31,10 +27,7 @@ export default async function CharacterSheetPage({
   return (
     <DashboardContentLayout variant="page" className="gap-6 md:gap-6">
       <HydrationBoundary state={dehydrate(queryClient)}>
-        <UserCharacterSheet
-          // characterSheet={character.data}
-          characterId={params.characterId}
-        />
+        <UserCharacterSheet characterId={params.characterId} />
       </HydrationBoundary>
     </DashboardContentLayout>
   );

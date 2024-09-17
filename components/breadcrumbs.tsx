@@ -1,5 +1,10 @@
 "use client";
 
+import React from "react";
+import { cn, truncateText } from "@/lib/utils";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useLocale } from "next-intl";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,13 +13,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { cn, truncateText } from "@/lib/utils";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React from "react";
 
 export default function Breadcrumbs() {
   const pathname = usePathname() || "";
+  const locale = useLocale();
   const paths = pathname.split("/").filter((path) => path !== "");
   const maxLength = 10;
   return (
@@ -33,7 +35,7 @@ export default function Breadcrumbs() {
                   <BreadcrumbItem className="text-accent">
                     <BreadcrumbLink asChild>
                       <Link
-                        href={`/${path}`}
+                        href={`/${locale}/${path}`}
                         className={cn(
                           "text-primary-foreground/30",
                           isLast && "text-primary-foreground"

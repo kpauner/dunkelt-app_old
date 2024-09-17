@@ -1,6 +1,7 @@
 import {
   Dashboard,
   DashboardContent,
+  DashboardContentLayout,
   DashboardHeader,
   DashboardSidebar,
   DashboardWrapper,
@@ -18,12 +19,15 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Heading from "@/components/layout/heading";
+import { auth } from "@/lib/auth";
+import { Paragraph } from "@/components/ui/paragraph";
 
-export default function HomePage() {
-  const t = useTranslations("home");
+export default async function HomePage() {
+  // const t = useTranslations("home");
+  const session = await auth();
   return (
-    <>
-      <div className="grid w-full gap-6 grid-cols-3 grid-rows-2 min-h-[50vh]">
+    <DashboardContentLayout className="flex-1 flex flex-col gap-8">
+      <section className="grid w-full gap-6 grid-cols-3 grid-rows-2 min-h-[50vh]">
         <Card className="col-span-2 row-span-2">
           <CardHeader>
             <Heading as="h1">Large Card</Heading>
@@ -69,7 +73,17 @@ export default function HomePage() {
             className="w-full h-full absolute top-0 left-0 object-cover opacity-20"
           />
         </Card>
-      </div>
-    </>
+      </section>
+      <section>
+        <header>
+          <Heading as="h2" size="md" className="text-accent-foreground">
+            Welcome back {session?.user?.name}
+          </Heading>
+          <Paragraph>
+            You&apos;ve been gone for a while. Let&apos;s get you back on track.
+          </Paragraph>
+        </header>
+      </section>
+    </DashboardContentLayout>
   );
 }

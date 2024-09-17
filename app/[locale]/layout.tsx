@@ -56,7 +56,7 @@ export default async function LocaleLayout({
                       <DashboardHeader>
                         <Header />
                       </DashboardHeader>
-                      <DashboardContent className="flex-1 flex flex-col">
+                      <DashboardContent className="">
                         <Suspense fallback={<LoadingLogo />}>
                           {children}
                         </Suspense>

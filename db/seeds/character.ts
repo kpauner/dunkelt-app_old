@@ -14,6 +14,11 @@ export default async function seed(db: db) {
     look: character.look,
     luck: character.luck,
     harm: character.harm,
+    dob: character.dob,
+    height: character.height,
+    weight: character.weight,
+    eyes: character.eyes,
+    hair: character.hair,
     experience: character.experience,
     isPublic: true,
   }));

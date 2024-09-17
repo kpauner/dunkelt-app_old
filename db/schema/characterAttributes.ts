@@ -12,11 +12,26 @@ const characterAttributes = sqliteTable("character_attributes", {
   characterId: integer("character_id")
     .notNull()
     .references(() => characters.id, { onDelete: "cascade" }),
-  attributeType: text("attribute_type").notNull(), // e.g., "charm", "tough", "new_move", etc.
-  value: text("value").notNull(), // Store as text to accommodate both numeric and text values
-  isInitial: integer("is_public", { mode: "boolean" }).default(false).notNull(),
-  level: integer("level").notNull().default(0), // 0 for initial attributes, 1+ for improvements
-  description: text("description"),
+  type: text("type", {
+    enum: [
+      "charm",
+      "cool",
+      "sharp",
+      "tough",
+      "weird",
+      "move",
+      "playbook_move",
+      "ally",
+      "luck",
+      "hunter_type",
+      "additional_hunter",
+      "advanced_move",
+      "retire",
+    ],
+  }),
+  value: text("value").notNull(),
+  level: integer("level").notNull().default(0),
+  description: text("description").notNull().default(""),
   isSelected: integer("is_public", { mode: "boolean" })
     .default(false)
     .notNull(), // New field for checkbox state

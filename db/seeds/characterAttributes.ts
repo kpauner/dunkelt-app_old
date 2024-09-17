@@ -6,11 +6,10 @@ import { characterAttributes } from "../schema";
 export default async function seed(db: db) {
   const formattedData: SelectCharacterAttributes[] = data.map(
     (rating, index) => ({
-      id: index + 1,
+      id: rating.id,
       characterId: rating.characterId,
-      attributeType: rating.attributeType,
+      type: rating.type as any,
       value: rating.value,
-      isInitial: rating.isInitial,
       level: rating.level,
       description: rating.description,
       isSelected: rating.isSelected,

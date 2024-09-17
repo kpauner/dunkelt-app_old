@@ -1,13 +1,18 @@
 [
   {
-    "name": "Luna Shadowwhisper",
+    "name": "Luna Caelum",
     "pronouns": "she/her",
-    "avatar": "https://placehold.co/100x100",
+    "avatar": "",
     "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
     "playbook": "The Chosen",
     "look": "haunted eyes, messy hair, worn clothes, thin build",
     "luck": 7,
     "harm": 0,
+    "dob": "1990-01-01",
+    "height": 171,
+    "weight": 72,
+    "hair": "white, long",
+    "eyes": "green",
     "experience": 3,
     "isPublic": true
   },
@@ -20,6 +25,11 @@
     "look": "rugged build, dark hair, dark eyes, scarred face",
     "luck": 3,
     "harm": 0,
+    "dob": "1990-01-01",
+    "height": 171,
+    "weight": 72,
+    "hair": "white, long",
+    "eyes": "green",
     "experience": 3,
     "isPublic": true
   }

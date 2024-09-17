@@ -275,7 +275,8 @@
       }
     },
     "harm": {
-      "tooltip": "When you suffer harm, mark off the number of boxes equal to harm suffered."
+      "label": "Harm",
+      "description": "When you suffer harm, mark off the number of boxes equal to harm suffered."
     },
     "experience": {
       "tooltip": "Whenever you roll and get a total of 6 or less, or when a move tells you to, mark an experience box. When you have filled all five experience boxes, you level up. Erase the marks and pick an improvement",
