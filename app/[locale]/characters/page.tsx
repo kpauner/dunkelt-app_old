@@ -1,10 +1,19 @@
-import Heading from "@/components/layout/heading";
 import React from "react";
+import {
+  Dashboard,
+  DashboardContentLayout,
+  DashboardHeader,
+  DashboardTitle,
+} from "@/components/layout/dashboard";
+import CharactersList from "@/features/characters/components/characters-list";
 
 export default function CharactersPage() {
   return (
-    <div>
-      <Heading as="h1">Characters</Heading>
-    </div>
+    <DashboardContentLayout
+      title="My Characters"
+      description="Manage your characters and their attributes, moves, and items."
+    >
+      <CharactersList />
+    </DashboardContentLayout>
   );
 }

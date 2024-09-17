@@ -1,11 +1,9 @@
-import { cn } from "@/lib/utils";
-import { CharacterSheetType } from "@/types/characters";
+"use client";
+
 import React from "react";
-import { Avatar } from "../ui/avatar";
-import Heading from "../layout/heading";
-import Icons from "../icons";
+import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import PlaybookSheet from "./playbook-sheet";
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -16,26 +14,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useTranslations } from "next-intl";
-import { FormItem, FormLabel } from "../ui/form";
-import { Label } from "../ui/label";
+import { Label } from "@/components/ui/label";
+import { Avatar } from "@/components/ui/avatar";
+import Heading from "@/components/layout/heading";
 
 type CharacterAvatarProps = {
-  character: CharacterSheetType;
   size: "sm" | "lg" | "xl" | "default";
   variant: "circle" | "square";
   className?: string;
-  handleCharacterChange: (character: CharacterSheetType) => void;
 };
 
 export default function CharacterAvatar({
-  character,
   size,
   variant,
   className,
-  handleCharacterChange,
 }: CharacterAvatarProps) {
+  const { character, setCharacter } = useCharacterStore();
   const t = useTranslations("motw");
-
+  if (!character) {
+    return <div>Loading...</div>;
+  }
+  console.log("AVATAR", character);
   return (
     <div className="flex gap-2">
       <Avatar
@@ -82,7 +81,7 @@ export default function CharacterAvatar({
 
             <Select
               onValueChange={(value) => {
-                handleCharacterChange({
+                setCharacter({
                   ...character,
                   playbook: value,
                 });
@@ -108,7 +107,7 @@ export default function CharacterAvatar({
               <Input placeholder="Look" defaultValue={character.look || ""} />
               <Select
                 onValueChange={(value) => {
-                  handleCharacterChange({
+                  setCharacter({
                     ...character,
                     look: value,
                   });

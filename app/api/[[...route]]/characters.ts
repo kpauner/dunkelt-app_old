@@ -46,12 +46,48 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
     zValidator(
       "param",
       z.object({
-        id: z.coerce.number().int().positive(),
+        id: z.coerce.number().int().positive().optional(),
       })
     ),
-    (c) => {
+    async (c) => {
       const { id } = c.req.valid("param");
-      return c.json({ message: "This is a public route", id });
+      const session = c.get("session");
+      if (!session?.user?.id) {
+        return c.json({ message: "Unauthorized" }, 401);
+      }
+      if (!id) {
+        return c.json({ message: "Invalid ID" }, 400);
+      }
+      const data = await db.query.characters.findFirst({
+        where: and(
+          eq(characters.id, id),
+          eq(characters.userId, session.user.id)
+        ),
+        with: {
+          characterMoves: {
+            with: {
+              move: true,
+            },
+          },
+          characterItems: {
+            with: {
+              item: true,
+            },
+            columns: {},
+          },
+          characterAttributes: true,
+        },
+      });
+      if (!data) {
+        return c.json({ message: "Character not found" }, 404);
+      }
+      const transformedData = {
+        ...data,
+        characterItems: data.characterItems.map(({ item }) => item),
+        characterMoves: data.characterMoves.map(({ move }) => move),
+        characterAttributes: data.characterAttributes,
+      };
+      return c.json({ data: transformedData });
     }
   );
 

@@ -6,6 +6,8 @@ import {
 } from "@/db/schema";
 import { InferSelectModel } from "drizzle-orm";
 import { SelectMoves } from "./moves";
+import { client } from "@/lib/hono";
+import { InferResponseType } from "hono";
 
 type PlaybookType =
   | "The Chosen"
@@ -38,3 +40,8 @@ export type CharacterSheetType = SelectCharacter & {
   characterItems: SelectCharacterItems[];
   characterAttributes: SelectCharacterAttributes[];
 };
+
+export type CharacterResponseType = InferResponseType<
+  typeof client.api.characters.$get,
+  200
+>["data"][0];

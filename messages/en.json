@@ -259,7 +259,7 @@
       "description": "This weapon is dangerous and unstable."
     }
   },
-  "charactersheet": {
+  "characters": {
     "luck": {
       "label": "Luck",
       "description": "Mark luck to change a roll to 12 or avoid all harm from an injury",

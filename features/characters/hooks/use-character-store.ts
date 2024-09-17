@@ -1,17 +1,20 @@
 import { create } from "zustand";
-import { CharacterSheetType } from "@/types/characters";
+import { CharacterResponseType, CharacterSheetType } from "@/types/characters";
 
 type CharacterStore = {
-  character: CharacterSheetType | null;
+  character: CharacterResponseType | null;
   hasUnsavedChanges: boolean;
-  setCharacter: (character: CharacterSheetType | null) => void;
-  updateCharacter: (updates: Partial<CharacterSheetType>) => void;
+  setCharacter: (character: CharacterResponseType | null) => void;
+  updateCharacter: (updates: Partial<CharacterResponseType>) => void;
   setHasUnsavedChanges: (value: boolean) => void;
   saveChanges: () => Promise<void>;
+  loading: boolean;
+  setLoading: (value: boolean) => void;
 };
 
 const useCharacterStore = create<CharacterStore>((set, get) => ({
   character: null,
+  loading: false,
   hasUnsavedChanges: false,
   setCharacter: (character) => set({ character, hasUnsavedChanges: false }),
   updateCharacter: (updates) => {
@@ -27,6 +30,7 @@ const useCharacterStore = create<CharacterStore>((set, get) => ({
     // await api.saveCharacter(get().character);
     set({ hasUnsavedChanges: false });
   },
+  setLoading: (value) => set({ loading: value }),
 }));
 
 export default useCharacterStore;

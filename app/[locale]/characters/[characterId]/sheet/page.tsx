@@ -1,14 +1,16 @@
 import React from "react";
 import UserCharacterSheet from "@/components/characters/user-character-sheet";
+import {
+  useGetCharacterById,
+  useGetCharacters,
+} from "@/features/characters/queries";
 import { DashboardContentLayout } from "@/components/layout/dashboard";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from "@tanstack/react-query";
-import TempItems from "@/components/characters/temp-items";
-import { useItems } from "@/hooks/use-items";
-import { useGetCharacters } from "@/features/characters/hooks/use-get-characters";
+import { GetCharacterById } from "@/features/characters/api";
 
 type CharacterSheetPageProps = {
   params: {
@@ -22,8 +24,8 @@ export default async function CharacterSheetPage({
 }: CharacterSheetPageProps) {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: ["characters"],
-    queryFn: useGetCharacters,
+    queryKey: ["character", params.characterId],
+    queryFn: () => GetCharacterById(params.characterId),
   });
 
   return (

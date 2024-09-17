@@ -1,5 +1,10 @@
 "use client";
 
+import React, { useEffect } from "react";
+
+import { useGetCharacterById } from "@/features/characters/queries";
+import useCharacterStore from "@/features/characters/hooks/use-character-store";
+import { toast } from "sonner";
 import {
   CharacterSheetBlock,
   CharacterSheetColumn,
@@ -7,42 +12,28 @@ import {
   CharacterSheetHeader,
   SheetBlock,
 } from "@/components/ui/character-sheet";
-import React, { useEffect, useState } from "react";
-import { CharacterSheetType } from "@/types/characters";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { PlaybookSections } from "./playbook-sections";
+import { PlaybookSections } from "@/components/characters/playbook-sections";
 import { calculateLevel } from "@/lib/utils";
-import { Experience } from "./experience";
-import Luck from "./luck";
+import { Experience } from "@/components/characters/experience";
+import Luck from "@/features/characters/components/luck";
 import { useTranslations } from "next-intl";
-import PlaybookSheet from "./playbook-sheet";
+import PlaybookSheet from "@/components/characters/playbook-sheet";
 import { Label } from "../ui/label";
 import Harm from "./harm";
 import CharacterAvatar from "./character-avatar";
-import { toast } from "sonner";
-import { Inventory } from "./inventory";
-import placeholderItems from "@/db/seeds/data/items.json";
 import { Paragraph } from "@/components/ui/paragraph";
-import { Button } from "@/components/ui/button";
-import Icons from "@/components/icons";
-import { useManageInventory } from "@/features/items/hooks/use-manage-inventory-store";
-import { useQuery } from "@tanstack/react-query";
-import { useGetCharacters } from "@/features/characters/hooks/use-get-characters";
-import { Input } from "../ui/input";
-import useCharacterStore from "@/features/characters/hooks/use-character-store";
 
 type UserCharacterSheetProps = {
   characterId: string;
-  characterSheet?: CharacterSheetType;
 };
 export default function UserCharacterSheet({
   characterId,
-  characterSheet,
 }: UserCharacterSheetProps) {
   const {
     character,
@@ -52,20 +43,18 @@ export default function UserCharacterSheet({
     saveChanges,
   } = useCharacterStore();
 
-  const t = useTranslations("Character");
-  const { data, isLoading, error } = useQuery({
-    queryKey: ["characters"],
-    queryFn: useGetCharacters,
-  });
+  const t = useTranslations("charactersheet");
+  const {
+    data: characterQuery,
+    isLoading,
+    error,
+  } = useGetCharacterById(characterId);
 
-  React.useEffect(() => {
-    if (data) {
-      const foundCharacter = data.find(
-        (c: CharacterSheetType) => c.id.toString() === characterId.toString()
-      );
-      setCharacter(foundCharacter || null);
+  useEffect(() => {
+    if (characterQuery) {
+      setCharacter(characterQuery);
     }
-  }, [data, characterId, setCharacter]);
+  }, [characterQuery, setCharacter]);
 
   useEffect(() => {
     if (hasUnsavedChanges) {
@@ -110,12 +99,7 @@ export default function UserCharacterSheet({
   return (
     <>
       <CharacterSheetHeader className="flex flex-col sm:flex-row justify-between gap-4">
-        <CharacterAvatar
-          character={character}
-          size="xl"
-          variant="square"
-          handleCharacterChange={updateCharacter}
-        />
+        <CharacterAvatar size="xl" variant="square" />
         <div className="flex gap-2">
           {Array.from({ length: 5 }).map((_, index) => (
             <SheetBlock
@@ -135,26 +119,7 @@ export default function UserCharacterSheet({
 
       <CharacterSheetContent>
         <CharacterSheetColumn>
-          <CharacterSheetBlock
-            label="Luck"
-            description={t("luck.description")}
-            tooltip={t(`luck.tooltip.${character.playbook}`)}
-            alert={
-              character.luck === 7
-                ? "Doomed: You have spent all your luck"
-                : undefined
-            }
-          >
-            <Luck
-              data={character.luck}
-              handleCharacterChange={(newLuck) =>
-                updateCharacter({
-                  ...character,
-                  luck: newLuck,
-                })
-              }
-            />
-          </CharacterSheetBlock>
+          <Luck />
           <CharacterSheetBlock
             label="Harm"
             description="When you suffer harm, mark off the number of boxes equal to harm suffered."
@@ -192,7 +157,7 @@ export default function UserCharacterSheet({
         </CharacterSheetColumn>
 
         <CharacterSheetColumn>
-          <PlaybookSections
+          {/* <PlaybookSections
             character={character}
             updateCharacter={updateCharacter}
           />
@@ -235,7 +200,7 @@ export default function UserCharacterSheet({
             }
           >
             fate here
-          </CharacterSheetBlock>
+          </CharacterSheetBlock> */}
           <pre>{JSON.stringify(character, null, 2)}</pre>
         </CharacterSheetColumn>
 

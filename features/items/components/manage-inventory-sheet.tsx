@@ -13,18 +13,15 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { useManageInventory } from "../hooks/use-manage-inventory-store";
 import InventoryTable from "./inventory-table";
-import { useGetCharacters } from "@/features/characters/hooks/use-get-characters";
 import { inventoryColumns } from "@/components/characters/inventory-columns";
+import useCharacterStore from "@/features/characters/hooks/use-character-store";
 
 export default function ManageInventorySheet() {
   const { isOpen, onOpen, onClose, characterId } = useManageInventory();
   const t = useTranslations("features.items");
   const c = useTranslations("common");
-  const { data: characters } = useGetCharacters();
+  const { character } = useCharacterStore();
 
-  const character = characters?.find(
-    (character) => character.id === characterId
-  );
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent>

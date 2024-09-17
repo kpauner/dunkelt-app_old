@@ -19,6 +19,7 @@ const avatarVariants = cva(
         sm: "h-8 w-8",
         lg: "h-12 w-12",
         xl: "h-28 w-28",
+        full: "h-full w-full",
       },
       defaultVariants: {
         variant: "rounded",
@@ -32,7 +33,7 @@ interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
   alt?: string;
   variant?: "rounded" | "square";
-  size?: "default" | "sm" | "lg" | "xl";
+  size?: "default" | "sm" | "lg" | "xl" | "full";
   fallback?: React.ReactNode;
 }
 

@@ -2,6 +2,8 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
+import Heading from "./heading";
+import { Paragraph } from "../ui/paragraph";
 
 const Dashboard = React.forwardRef<
   HTMLDivElement,
@@ -95,17 +97,36 @@ const dashboardLayoutVariants = cva("mx-auto w-full", {
 
 interface DashboardContentLayoutProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof dashboardLayoutVariants> {}
+    VariantProps<typeof dashboardLayoutVariants> {
+  title?: string;
+  description?: string;
+}
 
 const DashboardContentLayout = React.forwardRef<
   HTMLDivElement,
   DashboardContentLayoutProps
->(({ className, variant, ...props }, ref) => (
+>(({ className, variant, title, description, children, ...props }, ref) => (
   <main
     ref={ref}
     className={cn(dashboardLayoutVariants({ variant, className }))}
     {...props}
-  />
+  >
+    {(title || description) && (
+      <div className="flex flex-col pb-4">
+        {title && (
+          <Heading as="h1" size="md" className="pb-0">
+            {title}
+          </Heading>
+        )}
+        {description && (
+          <p className="text-sm text-muted-foreground pt-2 md:text-xl">
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+    {children}
+  </main>
 ));
 DashboardContentLayout.displayName = "DashboardContentLayout";
 
