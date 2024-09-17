@@ -3,6 +3,7 @@ import { CharacterSheetBlock } from "@/components/ui/character-sheet";
 import { CharacterSheetType } from "@/types/characters";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { Button } from "@/components/ui/button";
+import Improvements from "./improvements";
 
 type CharacterPlaybookBlocksProps = {
   character: CharacterSheetType;
@@ -40,6 +41,19 @@ function ChosenSections() {
         }
       >
         fate here
+      </CharacterSheetBlock>
+      <CharacterSheetBlock
+        label="Improvements"
+        description="The Chosen's fate"
+        tooltip="Fate is a measure of how lucky a character is."
+        notice="You haven't selected 3 moves"
+        footer={
+          <>
+            <Button>Edit Fate</Button>
+          </>
+        }
+      >
+        <Improvements />
       </CharacterSheetBlock>
     </>
   );
