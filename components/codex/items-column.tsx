@@ -1,40 +1,40 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 import { SelectItems } from "@/types/items";
-import { ArrowUpDown, ChevronDown, ChevronRight } from "lucide-react";
-import { Button } from "../ui/button";
-import Image from "next/image";
+import { ChevronDown, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { CellTooltip } from "./cells";
-import Icons from "../icons";
-import TagCloud from "../tag-cloud";
-import { Paragraph } from "../ui/paragraph";
-import { AddItemToCharacter } from "./add-item-to-character";
+import Icons from "@/components/icons";
+import TagCloud from "@/components/tag-cloud";
+import { Paragraph } from "@/components/ui/paragraph";
+import { MoreHorizontal } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
-export const itemsColumns: ColumnDef<SelectItems>[] = [
-  {
-    accessorFn: (row) => row.name.toLowerCase(),
-    accessorKey: "name",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="my-1 "
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Name
-          <Icons.arrowupdown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+const columnHelper = createColumnHelper<SelectItems>();
+
+export const itemsColumns = [
+  columnHelper.accessor("name", {
+    sortingFn: "alphanumeric",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        className="my-1"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Name
+        <Icons.arrowupdown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
-        <button
-          onClick={() => {
-            row.toggleExpanded();
-          }}
-          className="cursor-pointer"
-        >
+        <button onClick={() => row.toggleExpanded()} className="cursor-pointer">
           {row.getIsExpanded() ? (
             <ChevronDown className="h-4 w-4" />
           ) : (
@@ -46,91 +46,59 @@ export const itemsColumns: ColumnDef<SelectItems>[] = [
         </span>
       </div>
     ),
-  },
-  // {
-  //   accessorKey: "id",
-  //   header: ({ column }) => {
-  //     return (
-  //       <Button variant="ghost" className="my-1 ">
-  //         image
-  //       </Button>
-  //     );
-  //   },
-  //   cell: ({ row }) => (
-  //     <div className="flex items-center gap-2">
-  //       <span className="capitalize font-bold tracking-wider">
-  //         <Image
-  //           alt="Product image"
-  //           className="aspect-square rounded-md object-cover bg-black"
-  //           height="64"
-  //           src="https://static.wikia.nocookie.net/secure-contain-protect/images/b/b6/SCP-049.png/revision/latest?cb=20211121023917"
-  //           width="64"
-  //         />
-  //       </span>
-  //     </div>
-  //   ),
-  // },
-  {
-    accessorKey: "type",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="my-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Type
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+  }),
+
+  columnHelper.accessor("type", {
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        className="my-1"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Type
+        <Icons.arrowupdown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
         <CellTooltip value={row.getValue("type")} translation="motivations" />
       </div>
     ),
-  },
-  {
-    accessorKey: "description",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="my-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Description
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row, column }) => (
+  }),
+
+  columnHelper.accessor("description", {
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        className="my-1"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Description
+        <Icons.arrowupdown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => (
       <Paragraph size="xs">{row.getValue("description")}</Paragraph>
     ),
-  },
-  {
-    accessorFn: (row) => row.tags?.join(","),
-    id: "tags",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="my-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          tags
-          <Icons.arrowupdown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row, column }) => {
-      return (
-        <div className="flex gap-2 flex-wrap">
-          <TagCloud data={row.getValue("tags") as string[]} visibleTags={3} />
-        </div>
-      );
-    },
+  }),
 
+  columnHelper.accessor((row) => row.tags?.join(","), {
+    id: "tags",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        className="my-1"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        tags
+        <Icons.arrowupdown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+    cell: ({ row }) => (
+      <div className="flex gap-2 flex-wrap">
+        <TagCloud data={row.getValue("tags") as string[]} visibleTags={3} />
+      </div>
+    ),
     enableColumnFilter: true,
     enableGlobalFilter: true,
     filterFn: (row, columnId, filterValue) => {
@@ -139,5 +107,35 @@ export const itemsColumns: ColumnDef<SelectItems>[] = [
         tag.toLowerCase().includes(filterValue.toLowerCase())
       );
     },
-  },
+  }),
+  columnHelper.display({
+    id: "actions",
+    cell: ({ row }) => {
+      const item = row.original;
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="h-8 w-8 p-0">
+              <span className="sr-only">Open menu</span>
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem
+              onClick={() => navigator.clipboard.writeText(item.id.toString())}
+            >
+              Copy item ID
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => console.log("View details", item)}>
+              View details
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => console.log("Edit item", item)}>
+              Edit
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
+  }),
 ];

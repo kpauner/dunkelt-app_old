@@ -28,10 +28,13 @@
   --warning-foreground: hsl(5, 85%, 40%);
 }
 
+.expanded-content {
+  background-color: var(--muted) !important;
+}
 .expanded-content:hover {
-  background-color: transparent !important;
+  background-color: var(--muted) !important;
 }
 
 .expanded-content td:hover {
-  background-color: transparent !important;
+  background-color: var(--muted) !important;
 }

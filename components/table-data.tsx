@@ -21,20 +21,44 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import TableToolbar from "@/components/codex/table-toolbar";
 import { filters } from "@/config/filters.config";
-import { DataTablePagination } from "../table-pagination";
+import { DataTablePagination } from "@/components/table-pagination";
+import { Paragraph } from "@/components/ui/paragraph";
+import TagCloud from "@/components/tag-cloud";
+import Heading from "@/components/layout/heading";
+import Icons from "@/components/icons";
+import { SelectItems } from "@/types/items";
+import { InventoryColumnMeta } from "@/components/characters/inventory-columns";
+import { cn } from "@/lib/utils";
+import { BystandersExpandedRow, LocationsExpandedRow } from "./expanded-rows";
 
 type DataTableProps<TData, TValue> = {
-  columns: ColumnDef<TData, TValue>[];
+  columns: any;
   data: TData[];
+  expandedRowType: "locations" | "bystanders";
+  className?: string;
+  pageSize?: number;
+  showFacetedFilter?: boolean;
+  showViewOptions?: boolean;
+  showRowsPerPage?: boolean;
 };
 
-export default function TableItems<TData, TValue>({
+const expandedRowComponents = {
+  locations: LocationsExpandedRow,
+  bystanders: BystandersExpandedRow,
+} as const;
+
+export default function TableData<TData, TValue>({
   columns,
   data,
+  expandedRowType,
+  className,
+  pageSize,
+  showFacetedFilter,
+  showViewOptions,
+  showRowsPerPage,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [expanded, setExpanded] = React.useState<ExpandedState>({});
@@ -48,6 +72,11 @@ export default function TableItems<TData, TValue>({
       globalFilter,
       sorting,
     },
+    initialState: {
+      pagination: {
+        pageSize: pageSize || 5,
+      },
+    },
     onExpandedChange: (newExpanded) => {
       setExpanded(newExpanded);
     },
@@ -60,16 +89,20 @@ export default function TableItems<TData, TValue>({
     getFilteredRowModel: getFilteredRowModel(),
   });
 
+  const ExpandedRowComponent = expandedRowComponents[expandedRowType];
+
   return (
-    <div className="col-span-full space-y-4">
+    <>
       <TableToolbar
         table={table}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
         filters={filters}
+        showFacetedFilter={showFacetedFilter}
+        showViewOptions={showViewOptions}
       />
 
-      <Card>
+      <Card className={cn("w-full", className)}>
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -94,12 +127,15 @@ export default function TableItems<TData, TValue>({
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <React.Fragment key={row.id}>
-                  <TableRow
-                    data-state={row.getIsSelected() && "selected"}
-                    className={row.getIsExpanded() ? "bg-accent-dark" : ""}
-                  >
+                  <TableRow>
                     {row.getVisibleCells().map((cell) => (
-                      <TableCell key={cell.id}>
+                      <TableCell
+                        key={cell.id}
+                        className={
+                          (cell.column.columnDef.meta as InventoryColumnMeta)
+                            ?.className
+                        }
+                      >
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
@@ -108,19 +144,9 @@ export default function TableItems<TData, TValue>({
                     ))}
                   </TableRow>
                   {row.getIsExpanded() && (
-                    <TableRow className="expanded-content">
-                      <TableCell
-                        colSpan={columns.length}
-                        className="p-0 hover:bg-transparent"
-                      >
-                        <div className="p-4 bg-transparent">
-                          <h3 className="text-lg font-semibold mb-2">
-                            Expanded Content for {(row.original as any).name}
-                          </h3>
-                          <pre className="p-2 mt-2 rounded">
-                            {JSON.stringify(row.original, null, 2)}
-                          </pre>
-                        </div>
+                    <TableRow className="expanded-content ">
+                      <TableCell colSpan={columns.length}>
+                        <ExpandedRowComponent row={row.original} />
                       </TableCell>
                     </TableRow>
                   )}
@@ -140,7 +166,44 @@ export default function TableItems<TData, TValue>({
         </Table>
       </Card>
 
-      <DataTablePagination table={table} />
-    </div>
+      <DataTablePagination table={table} showRowsPerPage={showRowsPerPage} />
+    </>
   );
 }
+
+const ExpandedRow = (item: SelectItems) => {
+  return (
+    <div className="flex flex-col gap-4 w-full">
+      <div className="flex gap-x-2">
+        <div className="p-px rounded-md flex items-center justify-center border-primary-dark border  aspect-square w-9">
+          <Icons.weapon className="w-6 h-6" />
+        </div>
+        <div>
+          <Heading size="xs" className="">
+            {item.name}
+          </Heading>
+          <p className="text-xs text-muted-foreground">{item.type}</p>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        {item?.armor !== undefined && item.armor !== null && item.armor > 0 && (
+          <div className="flex gap-x-2">
+            <span className="font-bold">Armor:</span>
+            <span>{item.armor}</span>
+          </div>
+        )}
+
+        {/* <p>€: {item.value}</p>
+              <p>Weight: {item.weight}</p> */}
+        {item?.description && (
+          <Paragraph variant="default" size="xs">
+            {item.description}
+          </Paragraph>
+        )}
+      </div>
+
+      <TagCloud data={item.tags || []} showAllTags={true} harm={item.harm} />
+    </div>
+  );
+};

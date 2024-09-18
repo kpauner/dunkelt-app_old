@@ -40,6 +40,7 @@ type DataTableProps<TData, TValue> = {
   pageSize?: number;
   showFacetedFilter?: boolean;
   showViewOptions?: boolean;
+  showRowsPerPage?: boolean;
 };
 
 export default function TableItems<TData, TValue>({
@@ -49,6 +50,7 @@ export default function TableItems<TData, TValue>({
   pageSize,
   showFacetedFilter,
   showViewOptions,
+  showRowsPerPage,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [expanded, setExpanded] = React.useState<ExpandedState>({});
@@ -154,7 +156,7 @@ export default function TableItems<TData, TValue>({
         </Table>
       </Card>
 
-      <DataTablePagination table={table} />
+      <DataTablePagination table={table} showRowsPerPage={showRowsPerPage} />
     </>
   );
 }
@@ -182,6 +184,8 @@ const ExpandedRow = (item: SelectItems) => {
           </div>
         )}
 
+        {/* <p>€: {item.value}</p>
+              <p>Weight: {item.weight}</p> */}
         {item?.description && (
           <Paragraph variant="default" size="xs">
             {item.description}

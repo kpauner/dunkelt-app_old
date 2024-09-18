@@ -2,6 +2,7 @@ import { sqliteTable, text, integer } from "drizzle-orm/sqlite-core";
 import { users } from "./users";
 import characterItems from "./characterItems";
 import { relations } from "drizzle-orm";
+import { createInsertSchema } from "drizzle-zod";
 
 const items = sqliteTable("items", {
   id: integer("id").primaryKey({ autoIncrement: true }),

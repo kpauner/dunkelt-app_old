@@ -6,10 +6,12 @@ import Icons from "@/components/icons";
 import { SKELETON_HEIGHT } from "@/config/site.config";
 import { Skeleton } from "@/components/ui/skeleton";
 import { inventoryColumns } from "@/components/characters/inventory-columns";
-import InventoryTable from "@/features/items/components/inventory-table";
+import { useManageInventory } from "@/features/items/hooks/use-manage-inventory-store";
+import TableItems from "@/features/items/components/table-items";
 
 export default function CharacterInventory() {
   const { character } = useCharacterStore();
+  const { onOpen } = useManageInventory();
 
   if (!character) {
     return <Skeleton className="w-full h-40" height={SKELETON_HEIGHT + 120} />;
@@ -27,18 +29,18 @@ export default function CharacterInventory() {
             : undefined
         }
         footer={
-          <Button
-            variant="ghost"
-            size="icon"
-            // onClick={() => onOpen(character.id)}
-          >
+          <Button variant="ghost" size="icon" onClick={onOpen}>
             <Icons.settings />
           </Button>
         }
       >
-        <InventoryTable
+        <TableItems
           data={character.characterItems}
-          columns={inventoryColumns}
+          columns={inventoryColumns as any}
+          className="bg-none border-none p-0 dark:bg-transparent"
+          showFacetedFilter={false}
+          showViewOptions={false}
+          showRowsPerPage={false}
         />
       </CharacterSheetBlock>
     </div>

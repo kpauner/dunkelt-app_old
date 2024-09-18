@@ -10,6 +10,8 @@ interface TableToolbarProps<TData> {
   globalFilter: string;
   setGlobalFilter: (value: string) => void;
   filters: filterConfig[];
+  showFacetedFilter?: boolean;
+  showViewOptions?: boolean;
 }
 
 export default function TableToolbar<TData>({
@@ -17,6 +19,8 @@ export default function TableToolbar<TData>({
   globalFilter,
   setGlobalFilter,
   filters,
+  showFacetedFilter = true,
+  showViewOptions = true,
 }: TableToolbarProps<TData>) {
   console.log("FILTERS", filters);
   const availableFilters = filters.filter((filter) => {
@@ -36,24 +40,25 @@ export default function TableToolbar<TData>({
             console.log("Global filter changed:", e.target.value);
             setGlobalFilter(e.target.value);
           }}
-          className="w-full lg:w-80"
+          className="w-full max-w-md"
         />
-        {availableFilters.map((filter) => {
-          const column = table.getColumn(filter.column);
-          if (column) {
-            return (
-              <TableFacetedFilter
-                key={filter.column}
-                column={column as Column<TData, unknown>}
-                title={filter.title}
-                options={filter.options}
-              />
-            );
-          }
-          return null;
-        })}
+        {showFacetedFilter &&
+          availableFilters.map((filter) => {
+            const column = table.getColumn(filter.column);
+            if (column) {
+              return (
+                <TableFacetedFilter
+                  key={filter.column}
+                  column={column as Column<TData, unknown>}
+                  title={filter.title}
+                  options={filter.options}
+                />
+              );
+            }
+            return null;
+          })}
       </div>
-      <TableViewOptions table={table} />
+      {showViewOptions && <TableViewOptions table={table} />}
     </div>
   );
 }

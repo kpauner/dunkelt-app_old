@@ -56,7 +56,7 @@ export default async function LocaleLayout({
                       <DashboardHeader>
                         <Header />
                       </DashboardHeader>
-                      <DashboardContent className="">
+                      <DashboardContent>
                         <Suspense fallback={<LoadingLogo />}>
                           {children}
                         </Suspense>

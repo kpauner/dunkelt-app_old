@@ -4,9 +4,14 @@ import { bestiaryColumns } from "@/components/codex/bestiary-columns";
 import TableBestiary from "@/components/codex/table-bestiary";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Icons from "@/components/icons";
-import TableItems from "@/components/codex/table-items";
 import { itemsColumns } from "@/components/codex/items-column";
 import placeholderItems from "@/db/seeds/data/items.json";
+import TableItems from "@/features/items/components/table-items";
+import TableData from "@/components/table-data";
+import {
+  BystandersExpandedRow,
+  LocationsExpandedRow,
+} from "@/components/expanded-rows";
 
 export default async function CodexPage() {
   const bestiaries = await getBestiaries();
@@ -19,9 +24,9 @@ export default async function CodexPage() {
               <Icons.monster className="mr-2 h-4 w-4" />
               Bestiary
             </TabsTrigger>
-            <TabsTrigger value="active">
+            <TabsTrigger value="bystanders">
               <Icons.bystanders className="mr-2 h-4 w-4" />
-              Bystander
+              Bystanders
             </TabsTrigger>
             <TabsTrigger value="locations">
               <Icons.location className="mr-2 h-4 w-4" />
@@ -33,15 +38,25 @@ export default async function CodexPage() {
             </TabsTrigger>
           </TabsList>
         </div>
-        <TabsContent value="bestiary">
-          <div className="grid w-full gap-6 grid-cols-3 grid-rows-2">
-            <TableBestiary data={bestiaries} columns={bestiaryColumns} />
-          </div>
+        <TabsContent value="bestiary" className="space-y-4 pt-4">
+          <TableBestiary data={bestiaries} columns={bestiaryColumns} />
         </TabsContent>
-        <TabsContent value="items">
-          <div className="grid w-full gap-6 grid-cols-3 grid-rows-2">
-            <TableItems data={placeholderItems} columns={itemsColumns} />
-          </div>
+        <TabsContent value="items" className="space-y-4 pt-4">
+          <TableItems data={placeholderItems} columns={itemsColumns} />
+        </TabsContent>
+        <TabsContent value="bystanders" className="space-y-4 pt-4">
+          <TableData
+            data={bestiaries}
+            columns={bestiaryColumns}
+            expandedRowType="bystanders"
+          />
+        </TabsContent>
+        <TabsContent value="locations" className="space-y-4 pt-4">
+          <TableData
+            data={placeholderItems}
+            columns={itemsColumns}
+            expandedRowType="locations"
+          />
         </TabsContent>
       </Tabs>
     </>

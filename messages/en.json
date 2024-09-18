@@ -64,7 +64,11 @@
   },
   "errors": {
     "404": "Page not found",
-    "500": "Server error"
+    "500": "Server error",
+    "page": {
+      "title": "An error occurred",
+      "description": "<p>We apologize, but an unexpected <error>error</error> has occurred while processing your request. Our team has been notified and is working to resolve the issue.</p><p>You can try to <retry>reload the page</retry> or return to the dashboard. If the problem persists, please contact our support team.</p>"
+    }
   },
   "features": {
     "items": {
@@ -74,6 +78,10 @@
         "title": "Add New Item",
         "description": "Add a new item to your inventory."
       }
+    },
+    "inventory": {
+      "title": "Gear",
+      "description": "Manage your inventory."
     }
   },
   "motivations": {

@@ -4,12 +4,22 @@ import { createColumnHelper } from "@tanstack/react-table";
 import Icons from "@/components/icons";
 import TagCloud from "@/components/tag-cloud";
 import { SelectItems } from "@/types/items";
+import Heading from "../layout/heading";
 
 const columnHelper = createColumnHelper<SelectItems>();
+export type InventoryColumnMeta = {
+  className?: string;
+};
 
 export const inventoryColumns = [
   columnHelper.accessor("name", {
-    header: "Name",
+    header: () => {
+      return (
+        <Heading as="h6" size="xs">
+          Name
+        </Heading>
+      );
+    },
     cell: ({ row, getValue }) => (
       <div className="flex items-center gap-2">
         <button onClick={() => row.toggleExpanded()} className="cursor-pointer">
@@ -20,7 +30,13 @@ export const inventoryColumns = [
     ),
   }),
   columnHelper.accessor("tags", {
-    header: "Tags",
+    header: () => {
+      return (
+        <Heading as="h6" size="xs">
+          Tags
+        </Heading>
+      );
+    },
     cell: (info) => (
       <TagCloud
         data={info.getValue() || []}
@@ -28,5 +44,8 @@ export const inventoryColumns = [
         armor={info.row.original.armor}
       />
     ),
+    meta: {
+      className: "max-w-[140px]",
+    } as InventoryColumnMeta,
   }),
 ];
