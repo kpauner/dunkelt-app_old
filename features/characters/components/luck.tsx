@@ -7,7 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { CharacterSheetBlock } from "@/components/ui/character-sheet";
 
 export default function Luck() {
-  const { character, setCharacter } = useCharacterStore();
+  const { character, updateCharacter } = useCharacterStore();
   const t = useTranslations("characters.luck");
 
   if (!character) {
@@ -53,7 +53,7 @@ export default function Luck() {
               id={`luck-${index}`}
               checked={index < character?.luck}
               onCheckedChange={(checked) => {
-                setCharacter({
+                updateCharacter({
                   ...character,
                   luck: checked ? index + 1 : index,
                 });

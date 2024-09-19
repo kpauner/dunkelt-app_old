@@ -96,7 +96,12 @@ export const itemsColumns = [
     ),
     cell: ({ row }) => (
       <div className="flex gap-2 flex-wrap">
-        <TagCloud data={row.getValue("tags") as string[]} visibleTags={3} />
+        <TagCloud
+          data={row.getValue("tags") as string[]}
+          visibleTags={3}
+          harm={row.original.harm}
+          armor={row.original.armor}
+        />
       </div>
     ),
     enableColumnFilter: true,

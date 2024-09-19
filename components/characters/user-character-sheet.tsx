@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
@@ -51,29 +51,30 @@ export default function UserCharacterSheet({
     }
   }, [characterQuery, setCharacter]);
 
+  const handleSave = useCallback(async () => {
+    try {
+      await saveChanges();
+      toast.success(t("changesSaved"));
+    } catch (error) {
+      toast.error(t("saveFailed"));
+    }
+  }, [saveChanges, t]);
+
+  // Show toast for unsaved changes
   useEffect(() => {
     if (hasUnsavedChanges) {
-      toast.info("You have unsaved changes", {
+      toast.info(t("unsavedChanges"), {
         duration: Infinity,
         id: "unsaved-changes",
         action: {
-          label: "Save",
-          onClick: saveChanges,
+          label: t("save"),
+          onClick: handleSave,
         },
       });
     } else {
       toast.dismiss("unsaved-changes");
     }
-  }, [hasUnsavedChanges, saveChanges]);
-
-  const handleSave = async () => {
-    try {
-      await saveChanges();
-      toast.success("Changes saved successfully!");
-    } catch (error) {
-      toast.error("Failed to save changes. Please try again.");
-    }
-  };
+  }, [hasUnsavedChanges, handleSave, t]);
 
   if (isLoading || !character) {
     return (

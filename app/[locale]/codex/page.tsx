@@ -41,14 +41,12 @@ export default async function CodexPage() {
         <TabsContent value="bestiary" className="space-y-4 pt-4">
           <TableBestiary data={bestiaries} columns={bestiaryColumns} />
         </TabsContent>
-        <TabsContent value="items" className="space-y-4 pt-4">
-          <TableItems data={placeholderItems} columns={itemsColumns} />
-        </TabsContent>
         <TabsContent value="bystanders" className="space-y-4 pt-4">
           <TableData
             data={bestiaries}
             columns={bestiaryColumns}
             expandedRowType="bystanders"
+            pageSize={10}
           />
         </TabsContent>
         <TabsContent value="locations" className="space-y-4 pt-4">
@@ -56,6 +54,15 @@ export default async function CodexPage() {
             data={placeholderItems}
             columns={itemsColumns}
             expandedRowType="locations"
+            pageSize={10}
+          />
+        </TabsContent>
+        <TabsContent value="items" className="space-y-4 pt-4">
+          <TableData
+            data={placeholderItems}
+            columns={itemsColumns}
+            expandedRowType="items"
+            pageSize={10}
           />
         </TabsContent>
       </Tabs>

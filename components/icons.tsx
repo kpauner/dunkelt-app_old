@@ -32,6 +32,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   UserPenIcon,
+  MoreVerticalIcon,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
@@ -65,6 +66,7 @@ const Icons = {
   weapon: Sword,
   armor: Shield,
   editcharacter: UserPenIcon,
+  morevertical: MoreVerticalIcon,
   monster: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -25,7 +25,7 @@ export default async function CharacterSheetPage({
   });
 
   return (
-    <DashboardContentLayout variant="page" className="gap-6 md:gap-6">
+    <DashboardContentLayout className="grid grid-cols-1 gap-4">
       <HydrationBoundary state={dehydrate(queryClient)}>
         <UserCharacterSheet characterId={params.characterId} />
       </HydrationBoundary>

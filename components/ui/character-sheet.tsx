@@ -40,7 +40,7 @@ const CharacterSheetContent = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-min gap-6",
+      "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 auto-rows-min gap-4",
       className
     )}
     {...props}
@@ -52,7 +52,7 @@ const CharacterSheetColumn = ({
   children,
   className,
 }: React.HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("flex flex-col gap-6", className)}>{children}</div>
+  <div className={cn("flex flex-col gap-4", className)}>{children}</div>
 );
 CharacterSheetColumn.displayName = "CharacterSheetColumn";
 

@@ -32,12 +32,16 @@ import Icons from "@/components/icons";
 import { SelectItems } from "@/types/items";
 import { InventoryColumnMeta } from "@/components/characters/inventory-columns";
 import { cn } from "@/lib/utils";
-import { BystandersExpandedRow, LocationsExpandedRow } from "./expanded-rows";
+import {
+  BystandersExpandedRow,
+  ItemsExpandedRow,
+  LocationsExpandedRow,
+} from "./expanded-rows";
 
 type DataTableProps<TData, TValue> = {
   columns: any;
   data: TData[];
-  expandedRowType: "locations" | "bystanders";
+  expandedRowType: "locations" | "bystanders" | "items";
   className?: string;
   pageSize?: number;
   showFacetedFilter?: boolean;
@@ -48,6 +52,7 @@ type DataTableProps<TData, TValue> = {
 const expandedRowComponents = {
   locations: LocationsExpandedRow,
   bystanders: BystandersExpandedRow,
+  items: ItemsExpandedRow,
 } as const;
 
 export default function TableData<TData, TValue>({
