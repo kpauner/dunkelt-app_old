@@ -30,6 +30,7 @@ const formSchema = InsertCharacterSchema.pick({
   name: true,
   pronouns: true,
   playbook: true,
+  look: true,
 });
 
 export type CharacterFormValues = z.infer<typeof formSchema>;
@@ -66,7 +67,7 @@ export default function CharacterForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
         <FormField
           name="name"
           control={form.control}
@@ -106,13 +107,16 @@ export default function CharacterForm({
             <FormItem>
               <FormLabel>Playbook</FormLabel>
               <FormControl>
-                <Select>
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select a playbook" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectLabel>Fruits</SelectLabel>
+                      <SelectLabel>Playbook</SelectLabel>
                       {t.raw("playbooks").map((playbook: any, index: any) => (
                         <SelectItem key={playbook.id} value={playbook.name}>
                           {playbook.name}
@@ -133,6 +137,27 @@ export default function CharacterForm({
                   here
                 </Link>
                 .
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          name="look"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Look</FormLabel>
+              <FormControl>
+                <Input
+                  disabled={disabled}
+                  placeholder="Look"
+                  {...field}
+                  value={field.value ?? ""}
+                />
+              </FormControl>
+              <FormDescription>
+                Short description of your character.
               </FormDescription>
               <FormMessage />
             </FormItem>

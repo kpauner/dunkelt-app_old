@@ -93,18 +93,26 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
   )
   .post(
     "/",
-    zValidator("json", InsertCharacterSchema.pick({ name: true })),
+    zValidator(
+      "json",
+      InsertCharacterSchema.pick({
+        name: true,
+        pronouns: true,
+        playbook: true,
+        look: true,
+      })
+    ),
     async (c) => {
       const session = c.get("session");
       if (!session?.user?.id) {
         return c.json({ message: "Unauthorized" }, 401);
       }
-      const { name } = c.req.valid("json");
+      const values = c.req.valid("json");
       const [character] = await db
         .insert(characters)
         .values({
           userId: session.user.id,
-          name,
+          ...values,
         })
         .returning();
       return c.json({ data: character });
