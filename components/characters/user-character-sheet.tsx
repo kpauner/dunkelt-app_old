@@ -37,8 +37,7 @@ export default function UserCharacterSheet({
     hasUnsavedChanges,
     saveChanges,
   } = useCharacterStore();
-
-  const t = useTranslations("charactersheet");
+  const t = useTranslations();
   const {
     data: characterQuery,
     isLoading,
@@ -54,38 +53,38 @@ export default function UserCharacterSheet({
   const handleSave = useCallback(async () => {
     try {
       await saveChanges();
-      toast.success(t("changesSaved"));
+      toast.success(t("common.changes-saved"));
     } catch (error) {
-      toast.error(t("saveFailed"));
+      toast.error(t("common.save-failed"));
     }
   }, [saveChanges, t]);
 
   // Show toast for unsaved changes
   useEffect(() => {
     if (hasUnsavedChanges) {
-      toast.info(t("unsavedChanges"), {
+      toast.info(t("common.unsaved-changes"), {
         duration: Infinity,
         id: "unsaved-changes",
         action: {
-          label: t("save"),
+          label: t("common.save"),
           onClick: handleSave,
         },
       });
     } else {
-      toast.dismiss("unsaved-changes");
+      toast.dismiss("common.unsaved-changes");
     }
   }, [hasUnsavedChanges, handleSave, t]);
 
   if (isLoading || !character) {
     return (
       <div className="flex-1 flex items-center justify-center text-primary-foreground font-bold text-xl text-center">
-        loading...
+        {t("common.loading")}
       </div>
     );
   }
 
   if (error) {
-    return <div>Failed to load character data</div>;
+    return <div>{t("sheet.character-error")}</div>;
   }
 
   return (

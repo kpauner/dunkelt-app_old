@@ -19,7 +19,7 @@ const characters = sqliteTable("characters", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name").default("my character").notNull(),
   playbook: text("playbook").default("The Chosen").notNull(),
-  pronouns: text("pronouns"),
+  pronouns: text("pronouns").default("").notNull(),
   avatar: text("avatar"),
   look: text("look"),
   luck: integer("luck").notNull().default(0),

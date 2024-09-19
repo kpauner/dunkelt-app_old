@@ -36,6 +36,19 @@ export default function InventoryActions({ row }: { row: SelectItems }) {
         >
           Remove
         </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => {
+            // const updateItem = character.characterItems.filter(
+            //   (item) => item.id !== row.id
+            // );
+            setCharacter({
+              ...character,
+              characterItems: [...character.characterItems, row],
+            });
+          }}
+        >
+          Add to inventory
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

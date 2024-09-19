@@ -2,6 +2,13 @@
 
 import React from "react";
 import Grid from "@/components/layout/grid";
+import { useAddCharacterDialog } from "@/features/characters/hooks/use-add-character-dialog";
+import { useGetCharacters } from "@/features/characters/queries";
+import { calculateLevel, cn } from "@/lib/utils";
+import Link from "next/link";
+import { useLocale } from "next-intl";
+import { AVATARS } from "@/constants/constants";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar } from "@/components/ui/avatar";
 import {
   Card,
@@ -12,8 +19,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { useGetCharacters } from "@/features/characters/queries";
-import { calculateLevel, cn } from "@/lib/utils";
 import {
   List,
   ListDescription,
@@ -22,23 +27,25 @@ import {
 } from "@/components/ui/list";
 import { CharacterResponseType } from "@/types/characters";
 import Icons from "@/components/icons";
-import Link from "next/link";
-import { useLocale } from "next-intl";
 
 export default function CharactersList() {
   const { data: characters, isLoading } = useGetCharacters();
-  const characterDetails = [
-    { label: "DOB", value: "03/15/1985" },
-    { label: "Height", value: "6'1\" (185 cm)" },
-    { label: "Weight", value: "190 lbs (86 kg)" },
-    { label: "Hair", value: "Brown, short" },
-    { label: "Eyes", value: "Green" },
-  ];
+
+  if (isLoading)
+    return (
+      <Grid className="min-h-[70vh]">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <Skeleton key={index} />
+        ))}
+      </Grid>
+    );
+
   return (
     <Grid>
       {characters?.map((character) => (
         <CharacterCards key={character.id} character={character} />
       ))}
+      <AddNewCharacterCard />
     </Grid>
   );
 }
@@ -56,7 +63,7 @@ function CharacterCards({ character }: { character: CharacterResponseType }) {
   return (
     <Card className="overflow-hidden">
       <Avatar
-        src="/images/avatars/default.png"
+        src={character.avatar || AVATARS.DEFAULT}
         size="full"
         variant="square"
         className="h-56 rounded-none"
@@ -101,6 +108,23 @@ function CharacterCards({ character }: { character: CharacterResponseType }) {
           <Icons.editcharacter />
         </Link>
       </CardFooter>
+    </Card>
+  );
+}
+
+function AddNewCharacterCard() {
+  const { onOpen } = useAddCharacterDialog();
+  return (
+    <Card>
+      <CardContent className="flex items-center justify-center h-full w-full">
+        <Button
+          onClick={onOpen}
+          variant="ghost"
+          className="aspect-square size-28"
+        >
+          <Icons.add className="size-20" />
+        </Button>
+      </CardContent>
     </Card>
   );
 }

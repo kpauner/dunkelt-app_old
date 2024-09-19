@@ -7,7 +7,7 @@ const characterMoves = sqliteTable("character_moves", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   characterId: integer("character_id")
     .notNull()
-    .references(() => characters.id),
+    .references(() => characters.id, { onDelete: "cascade" }),
   moveId: integer("move_id")
     .notNull()
     .references(() => moves.id),

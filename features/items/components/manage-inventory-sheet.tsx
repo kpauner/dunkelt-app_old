@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Sheet,
@@ -22,10 +24,14 @@ import {
 } from "@/components/ui/accordion";
 import ItemForm from "./item-form";
 import TableItems from "./table-items";
+import { useGetItems } from "@/features/items/queries";
+import Loader from "@/components/loader";
 
 export default function ManageInventorySheet() {
   const { isOpen, onOpen, onClose } = useManageInventory();
   const { character } = useCharacterStore();
+  const { data: items, isLoading, error } = useGetItems();
+
   const t = useTranslations("features.inventory");
   const c = useTranslations("common");
 
@@ -44,16 +50,10 @@ export default function ManageInventorySheet() {
           <SheetTitle>{t("title")}</SheetTitle>
           <SheetDescription>{t("description")}</SheetDescription>
         </SheetHeader>
-        <Accordion
-          type="multiple"
-          className="space-y-2"
-          defaultValue={["items"]}
-        >
+        <Accordion type="multiple" defaultValue={["items"]}>
           <AccordionItem value="items">
-            <AccordionTrigger className="bg-muted px-2 uppercase">
-              {t("title")}
-            </AccordionTrigger>
-            <AccordionContent className="py-2">
+            <AccordionTrigger>{t("title")}</AccordionTrigger>
+            <AccordionContent className="py-4">
               <TableItems
                 data={character?.characterItems || []}
                 columns={inventoryColumns as any}
@@ -64,22 +64,31 @@ export default function ManageInventorySheet() {
               />
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="add-item">
-            <AccordionTrigger className="bg-muted px-2">
-              Add item
-            </AccordionTrigger>
-            <AccordionContent className="py-2">
-              <ItemForm onSubmit={() => {}} disabled={false} />
+          <AccordionItem value="add-item" className="">
+            <AccordionTrigger>Add item</AccordionTrigger>
+            <AccordionContent className="py-4">
+              {isLoading ? (
+                <Loader />
+              ) : (
+                <TableItems
+                  data={items || []}
+                  columns={inventoryColumns as any}
+                  className="bg-none border-none p-0 dark:bg-transparent"
+                  showFacetedFilter={false}
+                  showViewOptions={false}
+                  showRowsPerPage={false}
+                />
+              )}
             </AccordionContent>
           </AccordionItem>
-          <AccordionItem value="create-item">
+          {/* <AccordionItem value="create-item">
             <AccordionTrigger className="bg-muted px-2">
               Create item
             </AccordionTrigger>
             <AccordionContent className="py-2">
               <ItemForm onSubmit={() => {}} disabled={false} />
             </AccordionContent>
-          </AccordionItem>
+          </AccordionItem> */}
         </Accordion>
 
         <SheetFooter>

@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import TooltipProvider from "@/providers/tooltip-provider";
 import { getMessages } from "next-intl/server";
 import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 import AuthProvider from "@/providers/session-provider";
 import {
   Dashboard,
@@ -33,10 +34,10 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={GeistMono.className}
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
-      <body>
+      <body className="antialiased font-mono tracking-tight">
         <IntlClientProvider messages={messages} locale={locale}>
           <ThemeProvider
             attribute="class"

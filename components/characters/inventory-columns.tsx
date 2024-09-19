@@ -46,7 +46,7 @@ export const inventoryColumns = [
       />
     ),
     meta: {
-      className: "max-w-[140px] ",
+      className: "max-w-[180px] ",
     } as InventoryColumnMeta,
   }),
   columnHelper.display({

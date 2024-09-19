@@ -4,9 +4,14 @@
     "save": "Save",
     "close": "Close",
     "signup": "Sign Up",
+    "loading": "loading...",
     "signin": "Sign In",
     "logout": "Sign Out",
-    "pagination": "Page {current} of {total}"
+    "pagination": "Page {current} of {total}",
+    "changes-saved": "Changes saved",
+    "save-failed": "Save failed",
+    "unsaved-changes": "Unsaved changes",
+    "retry": "Retry"
   },
   "navigation": {
     "home": "Home",
@@ -69,6 +74,10 @@
       "title": "An error occurred",
       "description": "<p>We apologize, but an unexpected <error>error</error> has occurred while processing your request. Our team has been notified and is working to resolve the issue.</p><p>You can try to <retry>reload the page</retry> or return to the dashboard. If the problem persists, please contact our support team.</p>"
     }
+  },
+  "sheet": {
+    "loading": "loading...",
+    "character-error": "Failed to load character data"
   },
   "features": {
     "items": {

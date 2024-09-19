@@ -38,10 +38,10 @@ export default async function CodexPage() {
             </TabsTrigger>
           </TabsList>
         </div>
-        <TabsContent value="bestiary" className="space-y-4 pt-4">
+        <TabsContent value="bestiary" className="pt-4">
           <TableBestiary data={bestiaries} columns={bestiaryColumns} />
         </TabsContent>
-        <TabsContent value="bystanders" className="space-y-4 pt-4">
+        <TabsContent value="bystanders" className="pt-4">
           <TableData
             data={bestiaries}
             columns={bestiaryColumns}
@@ -49,7 +49,7 @@ export default async function CodexPage() {
             pageSize={10}
           />
         </TabsContent>
-        <TabsContent value="locations" className="space-y-4 pt-4">
+        <TabsContent value="locations" className="pt-4">
           <TableData
             data={placeholderItems}
             columns={itemsColumns}
@@ -57,7 +57,7 @@ export default async function CodexPage() {
             pageSize={10}
           />
         </TabsContent>
-        <TabsContent value="items" className="space-y-4 pt-4">
+        <TabsContent value="items" className="pt-4">
           <TableData
             data={placeholderItems}
             columns={itemsColumns}

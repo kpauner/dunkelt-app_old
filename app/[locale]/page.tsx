@@ -79,7 +79,8 @@ export default async function HomePage() {
           <Heading as="h2" size="md" className="text-accent-foreground">
             Welcome back {session?.user?.name}
           </Heading>
-          <Paragraph>
+
+          <Paragraph size="lg">
             You&apos;ve been gone for a while. Let&apos;s get you back on track.
           </Paragraph>
         </header>

@@ -2,10 +2,9 @@ import { z } from "zod";
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { Session } from "next-auth";
-import { getItems } from "@/data-access/items";
 import { insertItemsSchema } from "@/types/items";
 import { db } from "@/db";
-import { characterItems, characters, items } from "@/db/schema";
+import { items } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
 
 type CustomVariableMap = {
@@ -14,7 +13,7 @@ type CustomVariableMap = {
 
 const app = new Hono<{ Variables: CustomVariableMap }>()
   .get("/", async (c) => {
-    const data = await getItems();
+    const data = await db.query.items.findMany();
     return c.json({ data });
   })
   .post(
@@ -44,11 +43,14 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
       });
     }
   )
-  .get("/:id", zValidator("param", z.object({ id: z.string() })), (c) => {
-    const { id } = c.req.valid("param");
-    return c.json({ message: "This is a public route", id });
-  });
-
-// Public route
+  .get(
+    "/:id",
+    zValidator("param", z.object({ id: z.coerce.number().int().positive() })),
+    async (c) => {
+      const { id } = c.req.valid("param");
+      const item = await db.select().from(items).where(eq(items.id, id));
+      return c.json({ data: item });
+    }
+  );
 
 export default app;

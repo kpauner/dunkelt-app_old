@@ -32,7 +32,7 @@ export default function TableToolbar<TData>({
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex flex-1 items-center space-x-2">
+      <div className="flex flex-1 items-center space-x-2 pb-3">
         <Input
           placeholder="Filter ..."
           value={globalFilter}

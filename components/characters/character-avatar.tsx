@@ -17,6 +17,7 @@ import { useTranslations } from "next-intl";
 import { Label } from "@/components/ui/label";
 import { Avatar } from "@/components/ui/avatar";
 import Heading from "@/components/layout/heading";
+import { AVATARS } from "@/constants/constants";
 
 type CharacterAvatarProps = {
   size: "sm" | "lg" | "xl" | "default";
@@ -41,7 +42,7 @@ export default function CharacterAvatar({
         className=""
         variant="square"
         size="xl"
-        src={character?.avatar || "/images/avatars/default.png"}
+        src={character?.avatar || AVATARS.DEFAULT}
       />
       <div className="flex flex-col justify-between">
         <Heading as="h1" size="sm" className="text-primary-foreground">
@@ -61,7 +62,7 @@ export default function CharacterAvatar({
               className="mx-auto"
               variant="square"
               size="xl"
-              src={character?.avatar || "/images/avatars/default.png"}
+              src={character?.avatar || AVATARS.DEFAULT}
             />
             <Heading
               as="h1"

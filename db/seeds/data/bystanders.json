@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Officer Jenny",
+    "type": "official",
+    "avatar": "",
+    "description": "Local police officer, skeptical of supernatural claims",
+    "look": "Stern face, crisp uniform, always carries a notepad",
+    "harmCapacity": 2,
+    "dob": "1985-03-15",
+    "height": 170,
+    "weight": 65,
+    "eyes": "brown",
+    "hair": "blue"
+  },
+  {
+    "name": "Old Man Jenkins",
+    "type": "busybody",
+    "avatar": "",
+    "description": "Retired farmer who knows all the local gossip",
+    "look": "Wrinkled face, overalls, always chewing on a piece of straw",
+    "harmCapacity": 1,
+    "dob": "1940-07-22",
+    "height": 165,
+    "weight": 70,
+    "eyes": "blue",
+    "hair": "gray"
+  },
+  {
+    "name": "Sarah the Librarian",
+    "type": "witness",
+    "avatar": "",
+    "description": "Quiet librarian who saw something strange late one night",
+    "look": "Glasses, cardigan, always carrying a thick book",
+    "harmCapacity": 1,
+    "dob": "1990-11-03",
+    "height": 160,
+    "weight": 55,
+    "eyes": "green",
+    "hair": "red"
+  },
+  {
+    "name": "Dr. Eliza Thompson",
+    "type": "helper",
+    "avatar": "",
+    "description": "Local veterinarian with knowledge of strange animal behavior",
+    "look": "Lab coat, stethoscope, always slightly disheveled",
+    "harmCapacity": 2,
+    "dob": "1978-09-30",
+    "height": 175,
+    "weight": 68,
+    "eyes": "hazel",
+    "hair": "black"
+  },
+  {
+    "name": "Tommy the Paperboy",
+    "type": "innocent",
+    "avatar": "",
+    "description": "Young boy who delivers newspapers and overhears things",
+    "look": "Freckles, baseball cap, always on his bike",
+    "harmCapacity": 1,
+    "dob": "2010-05-17",
+    "height": 140,
+    "weight": 35,
+    "eyes": "blue",
+    "hair": "blond"
+  }
+]

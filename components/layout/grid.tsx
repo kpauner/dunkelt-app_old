@@ -1,8 +1,20 @@
+import { cn } from "@/lib/utils";
 import React from "react";
 
-export default function Grid({ children }: { children: React.ReactNode }) {
+export default function Grid({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4">
+    <div
+      className={cn(
+        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-5 gap-4",
+        className
+      )}
+    >
       {children}
     </div>
   );

@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { client } from "@/lib/hono";
+import { QUERY_KEYS } from "@/constants/constants";
 import { GetCharacterById, GetCharacters } from "./api";
 
 export function useGetCharacters() {
   return useQuery({
-    queryKey: ["characters"],
+    queryKey: [QUERY_KEYS.CHARACTERS],
     queryFn: GetCharacters,
   });
 }
@@ -12,7 +12,7 @@ export function useGetCharacters() {
 export function useGetCharacterById(id: string) {
   return useQuery({
     enabled: !!id,
-    queryKey: ["character", { id }],
+    queryKey: [QUERY_KEYS.CHARACTER, { id }],
     queryFn: () => GetCharacterById(id),
   });
 }

@@ -7,6 +7,7 @@ import { Session } from "next-auth";
 import items from "./items";
 import inventory from "./inventory";
 import characters from "./characters";
+import bystanders from "./bystanders";
 
 type CustomVariableMap = {
   session: Session | null;
@@ -25,7 +26,8 @@ app.use("*", async (c, next) => {
 const routes = app
   .route("/items", items)
   .route("/inventory", inventory)
-  .route("/characters", characters);
+  .route("/characters", characters)
+  .route("/bystanders", bystanders);
 
 export const GET = handle(app);
 export const POST = handle(app);

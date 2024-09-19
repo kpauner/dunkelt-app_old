@@ -4,14 +4,14 @@ import { cn } from "@/lib/utils";
 import { cva, VariantProps } from "class-variance-authority";
 
 const inputVariants = cva(
-  "flex h-10 w-full rounded-md px-3 py-1 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-stone-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+  "flex h-12 w-full rounded-md px-3 py-1 text-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-primary-light/30 placeholder:italic focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
         default:
-          "border border-primary-dark bg-background shadow-sm focus-visible:ring-1 focus-visible:ring-stone-950 dark:border-primary-dark dark:placeholder:text-stone-400 dark:focus-visible:ring-stone-300",
+          "border-2 border-primary-dark bg-background shadow-sm focus-visible:ring-1 focus-visible:ring-stone-950 dark:border-primary-dark  dark:focus-visible:ring-primary-foreground",
         ghost:
-          "bg-transparent hover:bg-stone-100 focus-visible:bg-stone-100 dark:hover:bg-stone-800 dark:focus-visible:bg-stone-800",
+          "bg-transparent hover:bg-stone-100 focus-visible:bg-stone-100 dark:hover:bg-stone-800 dark:focus-visible:bg-stone-800 px-0 border-b rounded-none border-muted",
       },
     },
     defaultVariants: {

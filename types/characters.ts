@@ -8,6 +8,7 @@ import { InferSelectModel } from "drizzle-orm";
 import { SelectMoves } from "./moves";
 import { client } from "@/lib/hono";
 import { InferResponseType } from "hono";
+import { createInsertSchema } from "drizzle-zod";
 
 type PlaybookType =
   | "The Chosen"
@@ -23,10 +24,7 @@ type PlaybookType =
   | "The Wronged"
   | "Unknown";
 
-interface Improvement {
-  description: string;
-  applied: boolean;
-}
+export const InsertCharacterSchema = createInsertSchema(characters);
 
 export type SelectCharacter = InferSelectModel<typeof characters>;
 export type SelectCharacterAttributes = InferSelectModel<

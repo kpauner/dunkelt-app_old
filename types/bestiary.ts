@@ -1,4 +1,4 @@
-import { bestiary } from "@/db/schema";
+import { bestiary, bestiaryMoves } from "@/db/schema";
 import { InferSelectModel } from "drizzle-orm";
 
 export type Powers = {
@@ -13,6 +13,7 @@ export type Attack = {
 };
 
 export type SelectBestiary = InferSelectModel<typeof bestiary>;
+export type SelectBestiaryMoves = InferSelectModel<typeof bestiaryMoves>;
 
 export type BestiaryEntry = {
   name: string;

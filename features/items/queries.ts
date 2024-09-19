@@ -1,5 +1,22 @@
 import { useQuery } from "@tanstack/react-query";
 import { client } from "@/lib/hono";
+import { GetItemById, GetItems } from "./api";
+import { QUERY_KEYS } from "@/constants/constants";
+
+export function useGetItems() {
+  return useQuery({
+    queryKey: [QUERY_KEYS.ITEMS],
+    queryFn: GetItems,
+  });
+}
+
+export function useGetItemById(id: string) {
+  return useQuery({
+    enabled: !!id,
+    queryKey: [QUERY_KEYS.ITEM, { id }],
+    queryFn: () => GetItemById(id),
+  });
+}
 
 export function useCharacterInventory(characterId: string) {
   return useQuery({
