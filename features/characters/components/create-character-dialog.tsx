@@ -1,6 +1,9 @@
 "use client";
 
 import React from "react";
+import { useCreateCharacter } from "@/features/characters/hooks/use-create-character";
+import useCharacterStore from "@/features/characters/hooks/use-character-store";
+import { useAddCharacterDialog } from "@/features/characters/hooks/use-add-character-dialog";
 import {
   Dialog,
   DialogContent,
@@ -8,11 +11,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useAddCharacterDialog } from "../hooks/use-add-character-dialog";
-import CharacterForm, { CharacterFormValues } from "./character-form";
-import { useCreateCharacter } from "../hooks/use-create-character";
+import CharacterForm, { CharacterFormValues } from "./create-character-form";
 
 export default function AddCharacterDialog() {
+  const { character } = useCharacterStore();
   const { isOpen, onOpen, onClose } = useAddCharacterDialog();
   const mutation = useCreateCharacter();
 
@@ -34,11 +36,17 @@ export default function AddCharacterDialog() {
         <CharacterForm
           onSubmit={onSubmit}
           disabled={mutation.isPending}
+          id={character?.id || undefined}
           defaultValues={{
-            name: "",
-            pronouns: "",
-            look: "",
-            playbook: "",
+            name: character?.name || "",
+            pronouns: character?.pronouns || "",
+            look: character?.look || "",
+            playbook: character?.playbook || "",
+            height: character?.height || null,
+            weight: character?.weight || null,
+            eyes: character?.eyes || "",
+            hair: character?.hair || "",
+            dob: character?.dob || "",
           }}
         />
       </DialogContent>

@@ -28,6 +28,7 @@ const useCharacterStore = create<CharacterStore>((set, get) => ({
     // Implement your save logic here
     // For example:
     // await api.saveCharacter(get().character);
+    // await useApplyCharacterChanges(get().character);
     set({ hasUnsavedChanges: false });
   },
   setLoading: (value) => set({ loading: value }),

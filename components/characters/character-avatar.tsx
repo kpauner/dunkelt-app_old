@@ -3,21 +3,12 @@
 import React from "react";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import PlaybookSheet from "./playbook-sheet";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useTranslations } from "next-intl";
-import { Label } from "@/components/ui/label";
 import { Avatar } from "@/components/ui/avatar";
 import Heading from "@/components/layout/heading";
 import { AVATARS } from "@/constants/constants";
+import { calculateLevel } from "@/lib/utils";
+import { EditCharacterForm } from "@/features/characters/components/edit-character-form";
 
 type CharacterAvatarProps = {
   size: "sm" | "lg" | "xl" | "default";
@@ -30,12 +21,13 @@ export default function CharacterAvatar({
   variant,
   className,
 }: CharacterAvatarProps) {
-  const { character, setCharacter } = useCharacterStore();
+  const { character } = useCharacterStore();
   const t = useTranslations("motw");
+
   if (!character) {
     return <div>Loading...</div>;
   }
-  console.log("AVATAR", character);
+
   return (
     <div className="flex gap-2">
       <Avatar
@@ -45,13 +37,23 @@ export default function CharacterAvatar({
         src={character?.avatar || AVATARS.DEFAULT}
       />
       <div className="flex flex-col justify-between">
-        <Heading as="h1" size="sm" className="text-primary-foreground">
-          {character?.name}{" "}
-          <span className="text-muted-foreground text-sm  items-baseline">
-            She/Her
+        <div className="space-y-1">
+          <span className="text-sm text-muted-foreground leading-none tracking-tight flex gap-2">
+            <span className="font-black tracking-wider text-foreground uppercase">
+              {character.playbook}
+            </span>
+            <span className="font-bold uppercase">
+              Lv. {calculateLevel(character.experience).level}
+            </span>
           </span>
-        </Heading>
-        <p className="pb-4">{character?.playbook}</p>
+          <Heading as="h1" size="sm" className="text-primary-foreground">
+            {character?.name}{" "}
+            <span className="text-muted-foreground text-sm  items-baseline">
+              {character.pronouns}
+            </span>
+          </Heading>
+        </div>
+
         <PlaybookSheet
           title="Identity"
           description="View your playbook"
@@ -64,6 +66,7 @@ export default function CharacterAvatar({
               size="xl"
               src={character?.avatar || AVATARS.DEFAULT}
             />
+
             <Heading
               as="h1"
               size="xs"
@@ -75,51 +78,7 @@ export default function CharacterAvatar({
               {character?.playbook}
             </p>
           </div>
-          <div className="flex flex-col gap-4">
-            <Input placeholder="Name" defaultValue={character.name} />
-
-            <Input placeholder="Pronouns" defaultValue={""} />
-
-            <Select
-              onValueChange={(value) => {
-                setCharacter({
-                  ...character,
-                  playbook: value,
-                });
-              }}
-            >
-              <SelectTrigger className="">
-                <SelectValue placeholder="Select a Playbook" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Playbooks</SelectLabel>
-                  {t.raw("playbooks").map((playbook: any, index: any) => (
-                    <SelectItem key={playbook.id} value={playbook.name}>
-                      {playbook.name}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-
-            <div className="flex flex-col gap-2">
-              <Label>Look</Label>
-              <Input placeholder="Look" defaultValue={character.look || ""} />
-              <Select
-                onValueChange={(value) => {
-                  setCharacter({
-                    ...character,
-                    look: value,
-                  });
-                }}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Or select from list" />
-                </SelectTrigger>
-              </Select>
-            </div>
-          </div>
+          <EditCharacterForm />
         </PlaybookSheet>
       </div>
     </div>

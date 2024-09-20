@@ -4,8 +4,11 @@ import { zValidator } from "@hono/zod-validator";
 import { Session } from "next-auth";
 import { db } from "@/db";
 import { and, eq } from "drizzle-orm";
-import { characters } from "@/db/schema";
-import { InsertCharacterSchema } from "@/types/characters";
+import { characterAttributes, characters } from "@/db/schema";
+import {
+  InsertCharacterSchema,
+  InsertCharacterSheetSchema,
+} from "@/types/characters";
 
 type CustomVariableMap = {
   session: Session | null;
@@ -100,6 +103,11 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
         pronouns: true,
         playbook: true,
         look: true,
+        dob: true,
+        height: true,
+        weight: true,
+        hair: true,
+        eyes: true,
       })
     ),
     async (c) => {
@@ -121,20 +129,70 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
   .put(
     "/:id",
     zValidator("param", z.object({ id: z.coerce.number().int().positive() })),
+    zValidator("json", InsertCharacterSheetSchema),
     async (c) => {
-      const { id } = c.req.valid("param");
       const session = c.get("session");
+      const { id } = c.req.valid("param");
+      const characterSheet = c.req.valid("json");
+
       if (!session?.user?.id) {
         return c.json({ message: "Unauthorized" }, 401);
       }
-      const data = await c.req.json();
-      const character = await db
-        .update(characters)
-        .set({
-          ...data,
-        })
-        .returning();
-      return c.json({ data: character });
+
+      const {
+        characterAttributes: attributes,
+        characterItems: items,
+        characterMoves: moves,
+        ...characterData
+      } = characterSheet;
+
+      // Fetch the character to check ownership
+      const existingCharacter = await db.query.characters.findFirst({
+        where: and(
+          eq(characters.id, id),
+          eq(characters.userId, session.user.id)
+        ),
+      });
+
+      if (!existingCharacter) {
+        return c.json(
+          {
+            message:
+              "Character not found or you don't have permission to edit it",
+          },
+          404
+        );
+      }
+
+      const result = await db.transaction(async (tx) => {
+        // Update character
+        const [updatedCharacter] = await tx
+          .update(characters)
+          .set(characterData)
+          .where(and(eq(characters.id, id)))
+          .returning();
+
+        if (attributes) {
+          await tx
+            .delete(characterAttributes)
+            .where(eq(characterAttributes.characterId, id));
+
+          if (attributes.length > 0) {
+            await tx.insert(characterAttributes).values(
+              attributes.map((attr) => ({
+                ...attr,
+                characterId: id,
+              }))
+            );
+          }
+        }
+
+        // Similar updates for characterMoves and characterItems...
+
+        return updatedCharacter;
+      });
+
+      return c.json({ data: result });
     }
   );
 

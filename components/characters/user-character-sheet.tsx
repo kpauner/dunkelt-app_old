@@ -23,6 +23,7 @@ import {
   CharacterSheetHeader,
   SheetBlock,
 } from "@/components/ui/character-sheet";
+import { useApplyCharacterChanges } from "@/features/characters/hooks/use-apply-character-changes";
 
 type UserCharacterSheetProps = {
   characterId: string;
@@ -43,7 +44,7 @@ export default function UserCharacterSheet({
     isLoading,
     error,
   } = useGetCharacterById(characterId);
-
+  const mutation = useApplyCharacterChanges();
   useEffect(() => {
     if (characterQuery) {
       setCharacter(characterQuery);
@@ -52,12 +53,14 @@ export default function UserCharacterSheet({
 
   const handleSave = useCallback(async () => {
     try {
-      await saveChanges();
+      // await saveChanges();
+      console.log("character", character);
+      await mutation.mutateAsync(character as any);
       toast.success(t("common.changes-saved"));
     } catch (error) {
       toast.error(t("common.save-failed"));
     }
-  }, [saveChanges, t]);
+  }, [mutation, t, character]);
 
   // Show toast for unsaved changes
   useEffect(() => {

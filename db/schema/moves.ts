@@ -6,7 +6,7 @@ const moves = sqliteTable("moves", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name").notNull(),
   description: text("description").notNull(),
-  playbook: text("playbook"), // Optional, for playbook-specific moves
+  playbook: text("playbook"),
 });
 
 export const movesRelations = relations(moves, ({ many }) => ({
