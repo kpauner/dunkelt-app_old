@@ -8,13 +8,12 @@ import { useTranslations } from "next-intl";
 import CharacterInventory from "@/features/characters/components/character-inventory";
 import { CharacterPlaybookBlocks } from "@/features/characters/components/character-playbook-blocks";
 import Harm from "@/features/characters/components/harm";
-import CharacterMoves from "@/features/characters/components/character-moves";
+import CharacterMoves from "@/features/characters/components/moves";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import Luck from "@/features/characters/components/luck";
 import { useGetCharacterById } from "@/features/characters/queries";
-import PlaybookSheet from "@/components/characters/playbook-sheet";
 import CharacterRatings from "@/features/characters/components/character-ratings";
-import { Experience } from "@/components/characters/experience";
+import Experience from "@/features/characters/components/experience";
 import CharacterAvatar from "./character-avatar";
 import {
   CharacterSheetBlock,
@@ -24,6 +23,7 @@ import {
   SheetBlock,
 } from "@/components/ui/character-sheet";
 import { useApplyCharacterChanges } from "@/features/characters/hooks/use-apply-character-changes";
+import { SelectCharacterSheet } from "@/types/character-sheet";
 
 type UserCharacterSheetProps = {
   characterId: string;
@@ -31,13 +31,9 @@ type UserCharacterSheetProps = {
 export default function UserCharacterSheet({
   characterId,
 }: UserCharacterSheetProps) {
-  const {
-    character,
-    setCharacter,
-    updateCharacter,
-    hasUnsavedChanges,
-    saveChanges,
-  } = useCharacterStore();
+  const { character, setCharacter, hasUnsavedChanges, setHasUnsavedChanges } =
+    useCharacterStore();
+
   const t = useTranslations();
   const {
     data: characterQuery,
@@ -45,6 +41,7 @@ export default function UserCharacterSheet({
     error,
   } = useGetCharacterById(characterId);
   const mutation = useApplyCharacterChanges();
+
   useEffect(() => {
     if (characterQuery) {
       setCharacter(characterQuery);
@@ -53,14 +50,19 @@ export default function UserCharacterSheet({
 
   const handleSave = useCallback(async () => {
     try {
-      // await saveChanges();
-      console.log("character", character);
-      await mutation.mutateAsync(character as any);
+      if (character) {
+        await mutation.mutateAsync(character);
+        setHasUnsavedChanges(false);
+        toast.success(t("common.changes-saved"));
+      } else {
+        // Handle the case where character is null
+        toast.error(t("common.error-saving-changes"));
+      }
       toast.success(t("common.changes-saved"));
     } catch (error) {
       toast.error(t("common.save-failed"));
     }
-  }, [mutation, t, character]);
+  }, [mutation, t, character, setHasUnsavedChanges]);
 
   // Show toast for unsaved changes
   useEffect(() => {
@@ -103,20 +105,7 @@ export default function UserCharacterSheet({
         <CharacterSheetColumn>
           <Luck />
           <Harm />
-          <CharacterSheetBlock
-            label="Experience"
-            description="Track your character's growth"
-          >
-            <Experience
-              experience={character.experience}
-              handleCharacterChange={(newExperience) =>
-                updateCharacter({
-                  ...character,
-                  experience: newExperience,
-                })
-              }
-            />
-          </CharacterSheetBlock>
+          <Experience />
         </CharacterSheetColumn>
 
         <CharacterSheetColumn>

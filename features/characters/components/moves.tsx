@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import { Paragraph } from "@/components/ui/paragraph";
 
-export default function CharacterMoves() {
+export default function Moves() {
   const { character, setCharacter } = useCharacterStore();
 
   if (!character) {

@@ -1,24 +1,24 @@
 import React from "react";
-import Heading from "../layout/heading";
-import { Button } from "../ui/button";
+import Heading from "@/components/layout/heading";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "../ui/card";
+} from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-type AssignRatingsProps = {
+type SelectInitialRatingsProps = {
   character: any;
   updateCharacter: (newData: any) => void;
 };
-export default function AssignRatings({
+export default function SelectInitialRatings({
   character,
   updateCharacter,
-}: AssignRatingsProps) {
+}: SelectInitialRatingsProps) {
   return (
     <section>
       <header className="flex justify-between items-center py-4">

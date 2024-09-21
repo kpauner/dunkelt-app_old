@@ -1,0 +1,17 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "save": "Save",
+
+    "close": "Close",
+    "signup": "Sign Up",
+    "loading": "loading...",
+    "signin": "Sign In",
+    "logout": "Sign Out",
+    "pagination": "Page {current} of {total}",
+    "changes-saved": "Changes saved",
+    "save-failed": "Save failed",
+    "unsaved-changes": "Unsaved changes",
+    "retry": "Retry"
+  }
+}

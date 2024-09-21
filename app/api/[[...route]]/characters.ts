@@ -5,10 +5,8 @@ import { Session } from "next-auth";
 import { db } from "@/db";
 import { and, eq } from "drizzle-orm";
 import { characterAttributes, characters } from "@/db/schema";
-import {
-  InsertCharacterSchema,
-  InsertCharacterSheetSchema,
-} from "@/types/characters";
+import { InsertCharacterSchema } from "@/types/characters";
+import { SelectCharacterSheetSchema } from "@/types/character-sheet";
 
 type CustomVariableMap = {
   session: Session | null;
@@ -129,7 +127,7 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
   .put(
     "/:id",
     zValidator("param", z.object({ id: z.coerce.number().int().positive() })),
-    zValidator("json", InsertCharacterSheetSchema),
+    zValidator("json", SelectCharacterSheetSchema),
     async (c) => {
       const session = c.get("session");
       const { id } = c.req.valid("param");
