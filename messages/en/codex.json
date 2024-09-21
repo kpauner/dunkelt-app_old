@@ -14,5 +14,9 @@
     "tempter": "to tempt people into evil or self-destruction",
     "torturer": "to hurt and terrify",
     "trickster": "to create chaos"
+  },
+  "items": {
+    "label": "Add new item",
+    "description": "Add a new item to the codex"
   }
 }

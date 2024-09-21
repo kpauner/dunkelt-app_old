@@ -165,6 +165,10 @@
     "volatile": {
       "name": "Volatile",
       "description": "This weapon is dangerous and unstable."
+    },
+    "electronic": {
+      "name": "Electronic",
+      "description": "This item is electronic and requires a power source to operate."
     }
   },
   "luck": {
@@ -191,11 +195,13 @@
   "experience": {
     "label": "Experience",
     "description": "Whenever you roll and get a total of 6 or less, or when a move tells you to, mark an experience box. ",
-    "alert": "When you have filled all five experience boxes, you level up. Erase the marks and pick an improvement"
+    "alert": "When you have filled all five experience boxes, you level up. Erase the marks and pick an improvement",
+    "tooltip": "experience tooltip translation"
   },
   "moves": {
     "label": "Moves",
-    "description": "Moves are actions you can take. You can only take one move per turn, and you must take it before you act."
+    "description": "Moves are actions you can take. You can only take one move per turn, and you must take it before you act.",
+    "tooltip": "moves tooltip translation"
   },
   "inventory": {
     "title": "Inventory",

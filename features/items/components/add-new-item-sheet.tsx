@@ -11,7 +11,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import Icons from "@/components/icons";
 import { useTranslations } from "next-intl";
 
 type Props = {
@@ -20,12 +19,12 @@ type Props = {
 
 export default function AddNewItemSheet({ buttonText }: Props) {
   const { isOpen, onOpen, onClose } = useNewItem();
-  const t = useTranslations("features.items.add-new-item");
+  const t = useTranslations("items");
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>{t("title")}</SheetTitle>
+          <SheetTitle>{t("label")}</SheetTitle>
           <SheetDescription>{t("description")}</SheetDescription>
         </SheetHeader>
         add item

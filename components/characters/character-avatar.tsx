@@ -22,7 +22,7 @@ export default function CharacterAvatar({
   className,
 }: CharacterAvatarProps) {
   const { character } = useCharacterStore();
-  const t = useTranslations("playbooks");
+  const t = useTranslations("motw");
 
   if (!character) {
     return <div>Loading...</div>;

@@ -25,23 +25,21 @@ import { Card } from "@/components/ui/card";
 import TableToolbar from "@/components/codex/table-toolbar";
 import { filters } from "@/config/filters.config";
 import { DataTablePagination } from "@/components/table-pagination";
-import { Paragraph } from "@/components/ui/paragraph";
-import TagCloud from "@/components/tag-cloud";
-import Heading from "@/components/layout/heading";
-import Icons from "@/components/icons";
-import { SelectItems } from "@/types/items";
 import { InventoryColumnMeta } from "@/components/characters/inventory-columns";
 import { cn } from "@/lib/utils";
 import {
   BystandersExpandedRow,
   ItemsExpandedRow,
   LocationsExpandedRow,
+  BestiaryExpandedRow,
 } from "./expanded-rows";
+import Loader from "./loader";
 
 type DataTableProps<TData, TValue> = {
   columns: any;
   data: TData[];
-  expandedRowType: "locations" | "bystanders" | "items";
+  expandedRowType: "locations" | "bystanders" | "items" | "bestiary";
+  isLoading?: boolean;
   className?: string;
   pageSize?: number;
   showFacetedFilter?: boolean;
@@ -50,6 +48,7 @@ type DataTableProps<TData, TValue> = {
 };
 
 const expandedRowComponents = {
+  bestiary: BestiaryExpandedRow,
   locations: LocationsExpandedRow,
   bystanders: BystandersExpandedRow,
   items: ItemsExpandedRow,
@@ -60,6 +59,7 @@ export default function TableData<TData, TValue>({
   data,
   expandedRowType,
   className,
+  isLoading,
   pageSize,
   showFacetedFilter,
   showViewOptions,
@@ -97,7 +97,7 @@ export default function TableData<TData, TValue>({
   const ExpandedRowComponent = expandedRowComponents[expandedRowType];
 
   return (
-    <>
+    <div className="flex flex-col gap-2">
       <TableToolbar
         table={table}
         globalFilter={globalFilter}
@@ -163,7 +163,7 @@ export default function TableData<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  {isLoading ? <Loader /> : "No results."}
                 </TableCell>
               </TableRow>
             )}
@@ -172,6 +172,6 @@ export default function TableData<TData, TValue>({
       </Card>
 
       <DataTablePagination table={table} showRowsPerPage={showRowsPerPage} />
-    </>
+    </div>
   );
 }

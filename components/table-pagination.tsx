@@ -22,7 +22,7 @@ export function DataTablePagination<TData>({
 }: DataTablePaginationProps<TData>) {
   const t = useTranslations("common");
   return (
-    <div className="flex items-center justify-between pt-3">
+    <div className="flex items-center justify-between pt-2">
       <Paragraph size="sm" className="flex w-[100px] items-center">
         {t("pagination", {
           current: table.getState().pagination.pageIndex + 1,

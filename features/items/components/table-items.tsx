@@ -32,11 +32,13 @@ import Icons from "@/components/icons";
 import { SelectItems } from "@/types/items";
 import { InventoryColumnMeta } from "@/components/characters/inventory-columns";
 import { cn } from "@/lib/utils";
+import Loader from "@/components/loader";
 
 type DataTableProps<TData, TValue> = {
   columns: any;
   data: TData[];
   className?: string;
+  isLoading?: boolean;
   pageSize?: number;
   showFacetedFilter?: boolean;
   showViewOptions?: boolean;
@@ -47,6 +49,7 @@ export default function TableItems<TData, TValue>({
   columns,
   data,
   className,
+  isLoading,
   pageSize,
   showFacetedFilter,
   showViewOptions,
@@ -148,7 +151,7 @@ export default function TableItems<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  {isLoading ? <Loader /> : "No results."}
                 </TableCell>
               </TableRow>
             )}

@@ -29,6 +29,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import TableData from "@/components/table-data";
 
 export default function EditInventorySheet() {
   const { isOpen, onOpen, onClose } = useEditInventorySheet();
@@ -53,23 +54,20 @@ export default function EditInventorySheet() {
           <SheetTitle>{t("title")}</SheetTitle>
           <SheetDescription>{t("description")}</SheetDescription>
         </SheetHeader>
+        <TableData
+          data={items || []}
+          expandedRowType="items"
+          columns={inventorySheetColumns as any}
+          isLoading={isLoading}
+          // className="bg-none border-none p-0 dark:bg-transparent"
+          showFacetedFilter={false}
+          showViewOptions={true}
+          showRowsPerPage={false}
+        />
         <Accordion type="multiple" defaultValue={["add-item"]}>
           <AccordionItem value="add-item" className="">
             <AccordionTrigger>Add item</AccordionTrigger>
-            <AccordionContent className="py-4">
-              {isLoading ? (
-                <Loader />
-              ) : (
-                <TableItems
-                  data={items || []}
-                  columns={inventorySheetColumns as any}
-                  // className="bg-none border-none p-0 dark:bg-transparent"
-                  showFacetedFilter={false}
-                  showViewOptions={true}
-                  showRowsPerPage={false}
-                />
-              )}
-            </AccordionContent>
+            <AccordionContent className="py-4"></AccordionContent>
           </AccordionItem>
           {/* <AccordionItem value="create-item">
             <AccordionTrigger className="bg-muted px-2">

@@ -33,7 +33,7 @@ export default function Experience() {
     <CharacterSheetBlock
       label={t("label")}
       description={t("description")}
-      tooltip={t(`tooltip.${character.playbook}`)}
+      tooltip={t("tooltip")}
     >
       <div className="flex gap-2 justify-between items-center">
         <div className="flex gap-2">

@@ -81,16 +81,18 @@ export function LocationsExpandedRow({ row }: { row: any }) {
   );
 }
 
-type BystandersExpandedRowProps = {
-  row: any;
-};
-
-export function BystandersExpandedRow({
-  row: item,
-}: BystandersExpandedRowProps) {
+export function BystandersExpandedRow({ row: item }: { row: any }) {
   return (
     <div className="flex flex-col gap-4 w-full">
       expanded row content for bystanders
+    </div>
+  );
+}
+
+export function BestiaryExpandedRow({ row: item }: { row: any }) {
+  return (
+    <div className="flex flex-col gap-4 w-full">
+      expanded row content for bestiary
     </div>
   );
 }

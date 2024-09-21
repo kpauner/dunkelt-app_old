@@ -17,7 +17,7 @@ export default function Harm() {
     <CharacterSheetBlock
       label={t("label")}
       description={t("description")}
-      tooltip={t(`tooltip.${character.playbook}`)}
+      tooltip={t("tooltip")}
       alert={character.harm >= 4 ? t("alert") : undefined}
     >
       <div className="flex flex-col gap-3">

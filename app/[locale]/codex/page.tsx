@@ -1,17 +1,11 @@
 import React from "react";
 import { getBestiaries } from "@/data-access/bestiary";
 import { bestiaryColumns } from "@/components/codex/bestiary-columns";
-import TableBestiary from "@/components/codex/table-bestiary";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Icons from "@/components/icons";
 import { itemsColumns } from "@/components/codex/items-column";
 import placeholderItems from "@/db/seeds/data/items.json";
-import TableItems from "@/features/items/components/table-items";
 import TableData from "@/components/table-data";
-import {
-  BystandersExpandedRow,
-  LocationsExpandedRow,
-} from "@/components/expanded-rows";
 
 export default async function CodexPage() {
   const bestiaries = await getBestiaries();
@@ -39,7 +33,12 @@ export default async function CodexPage() {
           </TabsList>
         </div>
         <TabsContent value="bestiary" className="pt-4">
-          <TableBestiary data={bestiaries} columns={bestiaryColumns} />
+          <TableData
+            data={bestiaries}
+            columns={bestiaryColumns}
+            expandedRowType="bestiary"
+            pageSize={10}
+          />
         </TabsContent>
         <TabsContent value="bystanders" className="pt-4">
           <TableData
