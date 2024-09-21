@@ -13,22 +13,22 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-import { useManageInventory } from "../hooks/use-manage-inventory-store";
-import { inventoryColumns } from "@/components/characters/inventory-columns";
+
+import { useEditInventorySheet } from "@/features/characters/hooks/use-edit-inventory-sheet";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
+import TableItems from "@/features/items/components/table-items";
+import { useGetItems } from "@/features/items/queries";
+import Loader from "@/components/loader";
+import { inventoryColumns } from "@/components/characters/inventory-columns";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import ItemForm from "./item-form";
-import TableItems from "./table-items";
-import { useGetItems } from "@/features/items/queries";
-import Loader from "@/components/loader";
 
-export default function ManageInventorySheet() {
-  const { isOpen, onOpen, onClose } = useManageInventory();
+export default function EditInventorySheet() {
+  const { isOpen, onOpen, onClose } = useEditInventorySheet();
   const { character } = useCharacterStore();
   const { data: items, isLoading, error } = useGetItems();
 

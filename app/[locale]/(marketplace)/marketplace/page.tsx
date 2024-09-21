@@ -1,3 +1,6 @@
+import LoadingLogo from "@/components/layout/loading-logo";
+import { PageLayout } from "@/components/layout/page-layout";
+import Loader from "@/components/loader";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -19,7 +22,12 @@ import React from "react";
 
 export default function MarketplacePage() {
   return (
-    <div className="flex flex-col gap-12 max-w-lg mx-auto">
+    <PageLayout
+      title="Something long"
+      description="some long description here"
+      variant="post"
+      className=""
+    >
       <Card>
         <Table>
           <TableHeader>
@@ -53,6 +61,6 @@ export default function MarketplacePage() {
           <Button>Buy</Button>
         </CardFooter>
       </Card>
-    </div>
+    </PageLayout>
   );
 }

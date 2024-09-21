@@ -1,7 +1,7 @@
 import React from "react";
 import { GetCharacterById } from "@/features/characters/api";
 import UserCharacterSheet from "@/components/characters/user-character-sheet";
-import { DashboardContentLayout } from "@/components/layout/dashboard";
+import { PageLayout } from "@/components/layout/page-layout";
 import {
   dehydrate,
   HydrationBoundary,
@@ -25,10 +25,10 @@ export default async function CharacterSheetPage({
   });
 
   return (
-    <DashboardContentLayout className="grid grid-cols-1 gap-4">
+    <PageLayout className="grid grid-cols-1 gap-4">
       <HydrationBoundary state={dehydrate(queryClient)}>
         <UserCharacterSheet characterId={params.characterId} />
       </HydrationBoundary>
-    </DashboardContentLayout>
+    </PageLayout>
   );
 }

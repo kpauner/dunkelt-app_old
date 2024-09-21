@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useCreateCharacter } from "@/features/characters/hooks/use-create-character";
+import { useCreateCharacter } from "@/features/characters/queries/use-create-character";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { useAddCharacterDialog } from "@/features/characters/hooks/use-add-character-dialog";
 import {

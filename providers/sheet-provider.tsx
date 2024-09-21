@@ -2,9 +2,11 @@
 
 import React from "react";
 import { useMountedState } from "react-use";
-import ManageInventorySheet from "@/features/items/components/manage-inventory-sheet";
+
 import AddNewItemSheet from "@/features/items/components/add-new-item-sheet";
 import AddCharacterDialog from "@/features/characters/components/create-character-dialog";
+import EditMovesSheet from "@/features/characters/components/edit-moves-sheet";
+import EditInventorySheet from "@/features/characters/components/edit-inventory-sheet";
 
 export default function SheetProvider() {
   const isMounted = useMountedState();
@@ -12,9 +14,10 @@ export default function SheetProvider() {
   if (!isMounted) return null;
   return (
     <>
-      <ManageInventorySheet />
+      <EditInventorySheet />
       <AddNewItemSheet buttonText="teext" />
       <AddCharacterDialog />
+      <EditMovesSheet />
     </>
   );
 }

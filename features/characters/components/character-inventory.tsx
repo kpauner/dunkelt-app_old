@@ -6,12 +6,13 @@ import Icons from "@/components/icons";
 import { SKELETON_HEIGHT } from "@/config/site.config";
 import { Skeleton } from "@/components/ui/skeleton";
 import { inventoryColumns } from "@/components/characters/inventory-columns";
-import { useManageInventory } from "@/features/items/hooks/use-manage-inventory-store";
+
 import TableItems from "@/features/items/components/table-items";
+import { useEditInventorySheet } from "@/features/characters/hooks/use-edit-inventory-sheet";
 
 export default function CharacterInventory() {
   const { character } = useCharacterStore();
-  const { onOpen } = useManageInventory();
+  const { onOpen } = useEditInventorySheet();
 
   if (!character) {
     return <Skeleton className="w-full h-40" height={SKELETON_HEIGHT + 120} />;

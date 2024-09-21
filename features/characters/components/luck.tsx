@@ -3,27 +3,20 @@ import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { useTranslations } from "next-intl";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
-import { Skeleton } from "@/components/ui/skeleton";
 import { CharacterSheetBlock } from "@/components/ui/character-sheet";
 
 export default function Luck() {
   const { character, updateCharacter } = useCharacterStore();
-  const t = useTranslations("characters.luck");
+  const t = useTranslations("luck");
 
-  if (!character) {
-    return <Skeleton className="w-full h-40 mb-2 " height={180} />;
-  }
+  if (!character) return null;
 
   return (
     <CharacterSheetBlock
       label="Luck"
       description={t("description")}
       tooltip={t(`tooltip.${character.playbook}`)}
-      alert={
-        character.luck === 7
-          ? "Doomed: You have spent all your luck"
-          : undefined
-      }
+      alert={character.luck === 7 ? t("alert") : undefined}
     >
       <div className="flex flex-col gap-3">
         <div className="flex justify-between items-center uppercase tracking-wide">

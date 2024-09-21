@@ -1,7 +1,7 @@
+import { QUERY_KEYS } from "@/constants/constants";
 import { InferRequestType, InferResponseType } from "hono";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { client } from "@/lib/hono";
-import { QUERY_KEYS } from "@/constants/constants";
 import { toast } from "sonner";
 
 type ResponseType = InferResponseType<
@@ -11,7 +11,7 @@ type RequestType = InferRequestType<
   (typeof client.api.characters)[":id"]["$put"]
 >["json"];
 
-export function useApplyCharacterChanges() {
+export function useEditCharacter() {
   const queryClient = useQueryClient();
   return useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (data) => {

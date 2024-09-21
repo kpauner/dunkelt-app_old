@@ -1,7 +1,9 @@
 import { items } from "@/db/schema";
 import { InferSelectModel } from "drizzle-orm";
-import { createInsertSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
+
+export const SelectItemsSchema = createSelectSchema(items);
 
 export type SelectItems = InferSelectModel<typeof items>;
 

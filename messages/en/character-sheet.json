@@ -1,57 +1,56 @@
 {
-  "motw": {
-    "playbooks": [
-      {
-        "id": "thechosen",
-        "name": "The Chosen",
-        "description": "You are the chosen, the one who will save the world from the darkness. You are the hero, the one who will defeat the evil. You are the one who will bring peace to the world."
-      },
-      {
-        "id": "thecrooked",
-        "name": "The Crooked"
-      },
-      {
-        "id": "thedivine",
-        "name": "The Divine"
-      },
-      {
-        "id": "theexpert",
-        "name": "The Expert"
-      },
-      {
-        "id": "thefallen",
-        "name": "The Fallen"
-      },
-      {
-        "id": "theinitiate",
-        "name": "The Initiate"
-      },
-      {
-        "id": "themonstrous",
-        "name": "The Monstrous"
-      },
-      {
-        "id": "themundane",
-        "name": "The Mundane"
-      },
-      {
-        "id": "theprofessional",
-        "name": "The Professional"
-      },
-      {
-        "id": "thespellslinger",
-        "name": "The Spellslinger"
-      },
-      {
-        "id": "thespooky",
-        "name": "The Spooky"
-      },
-      {
-        "id": "thewronged",
-        "name": "The Wronged"
-      }
-    ]
-  },
+  "playbooks": [
+    {
+      "id": "thechosen",
+      "name": "The Chosen",
+      "description": "You are the chosen, the one who will save the world from the darkness. You are the hero, the one who will defeat the evil. You are the one who will bring peace to the world."
+    },
+    {
+      "id": "thecrooked",
+      "name": "The Crooked"
+    },
+    {
+      "id": "thedivine",
+      "name": "The Divine"
+    },
+    {
+      "id": "theexpert",
+      "name": "The Expert"
+    },
+    {
+      "id": "thefallen",
+      "name": "The Fallen"
+    },
+    {
+      "id": "theinitiate",
+      "name": "The Initiate"
+    },
+    {
+      "id": "themonstrous",
+      "name": "The Monstrous"
+    },
+    {
+      "id": "themundane",
+      "name": "The Mundane"
+    },
+    {
+      "id": "theprofessional",
+      "name": "The Professional"
+    },
+    {
+      "id": "thespellslinger",
+      "name": "The Spellslinger"
+    },
+    {
+      "id": "thespooky",
+      "name": "The Spooky"
+    },
+    {
+      "id": "thewronged",
+      "name": "The Wronged"
+    }
+  ],
+
   "tags": {
     "area": {
       "name": "Area",
@@ -166,29 +165,30 @@
       "description": "This weapon is dangerous and unstable."
     }
   },
-  "characters": {
-    "luck": {
-      "label": "Luck",
-      "description": "Mark luck to change a roll to 12 or avoid all harm from an injury",
-      "tooltip": {
-        "The Chosen": "When you spend a point of Luck, the Keeper will bring your fate into play",
-        "fenrir": "When you spend a point of Luck, the Keeper will bring your fate into play",
-        "fire-bringer": "When you spend a point of Luck, the Keeper will bring your fate into play",
-        "queen": "When you spend a point of Luck, the Keeper will bring your fate into play",
-        "sorcerer": "When you spend a point of Luck, the Keeper will bring your fate into play",
-        "tempter": "When you spend a point of Luck, the Keeper will bring your fate into play",
-        "torturer": "When you spend a point of Luck, the Keeper will bring your fate into play",
-        "trickster": "When you spend a point of Luck, the Keeper will bring your fate into play"
-      }
-    },
-    "harm": {
-      "label": "Harm",
-      "description": "When you suffer harm, mark off the number of boxes equal to harm suffered."
-    },
-    "experience": {
-      "label": "Experience",
-      "description": "Whenever you roll and get a total of 6 or less, or when a move tells you to, mark an experience box. ",
-      "alert": "When you have filled all five experience boxes, you level up. Erase the marks and pick an improvement"
+  "luck": {
+    "label": "Luck",
+    "description": "Mark luck to change a roll to 12 or avoid all harm from an injury",
+    "alert": "Doomed: You have spent all your luck",
+    "tooltip": {
+      "The Chosen": "When you spend a point of Luck, the Keeper will bring your fate into play",
+      "fenrir": "When you spend a point of Luck, the Keeper will bring your fate into play",
+      "fire-bringer": "When you spend a point of Luck, the Keeper will bring your fate into play",
+      "queen": "When you spend a point of Luck, the Keeper will bring your fate into play",
+      "sorcerer": "When you spend a point of Luck, the Keeper will bring your fate into play",
+      "tempter": "When you spend a point of Luck, the Keeper will bring your fate into play",
+      "torturer": "When you spend a point of Luck, the Keeper will bring your fate into play",
+      "trickster": "When you spend a point of Luck, the Keeper will bring your fate into play"
     }
+  },
+  "harm": {
+    "label": "Harm",
+    "description": "When you suffer harm, mark off the number of boxes equal to harm suffered.",
+    "alert": "You have reached 4 or more Harm. You are now unstable.",
+    "tooltip": "tooltip translation"
+  },
+  "experience": {
+    "label": "Experience",
+    "description": "Whenever you roll and get a total of 6 or less, or when a move tells you to, mark an experience box. ",
+    "alert": "When you have filled all five experience boxes, you level up. Erase the marks and pick an improvement"
   }
 }

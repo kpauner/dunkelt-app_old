@@ -1,20 +1,20 @@
 "use client";
 
 import React, { useCallback, useEffect } from "react";
-
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 
+import { useEditCharacter } from "@/features/characters/queries/use-edit-character";
+import { useGetCharacterById } from "@/features/characters/queries/use-get-character-by-id";
 import CharacterInventory from "@/features/characters/components/character-inventory";
 import { CharacterPlaybookBlocks } from "@/features/characters/components/character-playbook-blocks";
 import Harm from "@/features/characters/components/harm";
 import CharacterMoves from "@/features/characters/components/moves";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import Luck from "@/features/characters/components/luck";
-import { useGetCharacterById } from "@/features/characters/queries";
 import CharacterRatings from "@/features/characters/components/character-ratings";
 import Experience from "@/features/characters/components/experience";
-import CharacterAvatar from "./character-avatar";
+import CharacterAvatar from "@/components/characters/character-avatar";
 import {
   CharacterSheetBlock,
   CharacterSheetColumn,
@@ -22,8 +22,6 @@ import {
   CharacterSheetHeader,
   SheetBlock,
 } from "@/components/ui/character-sheet";
-import { useApplyCharacterChanges } from "@/features/characters/hooks/use-apply-character-changes";
-import { SelectCharacterSheet } from "@/types/character-sheet";
 
 type UserCharacterSheetProps = {
   characterId: string;
@@ -40,7 +38,7 @@ export default function UserCharacterSheet({
     isLoading,
     error,
   } = useGetCharacterById(characterId);
-  const mutation = useApplyCharacterChanges();
+  const mutation = useEditCharacter();
 
   useEffect(() => {
     if (characterQuery) {

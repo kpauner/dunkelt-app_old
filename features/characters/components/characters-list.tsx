@@ -3,7 +3,7 @@
 import React from "react";
 import Grid from "@/components/layout/grid";
 import { useAddCharacterDialog } from "@/features/characters/hooks/use-add-character-dialog";
-import { useGetCharacters } from "@/features/characters/queries";
+import { useGetCharacters } from "@/features/characters/queries/use-get-characters";
 import { calculateLevel, cn } from "@/lib/utils";
 import Link from "next/link";
 import { useLocale } from "next-intl";

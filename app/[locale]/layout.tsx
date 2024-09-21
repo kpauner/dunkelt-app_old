@@ -8,9 +8,9 @@ import AuthProvider from "@/providers/session-provider";
 import {
   Dashboard,
   DashboardContent,
+  DashboardFooter,
   DashboardHeader,
   DashboardSidebar,
-  DashboardWrapper,
 } from "@/components/layout/dashboard";
 import SidebarNavigation from "@/components/sidebar-navigation";
 import Header from "@/components/header";
@@ -37,7 +37,7 @@ export default async function LocaleLayout({
       className={`${GeistSans.variable} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
-      <body className="antialiased font-mono tracking-tight">
+      <body className="antialiased font-mono tracking-tight bg-background">
         <IntlClientProvider messages={messages} locale={locale}>
           <ThemeProvider
             attribute="class"
@@ -49,20 +49,21 @@ export default async function LocaleLayout({
             <QueryProvider>
               <AuthProvider>
                 <TooltipProvider>
-                  <Dashboard className="bg-background dark:bg-background text-foreground flex">
+                  <Dashboard className="bg-background text-foreground flex">
                     <DashboardSidebar>
                       <SidebarNavigation session={session} />
                     </DashboardSidebar>
-                    <DashboardWrapper className="flex min-h-screen">
-                      <DashboardHeader>
-                        <Header />
-                      </DashboardHeader>
-                      <DashboardContent>
-                        <Suspense fallback={<LoadingLogo />}>
-                          {children}
-                        </Suspense>
-                      </DashboardContent>
-                    </DashboardWrapper>
+
+                    <DashboardHeader className="ml-0 sm:ml-20">
+                      <Header />
+                    </DashboardHeader>
+
+                    <DashboardContent className="ml-0 sm:ml-20 h-[calc(100vh-80px)]">
+                      <Suspense fallback={<LoadingLogo />}>{children}</Suspense>
+                      <DashboardFooter className="bg-blue-500">
+                        something
+                      </DashboardFooter>
+                    </DashboardContent>
                   </Dashboard>
                   <SheetProvider />
                   <Toaster />

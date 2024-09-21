@@ -1,15 +1,3 @@
-import {
-  Dashboard,
-  DashboardContent,
-  DashboardContentLayout,
-  DashboardHeader,
-  DashboardSidebar,
-  DashboardWrapper,
-} from "@/components/layout/dashboard";
-import Header from "@/components/header";
-import SidebarNavigation from "@/components/sidebar-navigation";
-import ThemeToggle from "@/components/theme-toggle";
-import { useTranslations } from "next-intl";
 import Image from "next/image";
 import {
   Card,
@@ -21,12 +9,13 @@ import {
 import Heading from "@/components/layout/heading";
 import { auth } from "@/lib/auth";
 import { Paragraph } from "@/components/ui/paragraph";
+import { PageLayout } from "@/components/layout/page-layout";
 
 export default async function HomePage() {
   // const t = useTranslations("home");
   const session = await auth();
   return (
-    <DashboardContentLayout className="flex-1 flex flex-col gap-8">
+    <PageLayout className="flex-1 flex flex-col gap-8">
       <section className="grid w-full gap-6 grid-cols-3 grid-rows-2 min-h-[50vh]">
         <Card className="col-span-2 row-span-2">
           <CardHeader>
@@ -85,6 +74,6 @@ export default async function HomePage() {
           </Paragraph>
         </header>
       </section>
-    </DashboardContentLayout>
+    </PageLayout>
   );
 }

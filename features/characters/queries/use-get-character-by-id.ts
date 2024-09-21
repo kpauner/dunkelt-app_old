@@ -1,13 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "@/constants/constants";
-import { GetCharacterById, GetCharacters } from "./api";
-
-export function useGetCharacters() {
-  return useQuery({
-    queryKey: [QUERY_KEYS.CHARACTERS],
-    queryFn: GetCharacters,
-  });
-}
+import { GetCharacterById } from "@/features/characters/api";
 
 export function useGetCharacterById(id: string) {
   return useQuery({

@@ -66,7 +66,7 @@ export default function SidebarNavigation({ session }: SidebarNavigationProps) {
     { href: "/", icon: Icons.home, label: "Dashboard" },
     { href: "/codex", icon: Icons.codex, label: "Codex" },
     { href: "/games", icon: Icons.dice, label: "Games" },
-    { href: "/orders", icon: Icons.cart, label: "Orders" },
+    { href: "/marketplace", icon: Icons.cart, label: "Marketplace" },
   ];
 
   return (
