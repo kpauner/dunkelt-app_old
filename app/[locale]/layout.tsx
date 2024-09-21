@@ -60,8 +60,8 @@ export default async function LocaleLayout({
 
                     <DashboardContent className="ml-0 sm:ml-20 h-[calc(100vh-80px)]">
                       <Suspense fallback={<LoadingLogo />}>{children}</Suspense>
-                      <DashboardFooter className="bg-blue-500">
-                        something
+                      <DashboardFooter className="text-muted-foreground text-sm">
+                        <span>connection established ...</span>
                       </DashboardFooter>
                     </DashboardContent>
                   </Dashboard>

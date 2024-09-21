@@ -72,10 +72,12 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
             },
           },
           characterItems: {
+            columns: {
+              quantity: true,
+            },
             with: {
               item: true,
             },
-            columns: {},
           },
           characterAttributes: true,
         },
@@ -85,7 +87,10 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
       }
       const transformedData = {
         ...data,
-        characterItems: data.characterItems.map(({ item }) => item),
+        characterItems: data.characterItems.map((characterItem) => ({
+          ...characterItem.item,
+          quantity: characterItem.quantity,
+        })),
         characterMoves: data.characterMoves.map(({ move }) => move),
         characterAttributes: data.characterAttributes,
       };

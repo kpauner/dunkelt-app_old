@@ -11,6 +11,7 @@ const characterItems = sqliteTable("character_items", {
   itemId: integer("item_id")
     .notNull()
     .references(() => items.id),
+  quantity: integer("quantity").notNull().default(1),
 });
 
 export const characterItemsRelations = relations(characterItems, ({ one }) => ({

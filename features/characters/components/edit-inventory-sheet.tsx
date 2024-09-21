@@ -19,7 +19,10 @@ import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import TableItems from "@/features/items/components/table-items";
 import { useGetItems } from "@/features/items/queries";
 import Loader from "@/components/loader";
-import { inventoryColumns } from "@/components/characters/inventory-columns";
+import {
+  inventoryColumns,
+  inventorySheetColumns,
+} from "@/components/characters/inventory-columns";
 import {
   Accordion,
   AccordionContent,
@@ -32,7 +35,7 @@ export default function EditInventorySheet() {
   const { character } = useCharacterStore();
   const { data: items, isLoading, error } = useGetItems();
 
-  const t = useTranslations("features.inventory");
+  const t = useTranslations("inventory");
   const c = useTranslations("common");
 
   function handleSubmit(values: any) {
@@ -50,20 +53,7 @@ export default function EditInventorySheet() {
           <SheetTitle>{t("title")}</SheetTitle>
           <SheetDescription>{t("description")}</SheetDescription>
         </SheetHeader>
-        <Accordion type="multiple" defaultValue={["items"]}>
-          <AccordionItem value="items">
-            <AccordionTrigger>{t("title")}</AccordionTrigger>
-            <AccordionContent className="py-4">
-              <TableItems
-                data={character?.characterItems || []}
-                columns={inventoryColumns as any}
-                className="bg-none border-none p-0 dark:bg-transparent"
-                showFacetedFilter={false}
-                showViewOptions={false}
-                showRowsPerPage={false}
-              />
-            </AccordionContent>
-          </AccordionItem>
+        <Accordion type="multiple" defaultValue={["add-item"]}>
           <AccordionItem value="add-item" className="">
             <AccordionTrigger>Add item</AccordionTrigger>
             <AccordionContent className="py-4">
@@ -72,10 +62,10 @@ export default function EditInventorySheet() {
               ) : (
                 <TableItems
                   data={items || []}
-                  columns={inventoryColumns as any}
-                  className="bg-none border-none p-0 dark:bg-transparent"
+                  columns={inventorySheetColumns as any}
+                  // className="bg-none border-none p-0 dark:bg-transparent"
                   showFacetedFilter={false}
-                  showViewOptions={false}
+                  showViewOptions={true}
                   showRowsPerPage={false}
                 />
               )}

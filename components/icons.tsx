@@ -36,6 +36,7 @@ import {
   PlusIcon,
   UserPlusIcon,
   Trash,
+  MinusIcon,
 } from "lucide-react";
 export type IconProps = React.SVGProps<SVGSVGElement>;
 const Icons = {
@@ -58,21 +59,22 @@ const Icons = {
   notice: CircleAlertIcon,
   alert: AlertTriangleIcon,
   item: BriefcaseIcon,
-  arrowupdown: ArrowUpDown,
   verticaldots: EllipsisVertical,
-  chevronDown: ChevronDown,
-  chevronUp: ChevronUp,
+  armor: Shield,
+  editcharacter: UserPenIcon,
+  morevertical: MoreVerticalIcon,
+  addcharacter: UserPlusIcon,
+  trash: Trash,
+  add: PlusIcon,
+  minus: MinusIcon,
+  arrowupdown: ArrowUpDown,
   left: ChevronLeftIcon,
   doubleleft: DoubleArrowLeftIcon,
   right: ChevronRightIcon,
   doubleright: DoubleArrowRightIcon,
   weapon: Sword,
-  armor: Shield,
-  editcharacter: UserPenIcon,
-  morevertical: MoreVerticalIcon,
-  trash: Trash,
-  add: PlusIcon,
-  addcharacter: UserPlusIcon,
+  chevrondown: ChevronDown,
+  chevronup: ChevronUp,
   monster: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -9,7 +9,7 @@ import { calculateLevel } from "@/lib/utils";
 
 export default function Experience() {
   const { character, updateCharacter } = useCharacterStore();
-  const t = useTranslations("characters.experience");
+  const t = useTranslations("experience");
 
   if (!character)
     return <Skeleton className="w-full h-40 mb-2 " height={180} />;

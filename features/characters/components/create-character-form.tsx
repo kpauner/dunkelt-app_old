@@ -264,7 +264,7 @@ export default function CharacterForm({
           </AccordionItem>
         </Accordion>
         <div className="flex gap-2 items-center pt-2">
-          {!id && (
+          {!!id && (
             <Button
               variant="destructive"
               size="icon"

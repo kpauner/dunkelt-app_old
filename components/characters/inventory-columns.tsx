@@ -24,7 +24,7 @@ export const inventoryColumns = [
     cell: ({ row, getValue }) => (
       <div className="flex items-center gap-2">
         <button onClick={() => row.toggleExpanded()} className="cursor-pointer">
-          {row.getIsExpanded() ? <Icons.chevronUp /> : <Icons.chevronDown />}
+          {row.getIsExpanded() ? <Icons.chevronup /> : <Icons.chevrondown />}
         </button>
         <span>{getValue()}</span>
       </div>
@@ -40,22 +40,13 @@ export const inventoryColumns = [
     },
     cell: (info) => (
       <TagCloud
-        data={info.getValue() || []}
+        data={info.row.original.tags || []}
         harm={info.row.original.harm}
         armor={info.row.original.armor}
       />
     ),
     meta: {
       className: "max-w-[180px] ",
-    } as InventoryColumnMeta,
-  }),
-  columnHelper.display({
-    id: "actions",
-    cell: ({ row }) => {
-      return <InventoryActions row={row.original} />;
-    },
-    meta: {
-      className: "w-4",
     } as InventoryColumnMeta,
   }),
 ];
@@ -72,7 +63,7 @@ export const inventorySheetColumns = [
     cell: ({ row, getValue }) => (
       <div className="flex items-center gap-2">
         <button onClick={() => row.toggleExpanded()} className="cursor-pointer">
-          {row.getIsExpanded() ? <Icons.chevronUp /> : <Icons.chevronDown />}
+          {row.getIsExpanded() ? <Icons.chevronup /> : <Icons.chevrondown />}
         </button>
         <span>{getValue()}</span>
       </div>
@@ -94,7 +85,7 @@ export const inventorySheetColumns = [
       />
     ),
     meta: {
-      className: "max-w-[140px] ",
+      className: "max-w-36",
     } as InventoryColumnMeta,
   }),
   columnHelper.display({
@@ -103,7 +94,7 @@ export const inventorySheetColumns = [
       return <InventoryActions row={row.original} />;
     },
     meta: {
-      className: "w-4",
+      className: "w-36",
     } as InventoryColumnMeta,
   }),
 ];

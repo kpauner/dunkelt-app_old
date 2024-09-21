@@ -1,56 +1,58 @@
 {
-  "playbooks": [
-    {
-      "id": "thechosen",
-      "name": "The Chosen",
-      "description": "You are the chosen, the one who will save the world from the darkness. You are the hero, the one who will defeat the evil. You are the one who will bring peace to the world."
-    },
-    {
-      "id": "thecrooked",
-      "name": "The Crooked"
-    },
-    {
-      "id": "thedivine",
-      "name": "The Divine"
-    },
-    {
-      "id": "theexpert",
-      "name": "The Expert"
-    },
-    {
-      "id": "thefallen",
-      "name": "The Fallen"
-    },
-    {
-      "id": "theinitiate",
-      "name": "The Initiate"
-    },
-    {
-      "id": "themonstrous",
-      "name": "The Monstrous"
-    },
-    {
-      "id": "themundane",
-      "name": "The Mundane"
-    },
-    {
-      "id": "theprofessional",
-      "name": "The Professional"
-    },
-    {
-      "id": "thespellslinger",
-      "name": "The Spellslinger"
-    },
-    {
-      "id": "thespooky",
-      "name": "The Spooky"
-    },
-    {
-      "id": "thewronged",
-      "name": "The Wronged"
-    }
-  ],
-
+  "motw": {
+    "title": "The Monster of the Week",
+    "playbooks": [
+      {
+        "id": "thechosen",
+        "name": "The Chosen",
+        "description": "You are the chosen, the one who will save the world from the darkness. You are the hero, the one who will defeat the evil. You are the one who will bring peace to the world."
+      },
+      {
+        "id": "thecrooked",
+        "name": "The Crooked"
+      },
+      {
+        "id": "thedivine",
+        "name": "The Divine"
+      },
+      {
+        "id": "theexpert",
+        "name": "The Expert"
+      },
+      {
+        "id": "thefallen",
+        "name": "The Fallen"
+      },
+      {
+        "id": "theinitiate",
+        "name": "The Initiate"
+      },
+      {
+        "id": "themonstrous",
+        "name": "The Monstrous"
+      },
+      {
+        "id": "themundane",
+        "name": "The Mundane"
+      },
+      {
+        "id": "theprofessional",
+        "name": "The Professional"
+      },
+      {
+        "id": "thespellslinger",
+        "name": "The Spellslinger"
+      },
+      {
+        "id": "thespooky",
+        "name": "The Spooky"
+      },
+      {
+        "id": "thewronged",
+        "name": "The Wronged"
+      }
+    ]
+  },
   "tags": {
     "area": {
       "name": "Area",
@@ -190,5 +192,13 @@
     "label": "Experience",
     "description": "Whenever you roll and get a total of 6 or less, or when a move tells you to, mark an experience box. ",
     "alert": "When you have filled all five experience boxes, you level up. Erase the marks and pick an improvement"
+  },
+  "moves": {
+    "label": "Moves",
+    "description": "Moves are actions you can take. You can only take one move per turn, and you must take it before you act."
+  },
+  "inventory": {
+    "title": "Inventory",
+    "description": "This is your inventory. You can add, remove, and edit items here."
   }
 }

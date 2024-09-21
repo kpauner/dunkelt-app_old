@@ -1,11 +1,15 @@
 import { items } from "@/db/schema";
-import { InferSelectModel } from "drizzle-orm";
-import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import { createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const SelectItemsSchema = createSelectSchema(items);
+export const SelectItemsSchema = createSelectSchema(items, {
+  tags: z.array(z.string()),
+});
+export const CharacterItemSchema = SelectItemsSchema.extend({
+  quantity: z.number(),
+});
 
-export type SelectItems = InferSelectModel<typeof items>;
+export type SelectItems = z.infer<typeof CharacterItemSchema>;
 
 // export const insertItemsSchema = createInsertSchema(items);
 const TypeEnum = z.enum(["Weapon", "Armor", "Consumable", "Artifact", "Other"]);

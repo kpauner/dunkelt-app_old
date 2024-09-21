@@ -13,18 +13,20 @@ import { Paragraph } from "@/components/ui/paragraph";
 import { Button } from "@/components/ui/button";
 import Icons from "@/components/icons";
 import { useEditMovesSheet } from "@/features/characters/hooks/use-edit-moves-sheet";
+import { useTranslations } from "next-intl";
 
 export default function Moves() {
-  const { character, setCharacter } = useCharacterStore();
+  const { character } = useCharacterStore();
   const { onOpen } = useEditMovesSheet();
+  const t = useTranslations("moves");
   if (!character) {
     return <Skeleton className="w-full h-40 mb-2 " height={SKELETON_HEIGHT} />;
   }
   return (
     <CharacterSheetBlock
-      label="Moves"
-      description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-      tooltip="Moves are actions that your character can perform."
+      label={t("label")}
+      description={t("description")}
+      tooltip={t("tooltip")}
       notice={
         character.characterMoves.length < 3
           ? "You haven't selected 3 moves"

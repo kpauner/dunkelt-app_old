@@ -1,11 +1,11 @@
 import { create } from "zustand";
-import { CharacterResponseType } from "@/types/characters";
+import { GetCharacterSheetResponseType } from "@/types/character-sheet";
 
 type CharacterStore = {
-  character: CharacterResponseType | null;
+  character: GetCharacterSheetResponseType | null;
   hasUnsavedChanges: boolean;
-  setCharacter: (character: CharacterResponseType | null) => void;
-  updateCharacter: (updates: Partial<CharacterResponseType>) => void;
+  setCharacter: (character: GetCharacterSheetResponseType | null) => void;
+  updateCharacter: (updates: Partial<GetCharacterSheetResponseType>) => void;
   setHasUnsavedChanges: (value: boolean) => void;
 
   loading: boolean;
