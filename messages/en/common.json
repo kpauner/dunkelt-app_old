@@ -8,6 +8,7 @@
     "loading": "loading...",
     "signin": "Sign In",
     "logout": "Sign Out",
+    "no-results": "No results",
     "pagination": "Page {current} of {total}",
     "changes-saved": "Changes saved",
     "save-failed": "Save failed",

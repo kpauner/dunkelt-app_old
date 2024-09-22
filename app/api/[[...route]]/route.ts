@@ -8,6 +8,7 @@ import items from "./items";
 import inventory from "./inventory";
 import characters from "./characters";
 import bystanders from "./bystanders";
+import bestiary from "./bestiary";
 
 type CustomVariableMap = {
   session: Session | null;
@@ -24,6 +25,7 @@ app.use("*", async (c, next) => {
 });
 
 const routes = app
+  .route("/bestiary", bestiary)
   .route("/items", items)
   .route("/inventory", inventory)
   .route("/characters", characters)

@@ -34,6 +34,7 @@ import {
   BestiaryExpandedRow,
 } from "./expanded-rows";
 import Loader from "./loader";
+import { useTranslations } from "next-intl";
 
 type DataTableProps<TData, TValue> = {
   columns: any;
@@ -68,6 +69,7 @@ export default function TableData<TData, TValue>({
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [expanded, setExpanded] = React.useState<ExpandedState>({});
   const [globalFilter, setGlobalFilter] = React.useState("");
+  const t = useTranslations();
 
   const table = useReactTable({
     data,
@@ -163,7 +165,7 @@ export default function TableData<TData, TValue>({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  {isLoading ? <Loader /> : "No results."}
+                  {isLoading ? <Loader /> : t("common.no-results")}
                 </TableCell>
               </TableRow>
             )}
