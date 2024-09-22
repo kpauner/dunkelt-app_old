@@ -58,12 +58,12 @@ export default async function LocaleLayout({
                       <Header />
                     </DashboardHeader>
 
-                    <DashboardContent className="ml-0 sm:ml-20 h-[calc(100vh-80px)]">
+                    <DashboardContent className="ml-0 sm:ml-20 min-h-[calc(100vh-132px)]">
                       <Suspense fallback={<LoadingLogo />}>{children}</Suspense>
-                      <DashboardFooter className="text-muted-foreground text-sm">
-                        <span>connection established ...</span>
-                      </DashboardFooter>
                     </DashboardContent>
+                    <DashboardFooter className="text-muted-foreground text-sm ml-0 sm:ml-20">
+                      <span>connection established ...</span>
+                    </DashboardFooter>
                   </Dashboard>
                   <SheetProvider />
                   <Toaster />

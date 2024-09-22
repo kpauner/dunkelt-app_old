@@ -77,7 +77,7 @@ const DashboardFooter = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex items-center py-4 ", className)}
+    className={cn("flex items-center p-4 sm:px-6", className)}
     {...props}
   />
 ));

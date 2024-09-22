@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import {
   ColumnDef,
   ExpandedState,
@@ -12,7 +13,8 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import React from "react";
+import ItemsExpandedRow from "@/features/items/components/items-expanded-row";
+import BestiaryExpandedRow from "@/features/bestiary/components/bestiary-expanded-row";
 import {
   Table,
   TableBody,
@@ -27,12 +29,7 @@ import { filters } from "@/config/filters.config";
 import { DataTablePagination } from "@/components/table-pagination";
 import { InventoryColumnMeta } from "@/components/characters/inventory-columns";
 import { cn } from "@/lib/utils";
-import {
-  BystandersExpandedRow,
-  ItemsExpandedRow,
-  LocationsExpandedRow,
-  BestiaryExpandedRow,
-} from "./expanded-rows";
+import { BystandersExpandedRow, LocationsExpandedRow } from "./expanded-rows";
 import Loader from "./loader";
 import { useTranslations } from "next-intl";
 
@@ -153,7 +150,7 @@ export default function TableData<TData, TValue>({
                   {row.getIsExpanded() && (
                     <TableRow className="expanded-content ">
                       <TableCell colSpan={columns.length}>
-                        <ExpandedRowComponent row={row.original} />
+                        <ExpandedRowComponent row={row.original as any} />
                       </TableCell>
                     </TableRow>
                   )}

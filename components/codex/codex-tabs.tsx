@@ -25,7 +25,7 @@ export default function CodexPage() {
         <div className="flex items-center">
           <TabsList>
             <TabsTrigger value="bestiary">
-              <Icons.monster className="mr-2 h-4 w-4" />
+              <Icons.bestiary className="mr-2 h-4 w-4" />
               Bestiary
             </TabsTrigger>
             <TabsTrigger value="bystanders">
@@ -33,11 +33,11 @@ export default function CodexPage() {
               Bystanders
             </TabsTrigger>
             <TabsTrigger value="locations">
-              <Icons.location className="mr-2 h-4 w-4" />
+              <Icons.locations className="mr-2 h-4 w-4" />
               Locations
             </TabsTrigger>
             <TabsTrigger value="items">
-              <Icons.item className="mr-2 h-4 w-4" />
+              <Icons.items className="mr-2 h-4 w-4" />
               Items
             </TabsTrigger>
           </TabsList>

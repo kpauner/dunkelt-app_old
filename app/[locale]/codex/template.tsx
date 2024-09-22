@@ -18,7 +18,7 @@ export default function CodexTemplate({ children }: CodexTemplateProps) {
 
   const codexMenu = [
     {
-      icon: Icons.monster,
+      icon: Icons.bestiary,
       label: "Bestiary",
       url: `/codex/bestiary`,
       isActive: isActive("/codex/bestiary"),

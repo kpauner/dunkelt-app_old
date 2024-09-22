@@ -47,7 +47,7 @@ const Icons = {
   codex: BookCopyIcon,
   bystanders: Users2,
   user: User,
-  location: MapPin,
+  locations: MapPin,
   characters: ContactIcon,
   settings: Settings,
   feedback: MessageSquare,
@@ -58,7 +58,7 @@ const Icons = {
   help: CircleHelp,
   notice: CircleAlertIcon,
   alert: AlertTriangleIcon,
-  item: BriefcaseIcon,
+  items: BriefcaseIcon,
   verticaldots: EllipsisVertical,
   armor: Shield,
   editcharacter: UserPenIcon,
@@ -75,7 +75,7 @@ const Icons = {
   weapon: Sword,
   chevrondown: ChevronDown,
   chevronup: ChevronUp,
-  monster: ({ ...props }: IconProps) => (
+  bestiary: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="32"

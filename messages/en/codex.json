@@ -1,4 +1,36 @@
 {
+  "codex": {
+    "categories": [
+      {
+        "key": "bestiary",
+        "label": "Bestiary",
+        "description": "Discover the creatures of the realm",
+        "href": "codex/bestiary",
+        "image": "BESTIARY"
+      },
+      {
+        "key": "bystanders",
+        "label": "Bystanders",
+        "description": "Meet the inhabitants of the world",
+        "href": "codex/bystanders",
+        "image": "BYSTANDERS"
+      },
+      {
+        "key": "locations",
+        "label": "Locations",
+        "description": "Explore fascinating places",
+        "href": "codex/locations",
+        "image": "LOCATIONS"
+      },
+      {
+        "key": "items",
+        "label": "Items",
+        "description": "Learn about powerful artifacts",
+        "href": "codex/items",
+        "image": "ITEMS"
+      }
+    ]
+  },
   "motivations": {
     "beast": "to run wild, destroying and killing",
     "breeder": "to give birth to, or create, evil",

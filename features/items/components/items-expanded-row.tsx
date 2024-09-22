@@ -1,15 +1,14 @@
-import { SelectItems } from "@/types/items";
 import Icons from "@/components/icons";
 import Heading from "@/components/layout/heading";
-import { Paragraph } from "@/components/ui/paragraph";
 import TagCloud from "@/components/tag-cloud";
+import { Paragraph } from "@/components/ui/paragraph";
 
-export function LocationsExpandedRow({ row }: { row: any }) {
+export default function ItemsExpandedRow({ row }: { row: any }) {
   return (
     <div className="flex flex-col gap-4 w-full">
       <div className="flex gap-x-2">
         <div className="p-px rounded-md flex items-center justify-center border-primary-dark border  aspect-square w-9">
-          <Icons.weapon className="w-6 h-6" />
+          <Icons.items className="w-6 h-6" />
         </div>
         <div>
           <Heading size="xs" className="">
@@ -27,8 +26,6 @@ export function LocationsExpandedRow({ row }: { row: any }) {
           </div>
         )}
 
-        {/* <p>€: {item.value}</p>
-              <p>Weight: {item.weight}</p> */}
         {row?.description && (
           <Paragraph variant="default" size="xs">
             {row.description}
@@ -36,15 +33,12 @@ export function LocationsExpandedRow({ row }: { row: any }) {
         )}
       </div>
 
-      <TagCloud data={row.tags || []} showAllTags={true} harm={row.harm} />
-    </div>
-  );
-}
-
-export function BystandersExpandedRow({ row: item }: { row: any }) {
-  return (
-    <div className="flex flex-col gap-4 w-full">
-      expanded row content for bystanders
+      <TagCloud
+        data={row.tags || []}
+        showAllTags={true}
+        harm={row.harm}
+        armor={row.armor}
+      />
     </div>
   );
 }
