@@ -10,6 +10,7 @@ import {
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  Row,
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
@@ -32,11 +33,32 @@ import { cn } from "@/lib/utils";
 import { BystandersExpandedRow, LocationsExpandedRow } from "./expanded-rows";
 import Loader from "./loader";
 import { useTranslations } from "next-intl";
+import { GetBestiaryByIdResponseType, GetBestiaryResponseType } from "@/types/bestiary";
+import { GetItemsResponseType } from "@/types/items";
 
-type DataTableProps<TData, TValue> = {
-  columns: any;
+// Define a mapping of expanded row types to their respective components
+const expandedRowComponents = {
+  bestiary: BestiaryExpandedRow,
+  locations: LocationsExpandedRow,
+  bystanders: BystandersExpandedRow,
+  items: ItemsExpandedRow,
+} as const;
+
+// Define a type that maps expanded row types to their respective props
+type ExpandedRowProps<T> = T extends "bestiary"
+  ? { row: Row<GetBestiaryByIdResponseType> }
+  : T extends "locations"
+  ? { row: Row<any> } // Replace LocationType with the actual type
+  : T extends "bystanders"
+  ? { row: Row<any> } // Replace BystanderType with the actual type
+  : T extends "items"
+  ? { row: Row<GetItemsResponseType> } // Replace ItemType with the actual type
+  : never;
+
+type DataTableProps<TData extends object, TValue> = {
+  columns: ColumnDef<TData, TValue>[];
   data: TData[];
-  expandedRowType: "locations" | "bystanders" | "items" | "bestiary";
+  expandedRowType: keyof typeof expandedRowComponents;
   isLoading?: boolean;
   className?: string;
   pageSize?: number;
@@ -45,14 +67,7 @@ type DataTableProps<TData, TValue> = {
   showRowsPerPage?: boolean;
 };
 
-const expandedRowComponents = {
-  bestiary: BestiaryExpandedRow,
-  locations: LocationsExpandedRow,
-  bystanders: BystandersExpandedRow,
-  items: ItemsExpandedRow,
-} as const;
-
-export default function TableData<TData, TValue>({
+export default function TableData<TData extends object, TValue>({
   columns,
   data,
   expandedRowType,
@@ -93,7 +108,9 @@ export default function TableData<TData, TValue>({
     getFilteredRowModel: getFilteredRowModel(),
   });
 
-  const ExpandedRowComponent = expandedRowComponents[expandedRowType];
+  const ExpandedRowComponent = expandedRowComponents[
+    expandedRowType
+  ] as React.ComponentType<ExpandedRowProps<typeof expandedRowType>>;
 
   return (
     <div className="flex flex-col gap-2">
@@ -148,9 +165,9 @@ export default function TableData<TData, TValue>({
                     ))}
                   </TableRow>
                   {row.getIsExpanded() && (
-                    <TableRow className="expanded-content ">
+                    <TableRow className="expanded-content">
                       <TableCell colSpan={columns.length}>
-                        <ExpandedRowComponent row={row.original as any} />
+                        <ExpandedRowComponent row={row} />
                       </TableCell>
                     </TableRow>
                   )}

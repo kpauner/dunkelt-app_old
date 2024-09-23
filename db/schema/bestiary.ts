@@ -26,7 +26,6 @@ const bestiary = sqliteTable("bestiary", {
   attacks: text("attacks", { mode: "json" }).$type<Attack[]>().notNull(),
   armor: integer("armor").notNull(),
   harmCapacity: integer("harm_capacity").notNull(),
-  origins: text("origins", { mode: "json" }).$type<string[]>().notNull(),
   signs: text("signs", { mode: "json" }).$type<string[]>().notNull(),
   countermeasures: text("countermeasures", { mode: "json" })
     .$type<string[]>()

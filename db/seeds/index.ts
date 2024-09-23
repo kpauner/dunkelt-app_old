@@ -7,3 +7,5 @@ export { default as items } from "./items";
 export { default as bestiary } from "./bestiary";
 export { default as bestiaryMoves } from "./bestiaryMoves";
 export { default as bystanders } from "./bystanders";
+export { default as tags } from "./tags";
+export { default as taggable } from "./taggable";

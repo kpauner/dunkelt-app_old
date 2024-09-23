@@ -27,4 +27,3 @@ export type CharacterResponseType = InferResponseType<
   typeof client.api.characters.$get,
   200
 >["data"][0];
-

@@ -23,3 +23,6 @@ export {
   characterItemsRelations,
 } from "./characterItems";
 export { default as bystanders } from "./bystanders";
+
+export { default as tags, tagsRelations } from "./tags";
+export { default as taggable, taggableRelations } from "./taggable";

@@ -31,6 +31,14 @@
       }
     ]
   },
+  "bestiary": {
+    "harmCapacity": "Harm Capacity",
+    "armor": "Armor",
+    "origins": "Origins",
+    "details": "Details",
+    "attacks": "Attacks",
+    "powers": "Powers"
+  },
   "motivations": {
     "beast": "to run wild, destroying and killing",
     "breeder": "to give birth to, or create, evil",

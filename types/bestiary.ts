@@ -1,12 +1,12 @@
 import { bestiary, bestiaryMoves } from "@/db/schema";
+import { client } from "@/lib/hono";
 import { InferSelectModel } from "drizzle-orm";
-import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+import { createSelectSchema } from "drizzle-zod";
+import { InferResponseType } from "hono";
 import { z } from "zod";
 
 export const SelectBestiarySchema = createSelectSchema(bestiary);
 export const SelectBestiaryMovesSchema = createSelectSchema(bestiaryMoves);
-export const InsertBestiarySchema = createInsertSchema(bestiary);
-export const InsertBestiaryMovesSchema = createInsertSchema(bestiaryMoves);
 
 export type Powers = {
   name: string;
@@ -22,19 +22,12 @@ export type Attack = {
 export type SelectBestiary = z.infer<typeof SelectBestiarySchema>;
 export type SelectBestiaryMoves = InferSelectModel<typeof bestiaryMoves>;
 
-export type BestiaryEntry = {
-  name: string;
-  type: string;
-  description: string;
-  motivation: string;
-  powers: Powers[];
-  weaknesses: string[];
-  attacks: Attack[];
-  armor: number;
-  harmCapacity: number;
-  history: string;
-  habitat: string;
-  signs: string[];
-  customMoves: Powers[];
-  countermeasures: string[];
-};
+// API RESPONSE TYPES
+export type GetBestiaryResponseType = InferResponseType<
+  (typeof client.api.bestiary)["$get"],
+  200
+>["data"];
+export type GetBestiaryByIdResponseType = InferResponseType<
+  (typeof client.api.bestiary)[":id"]["$get"],
+  200
+>["data"];

@@ -9,54 +9,88 @@ import {
 import { Paragraph } from "@/components/ui/paragraph";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import { SelectBestiary } from "@/types/bestiary";
+import {
+  GetBestiaryByIdResponseType,
+  GetBestiaryResponseType,
+  SelectBestiary,
+} from "@/types/bestiary";
+import { Row } from "@tanstack/react-table";
+import { useTranslations } from "next-intl";
 import React from "react";
 
-export default function BestiaryExpandedRow({ row }: { row: SelectBestiary }) {
+type BestiaryExpandedRowProps = {
+  row: Row<GetBestiaryByIdResponseType>;
+};
+
+export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
+  const t = useTranslations("bestiary");
+  if (!row.original) return null;
+  // Example details array, adjust as needed
   const details = [
     {
-      label: "Harm Capacity",
-      value: row.harmCapacity,
+      label: t("harmCapacity"),
+      value: row.original.harmCapacity,
     },
     {
-      label: "Armor",
-      value: row.armor,
+      label: t("armor"),
+      value: row.original.armor,
+    },
+    {
+      label: t("origins"),
+      value: row.original.tags.origins,
     },
   ];
+
   return (
     <div className="grid grid-cols-2 gap-6">
       <div className="space-y-3">
         <Heading size="sm" className="uppercase tracking-wide">
-          {row.name}
+          {row.original.name}
         </Heading>
-        <TagCloud data={row.type} />
+        <TagCloud data={row.original.type} />
         <Separator className="my-2 h-1 dark:bg-primary" />
+
         <List>
           {details.map((detail, index) => (
             <ListItem
+              key={index}
               className={cn(
                 "h-8 px-2 flex items-center justify-between",
                 index % 2 === 0 ? "bg-primary-dark" : ""
               )}
-              key={detail.label}
             >
               <ListTitle>{detail.label}</ListTitle>
-              <ListDescription>{detail.value}</ListDescription>
+              <ListDescription>
+                {Array.isArray(detail.value)
+                  ? detail.value.join(", ")
+                  : detail.value}
+              </ListDescription>
             </ListItem>
           ))}
         </List>
-        <Paragraph size="sm">{row.description}</Paragraph>
+        <RowSection title={t("description")} text={row.original.description} />
       </div>
       <div>
-        <Heading size="xs" className="uppercase tracking-wide">
-          Attacks
-        </Heading>
-        <Paragraph size="sm">{row.description}</Paragraph>
-        <Heading size="xs" className="uppercase tracking-wide">
-          Powers
-        </Heading>
-        <Paragraph size="sm">{row.description}</Paragraph>
+        <RowSection title={t("description")} text={row.original.description} />
+        <pre>{JSON.stringify(row.original, null, 2)}</pre>
       </div>
+    </div>
+  );
+}
+
+function RowSection({
+  title,
+  text,
+}: {
+  title: string;
+  text: string | string[] | null;
+}) {
+  return (
+    <div className="pt-8 space-y-2">
+      <Heading size="xs" className="uppercase tracking-wide">
+        {title}
+      </Heading>
+      <Paragraph size="sm">{text}</Paragraph>
     </div>
   );
 }

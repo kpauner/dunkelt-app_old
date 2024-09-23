@@ -1,0 +1,26 @@
+[
+  {
+    "tagId": 1,
+    "taggableId": 1,
+    "taggableType": "bestiary",
+    "taggableColumn": "origins"
+  },
+  {
+    "tagId": 2,
+    "taggableId": 1,
+    "taggableType": "bestiary",
+    "taggableColumn": "origins"
+  },
+  {
+    "tagId": 3,
+    "taggableId": 1,
+    "taggableType": "bestiary",
+    "taggableColumn": "origins"
+  },
+  {
+    "tagId": 4,
+    "taggableId": 2,
+    "taggableType": "bestiary",
+    "taggableColumn": "type"
+  }
+]

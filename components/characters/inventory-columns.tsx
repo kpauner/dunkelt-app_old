@@ -7,10 +7,10 @@ import { SelectItems } from "@/types/items";
 import Heading from "../layout/heading";
 import InventoryActions from "@/features/items/components/inventory-actions";
 
-const columnHelper = createColumnHelper<SelectItems>();
 export type InventoryColumnMeta = {
   className?: string;
 };
+const columnHelper = createColumnHelper<SelectItems>();
 
 export const inventoryColumns = [
   columnHelper.accessor("name", {

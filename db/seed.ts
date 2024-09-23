@@ -23,6 +23,8 @@ async function seedDatabase() {
     schema.bystanders,
     schema.moves,
     schema.items,
+    schema.tags,
+    schema.taggable,
   ]) {
     // if (table === schema.bestiary) {
     //   console.log("harm capacity", table.harmCapacity.name);
@@ -39,6 +41,8 @@ async function seedDatabase() {
   await seeds.items(db);
   await seeds.characterItems(db);
   await seeds.bystanders(db);
+  await seeds.tags(db);
+  await seeds.taggable(db);
 }
 
 seedDatabase()

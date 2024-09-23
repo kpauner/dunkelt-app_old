@@ -1,10 +1,12 @@
 [
   {
     "characterId": 1,
-    "itemId": 1
+    "itemId": 1,
+    "quantity": 1
   },
   {
     "characterId": 1,
-    "itemId": 2
+    "itemId": 2,
+    "quantity": 2
   }
 ]

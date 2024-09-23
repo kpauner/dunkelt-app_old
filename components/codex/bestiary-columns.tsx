@@ -1,18 +1,19 @@
 "use client";
 
-import { ColumnDef } from "@tanstack/react-table";
-import { SelectBestiary } from "@/types/bestiary";
+import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
+import { GetBestiaryResponseType, SelectBestiary } from "@/types/bestiary";
 import { ArrowUpDown, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { CellStringArray, CellTooltip } from "./cells";
 import { Paragraph } from "@/components/ui/paragraph";
 import { truncateText } from "@/lib/utils";
+import Icons from "../icons";
 
-export const bestiaryColumns: ColumnDef<SelectBestiary>[] = [
-  {
-    accessorFn: (row) => row.name.toLowerCase(),
-    accessorKey: "name",
+const columnHelper = createColumnHelper<GetBestiaryResponseType>();
+
+export const bestiaryColumns = [
+  columnHelper.accessor("name", {
     header: ({ column }) => {
       return (
         <Button
@@ -21,32 +22,21 @@ export const bestiaryColumns: ColumnDef<SelectBestiary>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Name
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <Icons.arrowupdown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }) => (
+    cell: ({ row, getValue }) => (
       <div className="flex items-center gap-2">
-        <button
-          onClick={() => {
-            row.toggleExpanded();
-          }}
-          className="cursor-pointer"
-        >
-          {row.getIsExpanded() ? (
-            <ChevronDown className="h-4 w-4" />
-          ) : (
-            <ChevronRight className="h-4 w-4" />
-          )}
+        <button onClick={() => row.toggleExpanded()} className="cursor-pointer">
+          {row.getIsExpanded() ? <Icons.chevronup /> : <Icons.chevrondown />}
         </button>
-        <span className="capitalize font-bold tracking-wider">
-          {row.getValue("name")}
-        </span>
+        <span>{row.getValue("name")}</span>
       </div>
     ),
-  },
-  {
-    accessorKey: "id",
+  }),
+
+  columnHelper.accessor("id", {
     header: ({ column }) => {
       return (
         <Button variant="ghost" className="my-1 ">
@@ -67,9 +57,8 @@ export const bestiaryColumns: ColumnDef<SelectBestiary>[] = [
         </span>
       </div>
     ),
-  },
-  {
-    accessorKey: "type",
+  }),
+  columnHelper.accessor("type", {
     header: ({ column }) => {
       return (
         <Button
@@ -87,9 +76,8 @@ export const bestiaryColumns: ColumnDef<SelectBestiary>[] = [
         <CellTooltip value={row.getValue("type")} translation="motivations" />
       </div>
     ),
-  },
-  {
-    accessorKey: "description",
+  }),
+  columnHelper.accessor("description", {
     header: ({ column }) => {
       return (
         <Button
@@ -107,9 +95,8 @@ export const bestiaryColumns: ColumnDef<SelectBestiary>[] = [
         {truncateText(row.getValue("description"), 180)}
       </Paragraph>
     ),
-  },
-  {
-    accessorKey: "weaknesses",
+  }),
+  columnHelper.accessor("weaknesses", {
     header: ({ column }) => {
       return (
         <Button
@@ -127,5 +114,5 @@ export const bestiaryColumns: ColumnDef<SelectBestiary>[] = [
         <CellStringArray value={row.getValue("weaknesses")} />
       </div>
     ),
-  },
+  }),
 ];
