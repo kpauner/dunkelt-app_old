@@ -13,6 +13,7 @@ type BestiaryEntry = {
   powers: Powers[]; // Ensure powers is of type Powers[]
   weakness: string[]; // Ensure weakness is of type string[]
   signs: string[]; // Ensure signs is of type string[]
+  origins: string[]; // Ensure origins is of type string[]
   image?: string | null;
   userId?: string | null;
   isPublic?: boolean;
@@ -30,6 +31,7 @@ export default async function seed(db: db) {
     powers: beast.powers as Powers[], // Ensure powers is of type Powers[]
     weakness: beast.weakness as string[], // Ensure weakness is of type string[]
     signs: beast.signs as string[], // Ensure signs is of type string[]
+    origins: beast.origins as string[], // Ensure origins is of type string[]
     userId: "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
     isPublic: true,
   }));

@@ -116,6 +116,14 @@
       "name": "Electronic",
       "description": "This item is electronic and requires a power source to operate."
     },
+    "iron": {
+      "name": "Iron",
+      "description": "Weakness to or made of iron."
+    },
+    "salt": {
+      "name": "Salt",
+      "description": "Weakness to or made of salt."
+    },
     "queen": {
       "name": "Queen",
       "description": "This item is a queen."

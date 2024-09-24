@@ -19,8 +19,17 @@ export const filtersConfig: { [key: string]: FilterConfig[] } = {
       column: "type",
       title: "Type",
       options: [
-        { label: "Queen", value: "Queen" },
-        { label: "Breeder", value: "Breeder" },
+        { label: "Queen", value: "queen" },
+        { label: "Breeder", value: "breeder" },
+      ],
+    },
+    {
+      column: "origins",
+      title: "Origins",
+      options: [
+        { label: "Romania", value: "Romania" },
+        { label: "Denmark", value: "Denmark" },
+        { label: "Bulgaria", value: "Bulgaria" },
       ],
     },
     // Add more filters as needed

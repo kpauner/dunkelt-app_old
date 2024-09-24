@@ -48,6 +48,7 @@
       "Sightings of a bat or mist moving unnaturally",
       "Reports of a charming stranger with an aversion to sunlight"
     ],
+    "origins": ["Romania", "Bulgaria"],
     "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
     "isPublic": true
   },
@@ -88,6 +89,7 @@
       "Claw marks on trees or buildings"
     ],
     "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "origins": ["Romania", "Bulgaria"],
     "isPublic": true
   },
   {
@@ -127,6 +129,7 @@
       "Disembodied voices or whispers",
       "Recurring nightmares about a specific person or event"
     ],
+    "origins": ["Romania", "Denmark"],
     "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
     "isPublic": true
   }

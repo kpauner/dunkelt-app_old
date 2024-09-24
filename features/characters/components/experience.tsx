@@ -6,6 +6,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { CharacterSheetBlock } from "@/components/ui/character-sheet";
 import { Input } from "@/components/ui/input";
 import { calculateLevel } from "@/lib/utils";
+import { NumberStepper } from "@/components/number-stepper";
 
 export default function Experience() {
   const { character, updateCharacter } = useCharacterStore();
@@ -49,16 +50,17 @@ export default function Experience() {
             />
           ))}
         </div>
-        <Input
-          type="number"
+
+        <NumberStepper
+          min={0}
+          max={10000}
           value={character.experience}
-          onChange={(e) =>
+          onChange={(value) =>
             updateCharacter({
               ...character,
-              experience: parseInt(e.target.value),
+              experience: value,
             })
           }
-          className="w-16 aspect-square"
         />
       </div>
     </CharacterSheetBlock>

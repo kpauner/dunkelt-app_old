@@ -38,6 +38,7 @@ import {
   GetBestiaryResponseType,
 } from "@/types/bestiary";
 import { SelectItemsResponseType } from "@/types/items";
+import { ColumnMeta } from "./codex/bestiary-columns";
 
 // Define a mapping of expanded row types to their respective components
 const expandedRowComponents = {
@@ -89,12 +90,16 @@ export default function TableData<TData extends object, TValue>({
   const table = useReactTable({
     data,
     columns,
+    enableColumnResizing: false,
     state: {
       expanded,
       globalFilter,
       sorting,
     },
     initialState: {
+      columnVisibility: {
+        origins: false,
+      },
       pagination: {
         pageSize: pageSize || 5,
       },
@@ -127,7 +132,7 @@ export default function TableData<TData extends object, TValue>({
       />
 
       <Card className={cn("w-full", className)}>
-        <Table>
+        <Table style={{ width: "100%" }}>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
@@ -155,9 +160,12 @@ export default function TableData<TData extends object, TValue>({
                     {row.getVisibleCells().map((cell) => (
                       <TableCell
                         key={cell.id}
+                        style={{
+                          width: (cell.column.columnDef as ColumnMeta)?.meta
+                            ?.size,
+                        }}
                         className={
-                          (cell.column.columnDef.meta as InventoryColumnMeta)
-                            ?.className
+                          (cell.column.columnDef as ColumnMeta)?.meta?.className
                         }
                       >
                         {flexRender(

@@ -23,8 +23,12 @@ const bestiary = sqliteTable("bestiary", {
   description: text("description").notNull(),
   powers: text("powers", { mode: "json" }).$type<Powers[]>().notNull(),
   weakness: text("weakness", { mode: "json" }).$type<string[]>().notNull(),
-  armor: integer("armor").notNull(),
-  harmCapacity: integer("harm_capacity").notNull(),
+  armor: integer("armor").notNull().default(0),
+  harmCapacity: integer("harm_capacity").notNull().default(1),
+  origins: text("origins", { mode: "json" })
+    .$type<string[]>()
+    .notNull()
+    .default(["unknown"]),
   signs: text("signs", { mode: "json" }).$type<string[]>().notNull(),
   userId: text("user_id").references(() => users.id, { onDelete: "cascade" }),
   isPublic: integer("is_public", { mode: "boolean" }).default(false).notNull(),

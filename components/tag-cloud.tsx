@@ -9,7 +9,7 @@ import {
 import { useTranslations } from "next-intl";
 
 type TagCloudProps = {
-  data: string | string[];
+  data?: string | string[];
   className?: string;
   visibleTags?: number;
   showAllTags?: boolean;
@@ -26,27 +26,19 @@ export default function TagCloud({
   armor,
 }: TagCloudProps) {
   const t = useTranslations("tags");
-  if (!data || data.length === 0) {
-    return null;
-  }
-  const tagsArray =
-    typeof data === "string" ? data.split(",") : (data as string[]);
 
-  // Filter out empty strings and trim whitespace
-  const cleanedTags = tagsArray
-    .map((tag) => tag.trim())
-    .filter((tag) => tag !== "");
-
-  if (cleanedTags.length === 0) {
-    return null;
-  }
+  const tagsArray = data
+    ? (typeof data === "string" ? data.split(",") : data)
+        .map((tag) => tag.trim())
+        .filter((tag) => tag !== "")
+    : [];
 
   const displayItems = showAllTags
-    ? cleanedTags
-    : cleanedTags.slice(0, visibleTags);
+    ? tagsArray
+    : tagsArray.slice(0, visibleTags);
   const remainingCount = showAllTags
     ? 0
-    : Math.max(cleanedTags.length - visibleTags, 0);
+    : Math.max(tagsArray.length - visibleTags, 0);
 
   return (
     <div className="flex flex-wrap gap-1">

@@ -1,11 +1,7 @@
 "use client";
 
-import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
-import {
-  GetBestiaryByIdResponseType,
-  GetBestiaryResponseType,
-  SelectBestiary,
-} from "@/types/bestiary";
+import { createColumnHelper } from "@tanstack/react-table";
+import { GetBestiaryByIdResponseType } from "@/types/bestiary";
 import { ArrowUpDown, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -13,11 +9,22 @@ import { CellStringArray, CellTooltip } from "./cells";
 import { Paragraph } from "@/components/ui/paragraph";
 import { truncateText } from "@/lib/utils";
 import Icons from "../icons";
+import TagCloud from "../tag-cloud";
+
+export type ColumnMeta = {
+  meta: {
+    size?: number | string;
+    className?: string;
+  };
+};
 
 const columnHelper = createColumnHelper<GetBestiaryByIdResponseType>();
 
 export const bestiaryColumns = [
   columnHelper.accessor("name", {
+    meta: {
+      className: "w-52",
+    },
     header: ({ column }) => {
       return (
         <Button
@@ -41,12 +48,11 @@ export const bestiaryColumns = [
   }),
 
   columnHelper.accessor("id", {
+    meta: {
+      className: "w-24",
+    },
     header: ({ column }) => {
-      return (
-        <Button variant="ghost" className="my-1 ">
-          Name
-        </Button>
-      );
+      return <span className="">Avatar</span>;
     },
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
@@ -59,6 +65,19 @@ export const bestiaryColumns = [
             width="64"
           />
         </span>
+      </div>
+    ),
+  }),
+  columnHelper.accessor("armor", {
+    meta: {
+      className: "w-32",
+    },
+    header: ({ column }) => {
+      return <span className="">Armor</span>;
+    },
+    cell: ({ row }) => (
+      <div className="flex items-center gap-2">
+        <TagCloud armor={1} />
       </div>
     ),
   }),
@@ -82,6 +101,9 @@ export const bestiaryColumns = [
     ),
   }),
   columnHelper.accessor("description", {
+    meta: {
+      className: "",
+    },
     header: ({ column }) => {
       return (
         <Button
@@ -101,6 +123,9 @@ export const bestiaryColumns = [
     ),
   }),
   columnHelper.accessor("weakness", {
+    meta: {
+      className: "w-80",
+    },
     header: ({ column }) => {
       return (
         <Button
@@ -118,5 +143,37 @@ export const bestiaryColumns = [
         <CellStringArray value={row.getValue("weakness")} />
       </div>
     ),
+  }),
+  columnHelper.accessor("origins", {
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          className="my-1"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Origins
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row, column }) => (
+      <div className="flex gap-2 flex-wrap">
+        <CellStringArray value={row.getValue("origins")} />
+      </div>
+    ),
+    filterFn: (row, id, filterValue) => {
+      const origins = row.getValue(id) as string[];
+      const filterValues = filterValue as string[];
+
+      if (filterValues.length === 0) return true;
+
+      return origins.some((origin) =>
+        filterValues.some(
+          (filter) => origin.toLowerCase() === filter.toLowerCase()
+        )
+      );
+    },
+    enableHiding: true,
   }),
 ];
