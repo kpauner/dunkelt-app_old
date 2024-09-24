@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import CodexTabs from "@/components/codex/codex-tabs";
 import { PageLayout } from "@/components/layout/page-layout";
 import Icons from "@/components/icons";
 import { useLocale } from "next-intl";

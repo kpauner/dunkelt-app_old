@@ -60,6 +60,7 @@
     "react-hook-form": "^7.53.0",
     "react-use": "^17.5.1",
     "server-only": "^0.0.1",
+    "shadcn-ui": "^0.9.1",
     "sonner": "^1.5.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",

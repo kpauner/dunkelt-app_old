@@ -1,14 +1,8 @@
 import React from "react";
 import { CharacterSheetBlock } from "@/components/ui/character-sheet";
-import { CharacterSheetType } from "@/types/characters";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { Button } from "@/components/ui/button";
 import Improvements from "./improvements";
-
-type CharacterPlaybookBlocksProps = {
-  character: CharacterSheetType;
-  updateCharacter: (character: CharacterSheetType) => void;
-};
 
 export function CharacterPlaybookBlocks() {
   const { character } = useCharacterStore();

@@ -1,9 +1,14 @@
 import { characterItems, items } from "@/db/schema";
 import { client } from "@/lib/hono";
-import { createSelectSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { InferResponseType } from "hono";
 import { z } from "zod";
 
+const TypeEnum = z.enum(["Weapon", "Armor", "Consumable", "Artifact", "Other"]);
+
+export const InsertItemsSchema = createInsertSchema(items, {
+  tags: z.array(z.string()),
+});
 export const SelectItemsSchema = createSelectSchema(items, {
   tags: z.array(z.string()),
 });
@@ -14,14 +19,7 @@ export const SelectCharacterItemsSchema = createSelectSchema(characterItems);
 
 export type SelectItems = z.infer<typeof CharacterItemSchema>;
 export type SelectCharacterItems = z.infer<typeof SelectCharacterItemsSchema>;
-// export const insertItemsSchema = createInsertSchema(items);
-const TypeEnum = z.enum(["Weapon", "Armor", "Consumable", "Artifact", "Other"]);
-export const insertItemsSchema = z.object({
-  name: z.string().min(1),
-  description: z.string().min(1),
-  type: TypeEnum,
-  tags: z.array(z.string()),
-});
+export type InsertItems = z.infer<typeof InsertItemsSchema>;
 
 // API RESPONSE TYPES
 export type SelectItemsResponseType = InferResponseType<
@@ -29,6 +27,6 @@ export type SelectItemsResponseType = InferResponseType<
   200
 >["data"];
 export type SelectItemResponseType = InferResponseType<
-  (typeof client.api.bestiary)[":id"]["$get"],
+  (typeof client.api.items)[":id"]["$get"],
   200
 >["data"];

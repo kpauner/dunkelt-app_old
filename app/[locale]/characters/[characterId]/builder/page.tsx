@@ -1,4 +1,4 @@
-import MotwBuilder from "@/components/characters/motw-builder";
+// import MotwBuilder from "@/components/characters/motw-builder";
 import React from "react";
 import motwCharacter from "@/db/seeds/data/characters.json";
 

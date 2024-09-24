@@ -24,7 +24,7 @@ import TagCloud from "@/components/tag-cloud";
 import { Input } from "@/components/ui/input";
 import Icons from "@/components/icons";
 import Heading from "@/components/layout/heading";
-import { DataTablePagination } from "../table-pagination";
+import { TablePagination } from "../table-pagination";
 import { Paragraph } from "../ui/paragraph";
 
 const columnHelper = createColumnHelper<SelectItems>();
@@ -111,7 +111,7 @@ export default function InventoryTable({ data, columns }: InventoryTableProps) {
           ))}
         </TableBody>
       </Table>
-      <DataTablePagination table={table} showRowsPerPage={false} />
+      <TablePagination table={table} showRowsPerPage={false} />
     </div>
   );
 }

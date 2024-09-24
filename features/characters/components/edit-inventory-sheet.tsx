@@ -13,12 +13,9 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
-
 import { useEditInventorySheet } from "@/features/characters/hooks/use-edit-inventory-sheet";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
-import TableItems from "@/features/items/components/table-items";
 import { useGetItems } from "@/features/items/queries/use-get-items";
-import Loader from "@/components/loader";
 import {
   inventoryColumns,
   inventorySheetColumns,

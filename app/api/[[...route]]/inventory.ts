@@ -2,7 +2,6 @@ import { z } from "zod";
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { Session } from "next-auth";
-import { insertItemsSchema } from "@/types/items";
 import { db } from "@/db";
 import { characters } from "@/db/schema";
 import { and, eq } from "drizzle-orm";

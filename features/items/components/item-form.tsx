@@ -8,13 +8,13 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { insertItemsSchema } from "@/types/items";
+import { InsertItemsSchema } from "@/types/items";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-type FormValues = z.infer<typeof insertItemsSchema>;
+type FormValues = z.infer<typeof InsertItemsSchema>;
 
 type Props = {
   id?: number;
@@ -32,7 +32,7 @@ export default function ItemForm({
   disabled,
 }: Props) {
   const form = useForm<FormValues>({
-    resolver: zodResolver(insertItemsSchema),
+    resolver: zodResolver(InsertItemsSchema),
     defaultValues: defaultValues as FormValues,
   });
 

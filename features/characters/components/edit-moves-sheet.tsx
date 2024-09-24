@@ -26,7 +26,6 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 // import ItemForm from "./item-form";
-// import TableItems from "./table-items";
 // import { useGetMoves } from "@/features/moves/queries";
 import Loader from "@/components/loader";
 import { useEditMovesSheet } from "../hooks/use-edit-moves-sheet";
