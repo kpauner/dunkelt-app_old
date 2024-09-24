@@ -18,9 +18,9 @@ export default function Heading({
       className={clsx(
         "font-bold leading-none tracking-tight",
         size === "xl" && "text-[clamp(3rem,10vmin,10rem)]",
-        size === "lg" && "text-6xl md:text-7xl",
-        size === "md" && "text-4xl md:text-5xl",
-        size === "sm" && "text-xl md:text-2xl",
+        size === "lg" && "text-5xl md:text-6xl",
+        size === "md" && "text-2xl md:text-3xl",
+        size === "sm" && "text-sm md:text-xl",
         size === "xs" && "text-xs md:text-sm  tracking-tight",
         className
       )}

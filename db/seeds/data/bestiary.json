@@ -40,18 +40,6 @@
       "wooden stake through the heart",
       "must rest in a coffin with soil from their homeland"
     ],
-    "attacks": [
-      {
-        "name": "Bite",
-        "harm": 3,
-        "tags": ["intimate", "vampiric"]
-      },
-      {
-        "name": "Punch/throw",
-        "harm": 4,
-        "tags": ["hand"]
-      }
-    ],
     "armor": 1,
     "harmCapacity": 9,
     "signs": [
@@ -59,12 +47,6 @@
       "Unexplained disappearances at night",
       "Sightings of a bat or mist moving unnaturally",
       "Reports of a charming stranger with an aversion to sunlight"
-    ],
-    "countermeasures": [
-      "Expose them to sunlight",
-      "Use garlic and holy symbols to repel them",
-      "Trap them in running water",
-      "Destroy their resting place and scatter the soil"
     ],
     "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
     "isPublic": true
@@ -97,18 +79,6 @@
       "wolfsbane",
       "inability to control transformation during full moon"
     ],
-    "attacks": [
-      {
-        "name": "Bite",
-        "harm": 3,
-        "tags": ["messy", "infectious"]
-      },
-      {
-        "name": "Claw",
-        "harm": 2,
-        "tags": ["close"]
-      }
-    ],
     "armor": 1,
     "harmCapacity": 8,
     "signs": [
@@ -116,12 +86,6 @@
       "Missing persons in wooded areas",
       "Howling sounds from uninhabited regions",
       "Claw marks on trees or buildings"
-    ],
-    "countermeasures": [
-      "Use silver weapons",
-      "Create barriers with mountain ash",
-      "Play recordings of wolf howls to confuse them",
-      "Trap them in enclosed spaces during full moon"
     ],
     "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
     "isPublic": true
@@ -155,18 +119,6 @@
       "exorcism rituals",
       "resolving their unfinished business"
     ],
-    "attacks": [
-      {
-        "name": "Spectral Touch",
-        "harm": 1,
-        "tags": ["chilling", "ignores-armor"]
-      },
-      {
-        "name": "Terrifying Visage",
-        "harm": 0,
-        "tags": ["emotional", "debilitating"]
-      }
-    ],
     "armor": 0,
     "harmCapacity": 5,
     "signs": [
@@ -174,12 +126,6 @@
       "Objects moving on their own",
       "Disembodied voices or whispers",
       "Recurring nightmares about a specific person or event"
-    ],
-    "countermeasures": [
-      "Perform an exorcism ritual",
-      "Create barriers with salt lines",
-      "Use iron objects to disrupt spectral energy",
-      "Research and resolve the ghost's unfinished business"
     ],
     "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
     "isPublic": true

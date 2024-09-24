@@ -2,7 +2,9 @@
   {
     "name": "vampiric bite",
     "description": "When you inflict harm, you may inflict +1 harm.",
-    "playbook": "bestiary"
+    "playbook": "bestiary",
+    "harm": 1,
+    "tags": ["vampiric", "intimate"]
   },
   {
     "name": "destiny's plaything",

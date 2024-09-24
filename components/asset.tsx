@@ -6,7 +6,7 @@ import Heading from "./layout/heading";
 import Icons from "./icons";
 import { Separator } from "./ui/separator";
 
-const alertVariants = cva(
+const assetVariants = cva(
   "relative w-full rounded-lg  border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7",
   {
     variants: {
@@ -23,20 +23,20 @@ const alertVariants = cva(
   }
 );
 
-const Row = React.forwardRef<
+const Asset = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
+  React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof assetVariants>
 >(({ className, variant, ...props }, ref) => (
   <div
     ref={ref}
     role="alert"
-    className={cn(alertVariants({ variant }), className)}
+    className={cn(assetVariants({ variant }), className)}
     {...props}
   />
 ));
-Row.displayName = "Row";
+Asset.displayName = "Asset";
 
-const RowHeader = React.forwardRef<
+const AssetHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
@@ -46,24 +46,24 @@ const RowHeader = React.forwardRef<
     {...props}
   />
 ));
-RowHeader.displayName = "RowHeader";
+AssetHeader.displayName = "AssetHeader";
 
-type RowTitleProps = {
+type AssetTitleProps = {
   title: string;
   tags?: string | string[];
 };
 
-const RowTitle = React.forwardRef<
+const AssetTitle = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & RowTitleProps
+  React.HTMLAttributes<HTMLDivElement> & AssetTitleProps
 >(({ className, title, tags, children, ...props }, ref) => (
   <div ref={ref} className={cn("pb-1", className)} {...props}>
     <div className="font-medium flex gap-x-2 items-cente">
-      <div className="p-px rounded-md flex items-center justify-center border-primary-dark border  aspect-square w-9">
-        <Icons.bestiary className="w-6 h-6" />
+      <div className="p-px rounded-md flex items-center justify-center border-primary-dark border  aspect-square h-12 w-12 ">
+        <Icons.bestiary className="size-7" />
       </div>
       <div>
-        <Heading size="xs" className="tracking-wide capitalize">
+        <Heading size="md" className="tracking-wide capitalize">
           {title}
         </Heading>
         {tags && (
@@ -83,9 +83,9 @@ const RowTitle = React.forwardRef<
     </div>
   </div>
 ));
-RowTitle.displayName = "RowTitle";
+AssetTitle.displayName = "AssetTitle";
 
-const RowDescription = React.forwardRef<
+const AssetDescription = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLParagraphElement> & { text: string }
 >(({ className, text, ...props }, ref) => (
@@ -97,6 +97,6 @@ const RowDescription = React.forwardRef<
     {text}
   </div>
 ));
-RowDescription.displayName = "RowDescription";
+AssetDescription.displayName = "AssetDescription";
 
-export { Row, RowHeader, RowTitle, RowDescription };
+export { Asset, AssetHeader, AssetTitle, AssetDescription };

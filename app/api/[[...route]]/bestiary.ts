@@ -13,7 +13,15 @@ type CustomVariableMap = {
 
 const app = new Hono<{ Variables: CustomVariableMap }>()
   .get("/", async (c) => {
-    const data = await db.query.bestiary.findMany();
+    const data = await db.query.bestiary.findMany({
+      with: {
+        bestiaryMoves: {
+          with: {
+            move: true,
+          },
+        },
+      },
+    });
     const bestiaryWithTags = await Promise.all(
       data.map(async (item) => {
         const taggableEntries = await db.query.taggable.findMany({
@@ -43,8 +51,14 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
           },
           {}
         );
+
+        const transformedBestiaryMoves = item.bestiaryMoves.map(
+          (bm) => bm.move
+        );
+
         return {
           ...item,
+          bestiaryMoves: transformedBestiaryMoves,
           tags: tagsByColumn,
         };
       })
@@ -58,6 +72,13 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
       const { id } = c.req.valid("param");
       const query = await db.query.bestiary.findFirst({
         where: eq(bestiary.id, id),
+        with: {
+          bestiaryMoves: {
+            with: {
+              move: true,
+            },
+          },
+        },
       });
 
       if (!query) {
@@ -93,10 +114,11 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
         },
         {}
       );
-
+      const transformedBestiaryMoves = query.bestiaryMoves.map((bm) => bm.move);
       const bestiaryWithTags = {
         ...query,
         tags: tagsByColumn,
+        bestiaryMoves: transformedBestiaryMoves,
       };
 
       return c.json({ data: bestiaryWithTags });

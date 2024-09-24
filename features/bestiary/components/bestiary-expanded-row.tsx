@@ -1,6 +1,6 @@
 import Icons from "@/components/icons";
 import Heading from "@/components/layout/heading";
-import { RowDescription, RowHeader, RowTitle } from "@/components/rows";
+import { AssetDescription, AssetHeader, AssetTitle } from "@/components/asset";
 import TagCloud from "@/components/tag-cloud";
 import {
   List,
@@ -46,10 +46,10 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
   return (
     <div className="grid grid-cols-2 gap-6">
       <div className="space-y-6">
-        <RowHeader>
-          <RowTitle title={row.original.name} tags={row.original.type} />
-          <RowDescription text={row.original.description} />
-        </RowHeader>
+        <AssetHeader>
+          <AssetTitle title={row.original.name} tags={row.original.type} />
+          <AssetDescription text={row.original.description} />
+        </AssetHeader>
         <List>
           {details.map((detail, index) => (
             <ListItem
@@ -82,12 +82,28 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
           ))}
         </div>
       </div>
-      <div className="space-y-5">
+      <div className="space-y-6">
         <RowSection title="Signs">
           {row.original.signs.map((sign) => (
             <Paragraph key={sign} size="sm" className=" ">
               {sign}
             </Paragraph>
+          ))}
+        </RowSection>
+        <RowSection title="Moves">
+          {row.original.bestiaryMoves.map((move) => (
+            <div key={move.id} className="space-y-2 pb-4">
+              <Paragraph size="sm" className="">
+                <strong className="font-bold text-primary-foreground capitalize">
+                  {move.name}:{" "}
+                </strong>
+                {move.description}
+              </Paragraph>
+              <TagCloud
+                harm={move.harm}
+                data={move.tags || move.playbook || []}
+              />
+            </div>
           ))}
         </RowSection>
         <pre>{JSON.stringify(row.original, null, 2)}</pre>
@@ -105,7 +121,7 @@ function RowSection({
 }) {
   return (
     <div className="space-y-2">
-      <Heading size="xs" className="uppercase tracking-wide">
+      <Heading size="sm" className="uppercase tracking-wide">
         {title}
       </Heading>
       {children}

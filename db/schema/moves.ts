@@ -7,6 +7,8 @@ const moves = sqliteTable("moves", {
   name: text("name").notNull(),
   description: text("description").notNull(),
   playbook: text("playbook"),
+  harm: integer("harm").notNull().default(0),
+  tags: text("tags", { mode: "json" }).$type<string[]>(),
 });
 
 export const movesRelations = relations(moves, ({ many }) => ({

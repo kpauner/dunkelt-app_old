@@ -9,6 +9,8 @@ export default async function seed(db: db) {
     name: move.name,
     description: move.description,
     playbook: move.playbook,
+    harm: move.harm || 0,
+    tags: move.tags || [],
   }));
   if (!formattedData) {
     return;
