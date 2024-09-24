@@ -11,15 +11,15 @@ import Icons from "./icons";
 import { useTranslations } from "next-intl";
 import { Paragraph } from "./ui/paragraph";
 
-interface DataTablePaginationProps<TData> {
+interface TablePaginationProps<TData> {
   table: Table<TData>;
   showRowsPerPage?: boolean;
 }
 
-export function DataTablePagination<TData>({
+export function TablePagination<TData>({
   table,
   showRowsPerPage = true,
-}: DataTablePaginationProps<TData>) {
+}: TablePaginationProps<TData>) {
   const t = useTranslations("common");
   return (
     <div className="flex items-center justify-between pt-2">

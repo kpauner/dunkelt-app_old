@@ -7,7 +7,7 @@ import {
 import { users } from "./users";
 
 /* Create the monster: name, description, type & motivation,
-then define its powers, weaknesses, attacks, armour, harm
+then define its powers, weakness, attacks, armour, harm
 capacity, optionally custom moves.
 */
 

@@ -29,6 +29,12 @@ export default function CodexTemplate({ children }: CodexTemplateProps) {
       url: `/codex/bystanders`,
       isActive: isActive("/codex/bystanders"),
     },
+    {
+      icon: Icons.items,
+      label: "Items",
+      url: `/codex/items`,
+      isActive: isActive("/codex/items"),
+    },
     // Add more menu items as needed
   ];
 

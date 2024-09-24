@@ -52,7 +52,6 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
     );
     return c.json({ data: bestiaryWithTags });
   })
-
   .get(
     "/:id",
     zValidator("param", z.object({ id: z.coerce.number().int().positive() })),
@@ -83,7 +82,7 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
       });
 
       const tagsByColumn = taggableEntries.reduce(
-        (acc: { [key: string]: any[] }, entry) => {
+        (acc: { [key: string]: string[] }, entry) => {
           if (!acc[entry.taggableColumn]) {
             acc[entry.taggableColumn] = [];
           }
@@ -123,7 +122,7 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
       //     description: values.description,
       //     armor: values.armor,
       //     powers: values.powers,
-      //     weaknesses: values.weaknesses,
+      //     weakness: values.weakness,
       //     attacks: values.attacks,
       //     harmCapacity: values.harmCapacity,
       //     origins: values.origins,

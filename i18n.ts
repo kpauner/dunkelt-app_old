@@ -9,6 +9,7 @@ export default getRequestConfig(async ({ locale }) => {
     messages: {
       ...(await import(`./messages/${locale}/common.json`)).default,
       ...(await import(`./messages/${locale}/codex.json`)).default,
+      ...(await import(`./messages/${locale}/tags.json`)).default,
       ...(await import(`./messages/${locale}/character-sheet.json`)).default,
     },
   };

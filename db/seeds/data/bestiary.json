@@ -34,7 +34,7 @@
         "description": "The Vampire controls all the vampires they has created."
       }
     ],
-    "weaknesses": [
+    "weakness": [
       "sunlight",
       "decapitation",
       "wooden stake through the heart",
@@ -54,13 +54,6 @@
     ],
     "armor": 1,
     "harmCapacity": 9,
-    "customMoves": [
-      {
-        "name": "Hypnotic Gaze",
-        "description": "When the Vampire locks eyes with a victim, they must Act Under Pressure or be mesmerized, unable to act for a moment."
-      }
-    ],
-    "origins": ["romania", "transylvania"],
     "signs": [
       "Pale, drained corpses with puncture wounds on the neck",
       "Unexplained disappearances at night",
@@ -78,7 +71,7 @@
   },
   {
     "name": "werewolf",
-    "type": "shapeshifter",
+    "type": "beast",
     "image": "https://static.wikia.nocookie.net/scp-fanon/images/3/30/SCP-106-B.jpg/revision/latest?cb=20240511002332",
     "description": "A human who transforms into a wolf-like creature during the full moon. Werewolves are known for their superhuman strength, speed, and ferocity. They are often portrayed as cursed individuals struggling with their dual nature.",
     "powers": [
@@ -99,7 +92,7 @@
         "description": "Can communicate telepathically with other werewolves in their pack."
       }
     ],
-    "weaknesses": [
+    "weakness": [
       "silver",
       "wolfsbane",
       "inability to control transformation during full moon"
@@ -118,13 +111,6 @@
     ],
     "armor": 1,
     "harmCapacity": 8,
-    "customMoves": [
-      {
-        "name": "Lunar Rage",
-        "description": "When the werewolf is under the full moon, they must Act Under Pressure to resist transforming and going on a rampage."
-      }
-    ],
-    "origins": ["europe", "north america"],
     "signs": [
       "Animal attacks coinciding with the full moon",
       "Missing persons in wooded areas",
@@ -163,7 +149,7 @@
         "description": "Ability to move objects without physical contact."
       }
     ],
-    "weaknesses": [
+    "weakness": [
       "salt",
       "iron",
       "exorcism rituals",
@@ -183,13 +169,6 @@
     ],
     "armor": 0,
     "harmCapacity": 5,
-    "customMoves": [
-      {
-        "name": "Haunting Presence",
-        "description": "When a ghost manifests, all living beings in the vicinity must Act Under Pressure or flee in terror."
-      }
-    ],
-    "origins": ["global"],
     "signs": [
       "Unexplained cold spots",
       "Objects moving on their own",

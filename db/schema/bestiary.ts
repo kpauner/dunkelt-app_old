@@ -11,7 +11,7 @@ import { relations } from "drizzle-orm";
 import bestiaryMoves from "./bestiaryMoves";
 
 /* Create the monster: name, description, type & motivation,
-then define its powers, weaknesses, attacks, armour, harm
+then define its powers, weakness, attacks, armour, harm
 capacity, optionally custom moves.
 */
 
@@ -22,7 +22,7 @@ const bestiary = sqliteTable("bestiary", {
   type: text("type").notNull(),
   description: text("description").notNull(),
   powers: text("powers", { mode: "json" }).$type<Powers[]>().notNull(),
-  weaknesses: text("weaknesses", { mode: "json" }).$type<string[]>().notNull(),
+  weakness: text("weakness", { mode: "json" }).$type<string[]>().notNull(),
   attacks: text("attacks", { mode: "json" }).$type<Attack[]>().notNull(),
   armor: integer("armor").notNull(),
   harmCapacity: integer("harm_capacity").notNull(),

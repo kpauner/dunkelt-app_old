@@ -1,4 +1,6 @@
+import Icons from "@/components/icons";
 import Heading from "@/components/layout/heading";
+import { RowDescription, RowHeader, RowTitle } from "@/components/rows";
 import TagCloud from "@/components/tag-cloud";
 import {
   List,
@@ -43,13 +45,11 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
 
   return (
     <div className="grid grid-cols-2 gap-6">
-      <div className="space-y-3">
-        <Heading size="sm" className="uppercase tracking-wide">
-          {row.original.name}
-        </Heading>
-        <TagCloud data={row.original.type} />
-        <Separator className="my-2 h-1 dark:bg-primary" />
-
+      <div className="space-y-6">
+        <RowHeader>
+          <RowTitle title={row.original.name} tags={row.original.type} />
+          <RowDescription text={row.original.description} />
+        </RowHeader>
         <List>
           {details.map((detail, index) => (
             <ListItem
@@ -68,10 +68,28 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
             </ListItem>
           ))}
         </List>
-        <RowSection title={t("description")} text={row.original.description} />
+
+        {/* <TagCloud armor={1} harm={2} data={row.original.tags.origins} /> */}
+        <Separator className="dark:bg-primary-foreground " />
+        <div className="space-y-6">
+          {row.original.powers.map((power) => (
+            <Paragraph key={power.name} size="sm" className=" ">
+              <strong className="font-bold text-primary-foreground">
+                {power.name}:
+              </strong>{" "}
+              {power.description}
+            </Paragraph>
+          ))}
+        </div>
       </div>
-      <div>
-        <RowSection title={t("description")} text={row.original.description} />
+      <div className="space-y-5">
+        <RowSection title="Signs">
+          {row.original.signs.map((sign) => (
+            <Paragraph key={sign} size="sm" className=" ">
+              {sign}
+            </Paragraph>
+          ))}
+        </RowSection>
         <pre>{JSON.stringify(row.original, null, 2)}</pre>
       </div>
     </div>
@@ -80,17 +98,17 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
 
 function RowSection({
   title,
-  text,
+  children,
 }: {
   title: string;
-  text: string | string[] | null;
+  children: React.ReactNode;
 }) {
   return (
-    <div className="pt-8 space-y-2">
+    <div className="space-y-2">
       <Heading size="xs" className="uppercase tracking-wide">
         {title}
       </Heading>
-      <Paragraph size="sm">{text}</Paragraph>
+      {children}
     </div>
   );
 }

@@ -1,15 +1,15 @@
 import React from "react";
 import { Input } from "../ui/input";
 import { Column, Table } from "@tanstack/react-table";
-import { filterConfig } from "@/config/filters.config";
 import { TableFacetedFilter } from "./table-faceted-filter";
 import { TableViewOptions } from "./table-view-options";
+import { FilterConfig } from "@/config/filters.config";
 
 interface TableToolbarProps<TData> {
   table: Table<TData>;
   globalFilter: string;
   setGlobalFilter: (value: string) => void;
-  filters: filterConfig[];
+  filters: FilterConfig[];
   showFacetedFilter?: boolean;
   showViewOptions?: boolean;
 }
@@ -18,7 +18,7 @@ export default function TableToolbar<TData>({
   table,
   globalFilter,
   setGlobalFilter,
-  filters,
+  filters = [],
   showFacetedFilter = true,
   showViewOptions = true,
 }: TableToolbarProps<TData>) {

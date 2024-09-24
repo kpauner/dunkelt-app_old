@@ -26,15 +26,18 @@ import {
 } from "@/components/ui/table";
 import { Card } from "@/components/ui/card";
 import TableToolbar from "@/components/codex/table-toolbar";
-import { filters } from "@/config/filters.config";
-import { DataTablePagination } from "@/components/table-pagination";
+import { filtersConfig } from "@/config/filters.config";
+import { TablePagination } from "@/components/table-pagination";
 import { InventoryColumnMeta } from "@/components/characters/inventory-columns";
 import { cn } from "@/lib/utils";
 import { BystandersExpandedRow, LocationsExpandedRow } from "./expanded-rows";
 import Loader from "./loader";
 import { useTranslations } from "next-intl";
-import { GetBestiaryByIdResponseType, GetBestiaryResponseType } from "@/types/bestiary";
-import { GetItemsResponseType } from "@/types/items";
+import {
+  GetBestiaryByIdResponseType,
+  GetBestiaryResponseType,
+} from "@/types/bestiary";
+import { SelectItemsResponseType } from "@/types/items";
 
 // Define a mapping of expanded row types to their respective components
 const expandedRowComponents = {
@@ -52,11 +55,11 @@ type ExpandedRowProps<T> = T extends "bestiary"
   : T extends "bystanders"
   ? { row: Row<any> } // Replace BystanderType with the actual type
   : T extends "items"
-  ? { row: Row<GetItemsResponseType> } // Replace ItemType with the actual type
+  ? { row: Row<SelectItemsResponseType> } // Replace ItemType with the actual type
   : never;
 
 type DataTableProps<TData extends object, TValue> = {
-  columns: ColumnDef<TData, TValue>[];
+  columns: any;
   data: TData[];
   expandedRowType: keyof typeof expandedRowComponents;
   isLoading?: boolean;
@@ -118,7 +121,7 @@ export default function TableData<TData extends object, TValue>({
         table={table}
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
-        filters={filters}
+        filters={filtersConfig[expandedRowType] || []}
         showFacetedFilter={showFacetedFilter}
         showViewOptions={showViewOptions}
       />
@@ -187,7 +190,7 @@ export default function TableData<TData extends object, TValue>({
         </Table>
       </Card>
 
-      <DataTablePagination table={table} showRowsPerPage={showRowsPerPage} />
+      <TablePagination table={table} showRowsPerPage={showRowsPerPage} />
     </div>
   );
 }

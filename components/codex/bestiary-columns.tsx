@@ -1,7 +1,11 @@
 "use client";
 
 import { ColumnDef, createColumnHelper } from "@tanstack/react-table";
-import { GetBestiaryResponseType, SelectBestiary } from "@/types/bestiary";
+import {
+  GetBestiaryByIdResponseType,
+  GetBestiaryResponseType,
+  SelectBestiary,
+} from "@/types/bestiary";
 import { ArrowUpDown, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -10,7 +14,7 @@ import { Paragraph } from "@/components/ui/paragraph";
 import { truncateText } from "@/lib/utils";
 import Icons from "../icons";
 
-const columnHelper = createColumnHelper<GetBestiaryResponseType>();
+const columnHelper = createColumnHelper<GetBestiaryByIdResponseType>();
 
 export const bestiaryColumns = [
   columnHelper.accessor("name", {
@@ -96,7 +100,7 @@ export const bestiaryColumns = [
       </Paragraph>
     ),
   }),
-  columnHelper.accessor("weaknesses", {
+  columnHelper.accessor("weakness", {
     header: ({ column }) => {
       return (
         <Button
@@ -104,14 +108,14 @@ export const bestiaryColumns = [
           className="my-1"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          weaknesses
+          weakness
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       );
     },
     cell: ({ row, column }) => (
       <div className="flex gap-2 flex-wrap">
-        <CellStringArray value={row.getValue("weaknesses")} />
+        <CellStringArray value={row.getValue("weakness")} />
       </div>
     ),
   }),

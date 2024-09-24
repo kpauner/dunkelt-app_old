@@ -24,7 +24,11 @@ export const insertItemsSchema = z.object({
 });
 
 // API RESPONSE TYPES
-export type GetItemsResponseType = InferResponseType<
+export type SelectItemsResponseType = InferResponseType<
   (typeof client.api.items)["$get"],
+  200
+>["data"];
+export type SelectItemResponseType = InferResponseType<
+  (typeof client.api.bestiary)[":id"]["$get"],
   200
 >["data"];

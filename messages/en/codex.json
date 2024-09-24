@@ -37,7 +37,8 @@
     "origins": "Origins",
     "details": "Details",
     "attacks": "Attacks",
-    "powers": "Powers"
+    "powers": "Powers",
+    "description": "Description"
   },
   "motivations": {
     "beast": "to run wild, destroying and killing",
