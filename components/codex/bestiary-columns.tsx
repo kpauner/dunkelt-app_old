@@ -23,7 +23,7 @@ const columnHelper = createColumnHelper<GetBestiaryByIdResponseType>();
 export const bestiaryColumns = [
   columnHelper.accessor("name", {
     meta: {
-      className: "w-52",
+      className: "w-64",
     },
     header: ({ column }) => {
       return (
@@ -49,7 +49,7 @@ export const bestiaryColumns = [
 
   columnHelper.accessor("id", {
     meta: {
-      className: "w-24",
+      className: "w-30",
     },
     header: ({ column }) => {
       return <span className="">Avatar</span>;
@@ -70,7 +70,7 @@ export const bestiaryColumns = [
   }),
   columnHelper.accessor("armor", {
     meta: {
-      className: "w-32",
+      className: "w-30",
     },
     header: ({ column }) => {
       return <span className="">Armor</span>;
@@ -82,6 +82,9 @@ export const bestiaryColumns = [
     ),
   }),
   columnHelper.accessor("type", {
+    meta: {
+      className: "w-36",
+    },
     header: ({ column }) => {
       return (
         <Button
@@ -102,7 +105,7 @@ export const bestiaryColumns = [
   }),
   columnHelper.accessor("description", {
     meta: {
-      className: "",
+      className: "w-[900px]",
     },
     header: ({ column }) => {
       return (
@@ -117,9 +120,11 @@ export const bestiaryColumns = [
       );
     },
     cell: ({ row, column }) => (
-      <Paragraph variant="default" size="xs">
-        {truncateText(row.getValue("description"), 180)}
-      </Paragraph>
+      <>
+        <Paragraph variant="default" size="xs" className="">
+          {truncateText(row.getValue("description"), 180)}
+        </Paragraph>
+      </>
     ),
   }),
   columnHelper.accessor("weakness", {

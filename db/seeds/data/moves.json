@@ -40,5 +40,15 @@
     "name": "resilience",
     "description": "You heal faster than normal people. Any time your harm gets healed, heal an extra point. Additionally, your wounds count as 1-harm less for the purpose of the Keeper's harm moves.",
     "playbook": "the chosen"
+  },
+  {
+    "name": "hidden passage",
+    "description": "When exploring the town museum, roll +Weird. On a 10+, you find a hidden passage. On a 7-9, you stumble upon a clue.",
+    "playbook": "location"
+  },
+  {
+    "name": "ritual of the dead",
+    "description": "When performing a ritual near the royal tombs, roll +Weird. On a 10+, you successfully communicate with a deceased monarch. On a 7-9, you make contact but draw unwanted attention from darker forces.",
+    "playbook": "location"
   }
 ]

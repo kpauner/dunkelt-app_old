@@ -127,6 +127,46 @@
     "queen": {
       "name": "Queen",
       "description": "This item is a queen."
+    },
+    "crossroads": {
+      "name": "Crossroads",
+      "description": "To bring people, and things, together"
+    },
+    "deathtrap": {
+      "name": "Deathtrap",
+      "description": "To harm intruders"
+    },
+    "den": {
+      "name": "Den",
+      "description": "To harbor monsters"
+    },
+    "fortress": {
+      "name": "Fortress",
+      "description": "To deny entry"
+    },
+    "hellgate": {
+      "name": "hellgate",
+      "description": "to create evil"
+    },
+    "hub": {
+      "name": "Hub",
+      "description": "To reveal information"
+    },
+    "lab": {
+      "name": "lab",
+      "description": "To create weirdness"
+    },
+    "maze": {
+      "name": "maze",
+      "description": "To confuse and separate"
+    },
+    "prison": {
+      "name": "prison",
+      "description": "to constrain and prevent exit"
+    },
+    "wilds": {
+      "name": "wilds",
+      "description": "to contain hidden things"
     }
   }
 }

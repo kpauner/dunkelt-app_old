@@ -99,6 +99,7 @@ export default function TableData<TData extends object, TValue>({
     initialState: {
       columnVisibility: {
         origins: false,
+        armor: false,
       },
       pagination: {
         pageSize: pageSize || 5,
@@ -132,7 +133,7 @@ export default function TableData<TData extends object, TValue>({
       />
 
       <Card className={cn("w-full", className)}>
-        <Table style={{ width: "100%" }}>
+        <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
@@ -164,9 +165,10 @@ export default function TableData<TData extends object, TValue>({
                           width: (cell.column.columnDef as ColumnMeta)?.meta
                             ?.size,
                         }}
-                        className={
+                        className={cn(
+                          "overflow-hidden",
                           (cell.column.columnDef as ColumnMeta)?.meta?.className
-                        }
+                        )}
                       >
                         {flexRender(
                           cell.column.columnDef.cell,

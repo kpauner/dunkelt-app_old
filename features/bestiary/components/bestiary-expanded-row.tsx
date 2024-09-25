@@ -69,7 +69,7 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
           ))}
         </List>
 
-        {/* <TagCloud armor={1} harm={2} data={row.original.tags.origins} /> */}
+        <TagCloud armor={1} harm={2} data={row.original.tags.origins} />
         <Separator className="dark:bg-primary-foreground " />
         <div className="space-y-6">
           {row.original.powers.map((power) => (
@@ -106,7 +106,6 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
             </div>
           ))}
         </RowSection>
-        <pre>{JSON.stringify(row.original, null, 2)}</pre>
       </div>
     </div>
   );

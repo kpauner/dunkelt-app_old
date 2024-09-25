@@ -26,3 +26,9 @@ export { default as bystanders } from "./bystanders";
 
 export { default as tags, tagsRelations } from "./tags";
 export { default as taggable, taggableRelations } from "./taggable";
+
+export { default as locations, locationsRelations } from "./locations";
+export {
+  default as locationMoves,
+  locationMovesRelations,
+} from "./locationMoves";

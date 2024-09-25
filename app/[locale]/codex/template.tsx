@@ -29,6 +29,12 @@ export default function CodexTemplate({ children }: CodexTemplateProps) {
       isActive: isActive("/codex/bystanders"),
     },
     {
+      icon: Icons.locations,
+      label: "Locations",
+      url: `/codex/locations`,
+      isActive: isActive("/codex/locations"),
+    },
+    {
       icon: Icons.items,
       label: "Items",
       url: `/codex/items`,
