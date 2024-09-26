@@ -50,6 +50,7 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
           <AssetTitle title={row.original.name} tags={row.original.type} />
           <AssetDescription text={row.original.description} />
         </AssetHeader>
+
         <List>
           {details.map((detail, index) => (
             <ListItem

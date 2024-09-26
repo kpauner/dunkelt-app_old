@@ -9,7 +9,7 @@ import inventory from "./inventory";
 import characters from "./characters";
 import bystanders from "./bystanders";
 import bestiary from "./bestiary";
-
+import locations from "./locations";
 type CustomVariableMap = {
   session: Session | null;
 };
@@ -29,7 +29,8 @@ const routes = app
   .route("/items", items)
   .route("/inventory", inventory)
   .route("/characters", characters)
-  .route("/bystanders", bystanders);
+  .route("/bystanders", bystanders)
+  .route("/locations", locations);
 
 export const GET = handle(app);
 export const POST = handle(app);

@@ -45,4 +45,25 @@ export const filtersConfig: { [key: string]: FilterConfig[] } = {
     },
     // Add more filters as needed
   ],
+  locations: [
+    {
+      column: "type",
+      title: "Type",
+      options: [
+        { label: "Fortress", value: "Fortress" },
+        { label: "Hellgate", value: "Hellgate" },
+        { label: "Cave", value: "Cave" },
+      ],
+    },
+    {
+      column: "origins",
+      title: "Origins",
+      options: [
+        { label: "Romania", value: "Romania" },
+        { label: "Denmark", value: "Denmark" },
+        { label: "Bulgaria", value: "Bulgaria" },
+      ],
+    },
+    // Add more filters as needed
+  ],
 };

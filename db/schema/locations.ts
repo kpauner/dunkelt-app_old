@@ -6,7 +6,7 @@ const locations = sqliteTable("locations", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name").notNull(),
   description: text("description").notNull(),
-  type: text("type").notNull(),
+  type: text("type", { mode: "json" }).$type<string[]>(),
   origins: text("origins").notNull().default(""),
   history: text("history"),
 });

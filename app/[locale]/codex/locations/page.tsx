@@ -1,9 +1,6 @@
+import Locations from "@/components/codex/locations";
 import React from "react";
 
-export default async function ItemsPage() {
-  return (
-    <>
-      <p>Locations</p>
-    </>
-  );
+export default async function LocationsPage() {
+  return <Locations />;
 }

@@ -19,6 +19,9 @@ export default function Bestiary() {
         columns={bestiaryColumns}
         isLoading={isLoading}
         expandedRowType="bestiary"
+        initialColumnVisibility={{
+          origins: false,
+        }}
       />
     </>
   );

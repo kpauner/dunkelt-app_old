@@ -47,8 +47,8 @@
     "playbook": "location"
   },
   {
-    "name": "ritual of the dead",
-    "description": "When performing a ritual near the royal tombs, roll +Weird. On a 10+, you successfully communicate with a deceased monarch. On a 7-9, you make contact but draw unwanted attention from darker forces.",
+    "name": "hallowed ground",
+    "description": "When a ritual is performed on hallowed ground, roll +Weird. On a 10+, the ritual is more powerful. On a 7-9, you draw unwanted attention from dark powers.",
     "playbook": "location"
   }
 ]

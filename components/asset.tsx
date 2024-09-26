@@ -36,6 +36,18 @@ const Asset = React.forwardRef<
 ));
 Asset.displayName = "Asset";
 
+const AssetColumn = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col space-y-6", className)}
+    {...props}
+  />
+));
+AssetColumn.displayName = "AssetColumn";
+
 const AssetHeader = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
@@ -51,23 +63,34 @@ AssetHeader.displayName = "AssetHeader";
 type AssetTitleProps = {
   title: string;
   tags?: string | string[];
+  type?: "bestiary" | "locations" | "items" | "bystanders";
 };
 
 const AssetTitle = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & AssetTitleProps
->(({ className, title, tags, children, ...props }, ref) => (
+>(({ className, title, tags, type, children, ...props }, ref) => (
   <div ref={ref} className={cn("pb-1", className)} {...props}>
     <div className="font-medium flex gap-x-2 items-cente">
-      <div className="p-px rounded-md flex items-center justify-center border-primary-dark border  aspect-square h-12 w-12 ">
-        <Icons.bestiary className="size-7" />
+      <div className="p-px rounded-md flex items-center justify-center border-primary-dark border  aspect-square size-14">
+        {type === "bestiary" ? (
+          <Icons.bestiary className="size-8 text-primary-foreground" />
+        ) : type === "locations" ? (
+          <Icons.locations className="size-8 text-primary-foreground" />
+        ) : type === "items" ? (
+          <Icons.items className="size-8 text-primary-foreground" />
+        ) : type === "bystanders" ? (
+          <Icons.bystanders className="size-8 text-primary-foreground" />
+        ) : (
+          <Icons.locations className="size-8 text-primary-foreground" />
+        )}
       </div>
       <div>
         <Heading size="md" className="tracking-wide capitalize">
           {title}
         </Heading>
         {tags && (
-          <div className="flex gap-x-2">
+          <div className="flex gap-x-2 uppercase">
             {typeof tags === "string" ? (
               <p className="text-xs text-muted-foreground">{tags}</p>
             ) : (
@@ -99,4 +122,4 @@ const AssetDescription = React.forwardRef<
 ));
 AssetDescription.displayName = "AssetDescription";
 
-export { Asset, AssetHeader, AssetTitle, AssetDescription };
+export { Asset, AssetColumn, AssetHeader, AssetTitle, AssetDescription };

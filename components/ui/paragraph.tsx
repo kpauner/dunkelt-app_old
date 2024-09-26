@@ -7,7 +7,7 @@ const paragraphVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-foreground",
+        default: "text-stone-300",
         muted: "text-muted-foreground",
       },
       size: {

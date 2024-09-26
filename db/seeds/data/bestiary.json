@@ -53,10 +53,10 @@
     "isPublic": true
   },
   {
-    "name": "werewolf",
+    "name": "mosekonen",
     "type": "beast",
     "image": "https://static.wikia.nocookie.net/scp-fanon/images/3/30/SCP-106-B.jpg/revision/latest?cb=20240511002332",
-    "description": "A human who transforms into a wolf-like creature during the full moon. Werewolves are known for their superhuman strength, speed, and ferocity. They are often portrayed as cursed individuals struggling with their dual nature.",
+    "description": "a female spirit associated with fog and mist. She's said to brew the mist that rises from marshes and moors.",
     "powers": [
       {
         "name": "Shapeshifting",
@@ -93,10 +93,10 @@
     "isPublic": true
   },
   {
-    "name": "ghost",
+    "name": "myling",
     "type": "spirit",
     "image": "https://static.wikia.nocookie.net/scp-fanon/images/3/30/SCP-106-B.jpg/revision/latest?cb=20240511002332",
-    "description": "The spectral remnant of a deceased person, often bound to a specific location or object. Ghosts are incorporeal beings that can pass through solid matter and are often associated with unfinished business or tragic deaths.",
+    "description": "The ghost of an unbaptized child, often said to chase lone travelers at night, demanding to be baptized and buried properly.",
     "powers": [
       {
         "name": "Intangibility",

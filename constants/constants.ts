@@ -1,4 +1,6 @@
 export const QUERY_KEYS = {
+  LOCATIONS: "locations",
+  LOCATION: "location",
   CHARACTER: "character",
   CHARACTERS: "characters",
   ITEM: "item",

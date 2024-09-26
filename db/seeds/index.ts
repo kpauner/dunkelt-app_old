@@ -9,3 +9,5 @@ export { default as bestiaryMoves } from "./bestiaryMoves";
 export { default as bystanders } from "./bystanders";
 export { default as tags } from "./tags";
 export { default as taggable } from "./taggable";
+export { default as locations } from "./locations";
+export { default as locationMoves } from "./locationMoves";

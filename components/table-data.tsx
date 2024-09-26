@@ -14,6 +14,7 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
+import LocationsExpandedRow from "@/features/locations/components/locations-expanded-row";
 import ItemsExpandedRow from "@/features/items/components/items-expanded-row";
 import BestiaryExpandedRow from "@/features/bestiary/components/bestiary-expanded-row";
 import {
@@ -28,9 +29,8 @@ import { Card } from "@/components/ui/card";
 import TableToolbar from "@/components/codex/table-toolbar";
 import { filtersConfig } from "@/config/filters.config";
 import { TablePagination } from "@/components/table-pagination";
-import { InventoryColumnMeta } from "@/components/characters/inventory-columns";
 import { cn } from "@/lib/utils";
-import { BystandersExpandedRow, LocationsExpandedRow } from "./expanded-rows";
+import { BystandersExpandedRow } from "./expanded-rows";
 import Loader from "./loader";
 import { useTranslations } from "next-intl";
 import {
@@ -69,6 +69,7 @@ type DataTableProps<TData extends object, TValue> = {
   showFacetedFilter?: boolean;
   showViewOptions?: boolean;
   showRowsPerPage?: boolean;
+  initialColumnVisibility?: Record<string, boolean>;
 };
 
 export default function TableData<TData extends object, TValue>({
@@ -81,6 +82,7 @@ export default function TableData<TData extends object, TValue>({
   showFacetedFilter,
   showViewOptions,
   showRowsPerPage,
+  initialColumnVisibility,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [expanded, setExpanded] = React.useState<ExpandedState>({});
@@ -97,10 +99,7 @@ export default function TableData<TData extends object, TValue>({
       sorting,
     },
     initialState: {
-      columnVisibility: {
-        origins: false,
-        armor: false,
-      },
+      columnVisibility: initialColumnVisibility,
       pagination: {
         pageSize: pageSize || 5,
       },
