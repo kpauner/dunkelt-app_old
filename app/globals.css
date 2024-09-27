@@ -36,6 +36,11 @@ html {
   --destructive-foreground: hsl(5, 85%, 40%);
   --warning: 41 91% 46%;
   --warning-foreground: hsl(5, 85%, 40%);
+  --chart-1: 41 91% 46%;
+  --chart-2: 139 65% 20%;
+  --chart-3: 140 74% 24%;
+  --chart-4: 137 55% 15%;
+  --chart-5: 141 40% 9%;
 }
 
 .expanded-content {

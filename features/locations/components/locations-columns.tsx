@@ -68,13 +68,17 @@ export const locationsColumns = [
     header: ({ column }) => {
       return <TableColumnHeader column={column} title="Type" />;
     },
-    cell: ({ row }) => (
-      <div className="flex items-center gap-2">
-        <TagCloud data={row.getValue("type")} />
-      </div>
-    ),
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+    cell: ({ row }) => {
+      const typeValues = row.getValue("type") as string[];
+
+      if (!typeValues) {
+        return null;
+      }
+      return <TagCloud data={typeValues} showAllTags={true} />;
+    },
+    filterFn: (row, id, filterValues) => {
+      const rowValues = row.getValue(id) as string[];
+      return rowValues.some((value) => filterValues.includes(value));
     },
   }),
   columnHelper.accessor("description", {

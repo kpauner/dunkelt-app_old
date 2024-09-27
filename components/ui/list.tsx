@@ -29,17 +29,44 @@ List.displayName = "List";
 
 const ListItem = React.forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLLIElement>
->(({ className, ...props }, ref) => (
+  React.HTMLAttributes<HTMLLIElement> & { index: number }
+>(({ className, index, ...props }, ref) => (
   <li
     className={cn(
-      "font-medium text-sm leading-none tracking-tight uppercase ",
-      className
+      "h-8 px-2 flex items-center justify-between",
+      index % 2 === 0 ? "bg-primary-dark" : ""
     )}
     {...props}
   />
 ));
 ListItem.displayName = "ListItem";
+
+const ListKey = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+  <h5
+    ref={ref}
+    className={cn(
+      "font-medium leading-none tracking-tight text-muted-foreground",
+      className
+    )}
+    {...props}
+  />
+));
+ListKey.displayName = "ListKey";
+
+const ListValue = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("text-sm [&_p]:leading-relaxed", className)}
+    {...props}
+  />
+));
+ListValue.displayName = "ListValue";
 
 const ListTitle = React.forwardRef<
   HTMLParagraphElement,
@@ -68,4 +95,4 @@ const ListDescription = React.forwardRef<
 ));
 ListDescription.displayName = "ListDescription";
 
-export { List, ListItem, ListTitle, ListDescription };
+export { List, ListItem, ListKey, ListTitle, ListDescription, ListValue };

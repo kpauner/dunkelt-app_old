@@ -127,28 +127,7 @@ export const bestiaryColumns = [
       </>
     ),
   }),
-  columnHelper.accessor("weakness", {
-    meta: {
-      className: "w-80",
-    },
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="my-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          weakness
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
-    cell: ({ row, column }) => (
-      <div className="flex gap-2 flex-wrap">
-        <CellStringArray value={row.getValue("weakness")} />
-      </div>
-    ),
-  }),
+
   columnHelper.accessor("origins", {
     header: ({ column }) => {
       return (

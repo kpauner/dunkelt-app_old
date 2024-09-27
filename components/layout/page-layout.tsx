@@ -4,7 +4,6 @@ import React from "react";
 import Heading from "./heading";
 import Link from "next/link";
 import { useLocale } from "next-intl";
-import { usePathname } from "next/navigation";
 
 const pageLayoutVariants = cva("mx-auto w-full md:gap-8 pt-2", {
   variants: {

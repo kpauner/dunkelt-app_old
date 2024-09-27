@@ -1,12 +1,20 @@
 import Icons from "@/components/icons";
 import Heading from "@/components/layout/heading";
-import { AssetDescription, AssetHeader, AssetTitle } from "@/components/asset";
+import {
+  Asset,
+  AssetColumn,
+  AssetDescription,
+  AssetHeader,
+  AssetTitle,
+} from "@/components/asset";
 import TagCloud from "@/components/tag-cloud";
 import {
   List,
   ListItem,
   ListTitle,
   ListDescription,
+  ListKey,
+  ListValue,
 } from "@/components/ui/list";
 import { Paragraph } from "@/components/ui/paragraph";
 import { Separator } from "@/components/ui/separator";
@@ -44,33 +52,30 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-6">
-      <div className="space-y-6">
+    <Asset variant="default" className="grid grid-cols-2 gap-6">
+      <AssetColumn>
         <AssetHeader>
-          <AssetTitle title={row.original.name} tags={row.original.type} />
+          <AssetTitle
+            title={row.original.name}
+            tags={row.original.type || []}
+            type="locations"
+          />
           <AssetDescription text={row.original.description} />
         </AssetHeader>
 
         <List>
           {details.map((detail, index) => (
-            <ListItem
-              key={index}
-              className={cn(
-                "h-8 px-2 flex items-center justify-between",
-                index % 2 === 0 ? "bg-primary-dark" : ""
-              )}
-            >
-              <ListTitle>{detail.label}</ListTitle>
-              <ListDescription>
+            <ListItem key={index} index={index}>
+              <ListKey>{detail.label}</ListKey>
+              <ListValue>
                 {Array.isArray(detail.value)
                   ? detail.value.join(", ")
                   : detail.value}
-              </ListDescription>
+              </ListValue>
             </ListItem>
           ))}
         </List>
 
-        <TagCloud armor={1} harm={2} data={row.original.tags.origins} />
         <Separator className="dark:bg-primary-foreground " />
         <div className="space-y-6">
           {row.original.powers.map((power) => (
@@ -82,15 +87,8 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
             </Paragraph>
           ))}
         </div>
-      </div>
-      <div className="space-y-6">
-        <RowSection title="Signs">
-          {row.original.signs.map((sign) => (
-            <Paragraph key={sign} size="sm" className=" ">
-              {sign}
-            </Paragraph>
-          ))}
-        </RowSection>
+      </AssetColumn>
+      <AssetColumn>
         <RowSection title="Moves">
           {row.original.bestiaryMoves.map((move) => (
             <div key={move.id} className="space-y-2 pb-4">
@@ -107,8 +105,22 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
             </div>
           ))}
         </RowSection>
-      </div>
-    </div>
+        <RowSection title="Weakness">
+          {row.original.weakness.map((sign) => (
+            <Paragraph key={sign} size="sm" className=" ">
+              {sign}
+            </Paragraph>
+          ))}
+        </RowSection>
+        <RowSection title="Signs">
+          {row.original.signs.map((sign) => (
+            <Paragraph key={sign} size="sm" className=" ">
+              {sign}
+            </Paragraph>
+          ))}
+        </RowSection>
+      </AssetColumn>
+    </Asset>
   );
 }
 

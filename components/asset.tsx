@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Heading from "./layout/heading";
 import Icons from "./icons";
 import { Separator } from "./ui/separator";
+import { Paragraph } from "./ui/paragraph";
 
 const assetVariants = cva(
   "relative w-full rounded-lg  border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7",
@@ -122,4 +123,31 @@ const AssetDescription = React.forwardRef<
 ));
 AssetDescription.displayName = "AssetDescription";
 
-export { Asset, AssetColumn, AssetHeader, AssetTitle, AssetDescription };
+const AssetContent = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement> & {
+    title?: string;
+    description?: string;
+    children: React.ReactNode;
+  }
+>(({ className, title, description, children, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("text-sm [&_p]:leading-relaxed space-y-2 pt-4", className)}
+    {...props}
+  >
+    {title && <Heading size="md">{title}</Heading>}
+    {description && <Paragraph>{description}</Paragraph>}
+    {children}
+  </div>
+));
+AssetContent.displayName = "AssetContent";
+
+export {
+  Asset,
+  AssetColumn,
+  AssetHeader,
+  AssetTitle,
+  AssetDescription,
+  AssetContent,
+};

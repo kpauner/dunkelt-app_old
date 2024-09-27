@@ -1,19 +1,33 @@
 [
   {
-    "name": "Officer Jenny",
+    "name": "Hans Christian Andersen",
     "type": "official",
     "avatar": "",
     "description": "Local police officer, skeptical of supernatural claims",
     "look": "Stern face, crisp uniform, always carries a notepad",
     "harmCapacity": 2,
-    "dob": "1985-03-15",
+    "dob": "1452-04-15",
+    "dod": "1519-05-02",
     "height": 170,
     "weight": 65,
     "eyes": "brown",
     "hair": "blue"
   },
   {
-    "name": "Old Man Jenkins",
+    "name": "Karen Blixen",
+    "type": "busybody",
+    "avatar": "",
+    "description": "Retired farmer who knows all the local gossip",
+    "look": "Wrinkled face, overalls, always chewing on a piece of straw",
+    "harmCapacity": 1,
+    "dob": "1940-07-22",
+    "height": 165,
+    "weight": 70,
+    "eyes": "blue",
+    "hair": "gray"
+  },
+  {
+    "name": "Niels Bohr",
     "type": "busybody",
     "avatar": "",
     "description": "Retired farmer who knows all the local gossip",
