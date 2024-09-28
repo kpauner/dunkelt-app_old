@@ -38,7 +38,6 @@ type StatisticsRadarChartProps = {
   data: StatisticItem[];
   maxValue?: number;
   color?: string;
-  totalCountries?: number;
 };
 
 // Chart configuration
@@ -56,7 +55,7 @@ const CustomTooltip = ({ active, payload }: any) => {
       <div className="rounded-lg border border-border bg-background p-2 shadow-sm">
         <p className="font-semibold">{data.category}</p>
         <p className="text-sm text-muted-foreground">
-          Rank: {data.rank} of {data.totalCountries}{" "}
+          Rank: {data.rank} of {data.maxValue}{" "}
         </p>
       </div>
     );
@@ -70,14 +69,13 @@ export function StatisticsRadarChart({
   footerTitle,
   footerDescription,
   data,
-  maxValue = 100,
-  totalCountries = 53,
+  maxValue = 53,
   color = defaultChartConfig.statistics.color,
 }: StatisticsRadarChartProps) {
   const invertedData = data.map((item) => ({
     ...item,
-    invertedRank: totalCountries - item.rank + 1,
-    totalCountries, // Add this to each data point for the tooltip
+    invertedRank: maxValue - item.rank + 1,
+    maxValue, // Add this to each data point for the tooltip
   }));
 
   return (
@@ -94,9 +92,18 @@ export function StatisticsRadarChart({
           <RadarChart data={invertedData}>
             <ChartTooltip cursor={false} content={<CustomTooltip />} />
             <PolarGrid gridType="circle" />
-            <PolarAngleAxis dataKey="category" />
-
+            <PolarAngleAxis
+              dataKey="category"
+              tick={{ fill: "var(--foreground)", fontSize: 12 }}
+            />
+            <PolarRadiusAxis
+              domain={[0, maxValue]}
+              axisLine={false}
+              tick={false}
+              dataKey="category"
+            />
             <Radar
+              name="Ranking"
               dataKey="invertedRank"
               fill="var(--color-statistics)"
               fillOpacity={0.4}

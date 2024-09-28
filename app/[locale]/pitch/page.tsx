@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/carousel";
 import Introduction from "@/components/pitch/introduction";
 import { PageLayout } from "@/components/layout/page-layout";
+import Slide2 from "@/components/pitch/slide2";
 
 export default function Pitch() {
   return (
@@ -26,15 +27,7 @@ export default function Pitch() {
           <Introduction />
         </CarouselItem>
         <CarouselItem className="h-full">
-          <Card className="h-full">
-            <CardHeader>
-              <CardTitle>Pitch</CardTitle>
-              <CardDescription>Pitch</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <CardDescription>Pitch</CardDescription>
-            </CardContent>
-          </Card>
+          <Slide2 />
         </CarouselItem>
         <CarouselItem className="h-full">
           <Introduction />

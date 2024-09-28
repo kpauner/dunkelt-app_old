@@ -29,12 +29,14 @@ List.displayName = "List";
 
 const ListItem = React.forwardRef<
   HTMLParagraphElement,
-  React.HTMLAttributes<HTMLLIElement> & { index: number }
->(({ className, index, ...props }, ref) => (
+  React.HTMLAttributes<HTMLLIElement> & { index: number; horizontal?: boolean }
+>(({ className, index, horizontal, ...props }, ref) => (
   <li
     className={cn(
-      "h-8 px-2 flex items-center justify-between",
-      index % 2 === 0 ? "bg-primary-dark" : ""
+      "h-8 px-2 flex items-center",
+      index % 2 === 0 ? "bg-primary-dark" : "",
+      horizontal ? "flex-row justify-between" : "flex-col",
+      className
     )}
     {...props}
   />
