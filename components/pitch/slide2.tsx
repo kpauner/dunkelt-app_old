@@ -34,47 +34,12 @@ export default function Slide2() {
       className="h-full min-h-[calc(100vh-132px)]"
     >
       <SlideColumn className="col-span-3">
-        <SlideHeader title="Social Hurdles for Expats" />
+        <SlideHeader title="Dunkelt forms connections before and during the stay abroad" />
         <Paragraph>
           Despite Denmark&apos;s high rankings in quality of life and work-life
           balance, expats face significant challenges when it comes to social
           integration and building personal connections.
         </Paragraph>
-        <Heading as="h2" size="sm">
-          Social Hurdles for Expats
-        </Heading>
-        <ul className="flex flex-col gap-4">
-          <li className="flex flex-col gap-2">
-            <ListTitle>Ease of Settling In</ListTitle>
-            <Paragraph>
-              Denmark ranks 45th out of 53 countries, indicating significant
-              difficulties for expats in feeling at home.
-            </Paragraph>
-          </li>
-          <li className="flex flex-col gap-2">
-            <ListTitle>Finding Friends</ListTitle>
-            <ListDescription>
-              With a ranking of 47th, Denmark is one of the most challenging
-              countries for expats to build a social network.
-            </ListDescription>
-          </li>
-          <li className="flex flex-col gap-2">
-            <ListTitle>Local Friendliness</ListTitle>
-            <ListDescription>
-              Expats rate Denmark 45th for the friendliness of local residents,
-              suggesting a perceived coldness or difficulty in connecting with
-              Danes.
-            </ListDescription>
-          </li>
-          <li className="flex flex-col gap-2">
-            <ListTitle>Culture and Welcome</ListTitle>
-            <ListDescription>
-              Ranking 44th, Denmark struggles to provide a welcoming atmosphere
-              for newcomers.
-            </ListDescription>
-          </li>
-        </ul>
-
         <Paragraph>
           Addressing these social integration issues is crucial for Denmark to
           fully capitalize on its strengths in work-life balance and quality of
