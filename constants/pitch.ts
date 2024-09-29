@@ -31,4 +31,7 @@ export const PITCH = {
       { category: "Environment and Climate", rank: 10 },
     ],
   },
+  social_integration: {
+    common_advice: [{ month: "january", desktop: 1260, mobile: 570 }],
+  },
 };

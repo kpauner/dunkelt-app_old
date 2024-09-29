@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -16,8 +10,8 @@ import {
   PreviousSlide,
 } from "@/components/ui/carousel";
 import Introduction from "@/components/pitch/introduction";
-import { PageLayout } from "@/components/layout/page-layout";
-import Slide2 from "@/components/pitch/slide2";
+import SettlingIn from "@/components/pitch/settling-in";
+import Solution from "@/components/pitch/solution";
 
 export default function Pitch() {
   return (
@@ -27,10 +21,10 @@ export default function Pitch() {
           <Introduction />
         </CarouselItem>
         <CarouselItem className="h-full">
-          <Slide2 />
+          <SettlingIn />
         </CarouselItem>
         <CarouselItem className="h-full">
-          <Introduction />
+          <Solution />
         </CarouselItem>
       </CarouselContent>
 
