@@ -8,8 +8,8 @@ import { ChartConfig } from "../ui/chart";
 
 export default function SettlingIn() {
   const chartConfig = {
-    visitors: {
-      label: "Visitors",
+    users: {
+      label: "Users",
     },
     chrome: {
       label: "Chrome",
