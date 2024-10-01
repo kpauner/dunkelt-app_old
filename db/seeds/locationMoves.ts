@@ -1,6 +1,5 @@
 import { db } from "@/db";
 import data from "@/db/seeds/data/locationMoves.json";
-import { SelectCharacterMoves } from "@/types/moves";
 import { locationMoves } from "../schema";
 import { SelectLocationMoves } from "@/types/locations";
 

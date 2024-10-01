@@ -3,8 +3,10 @@ import Heading from "@/components/layout/heading";
 import {
   Asset,
   AssetColumn,
+  AssetContent,
   AssetDescription,
   AssetHeader,
+  AssetMoves,
   AssetTitle,
 } from "@/components/asset";
 import TagCloud from "@/components/tag-cloud";
@@ -89,6 +91,17 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
         </div>
       </AssetColumn>
       <AssetColumn>
+        <AssetContent
+          title="Moves"
+          description="lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        >
+          aaay
+        </AssetContent>
+        <AssetMoves
+          title="Moves"
+          description="lorem ipsum dolor sit amet, consectetur adipiscing elit."
+          tags={["hejsa", "hejsa", "hejsa"]}
+        />
         <RowSection title="Moves">
           {row.original.bestiaryMoves.map((move) => (
             <div key={move.id} className="space-y-2 pb-4">

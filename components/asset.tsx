@@ -6,6 +6,7 @@ import Heading from "./layout/heading";
 import Icons from "./icons";
 import { Separator } from "./ui/separator";
 import { Paragraph } from "./ui/paragraph";
+import TagCloud from "./tag-cloud";
 
 const assetVariants = cva(
   "relative w-full rounded-lg  border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7",
@@ -136,12 +137,32 @@ const AssetContent = React.forwardRef<
     className={cn("text-sm [&_p]:leading-relaxed space-y-2 pt-4", className)}
     {...props}
   >
-    {title && <Heading size="md">{title}</Heading>}
+    {title && (
+      <Heading size="sm" className="font-bold uppercase tracking-wider">
+        {title}
+      </Heading>
+    )}
     {description && <Paragraph>{description}</Paragraph>}
     {children}
   </div>
 ));
 AssetContent.displayName = "AssetContent";
+
+const AssetMoves = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement> & {
+    title: string;
+    description: string;
+    tags: string | string[];
+  }
+>(({ className, title, description, tags, ...props }, ref) => (
+  <div ref={ref} className={cn("space-y-2", className)} {...props}>
+    <span className="font-bold uppercase tracking-wider">{title}</span>
+    <Paragraph size="sm">{description}</Paragraph>
+    {tags && <TagCloud data={tags} />}
+  </div>
+));
+AssetMoves.displayName = "AssetMoves";
 
 export {
   Asset,
@@ -150,4 +171,5 @@ export {
   AssetTitle,
   AssetDescription,
   AssetContent,
+  AssetMoves,
 };

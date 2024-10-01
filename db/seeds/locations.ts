@@ -4,12 +4,13 @@ import { locations } from "@/db/schema";
 import { SelectLocations } from "@/types/locations";
 
 export default async function seed(db: db) {
-  const formattedData: Omit<SelectLocations, "id">[] = data.map((location) => ({
+  const formattedData: SelectLocations[] = data.map((location) => ({
+    id: location.id,
     name: location.name,
     description: location.description,
-    type: location.type,
+    type: location.type || "unknown",
     origins: location.origins,
-    history: location.history,
+    history: location.history || "",
   }));
   if (!formattedData) {
     return;

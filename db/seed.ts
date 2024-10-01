@@ -14,22 +14,22 @@ if (!env.DB_SEEDING) {
 
 async function seedDatabase() {
   for (const table of [
+    schema.locationMoves,
     schema.bestiaryMoves,
     schema.characterMoves,
     schema.characterItems,
+    schema.characterAttributes,
     schema.characters,
     schema.bestiary,
-    schema.characterAttributes,
+    schema.locations,
     schema.bystanders,
-    schema.moves,
     schema.items,
     schema.tags,
     schema.taggable,
-    schema.locations,
-    schema.locationMoves,
+    schema.moves,
   ]) {
-    // if (table === schema.bestiary) {
-    //   console.log("harm capacity", table.harmCapacity.name);
+    // if (table === schema.moves) {
+    //   console.log("moves", table.name);
     // }
     await db.delete(table);
   }
