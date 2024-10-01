@@ -6,7 +6,7 @@ import {
   AssetContent,
   AssetDescription,
   AssetHeader,
-  AssetMoves,
+  AssetSkills,
   AssetTitle,
 } from "@/components/asset";
 import TagCloud from "@/components/tag-cloud";
@@ -47,10 +47,6 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
       label: t("armor"),
       value: row.original.armor,
     },
-    {
-      label: t("origins"),
-      value: row.original.tags.origins,
-    },
   ];
 
   return (
@@ -60,14 +56,14 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
           <AssetTitle
             title={row.original.name}
             tags={row.original.type || []}
-            type="locations"
+            type="bestiary"
           />
           <AssetDescription text={row.original.description} />
         </AssetHeader>
 
         <List>
           {details.map((detail, index) => (
-            <ListItem key={index} index={index}>
+            <ListItem key={index} index={index} horizontal>
               <ListKey>{detail.label}</ListKey>
               <ListValue>
                 {Array.isArray(detail.value)
@@ -79,45 +75,34 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
         </List>
 
         <Separator className="dark:bg-primary-foreground " />
-        <div className="space-y-6">
+        <AssetContent className="space-y-2">
           {row.original.powers.map((power) => (
-            <Paragraph key={power.name} size="sm" className=" ">
-              <strong className="font-bold text-primary-foreground">
-                {power.name}:
-              </strong>{" "}
-              {power.description}
-            </Paragraph>
+            <AssetSkills
+              key={power.name}
+              title={power.name}
+              description={power.description}
+              className="pb-4"
+            />
           ))}
-        </div>
+        </AssetContent>
       </AssetColumn>
       <AssetColumn>
-        <AssetContent
-          title="Moves"
-          description="lorem ipsum dolor sit amet, consectetur adipiscing elit."
-        >
-          aaay
-        </AssetContent>
-        <AssetMoves
-          title="Moves"
-          description="lorem ipsum dolor sit amet, consectetur adipiscing elit."
-          tags={["hejsa", "hejsa", "hejsa"]}
-        />
-        <RowSection title="Moves">
+        <AssetContent title="Moves" className="space-y-2">
           {row.original.bestiaryMoves.map((move) => (
-            <div key={move.id} className="space-y-2 pb-4">
-              <Paragraph size="sm" className="">
-                <strong className="font-bold text-primary-foreground capitalize">
-                  {move.name}:{" "}
-                </strong>
-                {move.description}
-              </Paragraph>
+            <AssetSkills
+              key={move.id}
+              title={move.name}
+              description={move.description}
+              className="pb-4"
+            >
               <TagCloud
                 harm={move.harm}
                 data={move.tags || move.playbook || []}
               />
-            </div>
+            </AssetSkills>
           ))}
-        </RowSection>
+        </AssetContent>
+
         <RowSection title="Weakness">
           {row.original.weakness.map((sign) => (
             <Paragraph key={sign} size="sm" className=" ">

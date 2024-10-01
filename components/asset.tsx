@@ -132,37 +132,37 @@ const AssetContent = React.forwardRef<
     children: React.ReactNode;
   }
 >(({ className, title, description, children, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("text-sm [&_p]:leading-relaxed space-y-2 pt-4", className)}
-    {...props}
-  >
+  <div ref={ref} className={cn("", className)} {...props}>
     {title && (
       <Heading size="sm" className="font-bold uppercase tracking-wider">
         {title}
       </Heading>
     )}
-    {description && <Paragraph>{description}</Paragraph>}
+    {description && <Paragraph size="sm">{description}</Paragraph>}
     {children}
   </div>
 ));
 AssetContent.displayName = "AssetContent";
 
-const AssetMoves = React.forwardRef<
+const AssetSkills = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
     title: string;
     description: string;
-    tags: string | string[];
+    children?: React.ReactNode;
   }
->(({ className, title, description, tags, ...props }, ref) => (
+>(({ className, title, description, children, ...props }, ref) => (
   <div ref={ref} className={cn("space-y-2", className)} {...props}>
-    <span className="font-bold uppercase tracking-wider">{title}</span>
-    <Paragraph size="sm">{description}</Paragraph>
-    {tags && <TagCloud data={tags} />}
+    <Paragraph size="sm" className="">
+      <strong className="font-bold text-primary-foreground capitalize tracking-wide">
+        {title}:{" "}
+      </strong>
+      {description}
+    </Paragraph>
+    {children}
   </div>
 ));
-AssetMoves.displayName = "AssetMoves";
+AssetSkills.displayName = "AssetSkills";
 
 export {
   Asset,
@@ -171,5 +171,5 @@ export {
   AssetTitle,
   AssetDescription,
   AssetContent,
-  AssetMoves,
+  AssetSkills,
 };

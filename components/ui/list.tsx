@@ -30,7 +30,7 @@ List.displayName = "List";
 const ListItem = React.forwardRef<
   HTMLParagraphElement,
   React.HTMLAttributes<HTMLLIElement> & { index: number; horizontal?: boolean }
->(({ className, index, horizontal, ...props }, ref) => (
+>(({ className, index, horizontal = true, ...props }, ref) => (
   <li
     className={cn(
       "h-8 px-2 flex items-center",

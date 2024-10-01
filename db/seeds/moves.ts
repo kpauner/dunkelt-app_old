@@ -5,7 +5,7 @@ import { moves } from "../schema";
 
 export default async function seed(db: db) {
   const formattedData: SelectMoves[] = data.map((move, index) => ({
-    id: index + 1,
+    id: move.id,
     name: move.name,
     description: move.description,
     playbook: move.playbook,
