@@ -18,12 +18,10 @@ const bystanders = sqliteTable("bystanders", {
   type: text("type").default("busybody").notNull(),
   description: text("description"),
   look: text("look"),
-  harmCapacity: integer("harm_capacity").notNull().default(0),
-  dob: text("dob").default("unknown"),
-  height: integer("height").default(0),
-  weight: integer("weight").default(0),
-  eyes: text("eyes").default("unknown"),
-  hair: text("hair").default("unknown"),
+  harmCapacity: integer("harm_capacity").notNull().default(7),
+  dateOfBirth: text("dob").default("unknown"),
+  dateOfDeath: text("dod").default("unknown"),
+  origins: text("origins"),
   homebrew: integer("homebrew", { mode: "boolean" }).default(true).notNull(),
   userId: text("user_id")
     .references(() => users.id, { onDelete: "cascade" })

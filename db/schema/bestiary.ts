@@ -18,7 +18,7 @@ capacity, optionally custom moves.
 const bestiary = sqliteTable("bestiary", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   name: text("name").notNull(),
-  image: text("image"),
+  avatar: text("avatar"),
   type: text("type").notNull(),
   description: text("description").notNull(),
   powers: text("powers", { mode: "json" }).$type<Powers[]>().notNull(),

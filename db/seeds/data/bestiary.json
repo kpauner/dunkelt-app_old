@@ -2,7 +2,7 @@
   {
     "name": "vampire",
     "type": "queen",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SCP-049.png/640px-SCP-049.png",
+    "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SCP-049.png/640px-SCP-049.png",
     "description": "A pale, gaunt figure with sharp fangs and glowing red eyes. Vampires are undead creatures that feed on the blood of the living to sustain their immortality. Ancient creatures of legend, with stories of their existence dating back to ancient civilizations. They are often depicted as noble or aristocratic figures who prey on the living to maintain their immortality.",
     "powers": [
       {
@@ -51,7 +51,7 @@
   {
     "name": "mosekonen",
     "type": "beast",
-    "image": "https://static.wikia.nocookie.net/scp-fanon/images/3/30/SCP-106-B.jpg/revision/latest?cb=20240511002332",
+    "avatar": "https://static.wikia.nocookie.net/scp-fanon/avatars/3/30/SCP-106-B.jpg/revision/latest?cb=20240511002332",
     "description": "a female spirit associated with fog and mist. She's said to brew the mist that rises from marshes and moors.",
     "powers": [
       {
@@ -91,7 +91,7 @@
   {
     "name": "myling",
     "type": "spirit",
-    "image": "https://static.wikia.nocookie.net/scp-fanon/images/3/30/SCP-106-B.jpg/revision/latest?cb=20240511002332",
+    "avatar": "https://static.wikia.nocookie.net/scp-fanon/avatars/3/30/SCP-106-B.jpg/revision/latest?cb=20240511002332",
     "description": "The ghost of an unbaptized child, often said to chase lone travelers at night, demanding to be baptized and buried properly.",
     "powers": [
       {

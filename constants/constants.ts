@@ -13,7 +13,7 @@ export const QUERY_KEYS = {
 export const AVATARS = {
   DEFAULT: "/images/avatars/default.jpg",
   BESTIARY: "/images/avatars/bestiary.png",
-  BYSTANDERS: "/images/avatars/bystanders.png",
+  BYSTANDERS: "/images/avatars/bystander_256x256.jpg",
 };
 
 export const IMAGES = {
