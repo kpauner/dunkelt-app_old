@@ -7,6 +7,7 @@ import Icons from "./icons";
 import { Separator } from "./ui/separator";
 import { Paragraph } from "./ui/paragraph";
 import TagCloud from "./tag-cloud";
+import Image from "next/image";
 
 const assetVariants = cva(
   "relative w-full rounded-lg  border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7",
@@ -65,17 +66,25 @@ AssetHeader.displayName = "AssetHeader";
 type AssetTitleProps = {
   title: string;
   tags?: string | string[];
-  type?: "bestiary" | "locations" | "items" | "bystanders";
+  type?: "bestiary" | "locations" | "items" | "bystanders" | "characters";
+  avatar?: string;
 };
 
 const AssetTitle = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & AssetTitleProps
->(({ className, title, tags, type, children, ...props }, ref) => (
+>(({ className, title, tags, type, avatar, ...props }, ref) => (
   <div ref={ref} className={cn("pb-1", className)} {...props}>
     <div className="font-medium flex gap-x-2 items-cente">
-      <div className="p-px rounded-md flex items-center justify-center border-primary-dark border  aspect-square size-14">
-        {type === "bestiary" ? (
+      <div className="relative p-px rounded-md flex items-center justify-center border-primary-dark border aspect-square size-14 overflow-hidden ">
+        {avatar ? (
+          <Image
+            fill
+            src={avatar}
+            alt={title}
+            className="object-cover aspect-square size-full"
+          />
+        ) : type === "bestiary" ? (
           <Icons.bestiary className="size-8 text-primary-foreground" />
         ) : type === "locations" ? (
           <Icons.locations className="size-8 text-primary-foreground" />
@@ -83,6 +92,8 @@ const AssetTitle = React.forwardRef<
           <Icons.items className="size-8 text-primary-foreground" />
         ) : type === "bystanders" ? (
           <Icons.bystanders className="size-8 text-primary-foreground" />
+        ) : type === "characters" ? (
+          <Icons.characters className="size-8 text-primary-foreground" />
         ) : (
           <Icons.locations className="size-8 text-primary-foreground" />
         )}

@@ -25,6 +25,7 @@ import { Row } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
 import { GetBystandersByIdResponseType } from "@/types/bystanders";
+import { Avatar } from "@/components/ui/avatar";
 
 type BystandersExpandedRowProps = {
   row: Row<GetBystandersByIdResponseType>;
@@ -33,7 +34,7 @@ type BystandersExpandedRowProps = {
 export default function BystandersExpandedRow({
   row,
 }: BystandersExpandedRowProps) {
-  const t = useTranslations("bestiary");
+  const t = useTranslations("bystanders");
   if (!row.original) return null;
   // Example details array, adjust as needed
   const details = [
@@ -56,9 +57,10 @@ export default function BystandersExpandedRow({
       <AssetColumn>
         <AssetHeader>
           <AssetTitle
+            avatar={row.original.avatar || ""}
             title={row.original.name}
             tags={row.original.type || []}
-            type="bestiary"
+            type="bystanders"
           />
           <AssetDescription text={row.original.description} />
         </AssetHeader>
@@ -91,7 +93,10 @@ export default function BystandersExpandedRow({
             )}  
           
         </AssetContent> */}
-        <AssetContent title="History" description={row.original.history} />
+        <AssetContent
+          title="History"
+          description={row.original.history || "No history found"}
+        />
       </AssetColumn>
     </Asset>
   );

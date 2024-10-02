@@ -40,6 +40,14 @@
     "powers": "Powers",
     "description": "Description"
   },
+  "bystanders": {
+    "harmCapacity": "Harm Capacity",
+    "origins": "Origins",
+    "details": "Details",
+    "dateOfBirth": "Birth",
+    "dateOfDeath": "Death",
+    "description": "Description"
+  },
   "motivations": {
     "beast": "to run wild, destroying and killing",
     "breeder": "to give birth to, or create, evil",
