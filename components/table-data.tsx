@@ -30,7 +30,7 @@ import TableToolbar from "@/components/codex/table-toolbar";
 import { filtersConfig } from "@/config/filters.config";
 import { TablePagination } from "@/components/table-pagination";
 import { cn } from "@/lib/utils";
-import { BystandersExpandedRow } from "./expanded-rows";
+
 import Loader from "./loader";
 import { useTranslations } from "next-intl";
 import {
@@ -39,6 +39,8 @@ import {
 } from "@/types/bestiary";
 import { SelectItemsResponseType } from "@/types/items";
 import { ColumnMeta } from "./codex/bestiary-columns";
+import { GetBystandersByIdResponseType } from "@/types/bystanders";
+import BystandersExpandedRow from "@/features/bystanders/components/bystanders-expanded-row";
 
 // Define a mapping of expanded row types to their respective components
 const expandedRowComponents = {
@@ -54,7 +56,7 @@ type ExpandedRowProps<T> = T extends "bestiary"
   : T extends "locations"
   ? { row: Row<any> } // Replace LocationType with the actual type
   : T extends "bystanders"
-  ? { row: Row<any> } // Replace BystanderType with the actual type
+  ? { row: Row<GetBystandersByIdResponseType> } // Replace BystanderType with the actual type
   : T extends "items"
   ? { row: Row<SelectItemsResponseType> } // Replace ItemType with the actual type
   : never;

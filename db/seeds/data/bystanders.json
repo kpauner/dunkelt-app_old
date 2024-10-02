@@ -1,14 +1,48 @@
 [
   {
-    "name": "Hans Christian Andersen",
+    "name": "Gorm the Old",
     "type": "official",
     "avatar": "",
-    "description": "Local police officer, skeptical of supernatural claims",
-    "look": "Stern face, crisp uniform, always carries a notepad",
-    "harmCapacity": 2,
-    "dob": "1452-04-15",
-    "dod": "1519-05-02",
-    "homebrew": false
+    "description": "The first historically recognized King of Denmark, known for his pagan beliefs and unification of Danish tribes. As an Official, Gorm is inherently suspicious of outsiders and strange occurrences in his realm.",
+    "look": "Stern-faced elderly man with a long white beard, wearing a golden crown and fur-lined cloak.",
+    "harmCapacity": 7,
+    "dateOfBirth": "Circa 900 CE",
+    "dateOfDeath": "Circa 958 CE",
+    "origins": "Denmark",
+    "history": "Born into Danish nobility, rose to power through conquest and political alliances",
+    "homebrew": false,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
+  },
+  {
+    "name": "Hans Christian Andersen",
+    "avatar": "",
+    "type": "gossip",
+    "description": "A renowned storyteller with an uncanny ability to weave fact and fiction. Andersen is always eager to share tales of the strange and supernatural with anyone who will listen. His stories often contain kernels of truth about local mysteries, hidden behind layers of whimsy and metaphor. He's well-connected in both high society and among the common folk, making him a valuable source of information. However, separating truth from embellishment in his tales can be a challenge. Andersen is particularly fascinated by transformations and curses, and might unknowingly provide crucial clues about such phenomena.",
+    "look": "Tall, gangly man with a large nose and expressive eyes, often dressed in a black suit with a white shirt and bow tie.",
+    "harmCapacity": 7,
+    "dateOfBirth": "1805-04-2",
+    "dateOfDeath": "1875-08-04",
+    "origins": "Denmark",
+    "history": "Renowned Danish author, best known for his fairy tales. Born to a poor family in Odense, Denmark, rose to fame through his imaginative stories and perseverance.",
+    "homebrew": false,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
+  },
+  {
+    "name": "Niels Henrik David Bohr",
+    "type": "sceptic",
+    "avatar": "",
+    "description": "A brilliant physicist with an insatiable curiosity for the unknown, Bohr is nevertheless firmly rooted in the scientific method. He's often called upon to debunk supposed supernatural occurrences, and takes great pleasure in finding rational explanations for seemingly impossible events. Despite his skepticism, Bohr is open-minded enough to consider all evidence presented to him. He has access to cutting-edge scientific equipment and a network of fellow academics who can provide expertise on obscure topics.",
+    "look": "Distinguished gentleman with a thoughtful expression, often seen with a pipe and wearing a tweed jacket.",
+    "harmCapacity": 7,
+    "dateOfBirth": "1885-10-07",
+    "dateOfDeath": "1962-11-18",
+    "origins": "Denmark",
+    "history": "Nobel Prize-winning physicist who made foundational contributions to understanding atomic structure and quantum theory. Born in Copenhagen to a well-educated family, showed early promise in physics and mathematics.",
+    "homebrew": false,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "name": "Karen Blixen",
@@ -16,32 +50,13 @@
     "avatar": "",
     "description": "Retired farmer who knows all the local gossip",
     "look": "Wrinkled face, overalls, always chewing on a piece of straw",
-    "harmCapacity": 1,
-    "dob": "1940-07-22",
-    "dod": "1972-08-09",
-    "homebrew": false
-  },
-  {
-    "name": "Niels Bohr",
-    "type": "busybody",
-    "avatar": "",
-    "description": "Retired farmer who knows all the local gossip",
-    "look": "Wrinkled face, overalls, always chewing on a piece of straw",
-    "harmCapacity": 1,
-    "dob": "1940-07-22",
-    "dod": "1972-08-09",
-    "homebrew": false
-  },
-  {
-    "name": "Sarah the Librarian",
-    "type": "witness",
-    "avatar": "",
-    "description": "Quiet librarian who saw something strange late one night",
-    "look": "Glasses, cardigan, always carrying a thick book",
-    "harmCapacity": 1,
-    "dob": "1990-11-03",
-    "dod": "2024-01-01",
-    "homebrew": false
+    "harmCapacity": 7,
+    "dateOfBirth": "1940-07-22",
+    "dateOfDeath": "1972-08-09",
+    "origins": "Denmark",
+    "homebrew": false,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "name": "Dr. Eliza Thompson",
@@ -49,10 +64,13 @@
     "avatar": "",
     "description": "Local veterinarian with knowledge of strange animal behavior",
     "look": "Lab coat, stethoscope, always slightly disheveled",
-    "harmCapacity": 2,
+    "harmCapacity": 7,
     "dob": "1978-09-30",
     "dod": "2024-01-01",
-    "homebrew": false
+    "origins": "Denmark",
+    "homebrew": false,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   },
   {
     "name": "Tommy the Paperboy",
@@ -60,9 +78,12 @@
     "avatar": "",
     "description": "Young boy who delivers newspapers and overhears things",
     "look": "Freckles, baseball cap, always on his bike",
-    "harmCapacity": 1,
+    "harmCapacity": 7,
     "dob": "2010-05-17",
     "dod": "2024-01-01",
-    "homebrew": false
+    "origins": "Denmark",
+    "homebrew": false,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
   }
 ]

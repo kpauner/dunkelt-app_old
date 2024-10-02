@@ -21,20 +21,18 @@ import {
 import { Paragraph } from "@/components/ui/paragraph";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import {
-  GetBestiaryByIdResponseType,
-  GetBestiaryResponseType,
-  SelectBestiary,
-} from "@/types/bestiary";
 import { Row } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
+import { GetBystandersByIdResponseType } from "@/types/bystanders";
 
-type BestiaryExpandedRowProps = {
-  row: Row<GetBestiaryByIdResponseType>;
+type BystandersExpandedRowProps = {
+  row: Row<GetBystandersByIdResponseType>;
 };
 
-export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
+export default function BystandersExpandedRow({
+  row,
+}: BystandersExpandedRowProps) {
   const t = useTranslations("bestiary");
   if (!row.original) return null;
   // Example details array, adjust as needed
@@ -44,8 +42,12 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
       value: row.original.harmCapacity,
     },
     {
-      label: t("armor"),
-      value: row.original.armor,
+      label: t("dateOfBirth"),
+      value: row.original.dateOfBirth,
+    },
+    {
+      label: t("dateOfDeath"),
+      value: row.original.dateOfDeath,
     },
   ];
 
@@ -73,50 +75,23 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
             </ListItem>
           ))}
         </List>
-
-        <Separator className="dark:bg-primary-foreground " />
-        <AssetContent className="space-y-2">
-          {row.original.powers.map((power) => (
-            <AssetSkills
-              key={power.name}
-              title={power.name}
-              description={power.description}
-              className="pb-4"
-            />
-          ))}
-        </AssetContent>
+        <AssetContent description={row.original.look || "No look found"} />
       </AssetColumn>
       <AssetColumn>
-        <AssetContent title="Moves" className="space-y-2">
-          {row.original.bestiaryMoves.map((move) => (
-            <AssetSkills
-              key={move.id}
-              title={move.name}
-              description={move.description}
-              className="pb-4"
-            >
-              <TagCloud
-                harm={move.harm}
-                data={move.tags || move.playbook || []}
-              />
-            </AssetSkills>
-          ))}
-        </AssetContent>
-
-        <RowSection title="Weakness">
-          {row.original.weakness.map((sign) => (
-            <Paragraph key={sign} size="sm" className=" ">
-              {sign}
-            </Paragraph>
-          ))}
-        </RowSection>
-        <RowSection title="Signs">
-          {row.original.signs.map((sign) => (
-            <Paragraph key={sign} size="sm" className=" ">
-              {sign}
-            </Paragraph>
-          ))}
-        </RowSection>
+        {/* <AssetContent title="Moves" className="space-y-2">
+          {row.original.bystanderMoves.length > 0 ? (
+            row.original.bystanderMoves.map((move) => (
+              <AssetSkills
+                key={move.id  }
+                title={move.name}
+                description={move.description}
+                className="pb-4"
+              >) : 
+              <Paragraph>No moves found</Paragraph>
+            )}  
+          
+        </AssetContent> */}
+        <AssetContent title="History" description={row.original.history} />
       </AssetColumn>
     </Asset>
   );

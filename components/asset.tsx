@@ -129,16 +129,16 @@ const AssetContent = React.forwardRef<
   React.HTMLAttributes<HTMLParagraphElement> & {
     title?: string;
     description?: string;
-    children: React.ReactNode;
+    children?: React.ReactNode;
   }
 >(({ className, title, description, children, ...props }, ref) => (
   <div ref={ref} className={cn("", className)} {...props}>
     {title && (
-      <Heading size="sm" className="font-bold uppercase tracking-wider">
+      <Heading size="sm" className="font-bold uppercase tracking-wider pb-2">
         {title}
       </Heading>
     )}
-    {description && <Paragraph size="sm">{description}</Paragraph>}
+    {description && <p className="text-stone-300">{description}</p>}
     {children}
   </div>
 ));

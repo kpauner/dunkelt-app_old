@@ -23,7 +23,7 @@ export default async function seed(db: db) {
   const formattedData: BestiaryEntry[] = data.map((beast, index) => ({
     id: index + 1,
     name: beast.name,
-    image: beast.image || null,
+    avatar: beast.avatar || null,
     type: beast.type,
     description: beast.description,
     harmCapacity: beast.harmCapacity,
