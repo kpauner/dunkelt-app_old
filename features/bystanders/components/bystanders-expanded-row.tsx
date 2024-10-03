@@ -34,13 +34,17 @@ type BystandersExpandedRowProps = {
 export default function BystandersExpandedRow({
   row,
 }: BystandersExpandedRowProps) {
-  const t = useTranslations("bystanders");
+  const t = useTranslations("codex");
   if (!row.original) return null;
   // Example details array, adjust as needed
   const details = [
     {
       label: t("harmCapacity"),
       value: row.original.harmCapacity,
+    },
+    {
+      label: t("armor"),
+      value: 1,
     },
     {
       label: t("dateOfBirth"),

@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { bestiaryColumns } from "@/components/codex/bestiary-columns";
 import TableData from "@/components/table-data";
 import { useGetBystanders } from "@/features/bystanders/queries/use-get-bystanders";
 import { GetBystandersResponseType } from "@/types/bystanders";
+import { bystandersColumns } from "./bystanders-columns";
 
 export default function Bystanders() {
   const { data: bystandersQuery, isLoading, error } = useGetBystanders();
@@ -13,11 +13,12 @@ export default function Bystanders() {
     <>
       <TableData
         data={(bystandersQuery as GetBystandersResponseType) || []}
-        columns={bestiaryColumns}
+        columns={bystandersColumns}
         isLoading={isLoading}
         expandedRowType="bystanders"
         initialColumnVisibility={{
           origins: true,
+          armor: false,
         }}
       />
     </>

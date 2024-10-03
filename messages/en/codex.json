@@ -29,24 +29,16 @@
         "href": "codex/items",
         "image": "ITEMS"
       }
-    ]
-  },
-  "bestiary": {
+    ],
     "harmCapacity": "Harm Capacity",
+    "origins": "Origins",
     "armor": "Armor",
-    "origins": "Origins",
+    "description": "Description",
     "details": "Details",
-    "attacks": "Attacks",
     "powers": "Powers",
-    "description": "Description"
-  },
-  "bystanders": {
-    "harmCapacity": "Harm Capacity",
-    "origins": "Origins",
-    "details": "Details",
+    "attacks": "Attacks",
     "dateOfBirth": "Birth",
-    "dateOfDeath": "Death",
-    "description": "Description"
+    "dateOfDeath": "Death"
   },
   "motivations": {
     "beast": "to run wild, destroying and killing",

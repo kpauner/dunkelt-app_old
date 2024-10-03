@@ -35,7 +35,7 @@ type BestiaryExpandedRowProps = {
 };
 
 export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
-  const t = useTranslations("bestiary");
+  const t = useTranslations("codex");
   if (!row.original) return null;
   // Example details array, adjust as needed
   const details = [
