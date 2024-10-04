@@ -84,19 +84,25 @@ export default function BystandersExpandedRow({
         <AssetContent description={row.original.look || "No look found"} />
       </AssetColumn>
       <AssetColumn>
-        {/* <AssetContent title="Moves" className="space-y-2">
+        <AssetContent title="Moves">
           {row.original.bystanderMoves.length > 0 ? (
             row.original.bystanderMoves.map((move) => (
               <AssetSkills
-                key={move.id  }
+                key={move.id}
                 title={move.name}
                 description={move.description}
                 className="pb-4"
-              >) : 
-              <Paragraph>No moves found</Paragraph>
-            )}  
-          
-        </AssetContent> */}
+              >
+                <TagCloud
+                  harm={move.harm}
+                  data={move.tags || move.playbook || []}
+                />
+              </AssetSkills>
+            ))
+          ) : (
+            <Paragraph>No moves found</Paragraph>
+          )}
+        </AssetContent>
         <AssetContent
           title="History"
           description={row.original.history || "No history found"}
