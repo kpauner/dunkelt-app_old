@@ -16,7 +16,7 @@
   },
   {
     "name": "Hans Christian Andersen",
-    "avatar": "",
+    "avatar": "https://lh5.googleusercontent.com/proxy/R1nGgBYWDhyp00cMXJYZskUYBU1DFujSTbDkrz36420Bu52JHlinjwTj05tzGgO8QRjAlRkv2aEMJpVfl-khHzpc4ArCUO20qOpKW3oZVy_LmoaRwVGwpRbJT2xEAzNuZWQrq51Bfy8PMGSegorRzPPY",
     "type": "gossip",
     "description": "A renowned storyteller with an uncanny ability to weave fact and fiction. Andersen is always eager to share tales of the strange and supernatural with anyone who will listen. His stories often contain kernels of truth about local mysteries, hidden behind layers of whimsy and metaphor. He's well-connected in both high society and among the common folk, making him a valuable source of information. However, separating truth from embellishment in his tales can be a challenge. Andersen is particularly fascinated by transformations and curses, and might unknowingly provide crucial clues about such phenomena.",
     "look": "Tall, gangly man with a large nose and expressive eyes, often dressed in a black suit with a white shirt and bow tie.",
@@ -30,9 +30,9 @@
     "isPublic": true
   },
   {
-    "name": "Niels Henrik David Bohr",
+    "name": "Niels Bohr",
     "type": "sceptic",
-    "avatar": "",
+    "avatar": "https://media.dunkelt.app/avatars/codex/nielsbohr.jpg",
     "description": "A brilliant physicist with an insatiable curiosity for the unknown, Bohr is nevertheless firmly rooted in the scientific method. He's often called upon to debunk supposed supernatural occurrences, and takes great pleasure in finding rational explanations for seemingly impossible events. Despite his skepticism, Bohr is open-minded enough to consider all evidence presented to him. He has access to cutting-edge scientific equipment and a network of fellow academics who can provide expertise on obscure topics.",
     "look": "Distinguished gentleman with a thoughtful expression, often seen with a pipe and wearing a tweed jacket.",
     "harmCapacity": 7,

@@ -5,11 +5,12 @@ import { GetBestiaryByIdResponseType } from "@/types/bestiary";
 import { ArrowUpDown, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { CellStringArray, CellTooltip } from "./cells";
+import { CellStringArray, CellTooltip } from "../../../components/codex/cells";
 import { Paragraph } from "@/components/ui/paragraph";
 import { truncateText } from "@/lib/utils";
-import Icons from "../icons";
-import TagCloud from "../tag-cloud";
+import Icons from "../../../components/icons";
+import TagCloud from "../../../components/tag-cloud";
+import TableColumnHeader from "../../../components/table-column-header";
 
 export type ColumnMeta = {
   meta: {
@@ -86,16 +87,7 @@ export const bestiaryColumns = [
       className: "w-36",
     },
     header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="my-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Type
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
+      return <TableColumnHeader column={column} title="Type" />;
     },
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
@@ -131,20 +123,16 @@ export const bestiaryColumns = [
   columnHelper.accessor("origins", {
     header: ({ column }) => {
       return (
-        <Button
-          variant="ghost"
-          className="my-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Origins
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <div className="flex justify-end">
+          <TableColumnHeader column={column} title="Origins" />
+        </div>
       );
     },
     cell: ({ row, column }) => (
-      <div className="flex gap-2 flex-wrap">
-        <CellStringArray value={row.getValue("origins")} />
-      </div>
+      <TagCloud
+        data={row.getValue("origins")}
+        className="flex flex-wrap justify-end"
+      />
     ),
     filterFn: (row, id, filterValue) => {
       const origins = row.getValue(id) as string[];

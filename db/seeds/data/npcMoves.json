@@ -1,0 +1,14 @@
+[
+  {
+    "npcId": 1,
+    "moveId": 1
+  },
+  {
+    "npcId": 2,
+    "moveId": 10
+  },
+  {
+    "npcId": 2,
+    "moveId": 11
+  }
+]

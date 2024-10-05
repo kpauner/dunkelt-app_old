@@ -3,7 +3,7 @@ import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { Session } from "next-auth";
 import { db } from "@/db";
-import { bestiary, items, taggable } from "@/db/schema";
+import { npcs } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
 import { SelectBestiarySchema } from "@/types/bestiary";
 
@@ -13,67 +13,42 @@ type CustomVariableMap = {
 
 const app = new Hono<{ Variables: CustomVariableMap }>()
   .get("/", async (c) => {
-    const data = await db.query.bestiary.findMany({
+    const query = await db.query.npcs.findMany({
+      where: eq(npcs.type, "bestiary"),
       with: {
-        bestiaryMoves: {
+        npcMoves: {
           with: {
             move: true,
           },
         },
+        npcPowers: {
+          with: {
+            power: true,
+          },
+        },
       },
     });
-    const bestiaryWithTags = await Promise.all(
-      data.map(async (item) => {
-        const taggableEntries = await db.query.taggable.findMany({
-          where: and(
-            eq(taggable.taggableId, item.id),
-            eq(taggable.taggableType, "bestiary")
-          ),
-        });
-        const tagNames = await db.query.tags.findMany({
-          where: (fields, operators) =>
-            operators.or(
-              ...taggableEntries.map((entry) =>
-                operators.eq(fields.id, entry.tagId)
-              )
-            ),
-        });
-        const tagsByColumn = taggableEntries.reduce(
-          (acc: { [key: string]: any[] }, entry) => {
-            if (!acc[entry.taggableColumn]) {
-              acc[entry.taggableColumn] = [];
-            }
-            const tag = tagNames.find((tag) => tag.id === entry.tagId);
-            if (tag) {
-              acc[entry.taggableColumn].push(tag.name);
-            }
-            return acc;
-          },
-          {}
-        );
-
-        const transformedBestiaryMoves = item.bestiaryMoves.map(
-          (bm) => bm.move
-        );
-
-        return {
-          ...item,
-          bestiaryMoves: transformedBestiaryMoves,
-          tags: tagsByColumn,
-        };
-      })
-    );
-    return c.json({ data: bestiaryWithTags });
+    if (!query) {
+      return c.json({ message: "Item not found" }, 404);
+    }
+    const transformedNpcMoves = query.map((npc) => {
+      return {
+        ...npc,
+        npcMoves: npc.npcMoves.map((move) => move.move),
+        npcPowers: npc.npcPowers.map((power) => power.power),
+      };
+    });
+    return c.json({ data: transformedNpcMoves });
   })
   .get(
     "/:id",
     zValidator("param", z.object({ id: z.coerce.number().int().positive() })),
     async (c) => {
       const { id } = c.req.valid("param");
-      const query = await db.query.bestiary.findFirst({
-        where: eq(bestiary.id, id),
+      const query = await db.query.npcs.findFirst({
+        where: eq(npcs.id, id),
         with: {
-          bestiaryMoves: {
+          npcMoves: {
             with: {
               move: true,
             },
@@ -85,40 +60,20 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
         return c.json({ message: "Item not found" }, 404);
       }
 
-      const taggableEntries = await db.query.taggable.findMany({
-        where: and(
-          eq(taggable.taggableId, query.id),
-          eq(taggable.taggableType, "bestiary")
-        ),
-      });
-
-      const tagNames = await db.query.tags.findMany({
-        where: (fields, operators) =>
-          operators.or(
-            ...taggableEntries.map((entry) =>
-              operators.eq(fields.id, entry.tagId)
-            )
-          ),
-      });
-
-      const tagsByColumn = taggableEntries.reduce(
-        (acc: { [key: string]: string[] }, entry) => {
-          if (!acc[entry.taggableColumn]) {
-            acc[entry.taggableColumn] = [];
-          }
-          const tag = tagNames.find((tag) => tag.id === entry.tagId);
-          if (tag) {
-            acc[entry.taggableColumn].push(tag.name);
-          }
-          return acc;
-        },
-        {}
-      );
-      const transformedBestiaryMoves = query.bestiaryMoves.map((bm) => bm.move);
+      const transformedNpcMoves = query.npcMoves.map((nm) => nm.move);
       const bestiaryWithTags = {
         ...query,
-        tags: tagsByColumn,
-        bestiaryMoves: transformedBestiaryMoves,
+        npcMoves: transformedNpcMoves,
+        npcPowers: [
+          {
+            name: "Power 1",
+            description: "Description 1",
+          },
+          {
+            name: "Power 2",
+            description: "Description 2",
+          },
+        ],
       };
 
       return c.json({ data: bestiaryWithTags });

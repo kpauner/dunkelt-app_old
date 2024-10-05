@@ -41,16 +41,12 @@ export default function TagCloud({
     : Math.max(tagsArray.length - visibleTags, 0);
 
   return (
-    <div className="flex flex-wrap gap-1">
+    <div className={cn("flex flex-wrap gap-1", className)}>
       {harm !== undefined && harm !== null && harm > 0 && (
-        <Badge className={cn("inline-block", className)} variant="destructive">
-          {harm}-harm
-        </Badge>
+        <Badge variant="destructive">{harm}-harm</Badge>
       )}
       {armor !== undefined && armor !== null && armor > 0 && (
-        <Badge className={cn("inline-block", className)} variant="outline">
-          {armor}-armor
-        </Badge>
+        <Badge variant="outline">{armor}-armor</Badge>
       )}
       {displayItems.map((item) => {
         const tagName = t(`${item}.name`);
@@ -59,11 +55,7 @@ export default function TagCloud({
           <>
             <Tooltip>
               <TooltipTrigger>
-                <Badge
-                  variant="secondary"
-                  key={item}
-                  className={cn("capitalize", className)}
-                >
+                <Badge variant="secondary" key={item} className="capitalize">
                   {tagName}
                 </Badge>
               </TooltipTrigger>
@@ -75,9 +67,7 @@ export default function TagCloud({
         );
       })}
       {!showAllTags && remainingCount > 0 && (
-        <Badge variant="outline" className={cn("", className)}>
-          +{remainingCount} more
-        </Badge>
+        <Badge variant="outline">+{remainingCount} more</Badge>
       )}
     </div>
   );

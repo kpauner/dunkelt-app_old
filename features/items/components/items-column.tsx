@@ -4,7 +4,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 import { SelectItems } from "@/types/items";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CellTooltip } from "./cells";
+import { CellTooltip } from "../../../components/codex/cells";
 import Icons from "@/components/icons";
 import TagCloud from "@/components/tag-cloud";
 import { Paragraph } from "@/components/ui/paragraph";
@@ -16,6 +16,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import TableColumnHeader from "../../../components/table-column-header";
 
 const columnHelper = createColumnHelper<SelectItems>();
 
@@ -85,24 +86,20 @@ export const itemsColumns = [
   columnHelper.accessor((row) => row.tags?.join(","), {
     id: "tags",
     header: ({ column }) => (
-      <Button
-        variant="ghost"
-        className="my-1"
-        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-      >
-        tags
-        <Icons.arrowupdown className="ml-2 h-4 w-4" />
-      </Button>
+      <div className="flex justify-end items-end">
+        <TableColumnHeader column={column} title="Tags" />
+      </div>
     ),
     cell: ({ row }) => (
-      <div className="flex gap-2 flex-wrap">
+      <>
         <TagCloud
           data={row.getValue("tags") as string[]}
+          className="flex flex-wrap justify-end"
           visibleTags={3}
           harm={row.original.harm}
           armor={row.original.armor}
         />
-      </div>
+      </>
     ),
     enableColumnFilter: true,
     enableGlobalFilter: true,
@@ -110,36 +107,6 @@ export const itemsColumns = [
       const tags = row.getValue(columnId) as string[];
       return tags.some((tag) =>
         tag.toLowerCase().includes(filterValue.toLowerCase())
-      );
-    },
-  }),
-  columnHelper.display({
-    id: "actions",
-    cell: ({ row }) => {
-      const item = row.original;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(item.id.toString())}
-            >
-              Copy item ID
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => console.log("View details", item)}>
-              View details
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => console.log("Edit item", item)}>
-              Edit
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
       );
     },
   }),

@@ -26,6 +26,7 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { GetBystandersByIdResponseType } from "@/types/bystanders";
 import { Avatar } from "@/components/ui/avatar";
+import NotFound from "@/components/not-found";
 
 type BystandersExpandedRowProps = {
   row: Row<GetBystandersByIdResponseType>;
@@ -100,7 +101,7 @@ export default function BystandersExpandedRow({
               </AssetSkills>
             ))
           ) : (
-            <Paragraph>No moves found</Paragraph>
+            <NotFound />
           )}
         </AssetContent>
         <AssetContent

@@ -26,6 +26,10 @@ async function seedDatabase() {
     schema.items,
     schema.tags,
     schema.taggable,
+    schema.npcs,
+    schema.npcMoves,
+    schema.npcPowers,
+    schema.powers,
     schema.moves,
   ]) {
     // if (table === schema.moves) {
@@ -35,6 +39,10 @@ async function seedDatabase() {
   }
 
   await seeds.moves(db);
+  await seeds.powers(db);
+  await seeds.npcs(db);
+  await seeds.npcMoves(db);
+  await seeds.npcPowers(db);
   await seeds.characters(db);
   await seeds.characterMoves(db);
   await seeds.characterAttributes(db);

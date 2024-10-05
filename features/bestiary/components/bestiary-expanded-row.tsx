@@ -75,20 +75,23 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
         </List>
 
         <Separator className="dark:bg-primary-foreground " />
-        <AssetContent className="space-y-2">
-          {row.original.powers.map((power) => (
-            <AssetSkills
-              key={power.name}
-              title={power.name}
-              description={power.description}
-              className="pb-4"
-            />
-          ))}
-        </AssetContent>
+        {row.original.npcPowers && row.original.npcPowers.length > 0 && (
+          <AssetContent>
+            {row.original.npcPowers.map((power) => (
+              <AssetSkills
+                key={power.name}
+                title={power.name}
+                description={power.description}
+                className="pb-4"
+              />
+            ))}
+          </AssetContent>
+        )}
+        <pre>{JSON.stringify(row.original, null, 2)}</pre>
       </AssetColumn>
       <AssetColumn>
-        <AssetContent title="Moves" className="space-y-2">
-          {row.original.bestiaryMoves.map((move) => (
+        <AssetContent title="Moves">
+          {row.original.npcMoves.map((move) => (
             <AssetSkills
               key={move.id}
               title={move.name}
@@ -102,21 +105,19 @@ export default function BestiaryExpandedRow({ row }: BestiaryExpandedRowProps) {
             </AssetSkills>
           ))}
         </AssetContent>
-
-        <RowSection title="Weakness">
-          {row.original.weakness.map((sign) => (
-            <Paragraph key={sign} size="sm" className=" ">
-              {sign}
+        <AssetContent title="Weakness">
+          {row.original.weakness && row.original.weakness.length > 0 ? (
+            row.original.weakness.map((sign) => (
+              <Paragraph key={sign} size="sm" className=" ">
+                {sign}
+              </Paragraph>
+            ))
+          ) : (
+            <Paragraph size="sm" className=" ">
+              {t("noWeakness")}
             </Paragraph>
-          ))}
-        </RowSection>
-        <RowSection title="Signs">
-          {row.original.signs.map((sign) => (
-            <Paragraph key={sign} size="sm" className=" ">
-              {sign}
-            </Paragraph>
-          ))}
-        </RowSection>
+          )}
+        </AssetContent>
       </AssetColumn>
     </Asset>
   );

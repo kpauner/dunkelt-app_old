@@ -109,24 +109,29 @@ export const locationsColumns = [
   columnHelper.accessor("origins", {
     header: ({ column }) => {
       return (
-        <Button
-          variant="ghost"
-          className="my-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Origins
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <div className="flex justify-end">
+          <TableColumnHeader column={column} title="Origins" />
+        </div>
       );
     },
     cell: ({ row, column }) => (
-      <div className="flex gap-2 flex-wrap">
-        <CellStringArray value={row.getValue("origins")} />
-      </div>
+      <TagCloud
+        data={row.getValue("origins")}
+        className="flex flex-wrap justify-end"
+      />
     ),
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
+    filterFn: (row, id, filterValue) => {
+      const origins = row.getValue(id) as string[];
+      const filterValues = filterValue as string[];
+
+      if (filterValues.length === 0) return true;
+
+      return origins.some((origin) =>
+        filterValues.some(
+          (filter) => origin.toLowerCase() === filter.toLowerCase()
+        )
+      );
     },
-    enableHiding: false,
+    enableHiding: true,
   }),
 ];

@@ -38,7 +38,7 @@ import {
   GetBestiaryResponseType,
 } from "@/types/bestiary";
 import { SelectItemsResponseType } from "@/types/items";
-import { ColumnMeta } from "./codex/bestiary-columns";
+import { ColumnMeta } from "../features/bestiary/components/bestiary-columns";
 import { GetBystandersByIdResponseType } from "@/types/bystanders";
 import BystandersExpandedRow from "@/features/bystanders/components/bystanders-expanded-row";
 

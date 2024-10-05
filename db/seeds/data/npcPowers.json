@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "npcId": 1,
+    "powerId": 1
+  },
+  {
+    "id": 2,
+    "npcId": 2,
+    "powerId": 4
+  },
+  {
+    "id": 3,
+    "npcId": 2,
+    "powerId": 5
+  },
+  {
+    "id": 4,
+    "npcId": 2,
+    "powerId": 6
+  },
+  {
+    "id": 5,
+    "npcId": 2,
+    "powerId": 7
+  }
+]

@@ -21,9 +21,13 @@ const bystanders = sqliteTable("bystanders", {
   type: text("type").default("busybody").notNull(),
   look: text("look").notNull(),
   harmCapacity: integer("harm_capacity").notNull().default(7),
+  armor: integer("armor").notNull().default(0),
   dateOfBirth: text("dateOfBirth").default("unknown"),
   dateOfDeath: text("dateOfDeath").default("unknown"),
-  origins: text("origins"),
+  origins: text("origins", { mode: "json" })
+    .$type<string[]>()
+    .notNull()
+    .default(["unknown"]),
   history: text("history"),
   homebrew: integer("homebrew", { mode: "boolean" }).default(true).notNull(),
   userId: text("user_id")

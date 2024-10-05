@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "immortality",
+    "description": "Cannot die. they will, somehow, recover or be returned to life, unless certain conditions are met."
+  },
+  {
+    "id": 2,
+    "name": "Intangibility",
+    "description": "Can pass through solid objects and walls."
+  },
+  {
+    "id": 3,
+    "name": "Invisibility",
+    "description": "Can become invisible at will, though may be visible to certain individuals or under specific circumstances."
+  },
+  {
+    "id": 4,
+    "name": "plague bringer",
+    "description": "disease and vermin thrive when a vampire is nearby."
+  },
+  {
+    "id": 5,
+    "name": "Master Vampire",
+    "description": "the vampire controls all the vampires they have created."
+  },
+  {
+    "id": 6,
+    "name": "Superhuman strength and speed",
+    "description": "Has superhuman strength and speed."
+  },
+  {
+    "id": 7,
+    "name": "Phantom Presence",
+    "description": "Moves incredibly stealthily and silently."
+  }
+]

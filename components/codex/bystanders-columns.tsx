@@ -10,6 +10,9 @@ import { Paragraph } from "@/components/ui/paragraph";
 import { truncateText } from "@/lib/utils";
 import Icons from "../icons";
 import TagCloud from "../tag-cloud";
+import TableColumnHeader from "../table-column-header";
+import { Avatar } from "../ui/avatar";
+import { AVATARS } from "@/constants/constants";
 
 export type ColumnMeta = {
   meta: {
@@ -47,25 +50,22 @@ export const bystandersColumns = [
     ),
   }),
 
-  columnHelper.accessor("id", {
+  columnHelper.accessor("avatar", {
     meta: {
-      className: "w-36",
+      className: "w-16",
     },
     header: ({ column }) => {
-      return <span className="">Avatar</span>;
+      return null;
     },
     cell: ({ row }) => (
-      <div className="flex items-center gap-2">
-        <span className="capitalize font-bold tracking-wider">
-          <Image
-            alt="Product image"
-            className="aspect-square rounded-md object-cover bg-black"
-            height="64"
-            src="https://static.wikia.nocookie.net/secure-contain-protect/images/b/b6/SCP-049.png/revision/latest?cb=20211121023917"
-            width="64"
-          />
-        </span>
-      </div>
+      <>
+        <Avatar
+          alt="Product image"
+          className="aspect-square rounded-md object-cover bg-black"
+          size="lg"
+          src={row.getValue("avatar") || AVATARS.BYSTANDERS}
+        />
+      </>
     ),
   }),
   columnHelper.accessor("armor", {
@@ -86,16 +86,7 @@ export const bystandersColumns = [
       className: "w-36",
     },
     header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="my-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Type
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
+      return <TableColumnHeader column={column} title="Type" />;
     },
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
@@ -108,16 +99,7 @@ export const bystandersColumns = [
       className: "w-[900px]",
     },
     header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          className="my-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Description
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
+      return <TableColumnHeader column={column} title="Description" />;
     },
     cell: ({ row, column }) => (
       <>
@@ -131,20 +113,16 @@ export const bystandersColumns = [
   columnHelper.accessor("origins", {
     header: ({ column }) => {
       return (
-        <Button
-          variant="ghost"
-          className="my-1"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Origins
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
+        <div className="flex justify-end">
+          <TableColumnHeader column={column} title="Origins" />
+        </div>
       );
     },
     cell: ({ row, column }) => (
-      <div className="flex gap-2 flex-wrap">
-        <CellStringArray value={row.getValue("origins")} />
-      </div>
+      <TagCloud
+        data={row.getValue("origins")}
+        className="flex flex-wrap justify-end"
+      />
     ),
     filterFn: (row, id, filterValue) => {
       const origins = row.getValue(id) as string[];

@@ -32,6 +32,25 @@ export const filtersConfig: { [key: string]: FilterConfig[] } = {
         { label: "Bulgaria", value: "Bulgaria" },
       ],
     },
+  ],
+  bystanders: [
+    {
+      column: "type",
+      title: "Type",
+      options: [
+        { label: "Queen", value: "queen" },
+        { label: "Breeder", value: "breeder" },
+      ],
+    },
+    {
+      column: "origins",
+      title: "Origins",
+      options: [
+        { label: "Romania", value: "Romania" },
+        { label: "Denmark", value: "Denmark" },
+        { label: "Bulgaria", value: "Bulgaria" },
+      ],
+    },
     // Add more filters as needed
   ],
   items: [

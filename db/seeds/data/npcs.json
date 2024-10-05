@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Hans Christian Andersen",
+    "avatar": "https://lh5.googleusercontent.com/proxy/R1nGgBYWDhyp00cMXJYZskUYBU1DFujSTbDkrz36420Bu52JHlinjwTj05tzGgO8QRjAlRkv2aEMJpVfl-khHzpc4ArCUO20qOpKW3oZVy_LmoaRwVGwpRbJT2xEAzNuZWQrq51Bfy8PMGSegorRzPPY",
+    "look": "Tall, gangly man with a large nose and expressive eyes, often dressed in a black suit with a white shirt and bow tie.",
+    "type": "bystander",
+    "motivation": "gossip",
+    "description": "A renowned storyteller with an uncanny ability to weave fact and fiction. Andersen is always eager to share tales of the strange and supernatural with anyone who will listen. His stories often contain kernels of truth about local mysteries, hidden behind layers of whimsy and metaphor. He's well-connected in both high society and among the common folk, making him a valuable source of information. However, separating truth from embellishment in his tales can be a challenge. Andersen is particularly fascinated by transformations and curses, and might unknowingly provide crucial clues about such phenomena.",
+    "weakness": "",
+    "armor": 0,
+    "harmCapacity": 7,
+    "history": "Renowned Danish author, best known for his fairy tales. Born to a poor family in Odense, Denmark, rose to fame through his imaginative stories and perseverance.",
+    "origins": ["Denmark"],
+    "homebrew": false,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
+  },
+  {
+    "id": 2,
+    "name": "vampire",
+    "avatar": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/SCP-049.png/640px-SCP-049.png",
+    "look": "A pale, gaunt figure with sharp fangs and glowing red eyes.",
+    "type": "bestiary",
+    "motivation": "queen",
+    "description": "A pale, gaunt figure with sharp fangs and glowing red eyes. Vampires are undead creatures that feed on the blood of the living to sustain their immortality. Ancient creatures of legend, with stories of their existence dating back to ancient civilizations. They are often depicted as noble or aristocratic figures who prey on the living to maintain their immortality.",
+    "weakness": [
+      "sunlight",
+      "decapitation",
+      "wooden stake through the heart",
+      "must rest in a coffin with soil from their homeland"
+    ],
+    "armor": 1,
+    "harmCapacity": 9,
+    "history": "Ancient creatures of legend, with stories of their existence dating back to ancient civilizations. They are often depicted as noble or aristocratic figures who prey on the living to maintain their immortality.",
+    "origins": ["Romania", "Bulgaria"],
+    "homebrew": false,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
+  },
+  {
+    "id": 3,
+    "name": "mosekonen",
+    "avatar": "https://static.wikia.nocookie.net/scp-fanon/avatars/3/30/SCP-106-B.jpg/revision/latest?cb=20240511002332",
+    "type": "bestiary",
+    "motivation": "queen",
+    "description": "a female spirit associated with fog and mist. She's said to brew the mist that rises from marshes and moors.",
+    "weakness": [
+      "silver",
+      "wolfsbane",
+      "inability to control transformation during full moon"
+    ],
+    "armor": 1,
+    "harmCapacity": 8,
+    "history": "a female spirit associated with fog and mist. She's said to brew the mist that rises from marshes and moors.",
+    "origins": ["Romania", "Bulgaria"],
+    "homebrew": false,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
+  },
+  {
+    "id": 4,
+    "name": "myling",
+    "avatar": "https://static.wikia.nocookie.net/scp-fanon/avatars/3/30/SCP-106-B.jpg/revision/latest?cb=20240511002332",
+    "type": "bestiary",
+    "motivation": "queen",
+    "description": "The ghost of an unbaptized child, often said to chase lone travelers at night, demanding to be baptized and buried properly.",
+    "weakness": [
+      "salt",
+      "iron",
+      "exorcism rituals",
+      "resolving their unfinished business"
+    ],
+    "armor": 0,
+    "harmCapacity": 5,
+    "history": "The ghost of an unbaptized child, often said to chase lone travelers at night, demanding to be baptized and buried properly.",
+    "origins": ["Romania", "Bulgaria"],
+    "homebrew": false,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
+  }
+]
