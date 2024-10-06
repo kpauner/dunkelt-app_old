@@ -16,8 +16,8 @@ export type FilterConfig = {
 export const filtersConfig: { [key: string]: FilterConfig[] } = {
   bestiary: [
     {
-      column: "type",
-      title: "Type",
+      column: "motivation",
+      title: "Motivation",
       options: [
         { label: "Queen", value: "queen" },
         { label: "Breeder", value: "breeder" },

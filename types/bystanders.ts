@@ -1,9 +1,6 @@
-import { bystanders } from "@/db/schema";
 import { client } from "@/lib/hono";
 import { InferInsertModel } from "drizzle-orm";
 import { InferResponseType } from "hono";
-
-export type SelectBystander = InferInsertModel<typeof bystanders>;
 
 // API RESPONSE TYPES
 export type GetBystandersResponseType = InferResponseType<

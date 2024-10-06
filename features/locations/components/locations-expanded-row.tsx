@@ -8,20 +8,9 @@ import {
   AssetTitle,
 } from "@/components/asset";
 import TagCloud from "@/components/tag-cloud";
-import {
-  List,
-  ListItem,
-  ListTitle,
-  ListDescription,
-} from "@/components/ui/list";
 import { Paragraph } from "@/components/ui/paragraph";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
-import {
-  GetBestiaryByIdResponseType,
-  GetBestiaryResponseType,
-  SelectBestiary,
-} from "@/types/bestiary";
 import { Row } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
@@ -60,12 +49,14 @@ export default function LocationsExpandedRow({
       <AssetColumn>
         <AssetHeader>
           <AssetTitle
+            avatar={row.original.avatar || ""}
             title={row.original.name}
             tags={row.original.type || []}
-            type="locations"
+            type="location"
           />
           <AssetDescription text={row.original.description} />
         </AssetHeader>
+
         <Separator className="dark:bg-primary-foreground" />
         <RowSection title="Suggestions">
           <Paragraph size="sm" className=" ">

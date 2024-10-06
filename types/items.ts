@@ -20,6 +20,7 @@ export const SelectCharacterItemsSchema = createSelectSchema(characterItems);
 export type SelectItems = z.infer<typeof CharacterItemSchema>;
 export type SelectCharacterItems = z.infer<typeof SelectCharacterItemsSchema>;
 export type InsertItems = z.infer<typeof InsertItemsSchema>;
+export type ItemType = z.infer<typeof TypeEnum>;
 
 // API RESPONSE TYPES
 export type SelectItemsResponseType = InferResponseType<

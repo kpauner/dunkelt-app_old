@@ -1,6 +1,15 @@
+import {
+  Asset,
+  AssetColumn,
+  AssetContent,
+  AssetDescription,
+  AssetHeader,
+  AssetTitle,
+} from "@/components/asset";
 import Icons from "@/components/icons";
 import Heading from "@/components/layout/heading";
 import TagCloud from "@/components/tag-cloud";
+import { Separator } from "@/components/ui/separator";
 import { Paragraph } from "@/components/ui/paragraph";
 import { Row } from "@tanstack/react-table";
 
@@ -10,42 +19,36 @@ type ItemsExpandedRowProps = {
 
 export default function ItemsExpandedRow({ row }: ItemsExpandedRowProps) {
   return (
-    <div className="flex flex-col gap-4 w-full">
-      <div className="flex gap-x-2">
-        <div className="p-px rounded-md flex items-center justify-center border-primary-dark border  aspect-square w-9">
-          <Icons.items className="w-6 h-6" />
-        </div>
-        <div>
-          <Heading size="xs" className="">
-            {row.original.name}
-          </Heading>
-          <p className="text-xs text-muted-foreground">{row.original.type}</p>
-        </div>
-      </div>
+    <Asset variant="default" className="grid grid-cols-2 gap-6">
+      <AssetColumn>
+        <AssetHeader>
+          <AssetTitle
+            avatar={row.original.avatar || ""}
+            title={row.original.name}
+            tags={row.original.type || []}
+            type={row.original.type || "bystander"}
+          />
+          <AssetDescription text={row.original.description} />
+        </AssetHeader>
 
-      <div className="flex flex-col gap-2">
-        {row?.original?.armor !== undefined &&
-          row?.original?.armor !== null &&
-          row?.original?.armor > 0 && (
-            <div className="flex gap-x-2">
-              <span className="font-bold">Armor:</span>
-              <span>{row.original.armor}</span>
-            </div>
-          )}
+        <Separator className="dark:bg-primary-foreground" />
 
-        {row?.original?.description && (
-          <Paragraph variant="default" size="xs">
-            {row.original.description}
-          </Paragraph>
+        <TagCloud
+          data={row.original.tags || []}
+          showAllTags={true}
+          harm={row.original.harm}
+          armor={row.original.armor}
+        />
+      </AssetColumn>
+      <AssetColumn>
+        {row.original.history && row.original.history.length > 0 && (
+          <AssetContent title="History">
+            <Paragraph size="sm" className=" ">
+              {row.original.history}
+            </Paragraph>
+          </AssetContent>
         )}
-      </div>
-
-      <TagCloud
-        data={row.original.tags || []}
-        showAllTags={true}
-        harm={row.original.harm}
-        armor={row.original.armor}
-      />
-    </div>
+      </AssetColumn>
+    </Asset>
   );
 }

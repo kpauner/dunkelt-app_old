@@ -1,4 +1,4 @@
-import { characterMoves, moves, npcPowers, powers } from "@/db/schema";
+import { npcPowers, powers } from "@/db/schema";
 import { InferSelectModel } from "drizzle-orm";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 

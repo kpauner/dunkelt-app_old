@@ -30,8 +30,6 @@ import {
 import Loader from "@/components/loader";
 import { useEditMovesSheet } from "../hooks/use-edit-moves-sheet";
 import TableData from "@/components/table-data";
-import { itemsColumns } from "@/components/codex/items-column";
-import placeholderItems from "@/db/seeds/data/items.json";
 
 export default function EditMovesSheet() {
   const { isOpen, onOpen, onClose } = useEditMovesSheet();

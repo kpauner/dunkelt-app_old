@@ -3,8 +3,8 @@ import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { Session } from "next-auth";
 import { db } from "@/db";
-import { eq } from "drizzle-orm";
 import { npcs } from "@/db/schema";
+import { and, eq } from "drizzle-orm";
 
 type CustomVariableMap = {
   session: Session | null;
@@ -13,7 +13,6 @@ type CustomVariableMap = {
 const app = new Hono<{ Variables: CustomVariableMap }>()
   .get("/", async (c) => {
     const query = await db.query.npcs.findMany({
-      where: eq(npcs.type, "bystander"),
       with: {
         npcMoves: {
           with: {
@@ -30,14 +29,14 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
     if (!query) {
       return c.json({ message: "Item not found" }, 404);
     }
-    const transformedBystander = query.map((npc) => {
+    const transformedNpcMoves = query.map((npc) => {
       return {
         ...npc,
         npcMoves: npc.npcMoves.map((move) => move.move),
         npcPowers: npc.npcPowers.map((power) => power.power),
       };
     });
-    return c.json({ data: transformedBystander });
+    return c.json({ data: transformedNpcMoves });
   })
   .get(
     "/:id",
@@ -66,13 +65,13 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
 
       const transformedNpcMoves = query.npcMoves.map((nm) => nm.move);
       const transformedNpcPowers = query.npcPowers.map((np) => np.power);
-      const bystander = {
+      const bestiaryWithTags = {
         ...query,
         npcMoves: transformedNpcMoves,
         npcPowers: transformedNpcPowers,
       };
 
-      return c.json({ data: bystander });
+      return c.json({ data: bestiaryWithTags });
     }
   );
 

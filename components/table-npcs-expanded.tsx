@@ -20,21 +20,16 @@ import {
 } from "@/components/ui/list";
 import { Paragraph } from "@/components/ui/paragraph";
 import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
 import { Row } from "@tanstack/react-table";
 import { useTranslations } from "next-intl";
 import React from "react";
-import { GetBystandersByIdResponseType } from "@/types/bystanders";
-import { Avatar } from "@/components/ui/avatar";
-import NotFound from "@/components/not-found";
+import { GetNpcsByIdResponseType } from "@/types/npcs";
 
-type BystandersExpandedRowProps = {
-  row: Row<GetBystandersByIdResponseType>;
+type NpcsExpandedRowProps = {
+  row: Row<GetNpcsByIdResponseType>;
 };
 
-export default function BystandersExpandedRow({
-  row,
-}: BystandersExpandedRowProps) {
+export default function NpcsExpandedRow({ row }: NpcsExpandedRowProps) {
   const t = useTranslations("codex");
   if (!row.original) return null;
   // Example details array, adjust as needed
@@ -45,15 +40,7 @@ export default function BystandersExpandedRow({
     },
     {
       label: t("armor"),
-      value: 1,
-    },
-    {
-      label: t("dateOfBirth"),
-      value: row.original.dateOfBirth,
-    },
-    {
-      label: t("dateOfDeath"),
-      value: row.original.dateOfDeath,
+      value: row.original.armor,
     },
   ];
 
@@ -65,7 +52,7 @@ export default function BystandersExpandedRow({
             avatar={row.original.avatar || ""}
             title={row.original.name}
             tags={row.original.type || []}
-            type="bystanders"
+            type={row.original.type || "bystander"}
           />
           <AssetDescription text={row.original.description} />
         </AssetHeader>
@@ -82,12 +69,28 @@ export default function BystandersExpandedRow({
             </ListItem>
           ))}
         </List>
-        <AssetContent description={row.original.look || "No look found"} />
+
+        <Separator className="dark:bg-primary-foreground " />
+        {row.original.npcPowers && row.original.npcPowers.length > 0 && (
+          <AssetContent>
+            {row.original.npcPowers.map((power) => (
+              <AssetSkills
+                key={power.name}
+                title={power.name}
+                description={power.description}
+                className="pb-4"
+              />
+            ))}
+          </AssetContent>
+        )}
+        <AssetContent title="Look" description={row.original.look} />
+
+        {/* <pre>{JSON.stringify(row.original, null, 2)}</pre> */}
       </AssetColumn>
       <AssetColumn>
-        <AssetContent title="Moves">
-          {row.original.bystanderMoves.length > 0 ? (
-            row.original.bystanderMoves.map((move) => (
+        {row.original.npcMoves && row.original.npcMoves.length > 0 && (
+          <AssetContent title="Moves">
+            {row.original.npcMoves.map((move) => (
               <AssetSkills
                 key={move.id}
                 title={move.name}
@@ -99,33 +102,29 @@ export default function BystandersExpandedRow({
                   data={move.tags || move.playbook || []}
                 />
               </AssetSkills>
-            ))
-          ) : (
-            <NotFound />
-          )}
-        </AssetContent>
-        <AssetContent
-          title="History"
-          description={row.original.history || "No history found"}
-        />
+            ))}
+          </AssetContent>
+        )}
+        {row.original.weakness && row.original.weakness.length > 0 && (
+          <AssetContent title="Weaknesses">
+            {row.original.weakness.map((weak, i) => (
+              <AssetSkills
+                key={i}
+                title={weak.name}
+                description={weak.description}
+                className="pb-4"
+              ></AssetSkills>
+            ))}
+          </AssetContent>
+        )}
+        {row.original.history && row.original.history.length > 0 && (
+          <AssetContent title="History">
+            <Paragraph size="sm" className=" ">
+              {row.original.history}
+            </Paragraph>
+          </AssetContent>
+        )}
       </AssetColumn>
     </Asset>
-  );
-}
-
-function RowSection({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="space-y-2">
-      <Heading size="sm" className="uppercase tracking-wide">
-        {title}
-      </Heading>
-      {children}
-    </div>
   );
 }

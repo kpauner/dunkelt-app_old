@@ -5,7 +5,6 @@ import { Session } from "next-auth";
 import { db } from "@/db";
 import { npcs } from "@/db/schema";
 import { and, eq } from "drizzle-orm";
-import { SelectBestiarySchema } from "@/types/bestiary";
 
 type CustomVariableMap = {
   session: Session | null;
@@ -53,6 +52,11 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
               move: true,
             },
           },
+          npcPowers: {
+            with: {
+              power: true,
+            },
+          },
         },
       });
 
@@ -61,58 +65,14 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
       }
 
       const transformedNpcMoves = query.npcMoves.map((nm) => nm.move);
+      const transformedNpcPowers = query.npcPowers.map((np) => np.power);
       const bestiaryWithTags = {
         ...query,
         npcMoves: transformedNpcMoves,
-        npcPowers: [
-          {
-            name: "Power 1",
-            description: "Description 1",
-          },
-          {
-            name: "Power 2",
-            description: "Description 2",
-          },
-        ],
+        npcPowers: transformedNpcPowers,
       };
 
       return c.json({ data: bestiaryWithTags });
-    }
-  )
-  .post(
-    "/",
-    zValidator("json", SelectBestiarySchema.omit({ id: true })),
-    async (c) => {
-      const session = c.get("session");
-      const values = c.req.valid("json");
-
-      if (!session) {
-        return c.json({ message: "Unauthorized" }, 401);
-      }
-
-      // const [data] = await db
-      //   .insert(bestiary)
-      //   .values({
-      //     name: values.name,
-      //     type: values.type,
-      //     description: values.description,
-      //     armor: values.armor,
-      //     powers: values.powers,
-      //     weakness: values.weakness,
-      //     attacks: values.attacks,
-      //     harmCapacity: values.harmCapacity,
-      //     origins: values.origins,
-      //     signs: values.signs,
-      //     countermeasures: values.countermeasures,
-      //     userId: session.user?.id,
-      //   })
-      //   .returning();
-
-      return c.json({
-        message: "Bestiary created",
-        user: session.user?.email,
-        // data,
-      });
     }
   );
 

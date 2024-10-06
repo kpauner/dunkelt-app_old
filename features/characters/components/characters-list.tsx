@@ -87,6 +87,7 @@ function CharacterCards({ character }: { character: CharacterResponseType }) {
         <List>
           {details.map((detail, index) => (
             <ListItem
+              index={index}
               className={cn(
                 "h-8 px-2 flex items-center justify-between",
                 index % 2 === 0 ? "bg-muted" : ""

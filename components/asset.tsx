@@ -8,6 +8,7 @@ import { Separator } from "./ui/separator";
 import { Paragraph } from "./ui/paragraph";
 import TagCloud from "./tag-cloud";
 import Image from "next/image";
+import { EntityType } from "@/types";
 
 const assetVariants = cva(
   "relative w-full rounded-lg  border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7",
@@ -66,7 +67,7 @@ AssetHeader.displayName = "AssetHeader";
 type AssetTitleProps = {
   title: string;
   tags?: string | string[];
-  type?: "bestiary" | "locations" | "items" | "bystanders" | "characters";
+  type?: EntityType;
   avatar?: string;
 };
 
@@ -86,13 +87,13 @@ const AssetTitle = React.forwardRef<
           />
         ) : type === "bestiary" ? (
           <Icons.bestiary className="size-8 text-primary-foreground" />
-        ) : type === "locations" ? (
+        ) : type === "location" ? (
           <Icons.locations className="size-8 text-primary-foreground" />
-        ) : type === "items" ? (
+        ) : type === "item" ? (
           <Icons.items className="size-8 text-primary-foreground" />
-        ) : type === "bystanders" ? (
+        ) : type === "bystander" ? (
           <Icons.bystanders className="size-8 text-primary-foreground" />
-        ) : type === "characters" ? (
+        ) : type === "character" ? (
           <Icons.characters className="size-8 text-primary-foreground" />
         ) : (
           <Icons.locations className="size-8 text-primary-foreground" />

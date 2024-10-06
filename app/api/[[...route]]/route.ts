@@ -1,6 +1,5 @@
 import { Hono, Context } from "hono";
 import { handle } from "hono/vercel";
-import { authHandler, initAuthConfig, verifyAuth } from "@hono/auth-js";
 import { auth } from "@/lib/auth";
 import { logger } from "hono/logger";
 import { Session } from "next-auth";
@@ -10,6 +9,8 @@ import characters from "./characters";
 import bystanders from "./bystanders";
 import bestiary from "./bestiary";
 import locations from "./locations";
+import npcs from "./npcs";
+
 type CustomVariableMap = {
   session: Session | null;
 };
@@ -30,7 +31,8 @@ const routes = app
   .route("/inventory", inventory)
   .route("/characters", characters)
   .route("/bystanders", bystanders)
-  .route("/locations", locations);
+  .route("/locations", locations)
+  .route("/npcs", npcs);
 
 export const GET = handle(app);
 export const POST = handle(app);

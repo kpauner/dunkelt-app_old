@@ -1,4 +1,13 @@
 import { z } from "zod";
+
+export type EntityType =
+  | "bestiary"
+  | "bystander"
+  | "minion"
+  | "character"
+  | "location"
+  | "item";
+
 export const SignUpSchema = z
   .object({
     username: z.string().min(2).max(50),

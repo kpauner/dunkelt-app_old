@@ -20,7 +20,7 @@ export default function TableColumnHeader({
     <div className={cn("flex items-center space-x-2", className)}>
       <Button
         variant="ghost"
-        className="my-1"
+        className="my-1 capitalize"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
         {translatedTitle}

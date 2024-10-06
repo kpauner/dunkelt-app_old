@@ -12,7 +12,8 @@ const avatarVariants = cva(
         default:
           "bg-primary text-accent-light shadow hover:bg-primary/90 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/80 ",
         square: "rounded-md",
-        rounded: "rounded-full",
+        rounded: "rounded-md",
+        circle: "rounded-full",
       },
       size: {
         default: "h-10 w-10",

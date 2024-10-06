@@ -16,7 +16,6 @@ import {
 } from "@tanstack/react-table";
 import LocationsExpandedRow from "@/features/locations/components/locations-expanded-row";
 import ItemsExpandedRow from "@/features/items/components/items-expanded-row";
-import BestiaryExpandedRow from "@/features/bestiary/components/bestiary-expanded-row";
 import {
   Table,
   TableBody,
@@ -33,20 +32,16 @@ import { cn } from "@/lib/utils";
 
 import Loader from "./loader";
 import { useTranslations } from "next-intl";
-import {
-  GetBestiaryByIdResponseType,
-  GetBestiaryResponseType,
-} from "@/types/bestiary";
+import { GetBestiaryByIdResponseType } from "@/types/bestiary";
 import { SelectItemsResponseType } from "@/types/items";
 import { ColumnMeta } from "../features/bestiary/components/bestiary-columns";
-import { GetBystandersByIdResponseType } from "@/types/bystanders";
-import BystandersExpandedRow from "@/features/bystanders/components/bystanders-expanded-row";
+import { GetNpcsByIdResponseType } from "@/types/npcs";
+import NpcsExpandedRow from "./table-npcs-expanded";
 
-// Define a mapping of expanded row types to their respective components
 const expandedRowComponents = {
-  bestiary: BestiaryExpandedRow,
+  bestiary: NpcsExpandedRow,
   locations: LocationsExpandedRow,
-  bystanders: BystandersExpandedRow,
+  bystanders: NpcsExpandedRow,
   items: ItemsExpandedRow,
 } as const;
 
@@ -56,7 +51,7 @@ type ExpandedRowProps<T> = T extends "bestiary"
   : T extends "locations"
   ? { row: Row<any> } // Replace LocationType with the actual type
   : T extends "bystanders"
-  ? { row: Row<GetBystandersByIdResponseType> } // Replace BystanderType with the actual type
+  ? { row: Row<GetNpcsByIdResponseType> } // Replace BystanderType with the actual type
   : T extends "items"
   ? { row: Row<SelectItemsResponseType> } // Replace ItemType with the actual type
   : never;

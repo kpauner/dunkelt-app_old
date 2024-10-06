@@ -77,20 +77,23 @@ export const bystandersColumns = [
     },
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
-        <TagCloud armor={1} />
+        <TagCloud armor={row.getValue("armor")} />
       </div>
     ),
   }),
-  columnHelper.accessor("type", {
+  columnHelper.accessor("motivation", {
     meta: {
       className: "w-36",
     },
     header: ({ column }) => {
-      return <TableColumnHeader column={column} title="Type" />;
+      return <TableColumnHeader column={column} title="motivation" />;
     },
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
-        <CellTooltip value={row.getValue("type")} translation="motivations" />
+        <CellTooltip
+          value={row.getValue("motivation")}
+          translation="motivations"
+        />
       </div>
     ),
   }),

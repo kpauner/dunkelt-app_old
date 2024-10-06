@@ -4,7 +4,7 @@ import { zValidator } from "@hono/zod-validator";
 import { Session } from "next-auth";
 import { db } from "@/db";
 import { eq } from "drizzle-orm";
-import { bystanders, locations } from "@/db/schema";
+import { locations } from "@/db/schema";
 
 type CustomVariableMap = {
   session: Session | null;

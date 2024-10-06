@@ -11,6 +11,8 @@ import { truncateText } from "@/lib/utils";
 import Icons from "../../../components/icons";
 import TagCloud from "../../../components/tag-cloud";
 import TableColumnHeader from "../../../components/table-column-header";
+import { Avatar } from "@/components/ui/avatar";
+import { AVATARS } from "@/constants/constants";
 
 export type ColumnMeta = {
   meta: {
@@ -48,27 +50,23 @@ export const bestiaryColumns = [
     ),
   }),
 
-  columnHelper.accessor("id", {
+  columnHelper.accessor("avatar", {
     meta: {
-      className: "w-36",
+      className: "w-16",
     },
     header: ({ column }) => {
-      return <span className="">Avatar</span>;
+      return null;
     },
     cell: ({ row }) => (
-      <div className="flex items-center gap-2">
-        <span className="capitalize font-bold tracking-wider">
-          <Image
-            alt="Product image"
-            className="aspect-square rounded-md object-cover bg-black"
-            height="64"
-            src="https://static.wikia.nocookie.net/secure-contain-protect/images/b/b6/SCP-049.png/revision/latest?cb=20211121023917"
-            width="64"
-          />
-        </span>
-      </div>
+      <Avatar
+        alt="Product image"
+        variant="rounded"
+        size="lg"
+        src={row.getValue("avatar") || AVATARS.BESTIARY}
+      />
     ),
   }),
+
   columnHelper.accessor("armor", {
     meta: {
       className: "w-36",
@@ -78,20 +76,23 @@ export const bestiaryColumns = [
     },
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
-        <TagCloud armor={1} />
+        <TagCloud armor={row.getValue("armor")} />
       </div>
     ),
   }),
-  columnHelper.accessor("type", {
+  columnHelper.accessor("motivation", {
     meta: {
       className: "w-36",
     },
     header: ({ column }) => {
-      return <TableColumnHeader column={column} title="Type" />;
+      return <TableColumnHeader column={column} title="motivation" />;
     },
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
-        <CellTooltip value={row.getValue("type")} translation="motivations" />
+        <CellTooltip
+          value={row.getValue("motivation")}
+          translation="motivations"
+        />
       </div>
     ),
   }),

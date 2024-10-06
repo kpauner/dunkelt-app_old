@@ -1,4 +1,3 @@
-import { Powers } from "@/types/bestiary";
 import {
   integer,
   sqliteTable,
@@ -9,22 +8,23 @@ import { users } from "./users";
 import { relations } from "drizzle-orm";
 import npcMoves from "./npcMoves";
 import npcPowers from "./npcPowers";
+import { EntityType } from "@/types";
+import { Weakness } from "@/types/npcs";
 
 /* Create the monster: name, description, type & motivation,
 then define its powers, weakness, attacks, armour, harm
 capacity, optionally custom moves.
 */
-type EntityType = "bestiary" | "bystander" | "minion";
+
 const npcs = sqliteTable("npcs", {
   id: integer("id", { mode: "number" }).primaryKey({ autoIncrement: true }),
   name: text("name").notNull(),
-  avatar: text("avatar"),
+  avatar: text("avatar").default(""),
   look: text("look").notNull(),
   type: text("type").$type<EntityType>().notNull(),
   motivation: text("motivation").notNull(),
   description: text("description").notNull(),
-  powers: text("powers", { mode: "json" }).$type<Powers[]>(),
-  weakness: text("weakness", { mode: "json" }).$type<string[]>(),
+  weakness: text("weakness", { mode: "json" }).$type<Weakness[]>(),
   armor: integer("armor").notNull().default(0),
   harmCapacity: integer("harm_capacity").notNull().default(7),
   history: text("history"),

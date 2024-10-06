@@ -13,23 +13,11 @@ export {
   characterAttributesRelations,
 } from "./characterAttributes";
 
-export { default as bestiary, bestiaryRelations } from "./bestiary";
-export {
-  default as bestiaryMoves,
-  bestiaryMovesRelations,
-} from "./bestiaryMoves";
-
 export { default as items, itemsRelations } from "./items";
 export {
   default as characterItems,
   characterItemsRelations,
 } from "./characterItems";
-
-export { default as bystanders, bystandersRelations } from "./bystanders";
-export {
-  default as bystanderMoves,
-  bystanderMovesRelations,
-} from "./bystanderMoves";
 
 export { default as tags, tagsRelations } from "./tags";
 export { default as taggable, taggableRelations } from "./taggable";

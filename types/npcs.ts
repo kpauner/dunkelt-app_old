@@ -1,16 +1,21 @@
 import { npcs } from "@/db/schema";
 import { client } from "@/lib/hono";
-import { InferInsertModel } from "drizzle-orm";
+import { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { InferResponseType } from "hono";
 
-export type SelectNpc = InferInsertModel<typeof npcs>;
+export type SelectNpc = InferSelectModel<typeof npcs>;
+
+export type Weakness = {
+  name: string;
+  description: string;
+};
 
 // API RESPONSE TYPES
-export type GetBystandersResponseType = InferResponseType<
-  (typeof client.api.bystanders)["$get"],
+export type GetNpcsResponseType = InferResponseType<
+  (typeof client.api.npcs)["$get"],
   200
 >["data"];
-export type GetBystandersByIdResponseType = InferResponseType<
-  (typeof client.api.bystanders)[":id"]["$get"],
+export type GetNpcsByIdResponseType = InferResponseType<
+  (typeof client.api.npcs)[":id"]["$get"],
   200
 >["data"];

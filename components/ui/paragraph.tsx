@@ -2,27 +2,24 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const paragraphVariants = cva(
-  "leading-7 [&:not(:first-child)]:mt-6 text-mono",
-  {
-    variants: {
-      variant: {
-        default: "text-stone-300",
-        muted: "text-muted-foreground",
-      },
-      size: {
-        default: "text-base",
-        xs: "text-xs",
-        sm: "text-sm",
-        lg: "text-lg",
-      },
+const paragraphVariants = cva("leading-7  text-mono", {
+  variants: {
+    variant: {
+      default: "text-stone-300",
+      muted: "text-muted-foreground",
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
+    size: {
+      default: "text-base",
+      xs: "text-xs",
+      sm: "text-sm",
+      lg: "text-lg",
     },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
 
 interface ParagraphProps
   extends React.HTMLAttributes<HTMLParagraphElement>,

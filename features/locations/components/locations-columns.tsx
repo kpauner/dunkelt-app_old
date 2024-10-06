@@ -11,6 +11,8 @@ import Icons from "@/components/icons";
 import TagCloud from "@/components/tag-cloud";
 import TableColumnHeader from "@/components/table-column-header";
 import { CellStringArray } from "@/components/codex/cells";
+import { AVATARS } from "@/constants/constants";
+import { Avatar } from "@/components/ui/avatar";
 
 export type ColumnMeta = {
   meta: {
@@ -29,8 +31,8 @@ export const locationsColumns = [
     header: ({ column }) => {
       return <TableColumnHeader column={column} title="Name" />;
     },
-    cell: ({ row, getValue }) => (
-      <div className="flex items-center gap-2">
+    cell: ({ row }) => (
+      <div className="flex items-center gap-2 capitalize">
         <button onClick={() => row.toggleExpanded()} className="cursor-pointer">
           {row.getIsExpanded() ? <Icons.chevronup /> : <Icons.chevrondown />}
         </button>
@@ -39,25 +41,20 @@ export const locationsColumns = [
     ),
   }),
 
-  columnHelper.accessor("id", {
+  columnHelper.accessor("avatar", {
     meta: {
-      className: "w-30",
+      className: "w-16",
     },
     header: ({ column }) => {
-      return <span className="">Avatar</span>;
+      return null;
     },
     cell: ({ row }) => (
-      <div className="flex items-center gap-2">
-        <span className="capitalize font-bold tracking-wider">
-          <Image
-            alt="Product image"
-            className="aspect-square rounded-md object-cover bg-black"
-            height="64"
-            src="https://static.wikia.nocookie.net/secure-contain-protect/images/b/b6/SCP-049.png/revision/latest?cb=20211121023917"
-            width="64"
-          />
-        </span>
-      </div>
+      <Avatar
+        alt="Product image"
+        variant="rounded"
+        size="sm"
+        src={row.getValue("avatar") || AVATARS.LOCATIONS}
+      />
     ),
   }),
 

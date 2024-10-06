@@ -12,8 +12,10 @@ export const QUERY_KEYS = {
 
 export const AVATARS = {
   DEFAULT: "/images/avatars/default_512.jpg",
-  BESTIARY: "/images/avatars/bestiary.png",
+  BESTIARY: "https://media.dunkelt.app/avatars/default_512.jpg",
   BYSTANDERS: "/images/avatars/bystander_512.jpg",
+  LOCATIONS: "https://media.dunkelt.app/avatars/default_512.jpg",
+  ITEMS: "https://media.dunkelt.app/avatars/items_512.jpg",
 };
 
 export const IMAGES = {
