@@ -10,14 +10,14 @@ import bystanders from "./bystanders";
 import bestiary from "./bestiary";
 import locations from "./locations";
 import npcs from "./npcs";
+import moves from "./moves";
 
 type CustomVariableMap = {
   session: Session | null;
 };
 const app = new Hono<{ Variables: CustomVariableMap }>().basePath("/api");
 
-// app.use("/auth/*", authHandler());
-app.use(logger());
+app.use("*", logger());
 
 app.use("*", async (c, next) => {
   const session = await auth();
@@ -32,7 +32,8 @@ const routes = app
   .route("/characters", characters)
   .route("/bystanders", bystanders)
   .route("/locations", locations)
-  .route("/npcs", npcs);
+  .route("/npcs", npcs)
+  .route("/moves", moves);
 
 export const GET = handle(app);
 export const POST = handle(app);

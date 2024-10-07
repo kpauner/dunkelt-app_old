@@ -18,18 +18,15 @@ capacity, optionally custom moves.
 const characters = sqliteTable("characters", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name").default("my character").notNull(),
+  avatar: text("avatar").default(""),
   playbook: text("playbook").default("The Chosen").notNull(),
   pronouns: text("pronouns").default("").notNull(),
-  avatar: text("avatar").default(""),
   look: text("look").default(""),
   luck: integer("luck").notNull().default(0),
   harm: integer("harm").notNull().default(0),
   experience: integer("experience").notNull().default(0),
-  dob: text("dob").default("unknown"),
-  height: integer("height").default(0),
-  weight: integer("weight").default(0),
-  eyes: text("eyes").default("unknown"),
-  hair: text("hair").default("unknown"),
+  dateOfBirth: text("date_of_birth").default("unknown"),
+  dateOfDeath: text("date_of_death").default("unknown"),
   userId: text("user_id")
     .references(() => users.id, { onDelete: "cascade" })
     .notNull(),

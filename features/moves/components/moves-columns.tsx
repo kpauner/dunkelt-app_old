@@ -5,13 +5,13 @@ import { GetBestiaryByIdResponseType } from "@/types/bestiary";
 import { ArrowUpDown, ChevronDown, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { CellStringArray, CellTooltip } from "./cells";
+import { CellStringArray, CellTooltip } from "../../../components/codex/cells";
 import { Paragraph } from "@/components/ui/paragraph";
 import { truncateText } from "@/lib/utils";
-import Icons from "../icons";
-import TagCloud from "../tag-cloud";
-import TableColumnHeader from "../table-column-header";
-import { Avatar } from "../ui/avatar";
+import Icons from "../../../components/icons";
+import TagCloud from "../../../components/tag-cloud";
+import TableColumnHeader from "../../../components/table-column-header";
+import { Avatar } from "@/components/ui/avatar";
 import { AVATARS } from "@/constants/constants";
 
 export type ColumnMeta = {
@@ -23,13 +23,22 @@ export type ColumnMeta = {
 
 const columnHelper = createColumnHelper<GetBestiaryByIdResponseType>();
 
-export const bystandersColumns = [
+export const bestiaryColumns = [
   columnHelper.accessor("name", {
     meta: {
       className: "w-64",
     },
     header: ({ column }) => {
-      return <TableColumnHeader column={column} title="Name" />;
+      return (
+        <Button
+          variant="ghost"
+          className="my-1 "
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Name
+          <Icons.arrowupdown className="ml-2 h-4 w-4" />
+        </Button>
+      );
     },
     cell: ({ row, getValue }) => (
       <div className="flex items-center gap-2 capitalize">
@@ -49,16 +58,15 @@ export const bystandersColumns = [
       return null;
     },
     cell: ({ row }) => (
-      <>
-        <Avatar
-          alt="Product image"
-          className="aspect-square rounded-md object-cover bg-black"
-          size="lg"
-          src={row.getValue("avatar") || AVATARS.BYSTANDERS}
-        />
-      </>
+      <Avatar
+        alt="Product image"
+        variant="rounded"
+        size="lg"
+        src={row.getValue("avatar") || AVATARS.BESTIARY}
+      />
     ),
   }),
+
   columnHelper.accessor("armor", {
     meta: {
       className: "w-36",
@@ -93,7 +101,16 @@ export const bystandersColumns = [
       className: "w-[900px]",
     },
     header: ({ column }) => {
-      return <TableColumnHeader column={column} title="Description" />;
+      return (
+        <Button
+          variant="ghost"
+          className="my-1"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Description
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
     },
     cell: ({ row, column }) => (
       <>

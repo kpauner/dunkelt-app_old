@@ -5,7 +5,7 @@ import Heading from "./heading";
 import Link from "next/link";
 import { useLocale } from "next-intl";
 
-const pageLayoutVariants = cva("mx-auto w-full md:gap-8 pt-2", {
+const pageLayoutVariants = cva("mx-auto w-full", {
   variants: {
     variant: {
       default: "w-full flex-1",

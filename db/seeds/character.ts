@@ -14,13 +14,10 @@ export default async function seed(db: db) {
     look: character.look,
     luck: character.luck,
     harm: character.harm,
-    dob: character.dob,
-    height: character.height,
-    weight: character.weight,
-    eyes: character.eyes,
-    hair: character.hair,
+    dateOfBirth: character.dateOfBirth,
+    dateOfDeath: character.dateOfDeath || "unknown",
     experience: character.experience,
-    isPublic: true,
+    isPublic: false,
   }));
   if (!formattedData) {
     return;

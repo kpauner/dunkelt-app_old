@@ -3,6 +3,7 @@ import { InferRequestType, InferResponseType } from "hono";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { client } from "@/lib/hono";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 type ResponseType = InferResponseType<
   (typeof client.api.characters)[":id"]["$put"]
@@ -13,6 +14,7 @@ type RequestType = InferRequestType<
 
 export function useEditCharacter() {
   const queryClient = useQueryClient();
+  const t = useTranslations();
   return useMutation<ResponseType, Error, RequestType>({
     mutationFn: async (data) => {
       const characterId = data.id?.toString() || "";
@@ -23,8 +25,11 @@ export function useEditCharacter() {
 
       return response.json();
     },
-    onSuccess: () => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.CHARACTERS] });
+      console.log("Character updated successfully:", data);
+
+      toast.success(t("character.updated"));
     },
     onError: (error) => {
       toast.error(error.message);

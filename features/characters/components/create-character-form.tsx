@@ -40,11 +40,9 @@ export const formSchema = InsertCharacterSchema.pick({
   pronouns: true,
   playbook: true,
   look: true,
-  dob: true,
-  height: true,
-  weight: true,
-  hair: true,
-  eyes: true,
+  dateOfBirth: true,
+  dateOfDeath: true,
+  userId: true,
 });
 
 export type CharacterFormValues = z.infer<typeof formSchema>;
@@ -177,92 +175,7 @@ export default function CharacterForm({
             </FormItem>
           )}
         />
-        <Accordion type="single" collapsible className="w-full">
-          <AccordionItem value="item-1">
-            <AccordionTrigger>Additional Information</AccordionTrigger>
-            <AccordionContent className="space-y-5">
-              <DateOfBirthField form={form} disabled={disabled} />
-              <FormField
-                name="height"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Height (cm)</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        disabled={disabled}
-                        placeholder="Height in cm"
-                        {...field}
-                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
-                        value={field.value ?? ""}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="weight"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Weight (kg)</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        disabled={disabled}
-                        placeholder="Weight in kg"
-                        {...field}
-                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
-                        value={field.value ?? ""}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="hair"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Hair</FormLabel>
-                    <FormControl>
-                      <Input
-                        disabled={disabled}
-                        placeholder="Blond, short"
-                        {...field}
-                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
-                        value={field.value ?? ""}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="eyes"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Eye color</FormLabel>
-                    <FormControl>
-                      <Input
-                        disabled={disabled}
-                        placeholder="Green"
-                        {...field}
-                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
-                        value={field.value ?? ""}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
+        <DateOfBirthField form={form} disabled={disabled} />
         <div className="flex gap-2 items-center pt-2">
           {!!id && (
             <Button

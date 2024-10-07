@@ -25,24 +25,26 @@ type DateOfBirthFieldProps = {
 };
 
 export function DateOfBirthField({ form, disabled }: DateOfBirthFieldProps) {
-  const [year, setYear] = useState(form.getValues("dob")?.split("-")[0] || "");
-  const [month, setMonth] = useState(
-    form.getValues("dob")?.split("-")[1] || ""
+  const [year, setYear] = useState(
+    form.getValues("dateOfBirth")?.split("-")[0] || ""
   );
-  const [day, setDay] = useState(form.getValues("dob")?.split("-")[2] || "");
-
-  const updateDOB = () => {
-    if (year && month && day) {
-      const dob = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
-      form.setValue("dob", dob);
-    } else {
-      form.setValue("dob", "");
-    }
-  };
+  const [month, setMonth] = useState(
+    form.getValues("dateOfBirth")?.split("-")[1] || ""
+  );
+  const [day, setDay] = useState(
+    form.getValues("dateOfBirth")?.split("-")[2] || ""
+  );
 
   useEffect(() => {
-    updateDOB();
-  }, [year, month, day]);
+    const updateDOB = () => {
+      if (year && month && day) {
+        const dob = `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`;
+        form.setValue("dateOfBirth", dob);
+      } else {
+        form.setValue("dateOfBirth", "");
+      }
+    };
+  }, [year, month, day, form]);
 
   const months = [
     "January",
@@ -64,7 +66,7 @@ export function DateOfBirthField({ form, disabled }: DateOfBirthFieldProps) {
   return (
     <FormField
       control={form.control}
-      name="dob"
+      name="dateOfBirth"
       render={({ field }) => (
         <FormItem className="space-y-2">
           <FormLabel>Date of Birth</FormLabel>

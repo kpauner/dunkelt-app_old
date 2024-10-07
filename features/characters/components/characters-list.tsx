@@ -53,11 +53,8 @@ export default function CharactersList() {
 function CharacterCards({ character }: { character: CharacterResponseType }) {
   const locale = useLocale();
   const details = [
-    { label: "DOB", value: character.dob },
-    { label: "Height", value: `${character.height} cm` },
-    { label: "Weight", value: `${character.weight} kg` },
-    { label: "Hair", value: character.hair },
-    { label: "Eyes", value: character.eyes },
+    { label: "Dob", value: character.dateOfBirth },
+    { label: "Dod", value: character.dateOfDeath },
   ];
 
   return (

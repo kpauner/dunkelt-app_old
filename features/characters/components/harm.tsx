@@ -42,7 +42,7 @@ export default function Harm() {
           <div className="flex-grow h-px bg-gray-300"></div>
         </div>
         <div className="flex justify-center gap-2">
-          {[0, 1, 2, 3, 4, 6, 7].map((index) => (
+          {[0, 1, 2, 3, 4, 5, 6].map((index) => (
             <Checkbox
               key={index}
               id={`harm-${index}`}

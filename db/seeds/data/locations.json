@@ -2,57 +2,64 @@
   {
     "id": 1,
     "name": "Frederiksborg Slot",
+    "avatar": "https://placehold.co/600x400",
     "description": "A magnificent Renaissance castle in Hillerød, now a museum of national history.",
-    "type": "Fortress",
-    "origins": "Denmark",
+    "type": "fortress",
+    "origins": ["Denmark"],
     "history": "Frederiksborg Slot was built in the 17th century and is now a museum of national history."
   },
   {
     "id": 2,
     "name": "Roskilde Domkirke",
+    "avatar": "https://placehold.co/600x400",
     "description": "A UNESCO World Heritage site and burial place of Danish monarchs.",
-    "type": "Hellgate",
-    "origins": "Denmark",
+    "type": "hellgate",
+    "origins": ["Denmark"],
     "history": "According to Saxo Grammaticus, a wooden church was built by Harald Bluetooth in the 980s. It was located where Roskilde Cathedral is today. The wooden church was called Trinity Church and Harald, who died in Poland, was buried in it according to an unconfirmed statement by Adam of Bremen. In the cathedral there is a tombstone for Harald with a fresco of the king from around 1550, but there is no burial niche. His son Sweyn Forkbeard is said to have expanded the church and was possibly also buried in it. However, none of the graves have been found, nor have they been confirmed to have been found elsewhere."
   },
   {
     "id": 3,
     "name": "Christiania",
+    "avatar": "https://placehold.co/600x400",
     "description": "A self-proclaimed autonomous neighborhood in Copenhagen with a unique atmosphere.",
-    "type": "Maze",
-    "origins": "Denmark",
+    "type": "maze",
+    "origins": ["Denmark"],
     "history": "Christiania was founded in 1669 by King Christian IV as a planned model city for the poor. It was named after him and was intended to be a model city for the poor. The city was built on a hill and was surrounded by a wall. The wall was later torn down and the city was opened to the public."
   },
   {
     "id": 4,
     "name": "Den Gamle By",
+    "avatar": "https://placehold.co/600x400",
     "description": "An open-air town museum in Aarhus, showcasing Danish urban history.",
-    "type": "Hub",
-    "origins": "Denmark",
+    "type": "hub",
+    "origins": ["Denmark"],
     "history": "Den Gamle By was founded in 1908 and is the oldest open-air museum in Denmark. It is home to over 80 historic buildings and houses, many of which have been moved to the site from various parts of Denmark."
   },
   {
     "id": 5,
     "name": "Dyrehaven",
+    "avatar": "https://placehold.co/600x400",
     "description": "A forest park north of Copenhagen, home to thousands of free-ranging deer.",
-    "type": "Wilds",
-    "origins": "Denmark",
+    "type": "wilds",
+    "origins": ["Denmark"],
     "history": "Dyrehaven was originally a royal hunting ground, but it was later opened to the public as a forest park."
   },
   {
     "id": 6,
     "name": "Kronborg Slot",
+    "avatar": "https://placehold.co/600x400",
     "description": "A Renaissance castle in Helsingør, famous as the setting of Shakespeare's Hamlet.",
-    "type": "Crossroads",
-    "origins": "Denmark",
+    "type": "crossroads",
+    "origins": ["Denmark"],
     "history": "Kronborg Slot was built in the 16th century and has been used as a castle, a prison, and a museum."
   },
   {
     "id": 7,
     "name": "Lindholm Høje",
+    "avatar": "https://placehold.co/600x400",
     "description": "An ancient Viking burial site and settlement near Aalborg.",
-    "type": "Deathtrap",
-    "origins": "Denmark",
+    "type": "deathtrap",
+    "origins": ["Denmark"],
     "history": "Lindholm Høje was a Viking settlement and burial site, and it is one of the largest and best-preserved Viking sites in Scandinavia."
   }
 ]

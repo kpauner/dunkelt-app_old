@@ -28,13 +28,14 @@ import {
 // import ItemForm from "./item-form";
 // import { useGetMoves } from "@/features/moves/queries";
 import Loader from "@/components/loader";
-import { useEditMovesSheet } from "../hooks/use-edit-moves-sheet";
+import { useEditMovesSheet } from "@/features/moves/hooks/use-edit-moves-sheet";
 import TableData from "@/components/table-data";
+import { useGetMoves } from "../queries/use-get-moves";
 
 export default function EditMovesSheet() {
   const { isOpen, onOpen, onClose } = useEditMovesSheet();
   const { character } = useCharacterStore();
-  // const { data: moves, isLoading, error } = useGetMoves();
+  const { data: moves, isLoading, error } = useGetMoves();
 
   const t = useTranslations("moves");
   const c = useTranslations("common");
@@ -55,7 +56,7 @@ export default function EditMovesSheet() {
           <SheetDescription>{t("description")}</SheetDescription>
         </SheetHeader>
         <TableData
-          data={character?.characterMoves || []}
+          data={moves || []}
           expandedRowType="items"
           columns={inventorySheetColumns as any}
           isLoading={false}

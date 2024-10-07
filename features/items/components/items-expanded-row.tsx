@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Asset,
   AssetColumn,
@@ -6,32 +8,30 @@ import {
   AssetHeader,
   AssetTitle,
 } from "@/components/asset";
-import Icons from "@/components/icons";
-import Heading from "@/components/layout/heading";
 import TagCloud from "@/components/tag-cloud";
-import { Separator } from "@/components/ui/separator";
 import { Paragraph } from "@/components/ui/paragraph";
 import { Row } from "@tanstack/react-table";
+import { usePathname } from "next/navigation";
 
 type ItemsExpandedRowProps = {
   row: Row<any>;
 };
 
 export default function ItemsExpandedRow({ row }: ItemsExpandedRowProps) {
+  const path = usePathname();
+  const isItems = path.includes("items");
   return (
-    <Asset variant="default" className="grid grid-cols-2 gap-6">
-      <AssetColumn>
+    <Asset variant="default" type="row">
+      <AssetColumn className="flex-1">
         <AssetHeader>
           <AssetTitle
             avatar={row.original.avatar || ""}
             title={row.original.name}
             tags={row.original.type || []}
-            type={row.original.type || "bystander"}
+            type={row.original.type || "item"}
           />
           <AssetDescription text={row.original.description} />
         </AssetHeader>
-
-        <Separator className="dark:bg-primary-foreground" />
 
         <TagCloud
           data={row.original.tags || []}
@@ -40,15 +40,17 @@ export default function ItemsExpandedRow({ row }: ItemsExpandedRowProps) {
           armor={row.original.armor}
         />
       </AssetColumn>
-      <AssetColumn>
-        {row.original.history && row.original.history.length > 0 && (
-          <AssetContent title="History">
-            <Paragraph size="sm" className=" ">
-              {row.original.history}
-            </Paragraph>
-          </AssetContent>
-        )}
-      </AssetColumn>
+      {isItems && (
+        <AssetColumn className="flex-1">
+          {row.original.history && row.original.history.length > 0 && (
+            <AssetContent title="History">
+              <Paragraph size="sm" className=" ">
+                {row.original.history}
+              </Paragraph>
+            </AssetContent>
+          )}
+        </AssetColumn>
+      )}
     </Asset>
   );
 }

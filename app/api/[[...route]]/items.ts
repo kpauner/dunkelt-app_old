@@ -16,15 +16,15 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
     const data = await db.query.items.findMany();
     return c.json({ data });
   })
-  .post(
-    "/",
-    zValidator("json", InsertItemsSchema.pick({ name: true, type: true })),
-    async (c) => {
-      const values = c.req.valid("json");
-      const [data] = await db.insert(items).values(values).returning();
-      return c.json({ data });
-    }
-  )
+  // .post(
+  //   "/",
+  //   zValidator("json", InsertItemsSchema.pick({ name: true, type: true })),
+  //   async (c) => {
+  //     const values = c.req.valid("json");
+  //     const [data] = await db.insert(items).values(values).returning();
+  //     return c.json({ data });
+  //   }
+  // )
   .get(
     "/:id",
     zValidator("param", z.object({ id: z.coerce.number().int().positive() })),

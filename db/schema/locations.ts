@@ -6,7 +6,7 @@ import { users } from "./users";
 const locations = sqliteTable("locations", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name").notNull(),
-  avatar: text("avatar").default(""),
+  avatar: text("avatar").notNull().default(""),
   description: text("description").notNull(),
   type: text("type").default("unknown").notNull(),
   history: text("history").default(""),
@@ -15,7 +15,9 @@ const locations = sqliteTable("locations", {
     .notNull()
     .default(["unknown"]),
   homebrew: integer("homebrew", { mode: "boolean" }).default(true).notNull(),
-  userId: text("user_id").references(() => users.id, { onDelete: "cascade" }),
+  userId: text("user_id")
+    .references(() => users.id, { onDelete: "cascade" })
+    .notNull(),
   isPublic: integer("is_public", { mode: "boolean" }).default(false).notNull(),
 });
 

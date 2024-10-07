@@ -1,6 +1,6 @@
 import { CharacterSheetBlock } from "@/components/ui/character-sheet";
 import React from "react";
-import useCharacterStore from "../hooks/use-character-store";
+import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { Skeleton } from "@/components/ui/skeleton";
 import { SKELETON_HEIGHT } from "@/config/site.config";
 import {
@@ -12,10 +12,10 @@ import {
 import { Paragraph } from "@/components/ui/paragraph";
 import { Button } from "@/components/ui/button";
 import Icons from "@/components/icons";
-import { useEditMovesSheet } from "@/features/characters/hooks/use-edit-moves-sheet";
+import { useEditMovesSheet } from "@/features/moves/hooks/use-edit-moves-sheet";
 import { useTranslations } from "next-intl";
 
-export default function Moves() {
+export default function CharacterMoves() {
   const { character } = useCharacterStore();
   const { onOpen } = useEditMovesSheet();
   const t = useTranslations("moves");

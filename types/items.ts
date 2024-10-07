@@ -4,13 +4,17 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { InferResponseType } from "hono";
 import { z } from "zod";
 
-const TypeEnum = z.enum(["Weapon", "Armor", "Consumable", "Artifact", "Other"]);
+const TypeEnum = z.enum(["weapon", "armor", "consumable", "artifact", "other"]);
 
 export const InsertItemsSchema = createInsertSchema(items, {
+  origins: z.array(z.string()),
   tags: z.array(z.string()),
+  type: TypeEnum,
 });
 export const SelectItemsSchema = createSelectSchema(items, {
+  origins: z.array(z.string()),
   tags: z.array(z.string()),
+  type: TypeEnum,
 });
 export const CharacterItemSchema = SelectItemsSchema.extend({
   quantity: z.number(),

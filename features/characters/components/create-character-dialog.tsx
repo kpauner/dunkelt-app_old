@@ -42,11 +42,9 @@ export default function AddCharacterDialog() {
             pronouns: character?.pronouns || "",
             look: character?.look || "",
             playbook: character?.playbook || "",
-            height: character?.height || null,
-            weight: character?.weight || null,
-            eyes: character?.eyes || "",
-            hair: character?.hair || "",
-            dob: character?.dob || "",
+            userId: character?.userId || "",
+            dateOfBirth: character?.dateOfBirth || "",
+            dateOfDeath: character?.dateOfDeath || "",
           }}
         />
       </DialogContent>

@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import data from "@/db/seeds/data/items.json";
-import { InsertItems } from "@/types/items";
+import { InsertItems, ItemType } from "@/types/items";
 import { items } from "../schema";
 
 export default async function seed(db: db) {
@@ -8,11 +8,13 @@ export default async function seed(db: db) {
     id: index + 1,
     name: item.name,
     description: item.description,
-    type: item.type,
+    type: item.type as ItemType,
     harm: item.harm,
     armor: item.armor,
     value: item.value,
     tags: item.tags,
+    history: item.history,
+    origins: item.origins,
     homebrew: item.homebrew,
     userId: item.userId,
     isPublic: item.isPublic,

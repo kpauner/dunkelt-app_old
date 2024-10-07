@@ -18,32 +18,30 @@ export default function CharacterInventory() {
   }
 
   return (
-    <div>
-      <CharacterSheetBlock
-        label="Gear"
-        description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
-        tooltip="Moves are actions that your character can perform."
-        notice={
-          character.characterMoves.length < 3
-            ? "You haven't selected 3 moves"
-            : undefined
-        }
-        footer={
-          <Button variant="ghost" size="icon" onClick={onOpen}>
-            <Icons.settings />
-          </Button>
-        }
-      >
-        <TableData
-          data={character.characterItems}
-          columns={inventoryColumns as any}
-          expandedRowType="items"
-          className="bg-none border-none p-0 dark:bg-transparent"
-          showFacetedFilter={false}
-          showViewOptions={false}
-          showRowsPerPage={false}
-        />
-      </CharacterSheetBlock>
-    </div>
+    <CharacterSheetBlock
+      label="Gear"
+      description="Lorem Ipsum is simply dummy text of the printing and typesetting industry"
+      tooltip="Moves are actions that your character can perform."
+      notice={
+        character.characterMoves.length < 3
+          ? "You haven't selected 3 moves"
+          : undefined
+      }
+      footer={
+        <Button variant="ghost" size="icon" onClick={onOpen}>
+          <Icons.settings />
+        </Button>
+      }
+    >
+      <TableData
+        data={character.characterItems}
+        columns={inventoryColumns as any}
+        expandedRowType="items"
+        className="bg-none border-none p-0 dark:bg-transparent"
+        showFacetedFilter={false}
+        showViewOptions={false}
+        showRowsPerPage={false}
+      />
+    </CharacterSheetBlock>
   );
 }

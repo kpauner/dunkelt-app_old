@@ -4,7 +4,12 @@ import { zValidator } from "@hono/zod-validator";
 import { Session } from "next-auth";
 import { db } from "@/db";
 import { and, eq } from "drizzle-orm";
-import { characterAttributes, characters } from "@/db/schema";
+import {
+  characterAttributes,
+  characterItems,
+  characterMoves,
+  characters,
+} from "@/db/schema";
 import { InsertCharacterSchema } from "@/types/characters";
 import { SelectCharacterSheetSchema } from "@/types/character-sheet";
 
@@ -106,11 +111,6 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
         pronouns: true,
         playbook: true,
         look: true,
-        dob: true,
-        height: true,
-        weight: true,
-        hair: true,
-        eyes: true,
       })
     ),
     async (c) => {
@@ -172,25 +172,50 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
         const [updatedCharacter] = await tx
           .update(characters)
           .set(characterData)
-          .where(and(eq(characters.id, id)))
+          .where(eq(characters.id, id))
           .returning();
 
-        if (attributes) {
-          await tx
-            .delete(characterAttributes)
-            .where(eq(characterAttributes.characterId, id));
+        // if (attributes) {
+        //   await tx
+        //     .delete(characterAttributes)
+        //     .where(eq(characterAttributes.characterId, id));
 
-          if (attributes.length > 0) {
-            await tx.insert(characterAttributes).values(
-              attributes.map((attr) => ({
-                ...attr,
-                characterId: id,
-              }))
-            );
-          }
+        //   if (attributes.length > 0) {
+        //     await tx.insert(characterAttributes).values(
+        //       attributes.map((attr) => ({
+        //         ...attr,
+        //         characterId: id,
+        //       }))
+        //     );
+        //   }
+        // }
+
+        // await tx
+        //   .delete(characterMoves)
+        //   .where(eq(characterMoves.characterId, id));
+
+        // if (moves && moves.length > 0) {
+        //   await tx.insert(characterMoves).values(
+        //     moves.map((move) => ({
+        //       characterId: id,
+        //       moveId: move.id,
+        //     }))
+        //   );
+        // }
+
+        await tx
+          .delete(characterItems)
+          .where(eq(characterItems.characterId, id));
+
+        if (items && items.length > 0) {
+          await tx.insert(characterItems).values(
+            items.map((item) => ({
+              characterId: id,
+              itemId: item.id,
+              quantity: item.quantity || 1,
+            }))
+          );
         }
-
-        // Similar updates for characterMoves and characterItems...
 
         return updatedCharacter;
       });

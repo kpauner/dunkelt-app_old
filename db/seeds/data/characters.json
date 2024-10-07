@@ -8,11 +8,8 @@
     "look": "haunted eyes, messy hair, worn clothes, thin build",
     "luck": 7,
     "harm": 0,
-    "dob": "1990-01-01",
-    "height": 171,
-    "weight": 72,
-    "hair": "white, long",
-    "eyes": "green",
+    "dateOfBirth": "1990-01-01",
+    "dateOfDeath": "2024-01-01",
     "experience": 3,
     "isPublic": true
   },
@@ -25,11 +22,8 @@
     "look": "rugged build, dark hair, dark eyes, scarred face",
     "luck": 3,
     "harm": 0,
-    "dob": "1990-01-01",
-    "height": 171,
-    "weight": 72,
-    "hair": "white, long",
-    "eyes": "green",
+    "dateOfBirth": "1990-01-01",
+    "dateOfDeath": "2024-01-01",
     "experience": 3,
     "isPublic": true
   }

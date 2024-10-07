@@ -9,7 +9,7 @@ import { useGetCharacterById } from "@/features/characters/queries/use-get-chara
 import CharacterInventory from "@/features/characters/components/character-inventory";
 import { CharacterPlaybookBlocks } from "@/features/characters/components/character-playbook-blocks";
 import Harm from "@/features/characters/components/harm";
-import CharacterMoves from "@/features/characters/components/moves";
+import CharacterMoves from "@/features/moves/components/character-moves";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import Luck from "@/features/characters/components/luck";
 import CharacterRatings from "@/features/characters/components/character-ratings";
@@ -49,9 +49,8 @@ export default function UserCharacterSheet({
   const handleSave = useCallback(async () => {
     try {
       if (character) {
-        await mutation.mutateAsync(character);
+        const characterResponse = await mutation.mutateAsync(character);
         setHasUnsavedChanges(false);
-        toast.success(t("common.changes-saved"));
       } else {
         // Handle the case where character is null
         toast.error(t("common.error-saving-changes"));
@@ -92,7 +91,7 @@ export default function UserCharacterSheet({
 
   return (
     <>
-      <CharacterSheetHeader className="flex flex-col sm:flex-row justify-between gap-4">
+      <CharacterSheetHeader className="flex flex-col sm:flex-row justify-between gap-4 ">
         <CharacterAvatar size="xl" variant="square" />
         <div className="grid grid-cols-6 gap-2 ">
           <CharacterRatings />
@@ -108,7 +107,9 @@ export default function UserCharacterSheet({
 
         <CharacterSheetColumn>
           <CharacterPlaybookBlocks />
-          <pre>{JSON.stringify(character, null, 2)}</pre>
+          <pre>
+            <code>{JSON.stringify(character, null, 2)}</code>
+          </pre>
         </CharacterSheetColumn>
 
         <CharacterSheetColumn>

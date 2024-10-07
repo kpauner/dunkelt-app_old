@@ -1,17 +1,14 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-
 import { cn } from "@/lib/utils";
 import Heading from "./layout/heading";
 import Icons from "./icons";
-import { Separator } from "./ui/separator";
 import { Paragraph } from "./ui/paragraph";
-import TagCloud from "./tag-cloud";
 import Image from "next/image";
 import { EntityType } from "@/types";
 
 const assetVariants = cva(
-  "relative w-full rounded-lg  border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7",
+  "relative w-full rounded-lg border px-4 py-3 text-sm [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground [&>svg~*]:pl-7",
   {
     variants: {
       variant: {
@@ -20,9 +17,15 @@ const assetVariants = cva(
         destructive:
           "border-destructive/50 dark:bg-destructive text-destructive-foreground dark:border-destructive [&>svg]:text-destructive-foreground",
       },
+      type: {
+        default: "",
+        grid: "grid grid-cols-1 lg:grid-cols-2 gap-6",
+        row: "flex flex-col xl:flex-row gap-6",
+      },
     },
     defaultVariants: {
       variant: "default",
+      type: "default",
     },
   }
 );
@@ -30,11 +33,11 @@ const assetVariants = cva(
 const Asset = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof assetVariants>
->(({ className, variant, ...props }, ref) => (
+>(({ className, variant, type, ...props }, ref) => (
   <div
     ref={ref}
     role="alert"
-    className={cn(assetVariants({ variant }), className)}
+    className={cn(assetVariants({ variant, type }), className)}
     {...props}
   />
 ));
@@ -96,7 +99,7 @@ const AssetTitle = React.forwardRef<
         ) : type === "character" ? (
           <Icons.characters className="size-8 text-primary-foreground" />
         ) : (
-          <Icons.locations className="size-8 text-primary-foreground" />
+          <Icons.items className="size-8 text-primary-foreground" />
         )}
       </div>
       <div>
