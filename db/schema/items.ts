@@ -8,7 +8,7 @@ const items = sqliteTable("items", {
   id: integer("id").primaryKey({ autoIncrement: true }),
   name: text("name").notNull(),
   description: text("description"),
-  type: text("type").$type<ItemType>().notNull(),
+  type: text("type").$type<ItemType>().notNull().default("other"),
   harm: integer("harm").default(0),
   armor: integer("armor").default(0),
   value: integer("value"),
