@@ -3,6 +3,7 @@ import { handle } from "hono/vercel";
 import { auth } from "@/lib/auth";
 import { logger } from "hono/logger";
 import { Session } from "next-auth";
+import { cors } from "hono/cors";
 import items from "./items";
 import inventory from "./inventory";
 import characters from "./characters";
@@ -16,6 +17,18 @@ type CustomVariableMap = {
   session: Session | null;
 };
 const app = new Hono<{ Variables: CustomVariableMap }>().basePath("/api");
+
+app.use(
+  "*",
+  cors({
+    origin: ["http://localhost:3000", process.env.NEXT_PUBLIC_APP_URL!], // Add your frontend URL(s) here
+    allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowHeaders: ["Content-Type", "Authorization"],
+    exposeHeaders: ["Content-Length"],
+    maxAge: 600,
+    credentials: true,
+  })
+);
 
 app.use("*", logger());
 
