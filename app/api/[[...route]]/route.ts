@@ -35,6 +35,18 @@ const routes = app
   .route("/npcs", npcs)
   .route("/moves", moves);
 
+// Error handling
+app.onError((err, c) => {
+  console.error("Global error:", err);
+  return c.json({ error: "Internal Server Error" }, 500);
+});
+
+// 404 handler
+app.notFound((c) => {
+  console.log("Route not found:", c.req.method, c.req.url);
+  return c.json({ error: "Not Found" }, 404);
+});
+
 export const GET = handle(app);
 export const POST = handle(app);
 export const PUT = handle(app);
