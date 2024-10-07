@@ -45,11 +45,8 @@ export function EditCharacterForm() {
       pronouns: character?.pronouns || "",
       playbook: character?.playbook || "",
       look: character?.look || "",
-      dob: character?.dob || "",
-      height: character?.height || null,
-      weight: character?.weight || null,
-      hair: character?.hair || "",
-      eyes: character?.eyes || "",
+      dateOfBirth: character?.dateOfBirth || "",
+      dateOfDeath: character?.dateOfDeath || "",
     },
   });
 
@@ -157,15 +154,15 @@ export function EditCharacterForm() {
             <AccordionContent className="space-y-5">
               <DateOfBirthField form={form} />
               <FormField
-                name="height"
+                name="dateOfDeath"
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Height (cm)</FormLabel>
+                    <FormLabel>Date of Death</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
-                        placeholder="Height in cm"
+                        placeholder="Date of Death"
                         {...field}
                         onChange={(e) => field.onChange(e.target.valueAsNumber)}
                         value={field.value ?? ""}
@@ -176,51 +173,15 @@ export function EditCharacterForm() {
                 )}
               />
               <FormField
-                name="weight"
+                name="dateOfDeath"
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Weight (kg)</FormLabel>
+                    <FormLabel>Date of Death</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
-                        placeholder="Weight in kg"
-                        {...field}
-                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
-                        value={field.value ?? ""}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="hair"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Hair</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Blond, short"
-                        {...field}
-                        onChange={(e) => field.onChange(e.target.valueAsNumber)}
-                        value={field.value ?? ""}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                name="eyes"
-                control={form.control}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Eye color</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Green"
+                        placeholder="Date of Death"
                         {...field}
                         onChange={(e) => field.onChange(e.target.valueAsNumber)}
                         value={field.value ?? ""}
