@@ -22,14 +22,33 @@
           "you found the prophecy"
         ],
         "heroic": [
-          "saved the world",
-          "defeated the dark lord",
-          "brought peace to the world",
-          "defeated the evil empire",
-          "broke the curse of the ancient evil",
-          "defeated the dark lord",
-          "brought peace to the world",
-          "defeated the evil empire"
+          "Sacrifice",
+          "You are the Champion",
+          "Visions",
+          "Secret training",
+          "Magical powers",
+          "Mystical inheritance",
+          "A normal life",
+          "True love",
+          "You can save the world",
+          "Hidden allies",
+          "The end of monsters",
+          "Divine help"
+        ],
+        "doom": [
+          "death",
+          "You can't save everyone",
+          "Impossible love",
+          "Failure",
+          "A nemesis",
+          "No normal life",
+          "Loss of loved ones",
+          "Doubt",
+          "Sympathy with the enemy",
+          "Damnation",
+          "Hosts of monsters",
+          "The end of days",
+          "The source of Evil"
         ]
       }
     },

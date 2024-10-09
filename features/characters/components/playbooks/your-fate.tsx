@@ -32,6 +32,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { TheChosenPlaybook } from "@/types/playbooks";
+import { MultiSelect } from "@/components/multi-select";
+import MultiTagSelect from "@/components/multi-tag-select";
 
 const FormSchema = z.object({
   howYouFoundOut: z.string(),
@@ -112,6 +114,7 @@ export default function YourFate() {
             <SheetHeader>
               <SheetTitle>Edit Fate</SheetTitle>
             </SheetHeader>
+
             <Form {...form}>
               <div className="space-y-6">
                 <FormField
@@ -151,15 +154,19 @@ export default function YourFate() {
                     <FormItem>
                       <FormLabel>Heroic Deeds</FormLabel>
                       <FormControl>
-                        <HeroicSelector
-                          onChange={field.onChange}
-                          value={field.value}
-                          suggestions={t
+                        <MultiSelect
+                          options={t
                             .raw("thechosen.your_fate.heroic")
                             .map((option: string) => ({
                               label: option,
                               value: option,
                             }))}
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          value={field.value}
+                          placeholder="Select heroic deeds"
+                          animation={2}
+                          maxCount={2}
                         />
                       </FormControl>
                       <FormMessage />
@@ -172,7 +179,19 @@ export default function YourFate() {
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Doom Tags</FormLabel>
-                      {/* Implement multi-select for doom tags */}
+                      <FormControl>
+                        <MultiTagSelect
+                          onChange={field.onChange}
+                          value={field.value}
+                          maxLength={2}
+                          suggestions={t
+                            .raw("thechosen.your_fate.doom")
+                            .map((option: string) => ({
+                              label: option,
+                              value: option,
+                            }))}
+                        />
+                      </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -186,41 +205,5 @@ export default function YourFate() {
       <Alert variant="warning">no fate selected</Alert>
       {JSON.stringify(formValues)}
     </CharacterSheetBlock>
-  );
-}
-
-function HeroicSelector({
-  suggestions,
-  onChange,
-  value,
-}: {
-  suggestions: TagSuggestion[];
-  onChange: (value: string[]) => void;
-  value: string[];
-}) {
-  const onAdd = useCallback(
-    (newTag: Tag) => {
-      const newValue = [...value, newTag.label];
-      onChange(newValue);
-    },
-    [value, onChange]
-  );
-
-  const onDelete = useCallback(
-    (tagIndex: number) => {
-      const newValue = value.filter((_, i) => i !== tagIndex);
-      onChange(newValue);
-    },
-    [value, onChange]
-  );
-
-  return (
-    <ReactTags
-      selected={value.map((v) => ({ label: v, value: v }))}
-      suggestions={suggestions}
-      onAdd={onAdd}
-      onDelete={onDelete}
-      noOptionsText="No matching heroic deeds"
-    />
   );
 }
