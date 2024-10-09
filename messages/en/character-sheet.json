@@ -1,59 +1,83 @@
 {
   "motw": {
-    "title": "The Monster of the Week",
-    "playbooks": [
-      {
-        "id": "thechosen",
-        "name": "The Chosen",
-        "description": "You are the chosen, the one who will save the world from the darkness. You are the hero, the one who will defeat the evil. You are the one who will bring peace to the world."
-      },
-      {
-        "id": "thecrooked",
-        "name": "The Crooked"
-      },
-      {
-        "id": "thedivine",
-        "name": "The Divine"
-      },
-      {
-        "id": "theexpert",
-        "name": "The Expert"
-      },
-      {
-        "id": "thefallen",
-        "name": "The Fallen"
-      },
-      {
-        "id": "theinitiate",
-        "name": "The Initiate"
-      },
-      {
-        "id": "themonstrous",
-        "name": "The Monstrous"
-      },
-      {
-        "id": "themundane",
-        "name": "The Mundane"
-      },
-      {
-        "id": "theprofessional",
-        "name": "The Professional"
-      },
-      {
-        "id": "thespellslinger",
-        "name": "The Spellslinger"
-      },
-      {
-        "id": "thespooky",
-        "name": "The Spooky"
-      },
-      {
-        "id": "thewronged",
-        "name": "The Wronged"
-      }
-    ]
+    "title": "The Monster of the Week"
   },
-
+  "playbooks": {
+    "thechosen": {
+      "id": "thechosen",
+      "name": "The Chosen",
+      "description": "You are the chosen, the one who will save the world from the darkness. You are the hero, the one who will defeat the evil. You are the one who will bring peace to the world.",
+      "your_fate": {
+        "label": "Your Fate",
+        "description": "The Chosen's fate",
+        "tooltip": "The Chosen's fate is a measure of how lucky a character is.",
+        "notice": "You haven't selected 3 moves",
+        "how_you_found_out": [
+          "nightmares and visions",
+          "some weirdo told you",
+          "an ancient cult found you",
+          "sought out by your nemesis",
+          "attacked by monsters",
+          "trained from birth",
+          "you found the prophecy"
+        ],
+        "heroic": [
+          "saved the world",
+          "defeated the dark lord",
+          "brought peace to the world",
+          "defeated the evil empire",
+          "broke the curse of the ancient evil",
+          "defeated the dark lord",
+          "brought peace to the world",
+          "defeated the evil empire"
+        ]
+      }
+    },
+    "thecrooked": {
+      "id": "thecrooked",
+      "name": "The Crooked"
+    },
+    "thedivine": {
+      "id": "thedivine",
+      "name": "The Divine"
+    },
+    "theexpert": {
+      "id": "theexpert",
+      "name": "The Expert"
+    },
+    "thefallen": {
+      "id": "thefallen",
+      "name": "The Fallen"
+    },
+    "theinitiate": {
+      "id": "theinitiate",
+      "name": "The Initiate"
+    },
+    "themonstrous": {
+      "id": "themonstrous",
+      "name": "The Monstrous"
+    },
+    "themundane": {
+      "id": "themundane",
+      "name": "The Mundane"
+    },
+    "theprofessional": {
+      "id": "theprofessional",
+      "name": "The Professional"
+    },
+    "thespellslinger": {
+      "id": "thespellslinger",
+      "name": "The Spellslinger"
+    },
+    "thespooky": {
+      "id": "thespooky",
+      "name": "The Spooky"
+    },
+    "thewronged": {
+      "id": "thewronged",
+      "name": "The Wronged"
+    }
+  },
   "luck": {
     "label": "Luck",
     "description": "Mark luck to change a roll to 12 or avoid all harm from an injury",

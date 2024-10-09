@@ -2,6 +2,7 @@ export { users, sessions, accounts, verificationTokens } from "./users";
 
 export { default as characters, charactersRelations } from "./characters";
 export { default as moves, movesRelations } from "./moves";
+export { default as playbooks, playbooksRelations } from "./playbooks";
 
 export {
   default as characterMoves,

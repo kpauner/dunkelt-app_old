@@ -98,6 +98,24 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
         })),
         characterMoves: data.characterMoves.map(({ move }) => move),
         characterAttributes: data.characterAttributes,
+        characterPlaybooks: [
+          {
+            name: "The Chosen",
+            customFields: {
+              howYouFoundOut: "nightmares and visions",
+              heroic: ["sacrifice", "magical powers"],
+              doom: ["Loss of loved ones", "The end of days"],
+            },
+          },
+          {
+            name: "The Crooked",
+            customFields: {
+              underworld: "You were different",
+              heroic: ["Power of the people", "The end of days"],
+              doom: ["Loss of loved ones", "The end of days"],
+            },
+          },
+        ],
       };
       return c.json({ data: transformedData });
     }
@@ -146,6 +164,7 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
         characterAttributes: attributes,
         characterItems: items,
         characterMoves: moves,
+
         ...characterData
       } = characterSheet;
 

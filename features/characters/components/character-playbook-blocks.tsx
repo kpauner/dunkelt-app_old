@@ -4,6 +4,7 @@ import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { Button } from "@/components/ui/button";
 import Improvements from "./improvements";
 import YourFate from "./playbooks/your-fate";
+import { TheChosenPlaybook } from "@/types/playbooks";
 
 export function CharacterPlaybookBlocks() {
   const { character } = useCharacterStore();
@@ -20,7 +21,13 @@ export function CharacterPlaybookBlocks() {
 }
 
 function ChosenSections() {
-  const { character } = useCharacterStore();
+  const chosenPlaybook = useCharacterStore((state) =>
+    state.character?.characterPlaybooks.find((p) => p.name === "The Chosen")
+  );
+
+  if (!chosenPlaybook) {
+    return null;
+  }
 
   return (
     <>
