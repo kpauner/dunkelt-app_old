@@ -54,6 +54,15 @@ export default function UserDropdown({ session }: UserDropdownProps) {
                 onClick={() => router.push(`/${locale}/characters`)}
                 className="flex items-center gap-4"
               />
+              {/* <DropdownItem
+                label="Mysteries"
+                icon={
+                  <Icons.mystery className="size-5 text-primary-foreground" />
+                }
+                onClick={() => router.push(`/${locale}/mysteries`)}
+                className="flex items-center gap-4"
+              /> */}
+
               <DropdownMenuItem
                 onClick={() => router.push(`/${locale}/settings`)}
                 className="flex items-center gap-4"

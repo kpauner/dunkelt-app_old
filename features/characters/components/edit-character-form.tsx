@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Form,
   FormField,
@@ -31,6 +33,7 @@ import {
 import { DateOfBirthField } from "@/features/characters/components/date-of-birth-field";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { useEffect } from "react";
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -55,9 +58,15 @@ export function EditCharacterForm() {
     updateCharacter(data);
   });
 
+  useEffect(() => {
+    if (character) {
+      form.reset(character);
+    }
+  }, [character, form]);
+
   return (
     <Form {...form}>
-      <form onChange={onFormChange} className="space-y-5">
+      <form onChange={onFormChange} onBlur={onFormChange} className="space-y-5">
         <FormField
           name="name"
           control={form.control}

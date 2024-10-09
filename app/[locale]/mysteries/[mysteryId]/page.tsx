@@ -25,7 +25,7 @@ export default async function CharacterSheetPage({
   });
 
   return (
-    <PageLayout contentLayout="list">
+    <PageLayout className="flex flex-col gap-4">
       <HydrationBoundary state={dehydrate(queryClient)}>
         <UserCharacterSheet characterId={params.characterId} />
       </HydrationBoundary>

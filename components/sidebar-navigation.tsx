@@ -65,7 +65,7 @@ export default function SidebarNavigation({ session }: SidebarNavigationProps) {
   const menuItems = [
     { href: "/", icon: Icons.home, label: "Dashboard" },
     { href: "/codex", icon: Icons.codex, label: "Codex" },
-    { href: "/games", icon: Icons.dice, label: "Games" },
+    { href: "/mysteries", icon: Icons.mystery, label: "Mysteries" },
     { href: "/marketplace", icon: Icons.cart, label: "Marketplace" },
   ];
 

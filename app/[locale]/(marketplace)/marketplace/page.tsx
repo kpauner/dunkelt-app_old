@@ -1,6 +1,8 @@
+import Icons from "@/components/icons";
 import LoadingLogo from "@/components/layout/loading-logo";
 import { PageLayout } from "@/components/layout/page-layout";
 import Loader from "@/components/loader";
+import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -18,6 +20,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { AVATARS } from "@/constants/constants";
 import React from "react";
 
 export default function MarketplacePage() {
@@ -61,6 +64,16 @@ export default function MarketplacePage() {
           <Button>Buy</Button>
         </CardFooter>
       </Card>
+
+      <Avatar src={null || AVATARS.DEFAULT} alt="User Name" />
+
+      <Avatar size="sm" variant="circle">
+        +3
+      </Avatar>
+
+      <Avatar fallback={<Icons.user />} />
+
+      <Avatar />
     </PageLayout>
   );
 }

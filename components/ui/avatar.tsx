@@ -1,16 +1,16 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { cva } from "class-variance-authority";
+import { cva, VariantProps } from "class-variance-authority";
 import Icons from "../icons";
 
 const avatarVariants = cva(
-  "relative flex h-10 w-10 shrink-0 overflow-hidden cursor-pointer aspect-square",
+  "relative flex shrink-0 overflow-hidden cursor-pointer aspect-square flex h-full w-full items-center justify-center",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-accent-light shadow hover:bg-primary/90 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/80 ",
+          "bg-primary text-accent-light shadow hover:bg-primary/90 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/80",
         square: "rounded-md",
         rounded: "rounded-md",
         circle: "rounded-full",
@@ -23,24 +23,45 @@ const avatarVariants = cva(
         xl: "h-36 w-36",
         full: "h-full w-full",
       },
-      defaultVariants: {
-        variant: "rounded",
-        size: "default",
-      },
+    },
+    defaultVariants: {
+      variant: "rounded",
+      size: "default",
     },
   }
 );
 
-interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  src?: string;
-  alt?: string;
-  variant?: "rounded" | "square";
-  size?: "default" | "sm" | "lg" | "xl" | "full";
-  fallback?: React.ReactNode;
-}
+// Define props type using VariantProps and extending HTMLDivElement attributes
+type AvatarProps = React.HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof avatarVariants> & {
+    src?: string;
+    alt?: string;
+    fallback?: React.ReactNode;
+  };
 
 const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
-  ({ className, src, alt, variant, size, ...props }, ref) => {
+  (
+    { className, src, alt, variant, size, fallback, children, ...props },
+    ref
+  ) => {
+    // Determine content to display
+    const content = src ? (
+      <Image
+        fill
+        src={src}
+        alt={alt || "Avatar"}
+        className="h-full w-full object-cover"
+      />
+    ) : children ? (
+      children
+    ) : fallback ? (
+      fallback
+    ) : (
+      <div className="flex h-full w-full items-center justify-center">
+        <Icons.help className="size-6 text-primary-foreground" />
+      </div>
+    );
+
     return (
       <div
         ref={ref}
@@ -50,18 +71,7 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         )}
         {...props}
       >
-        {src ? (
-          <Image
-            fill
-            src={src}
-            alt={alt || "Avatar"}
-            className="h-full w-full object-cover"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center bg-muted text-muted-foreground">
-            <Icons.user className="size-5 text-primary-foreground" />
-          </div>
-        )}
+        {content}
       </div>
     );
   }
@@ -69,4 +79,4 @@ const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
 
 Avatar.displayName = "Avatar";
 
-export { Avatar };
+export { Avatar, type AvatarProps };

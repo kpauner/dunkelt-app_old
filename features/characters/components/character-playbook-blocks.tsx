@@ -3,6 +3,7 @@ import { CharacterSheetBlock } from "@/components/ui/character-sheet";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { Button } from "@/components/ui/button";
 import Improvements from "./improvements";
+import YourFate from "./playbooks/your-fate";
 
 export function CharacterPlaybookBlocks() {
   const { character } = useCharacterStore();
@@ -23,19 +24,7 @@ function ChosenSections() {
 
   return (
     <>
-      <CharacterSheetBlock
-        label="Fate"
-        description="The Chosen's fate"
-        tooltip="Fate is a measure of how lucky a character is."
-        notice="You haven't selected 3 moves"
-        footer={
-          <>
-            <Button>Edit Fate</Button>
-          </>
-        }
-      >
-        fate here
-      </CharacterSheetBlock>
+      <YourFate />
       <CharacterSheetBlock
         label="Improvements"
         description="The Chosen's fate"

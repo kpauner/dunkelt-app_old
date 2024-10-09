@@ -33,7 +33,7 @@ export default function CharactersList() {
 
   if (isLoading)
     return (
-      <Grid className="min-h-[70vh]">
+      <Grid className="min-h-[60vh]">
         {Array.from({ length: 5 }).map((_, index) => (
           <Skeleton key={index} />
         ))}

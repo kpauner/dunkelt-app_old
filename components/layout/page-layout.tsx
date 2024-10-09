@@ -18,22 +18,44 @@ const pageLayoutVariants = cva("mx-auto w-full", {
   },
 });
 
-interface PageLayoutProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof pageLayoutVariants> {
-  title?: string;
-  menu?: {
-    label: string;
-    url: string;
-    icon: React.ElementType;
-    isActive?: boolean;
-  }[];
-  description?: string;
-}
+const contentVariants = cva("", {
+  variants: {
+    layout: {
+      default: "",
+      grid: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4",
+      list: "flex flex-col gap-4",
+    },
+  },
+  defaultVariants: {
+    layout: "default",
+  },
+});
+
+type PageLayoutProps = React.HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof pageLayoutVariants> & {
+    title?: string;
+    menu?: {
+      label: string;
+      url: string;
+      icon: React.ElementType;
+      isActive?: boolean;
+    }[];
+    description?: string;
+    contentLayout?: VariantProps<typeof contentVariants>["layout"];
+  };
 
 const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
   (
-    { className, variant, title, description, children, menu, ...props },
+    {
+      className,
+      variant,
+      title,
+      description,
+      children,
+      menu,
+      contentLayout,
+      ...props
+    },
     ref
   ) => {
     const locale = useLocale();
@@ -79,7 +101,9 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
             })}
           </nav>
         )}
-        {children}
+        <div className={cn(contentVariants({ layout: contentLayout }))}>
+          {children}
+        </div>
       </main>
     );
   }

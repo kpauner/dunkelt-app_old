@@ -2,13 +2,14 @@
 
 import React from "react";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
-import PlaybookSheet from "./playbook-sheet";
 import { useTranslations } from "next-intl";
 import { Avatar } from "@/components/ui/avatar";
 import Heading from "@/components/layout/heading";
 import { AVATARS } from "@/constants/constants";
 import { calculateLevel } from "@/lib/utils";
-import { EditCharacterForm } from "@/features/characters/components/edit-character-form";
+import Icons from "../icons";
+import { Button } from "../ui/button";
+import { useEditCharacterSheet } from "@/features/characters/hooks/use-edit-character-sheet";
 
 type CharacterAvatarProps = {
   size: "sm" | "lg" | "xl" | "default";
@@ -22,6 +23,7 @@ export default function CharacterAvatar({
   className,
 }: CharacterAvatarProps) {
   const { character } = useCharacterStore();
+  const { onOpen } = useEditCharacterSheet();
   const t = useTranslations("motw");
 
   if (!character) {
@@ -54,32 +56,9 @@ export default function CharacterAvatar({
           </Heading>
         </div>
 
-        <PlaybookSheet
-          title="Identity"
-          description="View your playbook"
-          buttonText="View"
-        >
-          <div className="flex flex-col gap-4 py-4">
-            <Avatar
-              className="mx-auto"
-              variant="square"
-              size="xl"
-              src={character?.avatar || AVATARS.DEFAULT}
-            />
-
-            <Heading
-              as="h1"
-              size="xs"
-              className="text-primary-foreground text-center"
-            >
-              {character?.name}
-            </Heading>
-            <p className="text-muted-foreground text-center">
-              {character?.playbook}
-            </p>
-          </div>
-          <EditCharacterForm />
-        </PlaybookSheet>
+        <Button variant="outline" size="icon" onClick={onOpen}>
+          <Icons.settings />
+        </Button>
       </div>
     </div>
   );
