@@ -9,47 +9,57 @@
       "description": "You are the chosen, the one who will save the world from the darkness. You are the hero, the one who will defeat the evil. You are the one who will bring peace to the world.",
       "your_fate": {
         "label": "Your Fate",
-        "description": "The Chosen's fate",
-        "tooltip": "The Chosen's fate is a measure of how lucky a character is.",
-        "notice": "You haven't selected 3 moves",
-        "how_you_found_out": [
-          "nightmares and visions",
-          "some weirdo told you",
-          "an ancient cult found you",
-          "sought out by your nemesis",
-          "attacked by monsters",
-          "trained from birth",
-          "you found the prophecy"
-        ],
-        "heroic": [
-          "Sacrifice",
-          "You are the Champion",
-          "Visions",
-          "Secret training",
-          "Magical powers",
-          "Mystical inheritance",
-          "A normal life",
-          "True love",
-          "You can save the world",
-          "Hidden allies",
-          "The end of monsters",
-          "Divine help"
-        ],
-        "doom": [
-          "death",
-          "You can't save everyone",
-          "Impossible love",
-          "Failure",
-          "A nemesis",
-          "No normal life",
-          "Loss of loved ones",
-          "Doubt",
-          "Sympathy with the enemy",
-          "Damnation",
-          "Hosts of monsters",
-          "The end of days",
-          "The source of Evil"
-        ]
+        "description": "You get to decide what sort of fate is in store for you. ",
+        "tooltip": "Pick how you found out about your fate. Then pick two heroic and two doom tags for your fate. This is how your fate will unfold.",
+        "notice": "Your fate is incomplete",
+        "incomplete_notice": "Your fate is incomplete. Missing: {missingItems}",
+        "how_you_found_out": {
+          "label": "How you found out",
+          "options": [
+            "nightmares and visions",
+            "some weirdo told you",
+            "an ancient cult found you",
+            "sought out by your nemesis",
+            "attacked by monsters",
+            "trained from birth",
+            "you found the prophecy"
+          ]
+        },
+        "heroic": {
+          "label": "Heroic",
+          "options": [
+            "sacrifice",
+            "you are the champion",
+            "visions",
+            "secret training",
+            "magical powers",
+            "mystical inheritance",
+            "a normal life",
+            "true love",
+            "you can save the world",
+            "hidden allies",
+            "the end of monsters",
+            "divine help"
+          ]
+        },
+        "doom": {
+          "label": "Doom",
+          "options": [
+            "death",
+            "you can't save everyone",
+            "impossible love",
+            "failure",
+            "a nemesis",
+            "no normal life",
+            "loss of loved ones",
+            "doubt",
+            "sympathy with the enemy",
+            "damnation",
+            "hosts of monsters",
+            "the end of days",
+            "the source of evil"
+          ]
+        }
       }
     },
     "thecrooked": {

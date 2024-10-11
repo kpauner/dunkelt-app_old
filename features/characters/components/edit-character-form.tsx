@@ -35,11 +35,16 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useEffect } from "react";
 
+type PlaybookItem = {
+  id: string;
+  name: string;
+};
+
 type FormValues = z.infer<typeof formSchema>;
 
 export function EditCharacterForm() {
   const { character, updateCharacter } = useCharacterStore();
-  const t = useTranslations("motw");
+  const t = useTranslations("playbooks");
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -64,8 +69,37 @@ export function EditCharacterForm() {
     }
   }, [character, form]);
 
+  // Define the list of playbook IDs
+  const playbookIds = [
+    "thechosen",
+    "thecrooked",
+    "thedivine",
+    "theexpert",
+    "thefallen",
+    "theinitiate",
+    "themonstrous",
+    "themundane",
+    "theprofessional",
+    "thespellslinger",
+    "thespooky",
+    "thewronged",
+  ];
+
+  // Create the array of playbooks
+  const playbooks: PlaybookItem[] = playbookIds.map((id) => ({
+    id,
+    name: t(`${id}.name`),
+  }));
+
+  // Log the final playbooks array
+  console.log("Playbooks array:", playbooks);
+
+  // Log the final playbooks array
+  console.log("Playbooks array:", playbooks);
+
   return (
     <Form {...form}>
+      <pre>{JSON.stringify(playbooks, null, 2)}</pre>
       <form onChange={onFormChange} onBlur={onFormChange} className="space-y-5">
         <FormField
           name="name"
@@ -113,11 +147,11 @@ export function EditCharacterForm() {
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Playbook</SelectLabel>
-                      {t.raw("playbooks").map((playbook: any) => (
+                      {/* {playbooks.map((playbook: any) => (
                         <SelectItem key={playbook.id} value={playbook.name}>
                           {playbook.name}
                         </SelectItem>
-                      ))}
+                      ))} */}
                     </SelectGroup>
                   </SelectContent>
                 </Select>

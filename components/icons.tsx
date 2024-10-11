@@ -21,6 +21,7 @@ import {
   LifeBuoy,
   CircleHelp,
   CircleAlertIcon,
+  CircleXIcon,
   AlertTriangleIcon,
   BriefcaseIcon,
   ArrowUpDown,
@@ -33,7 +34,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
   UserPenIcon,
-  MoreVerticalIcon,
+  CheckIcon,
   PlusIcon,
   UserPlusIcon,
   Trash,
@@ -59,6 +60,7 @@ const Icons = {
   support: LifeBuoy,
   help: CircleHelp,
   notice: CircleAlertIcon,
+  delete: CircleXIcon,
   alert: AlertTriangleIcon,
   items: BriefcaseIcon,
   ellipsisvertical: EllipsisVertical,
@@ -78,6 +80,7 @@ const Icons = {
   chevrondown: ChevronDown,
   chevronup: ChevronUp,
   mystery: VenetianMaskIcon,
+  check: CheckIcon,
   bestiary: ({ ...props }: IconProps) => (
     <svg
       xmlns="http://www.w3.org/2000/svg"

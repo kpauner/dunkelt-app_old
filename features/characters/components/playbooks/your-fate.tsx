@@ -1,18 +1,27 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  Fragment,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { useLocale, useTranslations } from "next-intl";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import { CharacterSheetBlock } from "@/components/ui/character-sheet";
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Alert } from "@/components/ui/alert";
 import Icons from "@/components/icons";
-import { ReactTags, Tag, TagSuggestion } from "react-tag-autocomplete";
 import {
   Form,
   FormControl,
@@ -21,9 +30,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
-import { z } from "zod";
 import {
   Select,
   SelectContent,
@@ -32,8 +38,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { TheChosenPlaybook } from "@/types/playbooks";
-import { MultiSelect } from "@/components/multi-select";
 import MultiTagSelect from "@/components/multi-tag-select";
+import Heading from "@/components/layout/heading";
+import TagCloud from "@/components/tag-cloud";
 
 const FormSchema = z.object({
   howYouFoundOut: z.string(),
@@ -51,6 +58,7 @@ export default function YourFate() {
   const [selected, setSelected] = useState([]);
   const locale = useLocale();
   const t = useTranslations("playbooks");
+  const tCommon = useTranslations("common");
 
   const chosenPlaybook = character?.characterPlaybooks.find(
     (playbook): playbook is TheChosenPlaybook => playbook.name === "The Chosen"
@@ -67,6 +75,14 @@ export default function YourFate() {
 
   const formValues = form.watch();
   const prevFormValuesRef = useRef(formValues);
+
+  const isFateMissing = useCallback(() => {
+    return (
+      !formValues.howYouFoundOut ||
+      formValues.heroic.length < 2 ||
+      formValues.doom.length < 2
+    );
+  }, [formValues]);
 
   useEffect(() => {
     if (!chosenPlaybook || !character) return;
@@ -97,12 +113,28 @@ export default function YourFate() {
     }
   }, [formValues, chosenPlaybook, updateCharacter, character]);
 
+  const getMissingFateNotice = useCallback(() => {
+    if (!isFateMissing()) return undefined;
+
+    const missingItems = [];
+    if (!formValues.howYouFoundOut)
+      missingItems.push(t("thechosen.your_fate.how_you_found_out.label"));
+    if (formValues.heroic.length < 2)
+      missingItems.push(t("thechosen.your_fate.heroic.label"));
+    if (formValues.doom.length < 2)
+      missingItems.push(t("thechosen.your_fate.doom.label"));
+
+    return t("thechosen.your_fate.incomplete_notice", {
+      missingItems: missingItems.join(", "),
+    });
+  }, [formValues, isFateMissing, t]);
+
   return (
     <CharacterSheetBlock
       label={t("thechosen.your_fate.label")}
       description={t("thechosen.your_fate.description")}
       tooltip={t("thechosen.your_fate.tooltip")}
-      notice={t("thechosen.your_fate.notice")}
+      notice={isFateMissing() ? getMissingFateNotice() : undefined}
       footer={
         <Sheet>
           <SheetTrigger>
@@ -112,7 +144,10 @@ export default function YourFate() {
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
-              <SheetTitle>Edit Fate</SheetTitle>
+              <SheetTitle>{t("thechosen.your_fate.label")}</SheetTitle>
+              <SheetDescription>
+                {t("thechosen.your_fate.tooltip")}
+              </SheetDescription>
             </SheetHeader>
 
             <Form {...form}>
@@ -130,12 +165,18 @@ export default function YourFate() {
                       >
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="Select how you found out" />
+                            <SelectValue
+                              placeholder={t(
+                                "thechosen.your_fate.how_you_found_out.label"
+                              )}
+                            />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
                           {t
-                            .raw("thechosen.your_fate.how_you_found_out")
+                            .raw(
+                              "thechosen.your_fate.how_you_found_out.options"
+                            )
                             .map((option: string) => (
                               <SelectItem key={option} value={option}>
                                 {option}
@@ -152,21 +193,20 @@ export default function YourFate() {
                   name="heroic"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Heroic Deeds</FormLabel>
+                      <FormLabel>
+                        {t("thechosen.your_fate.heroic.label")}
+                      </FormLabel>
                       <FormControl>
-                        <MultiSelect
-                          options={t
-                            .raw("thechosen.your_fate.heroic")
+                        <MultiTagSelect
+                          onChange={field.onChange}
+                          value={field.value}
+                          maxLength={2}
+                          suggestions={t
+                            .raw("thechosen.your_fate.heroic.options")
                             .map((option: string) => ({
                               label: option,
                               value: option,
                             }))}
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                          value={field.value}
-                          placeholder="Select heroic deeds"
-                          animation={2}
-                          maxCount={2}
                         />
                       </FormControl>
                       <FormMessage />
@@ -185,7 +225,7 @@ export default function YourFate() {
                           value={field.value}
                           maxLength={2}
                           suggestions={t
-                            .raw("thechosen.your_fate.doom")
+                            .raw("thechosen.your_fate.doom.options")
                             .map((option: string) => ({
                               label: option,
                               value: option,
@@ -202,8 +242,54 @@ export default function YourFate() {
         </Sheet>
       }
     >
-      <Alert variant="warning">no fate selected</Alert>
-      {JSON.stringify(formValues)}
+      <div className="space-y-4 pt-4">
+        {formValues.howYouFoundOut && (
+          <RenderFate
+            tags={[formValues.howYouFoundOut]}
+            noneSelected={tCommon("none_selected")}
+            title={t("thechosen.your_fate.how_you_found_out.label")}
+          />
+        )}
+        {formValues.heroic.length > 0 && (
+          <RenderFate
+            tags={formValues.heroic}
+            noneSelected={tCommon("none_selected")}
+            title={t("thechosen.your_fate.heroic.label")}
+          />
+        )}
+        {formValues.doom.length > 0 && (
+          <RenderFate
+            tags={formValues.doom}
+            noneSelected={tCommon("none_selected")}
+            title={t("thechosen.your_fate.doom.label")}
+          />
+        )}
+      </div>
     </CharacterSheetBlock>
+  );
+}
+
+function RenderFate({
+  tags,
+  noneSelected,
+  title,
+}: {
+  tags: string[];
+  noneSelected: string;
+  title: string;
+}) {
+  return (
+    <>
+      <div className="flex flex-col gap-2 md:flex-row justify-between">
+        <Heading as="h3" size="xs" className="uppercase tracking-wide">
+          {title}
+        </Heading>
+        {tags.length > 0 ? (
+          <TagCloud data={tags} />
+        ) : (
+          <Alert variant="warning">{noneSelected}</Alert>
+        )}
+      </div>
+    </>
   );
 }

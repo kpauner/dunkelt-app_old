@@ -104,7 +104,7 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
             customFields: {
               howYouFoundOut: "nightmares and visions",
               heroic: ["sacrifice", "magical powers"],
-              doom: ["Loss of loved ones", "The end of days"],
+              doom: ["loss of loved ones", "the end of days"],
             },
           },
           {

@@ -12,6 +12,7 @@
     "changes-saved": "Changes saved",
     "save-failed": "Save failed",
     "unsaved-changes": "Unsaved changes",
-    "retry": "Retry"
+    "retry": "Retry",
+    "none_selected": "None selected"
   }
 }
