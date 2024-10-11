@@ -7,16 +7,17 @@ import { CharacterSheetBlock } from "@/components/ui/character-sheet";
 
 export default function Luck() {
   const { character, updateCharacter } = useCharacterStore();
-  const t = useTranslations("luck");
+  const t = useTranslations("playbooks");
+  const t2 = useTranslations("luck");
 
   if (!character) return null;
 
   return (
     <CharacterSheetBlock
-      label="Luck"
-      description={t("description")}
-      tooltip={t(`tooltip.${character.playbook}`)}
-      alert={character.luck === 7 ? t("alert") : undefined}
+      label={t2("label")}
+      description={t2("description")}
+      tooltip={t(`${character.playbook}.luck.tooltip`)}
+      alert={character.luck === 7 ? t2("alert") : undefined}
     >
       <div className="flex flex-col gap-3">
         <div className="flex justify-between items-center uppercase tracking-wide">

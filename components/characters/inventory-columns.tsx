@@ -4,7 +4,6 @@ import { createColumnHelper } from "@tanstack/react-table";
 import Icons from "@/components/icons";
 import TagCloud from "@/components/tag-cloud";
 import { SelectItems } from "@/types/items";
-import Heading from "../layout/heading";
 import InventoryActions from "@/features/items/components/inventory-actions";
 import TableColumnHeader from "../table-column-header";
 

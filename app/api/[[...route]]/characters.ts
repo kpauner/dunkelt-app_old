@@ -100,7 +100,7 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
         characterAttributes: data.characterAttributes,
         characterPlaybooks: [
           {
-            name: "The Chosen",
+            name: "thechosen",
             customFields: {
               howYouFoundOut: "nightmares and visions",
               heroic: ["sacrifice", "magical powers"],
@@ -108,7 +108,7 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
             },
           },
           {
-            name: "The Crooked",
+            name: "thecrooked",
             customFields: {
               underworld: "You were different",
               heroic: ["Power of the people", "The end of days"],

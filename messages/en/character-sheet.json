@@ -7,6 +7,11 @@
       "id": "thechosen",
       "name": "The Chosen",
       "description": "You are the chosen, the one who will save the world from the darkness. You are the hero, the one who will defeat the evil. You are the one who will bring peace to the world.",
+      "luck": {
+        "label": "Luck",
+        "description": "You have a natural talent for luck. You are more likely to succeed when the stakes are high.",
+        "tooltip": "When you spend a point of Luck, the Keeper will bring your fate into play"
+      },
       "your_fate": {
         "label": "Your Fate",
         "description": "You get to decide what sort of fate is in store for you. ",
@@ -110,17 +115,7 @@
   "luck": {
     "label": "Luck",
     "description": "Mark luck to change a roll to 12 or avoid all harm from an injury",
-    "alert": "Doomed: You have spent all your luck",
-    "tooltip": {
-      "The Chosen": "When you spend a point of Luck, the Keeper will bring your fate into play",
-      "fenrir": "When you spend a point of Luck, the Keeper will bring your fate into play",
-      "fire-bringer": "When you spend a point of Luck, the Keeper will bring your fate into play",
-      "queen": "When you spend a point of Luck, the Keeper will bring your fate into play",
-      "sorcerer": "When you spend a point of Luck, the Keeper will bring your fate into play",
-      "tempter": "When you spend a point of Luck, the Keeper will bring your fate into play",
-      "torturer": "When you spend a point of Luck, the Keeper will bring your fate into play",
-      "trickster": "When you spend a point of Luck, the Keeper will bring your fate into play"
-    }
+    "alert": "Doomed: You have spent all your luck"
   },
   "harm": {
     "label": "Harm",

@@ -10,9 +10,9 @@ export function CharacterPlaybookBlocks() {
   const { character } = useCharacterStore();
 
   switch (character?.playbook) {
-    case "The Chosen":
+    case "thechosen":
       return <ChosenSections />;
-    case "The Crooked":
+    case "thecrooked":
       return <CrookedSections />;
     // Add more cases for other playbooks
     default:
@@ -22,7 +22,7 @@ export function CharacterPlaybookBlocks() {
 
 function ChosenSections() {
   const chosenPlaybook = useCharacterStore((state) =>
-    state.character?.characterPlaybooks.find((p) => p.name === "The Chosen")
+    state.character?.characterPlaybooks.find((p) => p.name === "thechosen")
   );
 
   if (!chosenPlaybook) {

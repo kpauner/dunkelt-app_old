@@ -1,14 +1,30 @@
 // Define types for our playbooks
-type Playbooks = "The Chosen" | "The Crooked" | "The Spooky"; // Add other playbooks as needed
+export const PLAYBOOK_IDS = [
+  "thechosen",
+  "thecrooked",
+  "thedivine",
+  "theexpert",
+  "thefallen",
+  "theinitiate",
+  "themonstrous",
+  "themundane",
+  "theprofessional",
+  "thespellslinger",
+  "thespooky",
+  "thewronged",
+] as const;
+
+export type PlaybookName = (typeof PLAYBOOK_IDS)[number];
 
 // Define a base type for all playbooks
 type BasePlaybook = {
-  name: Playbooks;
+  name: PlaybookName;
   customFields: Record<string, unknown>;
 };
 
 // Define specific types for each playbook
 export type TheChosenPlaybook = BasePlaybook & {
+  name: "thechosen";
   customFields: {
     howYouFoundOut: string;
     heroic: string[];
@@ -16,8 +32,8 @@ export type TheChosenPlaybook = BasePlaybook & {
   };
 };
 
-type TheCrookedPlaybook = BasePlaybook & {
-  name: "The Crooked";
+export type TheCrookedPlaybook = BasePlaybook & {
+  name: "thecrooked";
   customFields: {
     underworld: string;
     heroic: string[];

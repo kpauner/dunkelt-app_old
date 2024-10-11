@@ -14,8 +14,6 @@ export default function TableColumnHeader({
   title: string;
   className?: string;
 }) {
-  const t = useTranslations("common");
-  const translatedTitle = t(title);
   return (
     <div className={cn("flex items-center space-x-2", className)}>
       <Button
@@ -23,7 +21,7 @@ export default function TableColumnHeader({
         className="my-1 capitalize"
         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
       >
-        {translatedTitle}
+        {title}
         <Icons.arrowupdown className="ml-2 h-4 w-4" />
       </Button>
     </div>

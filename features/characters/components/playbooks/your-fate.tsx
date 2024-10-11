@@ -61,7 +61,7 @@ export default function YourFate() {
   const tCommon = useTranslations("common");
 
   const chosenPlaybook = character?.characterPlaybooks.find(
-    (playbook): playbook is TheChosenPlaybook => playbook.name === "The Chosen"
+    (playbook): playbook is TheChosenPlaybook => playbook.name === "thechosen"
   );
 
   const form = useForm<FormValues>({

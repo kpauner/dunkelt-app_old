@@ -33,7 +33,8 @@ import {
 import { DateOfBirthField } from "@/features/characters/components/date-of-birth-field";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+import { PLAYBOOK_IDS } from "@/types/playbooks";
 
 type PlaybookItem = {
   id: string;
@@ -69,37 +70,17 @@ export function EditCharacterForm() {
     }
   }, [character, form]);
 
-  // Define the list of playbook IDs
-  const playbookIds = [
-    "thechosen",
-    "thecrooked",
-    "thedivine",
-    "theexpert",
-    "thefallen",
-    "theinitiate",
-    "themonstrous",
-    "themundane",
-    "theprofessional",
-    "thespellslinger",
-    "thespooky",
-    "thewronged",
-  ];
-
-  // Create the array of playbooks
-  const playbooks: PlaybookItem[] = playbookIds.map((id) => ({
-    id,
-    name: t(`${id}.name`),
-  }));
-
-  // Log the final playbooks array
-  console.log("Playbooks array:", playbooks);
-
-  // Log the final playbooks array
-  console.log("Playbooks array:", playbooks);
+  // const playbooks = useMemo(
+  //   () =>
+  //     PLAYBOOK_IDS.map((id) => ({
+  //       id,
+  //       name: t(`${id}.name`),
+  //     })),
+  //   [t, PLAYBOOK_IDS]
+  // );
 
   return (
     <Form {...form}>
-      <pre>{JSON.stringify(playbooks, null, 2)}</pre>
       <form onChange={onFormChange} onBlur={onFormChange} className="space-y-5">
         <FormField
           name="name"
@@ -147,11 +128,11 @@ export function EditCharacterForm() {
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Playbook</SelectLabel>
-                      {/* {playbooks.map((playbook: any) => (
-                        <SelectItem key={playbook.id} value={playbook.name}>
-                          {playbook.name}
+                      {PLAYBOOK_IDS.map((playbook: any) => (
+                        <SelectItem key={playbook} value={playbook}>
+                          {t(`${playbook}.name`)}
                         </SelectItem>
-                      ))} */}
+                      ))}
                     </SelectGroup>
                   </SelectContent>
                 </Select>
