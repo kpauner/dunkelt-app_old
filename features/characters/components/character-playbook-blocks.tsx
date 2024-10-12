@@ -2,7 +2,7 @@ import React from "react";
 import { CharacterSheetBlock } from "@/components/ui/character-sheet";
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { Button } from "@/components/ui/button";
-import Improvements from "./improvements";
+import { TheChosenImprovements } from "./improvements";
 import YourFate from "./playbooks/your-fate";
 import { TheChosenPlaybook } from "@/types/playbooks";
 
@@ -43,7 +43,7 @@ function ChosenSections() {
           </>
         }
       >
-        <Improvements />
+        <TheChosenImprovements />
       </CharacterSheetBlock>
     </>
   );
