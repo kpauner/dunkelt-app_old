@@ -20,6 +20,8 @@ const characterAttributes = sqliteTable("character_attributes", {
       "tough",
       "weird",
       "move",
+      "improvement",
+      "advanced_improvement",
       "playbook_move",
       "ally",
       "luck",
@@ -32,9 +34,6 @@ const characterAttributes = sqliteTable("character_attributes", {
   value: text("value").notNull(),
   level: integer("level").notNull().default(0),
   description: text("description").notNull().default(""),
-  isSelected: integer("is_public", { mode: "boolean" })
-    .default(false)
-    .notNull(), // New field for checkbox state
 });
 
 export const characterAttributesRelations = relations(

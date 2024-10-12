@@ -1,17 +1,22 @@
 import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import MultiTagSelect from "@/components/multi-tag-select";
+import { useTranslations } from "next-intl";
 
-const TheChosenImprovements = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-  <div
-    ref={ref}
-    className={cn("mb-1 font-medium leading-none tracking-tight", className)}
-    {...props}
-  />
-));
-TheChosenImprovements.displayName = "TheChosenImprovements";
-
-export { TheChosenImprovements };
+export default function Improvements() {
+  const t = useTranslations("playbooks");
+  return (
+    <div>
+      <MultiTagSelect
+        onChange={() => {}}
+        value={[]}
+        maxLength={2}
+        suggestions={t
+          .raw("thechosen.your_fate.heroic.options")
+          .map((option: string) => ({
+            label: option,
+            value: option,
+          }))}
+      />
+    </div>
+  );
+}

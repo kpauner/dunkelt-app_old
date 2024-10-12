@@ -12,7 +12,6 @@ export default async function seed(db: db) {
       value: rating.value,
       level: rating.level,
       description: rating.description,
-      isSelected: rating.isSelected,
     })
   );
   if (!formattedData) {
