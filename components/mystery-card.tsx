@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   Card,
@@ -14,6 +16,7 @@ import { Avatar } from "@/components/ui/avatar";
 import { AVATARS } from "@/constants/constants";
 import { useLocale } from "next-intl";
 import AvatarDisplay from "@/components/avatar-display";
+import { useGetMysteries } from "@/features/mysteries/queries/use-get-mysteries";
 
 type MysteryCardProps = {
   mystery: any;
@@ -21,16 +24,8 @@ type MysteryCardProps = {
   keeper: any;
 };
 
-export default function MysteryCard({
-  mystery,
-  hunters,
-  keeper,
-}: MysteryCardProps) {
+export default function MysteryCard({ mystery }: MysteryCardProps) {
   const locale = useLocale();
-  // const details = [
-  //   { label: "Dob", value: character.dateOfBirth },
-  //   { label: "Dod", value: character.dateOfDeath },
-  // ];
 
   return (
     <Card className="overflow-hidden">
@@ -49,14 +44,14 @@ export default function MysteryCard({
         />
         <span className="text-sm text-muted-foreground leading-none tracking-tight flex gap-2">
           <span className="font-bold text-foreground">Year</span>
-          <span className="font-bold uppercase">1920</span>
+          <span className="font-bold uppercase">{mystery.year}</span>
         </span>
-        <CardTitle>Mystery name </CardTitle>
+        <CardTitle>{mystery.name}</CardTitle>
         <CardDescription>{mystery.description}</CardDescription>
       </CardHeader>
 
       <CardFooter className="flex justify-between items-center">
-        <AvatarDisplay avatars={hunters} />
+        <AvatarDisplay avatars={mystery.mysteryParticipants} />
         <Link
           prefetch={false}
           href={`/${locale}/mysteries/${mystery.id}`}

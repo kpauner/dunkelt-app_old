@@ -3,7 +3,7 @@ import React from "react";
 import { Slide, SlideColumn, SlideHeader } from "../layout/slide";
 import { Paragraph } from "../ui/paragraph";
 import Link from "next/link";
-import { PieChartDonut } from "../pie-chart-donut";
+import { PieChartDonut } from "../charts/pie-chart-donut";
 import { ChartConfig } from "../ui/chart";
 import { PITCH } from "@/constants/pitch";
 

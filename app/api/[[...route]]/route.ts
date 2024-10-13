@@ -12,6 +12,7 @@ import bestiary from "./bestiary";
 import locations from "./locations";
 import npcs from "./npcs";
 import moves from "./moves";
+import mysteries from "./mysteries";
 
 type CustomVariableMap = {
   session: Session | null;
@@ -46,7 +47,8 @@ const routes = app
   .route("/bystanders", bystanders)
   .route("/locations", locations)
   .route("/npcs", npcs)
-  .route("/moves", moves);
+  .route("/moves", moves)
+  .route("/mysteries", mysteries);
 
 // Error handling
 app.onError((err, c) => {

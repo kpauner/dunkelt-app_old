@@ -1,21 +1,8 @@
+"use client";
+
 import React from "react";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../ui/card";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { buttonVariants } from "../ui/button";
-import Icons from "../icons";
-import { Avatar } from "../ui/avatar";
-import { AVATARS } from "@/constants/constants";
-import { useLocale } from "next-intl";
-import AvatarDisplay from "../avatar-display";
 import MysteryCard from "../mystery-card";
+import { useGetMysteries } from "@/features/mysteries/queries/use-get-mysteries";
 
 const mysteries = [
   {
@@ -65,13 +52,18 @@ const keeper = {
 };
 
 export default function MysteriesList() {
+  const { data: mysteries, isLoading } = useGetMysteries();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (!mysteries) return <div>No mysteries found</div>;
+
   return (
     <>
       {mysteries.map((mystery, index) => (
         <MysteryCard
           key={index}
           mystery={mystery}
-          hunters={hunters}
+          hunters={mystery.mysteryParticipants}
           keeper={keeper}
         />
       ))}

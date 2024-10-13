@@ -7,6 +7,7 @@ import {
 } from "drizzle-orm/sqlite-core";
 import { users } from "@/db/schema";
 import { generatePublicId } from "@/lib/utils";
+import { mysteryParticipants } from "./mysteryParticipants";
 
 // Mysteries table
 const mysteries = sqliteTable("mysteries", {
@@ -27,11 +28,12 @@ const mysteries = sqliteTable("mysteries", {
   ),
 });
 
-export const mysteriesRelations = relations(mysteries, ({ one }) => ({
+export const mysteriesRelations = relations(mysteries, ({ one, many }) => ({
   user: one(users, {
     fields: [mysteries.userId],
     references: [users.id],
   }),
+  mysteryParticipants: many(mysteryParticipants),
 }));
 
 export default mysteries;

@@ -7,7 +7,7 @@ import { Paragraph } from "@/components/ui/paragraph";
 import Heading from "@/components/layout/heading";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AssetContent } from "@/components/asset";
-import { StatisticsRadarChart } from "@/components/statistics-radar-chart";
+import { StatisticsRadarChart } from "@/components/charts/statistics-radar-chart";
 
 export default function Introduction() {
   return (

@@ -1,3 +1,4 @@
+export { default as mysteries } from "./mysteries";
 export { default as moves } from "./moves";
 export { default as characters } from "./character";
 export { default as characterMoves } from "./characterMoves";

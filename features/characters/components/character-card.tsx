@@ -1,14 +1,7 @@
-"use client";
-
 import React from "react";
-import Grid from "@/components/layout/grid";
-import { useAddCharacterDialog } from "@/features/characters/hooks/use-add-character-dialog";
-import { useGetCharacters } from "@/features/characters/queries/use-get-characters";
 import { calculateLevel, cn } from "@/lib/utils";
 import Link from "next/link";
-import { useLocale } from "next-intl";
 import { AVATARS } from "@/constants/constants";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Avatar } from "@/components/ui/avatar";
 import {
   Card,
@@ -25,43 +18,17 @@ import {
   ListItem,
   ListTitle,
 } from "@/components/ui/list";
-import { CharacterResponseType } from "@/types/characters";
 import Icons from "@/components/icons";
-import { Session } from "next-auth";
+import { useSession } from "next-auth/react";
+import { CharacterResponseType } from "@/types/characters";
+import { useLocale } from "next-intl";
 
-type CharactersListProps = {
-  session: Session | null;
-};
-
-export default function CharactersList({ session }: CharactersListProps) {
-  const { data: characters, isLoading } = useGetCharacters();
-
-  if (isLoading)
-    return (
-      <Grid className="min-h-[60vh]">
-        {Array.from({ length: 5 }).map((_, index) => (
-          <Skeleton key={index} />
-        ))}
-      </Grid>
-    );
-
-  return (
-    <Grid>
-      {characters?.map((character) => (
-        <CharacterCards key={character.id} character={character} />
-      ))}
-      <AddNewCharacterCard />
-    </Grid>
-  );
-}
-
-function CharacterCards({ character }: { character: CharacterResponseType }) {
+export default function CharacterCard(character: CharacterResponseType) {
   const locale = useLocale();
   const details = [
-    { label: "Dob", value: character.dateOfBirth },
-    { label: "Dod", value: character.dateOfDeath },
+    { label: "Date of Birth", value: character.dateOfBirth },
+    { label: "Date of Death", value: character.dateOfDeath },
   ];
-
   return (
     <Card className="overflow-hidden">
       <Avatar
@@ -111,23 +78,6 @@ function CharacterCards({ character }: { character: CharacterResponseType }) {
           <Icons.editcharacter />
         </Link>
       </CardFooter>
-    </Card>
-  );
-}
-
-function AddNewCharacterCard() {
-  const { onOpen } = useAddCharacterDialog();
-  return (
-    <Card>
-      <CardContent className="flex items-center justify-center h-full w-full">
-        <Button
-          onClick={onOpen}
-          variant="ghost"
-          className="aspect-square size-28"
-        >
-          <Icons.add className="size-20" />
-        </Button>
-      </CardContent>
     </Card>
   );
 }

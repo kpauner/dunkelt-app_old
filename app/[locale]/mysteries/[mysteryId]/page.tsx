@@ -1,34 +1,36 @@
 import React from "react";
-import { GetCharacterById } from "@/features/characters/api";
-import UserCharacterSheet from "@/components/characters/user-character-sheet";
 import { PageLayout } from "@/components/layout/page-layout";
 import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import Grid from "@/components/layout/grid";
+import { Avatar } from "@/components/ui/avatar";
+import { AVATARS } from "@/constants/constants";
+import AssignedCharacters from "@/features/mysteries/components/assigned-characters";
 
-type CharacterSheetPageProps = {
+type MysteryPageProps = {
   params: {
-    characterId: string;
+    mysteryId: string;
     locale: string;
   };
 };
 
-export default async function CharacterSheetPage({
-  params,
-}: CharacterSheetPageProps) {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
-    queryKey: ["character", params.characterId],
-    queryFn: () => GetCharacterById(params.characterId),
-  });
-
+export default async function MysteryPage({ params }: MysteryPageProps) {
   return (
-    <PageLayout className="flex flex-col gap-4">
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <UserCharacterSheet characterId={params.characterId} />
-      </HydrationBoundary>
+    <PageLayout
+      title={params.mysteryId}
+      description="We suspect a high ranking cult member, behind the disappearance of a local family has escaped to Denmark. We are looking for a hunter familiar with the country to assist in the search."
+      contentLayout="list"
+    >
+      <div className="flex flex-col gap-4">
+        <h1 className="text-2xl font-bold">Hunsters assigned</h1>
+        <Grid>
+          <AssignedCharacters mysteryId={params.mysteryId} />
+        </Grid>
+      </div>
     </PageLayout>
   );
 }
