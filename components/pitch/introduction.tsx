@@ -1,22 +1,13 @@
 import React from "react";
 
-import { Slide, SlideColumn, SlideHeader } from "../layout/slide";
-import { Paragraph } from "../ui/paragraph";
-import Heading from "../layout/heading";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import {
-  List,
-  ListDescription,
-  ListItem,
-  ListKey,
-  ListTitle,
-  ListValue,
-} from "../ui/list";
 import { PITCH } from "@/constants/pitch";
-import { AssetContent } from "../asset";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { StatisticsRadarChart } from "../statistics-radar-chart";
+import { Slide, SlideColumn, SlideHeader } from "../layout/slide";
+import { Paragraph } from "@/components/ui/paragraph";
+import Heading from "@/components/layout/heading";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { AssetContent } from "@/components/asset";
+import { StatisticsRadarChart } from "@/components/statistics-radar-chart";
 
 export default function Introduction() {
   return (
@@ -85,7 +76,7 @@ export default function Introduction() {
               of the expatriate experience, covering a wide range of factors
               that can impact the quality of life for expatriates.
             </Paragraph>
-            <AssetContent>
+            <AssetContent className="my-4">
               <StatisticsRadarChart
                 title="Denmark's Quality of Life Score"
                 description="Based on the Expat Insider survey of over 12,000 expatriates"
@@ -102,11 +93,13 @@ export default function Introduction() {
           </TabsContent>
           <TabsContent value="Ease of Settling In">
             <Paragraph className="pt-4">
-              The Quality of Life index is designed to provide a holistic view
-              of the expatriate experience, covering a wide range of factors
-              that can impact the quality of life for expatriates.
+              The Ease of Settling In Index assesses how well expats integrate
+              into their new home country. It focuses on three key areas: the
+              ability to find friends and build social networks, the feeling of
+              being welcomed and adapting to the local culture, and the general
+              friendliness of locals towards foreigners
             </Paragraph>
-            <AssetContent>
+            <AssetContent className="my-4">
               <StatisticsRadarChart
                 title="Denmark's Ease of Settling In Score"
                 description="Based on the Expat Insider survey"
@@ -117,9 +110,11 @@ export default function Introduction() {
               />
             </AssetContent>
             <Paragraph>
-              Denmark generally scores well in all subcategories in the Quality
-              of Life category with the small exception of leisure options,
-              ranking 31 out of 53.
+              Denmark struggles to provide a welcoming environment for
+              newcomers. These results indicate that while Denmark may excel in
+              other areas, it presents a notably tough social landscape for
+              expatriates, potentially impacting their overall satisfaction and
+              comfort in the country.
             </Paragraph>
           </TabsContent>
           <TabsContent value="Working Abroad">
@@ -128,7 +123,7 @@ export default function Introduction() {
               key subcategories: Career Prospects, Salary & Job Security, Work &
               Leisure, and Work Culture & Satisfaction.
             </Paragraph>
-            <AssetContent>
+            <AssetContent className="my-4">
               <StatisticsRadarChart
                 title="Denmark's Working Abroad Score"
                 description="Based on the Expat Insider survey of over 12,000 expatriates"
@@ -152,7 +147,7 @@ export default function Introduction() {
               financial situation, and whether their disposable household income
               is enough to lead a comfortable life.
             </Paragraph>
-            <AssetContent>
+            <AssetContent className="my-4">
               <StatisticsRadarChart
                 title="Denmark's Personal Finance Score"
                 description="Based on the Expat Insider survey of over 12,000 expatriates"
@@ -170,26 +165,29 @@ export default function Introduction() {
           </TabsContent>
           <TabsContent value="Expat Essentials">
             <Paragraph className="pt-4">
-              The Personal Finance Index evaluates expat satisfaction across
-              three key factors: general cost of living, satisfaction with their
-              financial situation, and whether their disposable household income
-              is enough to lead a comfortable life.
+              The Expat Essentials Index evaluates how easy it is for expats to
+              manage practical aspects of life. How easy it is to live without
+              speaking the local language and the difficulty of learning it, The
+              affordability and availability of housing, Ease of dealing with
+              local bureaucracy, getting visas, and opening bank accounts,
+              Availability of high-speed internet, online government services,
+              and cashless payment options.
             </Paragraph>
-            <AssetContent>
+            <AssetContent className="my-4">
               <StatisticsRadarChart
-                title="Denmark's Working Abroad Score"
+                title="Denmark's Expat Essentials Score"
                 description="Based on the Expat Insider survey of over 12,000 expatriates"
-                data={PITCH.introduction.personal_finance}
+                data={PITCH.introduction.expat_essentials}
                 maxValue={53}
-                footerTitle="Denmark placed 1st out of 53 countries in the Working Abroad Index"
+                footerTitle="Denmark placed 28th out of 53 countries in the Expat Essentials Index"
               />
             </AssetContent>
             <Paragraph>
-              While Denmark excels in most areas, it shows room for improvement
-              in Career Prospects, ranking 21st out of 53 countries.
-              Additionally, job security (22nd) and fair pay perception (60%
-              agree they are paid fairly) are areas where Denmark performs
-              modestly compared to its stellar rankings in other subcategories.
+              Denmark performs particularly well in digital infrastructure and
+              services but struggles more with housing affordability and
+              availability (45th). Language (33rd) might present some
+              difficulties for expats, while administrative processes (20th) are
+              handled relatively well compared to other countries.
             </Paragraph>
           </TabsContent>
         </Tabs>

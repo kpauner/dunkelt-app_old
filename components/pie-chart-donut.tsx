@@ -34,6 +34,7 @@ type PieChartDonutProps<T extends string> = {
   description: string;
   data: PieChartData<T>;
   config: ChartConfig;
+  totalLabel?: string;
 };
 
 export function PieChartDonut<T extends string>({
@@ -41,6 +42,7 @@ export function PieChartDonut<T extends string>({
   description,
   data,
   config,
+  totalLabel,
 }: PieChartDonutProps<T>) {
   const totalVisitors = React.useMemo(() => {
     return data.reduce((acc, curr) => acc + curr.value, 0);
@@ -91,7 +93,7 @@ export function PieChartDonut<T extends string>({
                           y={(viewBox.cy || 0) + 24}
                           className="fill-muted-foreground"
                         >
-                          Visitors
+                          {totalLabel || "Visitors"}
                         </tspan>
                       </text>
                     );

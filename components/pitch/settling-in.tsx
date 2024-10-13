@@ -5,6 +5,7 @@ import { Paragraph } from "../ui/paragraph";
 import Link from "next/link";
 import { PieChartDonut } from "../pie-chart-donut";
 import { ChartConfig } from "../ui/chart";
+import { PITCH } from "@/constants/pitch";
 
 export default function SettlingIn() {
   const chartConfig = {
@@ -12,23 +13,23 @@ export default function SettlingIn() {
       label: "Users",
     },
     chrome: {
-      label: "Chrome",
+      label: "clubs",
       color: "hsl(var(--chart-1))",
     },
     safari: {
-      label: "Safari",
+      label: "meetups",
       color: "hsl(var(--chart-2))",
     },
     firefox: {
-      label: "Firefox",
+      label: "jobs",
       color: "hsl(var(--chart-3))",
     },
     edge: {
-      label: "Edge",
+      label: "volunteering",
       color: "hsl(var(--chart-4))",
     },
     other: {
-      label: "Other",
+      label: "other",
       color: "hsl(var(--chart-5))",
     },
   } satisfies ChartConfig;
@@ -80,21 +81,8 @@ export default function SettlingIn() {
         <PieChartDonut
           title="Common advice"
           description="Common channels for expats to form connections suggested by Reddit users"
-          data={[
-            { category: "clubs", value: 275, fill: "var(--color-chrome)" },
-            { category: "meetups", value: 200, fill: "var(--color-safari)" },
-            {
-              category: "jobs",
-              value: 287,
-              fill: "var(--color-firefox)",
-            },
-            { category: "volunteering", value: 173, fill: "var(--color-edge)" },
-            {
-              category: "language exchange",
-              value: 190,
-              fill: "var(--color-other)",
-            },
-          ]}
+          totalLabel="user comments"
+          data={PITCH.social_integration.common_advice}
           config={chartConfig}
         />
         <Paragraph>

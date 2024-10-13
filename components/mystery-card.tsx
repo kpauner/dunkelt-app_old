@@ -52,9 +52,7 @@ export default function MysteryCard({
           <span className="font-bold uppercase">1920</span>
         </span>
         <CardTitle>Mystery name </CardTitle>
-        <CardDescription>
-          Snake tattoo on right forearm, scar on left cheek
-        </CardDescription>
+        <CardDescription>{mystery.description}</CardDescription>
       </CardHeader>
 
       <CardFooter className="flex justify-between items-center">

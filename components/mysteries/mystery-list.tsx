@@ -22,7 +22,8 @@ const mysteries = [
     name: "Mystery 1",
     image: "/images/locations.jpg",
     year: 1920,
-    description: "This is a mystery",
+    description:
+      "We suspect a high ranking cult member, behind the disappearance of a local family has escaped to Denmark. We are looking for a hunter familiar with the country to assist in the search.",
   },
   {
     name: "Mystery 2",

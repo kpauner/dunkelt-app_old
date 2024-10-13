@@ -38,40 +38,42 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="antialiased font-mono tracking-tight bg-background">
-        <IntlClientProvider messages={messages} locale={locale}>
-          <ThemeProvider
-            attribute="class"
-            // defaultTheme="system"
-            // enableSystem={true}
-            forcedTheme="dark"
-            // disableTransitionOnChange
-          >
-            <QueryProvider>
-              <AuthProvider>
-                <TooltipProvider>
-                  <Dashboard className="bg-background text-foreground flex">
-                    <DashboardSidebar>
-                      <SidebarNavigation session={session} />
-                    </DashboardSidebar>
+        <Suspense fallback={<LoadingLogo />}>
+          <IntlClientProvider messages={messages} locale={locale}>
+            <ThemeProvider
+              attribute="class"
+              // defaultTheme="system"
+              // enableSystem={true}
+              forcedTheme="dark"
+              // disableTransitionOnChange
+            >
+              <QueryProvider>
+                <AuthProvider>
+                  <TooltipProvider>
+                    <Dashboard className="bg-background text-foreground flex">
+                      <DashboardSidebar>
+                        <SidebarNavigation session={session} />
+                      </DashboardSidebar>
 
-                    <DashboardHeader className="ml-0 sm:ml-20">
-                      <Header />
-                    </DashboardHeader>
+                      <DashboardHeader className="ml-0 sm:ml-20">
+                        <Header />
+                      </DashboardHeader>
 
-                    <DashboardContent className="ml-0 sm:ml-20 min-h-[calc(100vh-132px)]">
-                      <Suspense fallback={<LoadingLogo />}>{children}</Suspense>
-                    </DashboardContent>
-                    <DashboardFooter className="text-muted-foreground text-sm ml-0 sm:ml-20">
-                      <span>connection established ...</span>
-                    </DashboardFooter>
-                  </Dashboard>
-                  <SheetProvider />
-                  <Toaster />
-                </TooltipProvider>
-              </AuthProvider>
-            </QueryProvider>
-          </ThemeProvider>
-        </IntlClientProvider>
+                      <DashboardContent className="ml-0 sm:ml-20 min-h-[calc(100vh-132px)]">
+                        {children}
+                      </DashboardContent>
+                      <DashboardFooter className="text-muted-foreground text-sm ml-0 sm:ml-20">
+                        <span>connection established ...</span>
+                      </DashboardFooter>
+                    </Dashboard>
+                    <SheetProvider />
+                    <Toaster />
+                  </TooltipProvider>
+                </AuthProvider>
+              </QueryProvider>
+            </ThemeProvider>
+          </IntlClientProvider>
+        </Suspense>
       </body>
     </html>
   );

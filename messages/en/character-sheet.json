@@ -65,6 +65,29 @@
             "the source of evil"
           ]
         }
+      },
+      "improvements": {
+        "label": "Improvements",
+        "description": "Improvements are things you can do to make your fate better.",
+        "tooltip": "Improvements are things you can do to make your fate better.",
+        "alert": "You have reached the maximum number of improvements.",
+        "options": [
+          {
+            "label": "+1 Charm",
+            "type": "charm",
+            "value": "1"
+          },
+          {
+            "label": "Gain an ally",
+            "type": "improvement",
+            "value": "gain an ally"
+          },
+          {
+            "label": "a new enemy",
+            "type": "improvement",
+            "value": 1
+          }
+        ]
       }
     },
     "thecrooked": {

@@ -28,7 +28,7 @@ export default function Pitch() {
         </CarouselItem>
       </CarouselContent>
 
-      <Card className="flex justify-center items-center p-2 max-w-sm mx-auto mt-4 absolute bottom-0">
+      <Card className="flex justify-center items-center p-2 max-w-sm mx-auto absolute bottom-0">
         <PreviousSlide />
         <NextSlide />
       </Card>
