@@ -24,6 +24,7 @@ const contentVariants = cva("", {
       default: "",
       grid: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4",
       list: "flex flex-col gap-4",
+      row: "flex flex-row gap-4",
     },
   },
   defaultVariants: {

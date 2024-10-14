@@ -7,7 +7,7 @@ import {
 } from "drizzle-orm/sqlite-core";
 import { users } from "@/db/schema";
 import { generatePublicId } from "@/lib/utils";
-import { mysteryParticipants } from "./mysteryParticipants";
+import mysteryParticipants from "./mysteryParticipants";
 
 // Mysteries table
 const mysteries = sqliteTable("mysteries", {

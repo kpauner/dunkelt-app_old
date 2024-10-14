@@ -34,3 +34,7 @@ export { default as npcMoves, npcMovesRelations } from "./npcMoves";
 export { default as powers, powersRelations } from "./powers";
 export { default as npcPowers, npcPowersRelations } from "./npcPowers";
 export { default as mysteries, mysteriesRelations } from "./mysteries";
+export {
+  default as mysteryParticipants,
+  mysteryParticipantsRelations,
+} from "./mysteryParticipants";

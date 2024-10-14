@@ -27,15 +27,21 @@ html {
 .dark {
   --background: #020e10;
   --foreground: #d0d9d6;
-  --muted: #101d22;
-  --muted-foreground: #178692;
   --card: rgba(16, 29, 34, 0.4);
   --card-foreground: 222.2 47.4% 11.2%;
-  --border: #101d22;
+  --popover: 197, 36%, 10%;
+  --popover-foreground: 186, 73%, 33%;
+  --primary: 186, 53%, 33%;
+  --primary-foreground: 172, 100%, 83%;
+  --muted: #101d22;
+  --muted-foreground: #178692;
   --destructive: #39070296;
   --destructive-foreground: hsl(5, 85%, 40%);
   --warning: 41 91% 46%;
   --warning-foreground: hsl(5, 85%, 40%);
+  --border: 197, 36%, 10%;
+  --input: 240 3.7% 15.9%;
+  --ring: 142.4 71.8% 29.2%;
   --chart-1: 41 91% 46%;
   --chart-2: 139 65% 20%;
   --chart-3: 140 74% 24%;

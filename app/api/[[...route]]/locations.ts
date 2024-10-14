@@ -23,6 +23,10 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
       },
     });
 
+    if (!locationsWithMoves) {
+      return c.json({ message: "Locations not found" }, 404);
+    }
+
     const transformedLocations = locationsWithMoves.map((location) => ({
       ...location,
       locationMoves: location.locationMoves.map(({ move }) => move),

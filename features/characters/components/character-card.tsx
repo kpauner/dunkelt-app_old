@@ -23,16 +23,36 @@ import { useSession } from "next-auth/react";
 import { CharacterResponseType } from "@/types/characters";
 import { useLocale } from "next-intl";
 
-export default function CharacterCard(character: CharacterResponseType) {
+type CharacterCardProps = {
+  name: string;
+  avatar: string | null;
+  look: string;
+  playbook: string;
+  experience: number;
+  dateOfBirth: string;
+  dateOfDeath: string;
+  characterId: number;
+};
+
+export default function CharacterCard({
+  name,
+  avatar,
+  look,
+  playbook,
+  experience,
+  dateOfBirth,
+  dateOfDeath,
+  characterId,
+}: CharacterCardProps) {
   const locale = useLocale();
   const details = [
-    { label: "Date of Birth", value: character.dateOfBirth },
-    { label: "Date of Death", value: character.dateOfDeath },
+    { label: "Birth", value: dateOfBirth },
+    { label: "Death", value: dateOfDeath },
   ];
   return (
     <Card className="overflow-hidden">
       <Avatar
-        src={character.avatar || AVATARS.DEFAULT}
+        src={avatar || AVATARS.DEFAULT}
         size="full"
         variant="square"
         className="h-56 rounded-none"
@@ -40,17 +60,13 @@ export default function CharacterCard(character: CharacterResponseType) {
 
       <CardHeader className="">
         <span className="text-sm text-muted-foreground leading-none tracking-tight flex gap-2">
-          <span className="font-bold text-foreground">
-            {character.playbook}
-          </span>
+          <span className="font-bold text-foreground">{playbook}</span>
           <span className="font-bold uppercase">
-            Lv. {calculateLevel(character.experience).level}
+            Lv. {calculateLevel(experience).level}
           </span>
         </span>
-        <CardTitle>{character.name} </CardTitle>
-        <CardDescription>
-          Snake tattoo on right forearm, scar on left cheek
-        </CardDescription>
+        <CardTitle>{name} </CardTitle>
+        <CardDescription>{look}</CardDescription>
       </CardHeader>
       <CardContent className="">
         <List>
@@ -58,7 +74,7 @@ export default function CharacterCard(character: CharacterResponseType) {
             <ListItem
               index={index}
               className={cn(
-                "h-8 px-2 flex items-center justify-between",
+                "h-8 px-2 flex items-center justify-between text-xs",
                 index % 2 === 0 ? "bg-muted" : ""
               )}
               key={detail.label}
@@ -72,7 +88,7 @@ export default function CharacterCard(character: CharacterResponseType) {
       <CardFooter className="">
         <Link
           prefetch={false}
-          href={`/${locale}/characters/${character.id}`}
+          href={`/${locale}/characters/${characterId}`}
           className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
         >
           <Icons.editcharacter />

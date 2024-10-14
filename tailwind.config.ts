@@ -24,11 +24,14 @@ const config = {
         mono: ["var(--font-geist-mono)"],
       },
       colors: {
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
-          DEFAULT: "#277780",
-          foreground: "#A9FFF3",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
           light: "#9df2f0",
           dark: "#142027",
         },
@@ -36,11 +39,14 @@ const config = {
           DEFAULT: "var(--muted)",
           foreground: "var(--muted-foreground)",
         },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
         card: {
           DEFAULT: "var(--card)",
           foreground: "var(--card-foreground)",
         },
-        border: "var(--border)",
         warning: {
           DEFAULT: "hsl(var(--warning))",
           foreground: "hsl(var(--warning-foreground))",

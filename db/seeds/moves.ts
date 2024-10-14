@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import data from "@/db/seeds/data/moves.json";
-import { SelectMoves } from "@/types/moves";
+import { MoveResults, SelectMoves } from "@/types/moves";
 import { moves } from "../schema";
 
 export default async function seed(db: db) {
@@ -11,6 +11,7 @@ export default async function seed(db: db) {
     playbook: move.playbook,
     harm: move.harm || 0,
     tags: move.tags || [],
+    results: null,
   }));
   if (!formattedData) {
     return;

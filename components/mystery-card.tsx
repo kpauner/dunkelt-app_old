@@ -28,7 +28,7 @@ export default function MysteryCard({ mystery }: MysteryCardProps) {
   const locale = useLocale();
 
   return (
-    <Card className="overflow-hidden">
+    <Card className="overflow-hidden max-w-xs">
       <Avatar
         src={mystery.avatar || AVATARS.DEFAULT}
         size="full"
@@ -46,7 +46,11 @@ export default function MysteryCard({ mystery }: MysteryCardProps) {
           <span className="font-bold text-foreground">Year</span>
           <span className="font-bold uppercase">{mystery.year}</span>
         </span>
-        <CardTitle>{mystery.name}</CardTitle>
+        <CardTitle className="hover:underline">
+          <Link prefetch={false} href={`/${locale}/mysteries/${mystery.id}`}>
+            {mystery.name}
+          </Link>
+        </CardTitle>
         <CardDescription>{mystery.description}</CardDescription>
       </CardHeader>
 
