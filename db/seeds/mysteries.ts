@@ -1,18 +1,19 @@
 import { db } from "@/db";
 import data from "@/db/seeds/data/mysteries.json";
 import { mysteries } from "@/db/schema";
-// import { SelectMysteries } from "@/types/mysteries";
+import { InsertMysteries } from "@/types/mysteries";
+import { generatePublicId } from "@/lib/utils";
 
 export default async function seed(db: db) {
-  const formattedData: any[] = data.map((mystery, index) => ({
+  const formattedData: InsertMysteries[] = data.map((mystery) => ({
+    id: generatePublicId(),
     name: mystery.name,
     description: mystery.description,
+    imageUrl: mystery.imageUrl,
     year: mystery.year,
-    yearEra: mystery.yearEra,
+    era: mystery.era,
     userId: mystery.userId,
   }));
-  if (!formattedData) {
-    return;
-  }
+
   await db.insert(mysteries).values(formattedData);
 }
