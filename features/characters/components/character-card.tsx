@@ -32,6 +32,7 @@ type CharacterCardProps = {
   dateOfBirth: string;
   dateOfDeath: string;
   characterId: number;
+  showDetails: boolean;
 };
 
 export default function CharacterCard({
@@ -43,6 +44,7 @@ export default function CharacterCard({
   dateOfBirth,
   dateOfDeath,
   characterId,
+  showDetails = false,
 }: CharacterCardProps) {
   const locale = useLocale();
   const details = [
@@ -68,24 +70,26 @@ export default function CharacterCard({
         <CardTitle>{name} </CardTitle>
         <CardDescription>{look}</CardDescription>
       </CardHeader>
-      <CardContent className="">
-        <List>
-          {details.map((detail, index) => (
-            <ListItem
-              index={index}
-              className={cn(
-                "h-8 px-2 flex items-center justify-between text-xs",
-                index % 2 === 0 ? "bg-muted" : ""
-              )}
-              key={detail.label}
-            >
-              <ListTitle>{detail.label}</ListTitle>
-              <ListDescription>{detail.value}</ListDescription>
-            </ListItem>
-          ))}
-        </List>
-      </CardContent>
-      <CardFooter className="">
+      {showDetails && (
+        <CardContent>
+          <List>
+            {details.map((detail, index) => (
+              <ListItem
+                index={index}
+                className={cn(
+                  "h-8 px-2 flex items-center justify-between text-xs",
+                  index % 2 === 0 ? "bg-muted" : ""
+                )}
+                key={detail.label}
+              >
+                <ListTitle>{detail.label}</ListTitle>
+                <ListDescription>{detail.value}</ListDescription>
+              </ListItem>
+            ))}
+          </List>
+        </CardContent>
+      )}
+      <CardFooter className="flex flex-row items-center border-t border-border py-3">
         <Link
           prefetch={false}
           href={`/${locale}/characters/${characterId}`}

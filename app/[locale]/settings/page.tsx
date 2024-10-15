@@ -74,7 +74,7 @@ export default async function SettingsPage() {
                 </div>
               </form>
             </CardContent>
-            <CardFooter className="border-t px-6 py-4">
+            <CardFooter className="border-t border-border px-6 py-4">
               <Button>Save</Button>
             </CardFooter>
           </Card>

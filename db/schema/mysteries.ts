@@ -13,10 +13,15 @@ import mysteryParticipants from "./mysteryParticipants";
 const mysteries = sqliteTable("mysteries", {
   id: text("id").primaryKey().default(generatePublicId()),
   name: text("name").notNull(),
-  description: text("description"),
+  description: text("description", { mode: "json" })
+    .$type<string[]>()
+    .notNull()
+    .default([
+      "i.e. Greetings, Hunters. The Council has received troubling reports from the small town of Tor...",
+    ]),
   imageUrl: text("image_url"),
   year: integer("year"), // Can be positive (CE) or negative (BCE)
-  yearEra: text("year_era").notNull().default("CE"), // 'CE' or 'BCE'
+  era: text("era").notNull().default("CE"), // 'CE' or 'BCE'
   userId: text("user_id")
     .references(() => users.id)
     .notNull(),

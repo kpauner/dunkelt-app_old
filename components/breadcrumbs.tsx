@@ -18,7 +18,7 @@ export default function Breadcrumbs() {
   const pathname = usePathname() || "";
   const locale = useLocale();
   const paths = pathname.split("/").filter((path) => path !== "");
-  const maxLength = 10;
+  const maxLength = 12;
   return (
     <Breadcrumb className="hidden md:flex">
       <BreadcrumbList>

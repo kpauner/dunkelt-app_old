@@ -1,9 +1,13 @@
 [
   {
-    "name": "Mystery of the Lost City",
-    "description": "We suspect a high ranking cult member, behind the disappearance of a local family has escaped to Denmark. We are looking for a hunter familiar with the country to assist in the search.",
+    "name": "Mirror Mirror On The Wall",
+    "description": [
+      "Greetings, Hunters. The Council has received troubling reports from the small town of Millbrook. Over the past month, residents have been experiencing an unprecedented phenomenon: their reflections have started to move independently.",
+      "Witnesses claim that when they look into mirrors or other reflective surfaces, their reflections occasionally perform actions they aren't doing. Some report seeing their reflections smiling when they aren't, while others have seen their reflections pointing at unseen objects.",
+      "Your mission is to investigate this anomaly, determine its cause, and neutralize any supernatural threats. Be cautious – we don't know if this is a localized haunting, a portal to another dimension, or something we've never encountered before."
+    ],
     "year": 2024,
-    "yearEra": "CE",
+    "era": "CE",
     "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e"
   }
 ]

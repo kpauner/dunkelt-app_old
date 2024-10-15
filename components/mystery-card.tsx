@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
+import { cn, truncateParagraphs, truncateText } from "@/lib/utils";
 import Link from "next/link";
 import { buttonVariants } from "@/components/ui/button";
 import Icons from "@/components/icons";
@@ -51,7 +51,13 @@ export default function MysteryCard({ mystery }: MysteryCardProps) {
             {mystery.name}
           </Link>
         </CardTitle>
-        <CardDescription>{mystery.description}</CardDescription>
+        <CardDescription>
+          {truncateParagraphs(mystery.description, 20)
+            .split("\n\n")
+            .map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+        </CardDescription>
       </CardHeader>
 
       <CardFooter className="flex justify-between items-center">

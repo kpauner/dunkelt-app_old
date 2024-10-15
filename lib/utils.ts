@@ -23,6 +23,34 @@ export function truncateText(text: string, maxLength: number) {
   return `${text.slice(0, maxLength)}...`;
 }
 
+export function truncateParagraphs(
+  text: string | string[],
+  maxWords: number
+): string {
+  // Convert single string to array for consistent processing
+  const paragraphs = Array.isArray(text) ? text : [text];
+
+  let wordCount = 0;
+  const truncatedParagraphs: string[] = [];
+
+  for (const paragraph of paragraphs) {
+    const words = paragraph.split(" ");
+
+    if (wordCount + words.length <= maxWords) {
+      truncatedParagraphs.push(paragraph);
+      wordCount += words.length;
+    } else {
+      const remainingWords = maxWords - wordCount;
+      const truncatedParagraph = words.slice(0, remainingWords).join(" ");
+      truncatedParagraphs.push(truncatedParagraph + "...");
+      break;
+    }
+  }
+
+  // Join paragraphs with newline characters
+  return truncatedParagraphs.join("\n\n");
+}
+
 const alphabet = "0123456789abcdefghijklmnopqrstuvwxyz";
 const nanoid = customAlphabet(alphabet, 16);
 
