@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import data from "@/db/seeds/data/mysteries.json";
 import { mysteries } from "@/db/schema";
-import { InsertMysteries } from "@/types/mysteries";
+import { InsertMysteries, SelectMysteries } from "@/types/mysteries";
 import { generatePublicId } from "@/lib/utils";
 
 export default async function seed(db: db) {

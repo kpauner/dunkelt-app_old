@@ -1,6 +1,56 @@
 {
   "motw": {
-    "title": "The Monster of the Week"
+    "title": "The Monster of the Week",
+    "playbooks": [
+      {
+        "id": "thechosen",
+        "label": "The Chosen"
+      },
+      {
+        "id": "thecrooked",
+        "label": "The Crooked"
+      },
+      {
+        "id": "thedivine",
+        "label": "The Divine"
+      },
+      {
+        "id": "theexpert",
+        "label": "The Expert"
+      },
+      {
+        "id": "thefallen",
+        "label": "The Fallen"
+      },
+      {
+        "id": "theinitiate",
+        "label": "The Initiate"
+      },
+      {
+        "id": "themonstrous",
+        "label": "The Monstrous"
+      },
+      {
+        "id": "themundane",
+        "label": "The Mundane"
+      },
+      {
+        "id": "theprofessional",
+        "label": "The Professional"
+      },
+      {
+        "id": "thespellslinger",
+        "label": "The Spellslinger"
+      },
+      {
+        "id": "thespooky",
+        "label": "The Spooky"
+      },
+      {
+        "id": "thewronged",
+        "label": "The Wronged"
+      }
+    ]
   },
   "playbooks": {
     "thechosen": {

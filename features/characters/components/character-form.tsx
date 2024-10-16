@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { format, parse, setDay } from "date-fns";
+import React from "react";
 import { z } from "zod";
 import { InsertCharacterSchema } from "@/types/characters";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,12 +26,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import Icons from "@/components/icons";
 
 export const formSchema = InsertCharacterSchema.pick({
@@ -129,9 +122,14 @@ export default function CharacterForm({
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Playbook</SelectLabel>
-                      {t.raw("playbooks").map((playbook: any, index: any) => (
-                        <SelectItem key={playbook.id} value={playbook.name}>
-                          {playbook.name}
+                      {(
+                        t.raw("playbooks") as Array<{
+                          id: string;
+                          label: string;
+                        }>
+                      ).map((playbook) => (
+                        <SelectItem key={playbook.id} value={playbook.id}>
+                          {playbook.label}
                         </SelectItem>
                       ))}
                     </SelectGroup>

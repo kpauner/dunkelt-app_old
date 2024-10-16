@@ -30,12 +30,19 @@ import {
 import Loader from "@/components/loader";
 import TableData from "@/components/table-data";
 import { useEditCharacterSheet } from "../hooks/use-edit-character-sheet";
-import { EditCharacterForm } from "./edit-character-form";
+import CharacterForm, { CharacterFormValues } from "./character-form";
+import { useCreateCharacter } from "../queries/use-create-character";
 
 export default function EditCharacterSheet() {
   const { isOpen, onOpen, onClose } = useEditCharacterSheet();
   const { character } = useCharacterStore();
+  const mutation = useCreateCharacter();
 
+  function onSubmit(values: CharacterFormValues) {
+    mutation.mutate(values, {
+      onSuccess: () => onClose(),
+    });
+  }
   const t = useTranslations("moves");
   const c = useTranslations("common");
 
@@ -43,8 +50,8 @@ export default function EditCharacterSheet() {
     console.log(values);
   }
 
-  function handleDelete(values: any) {
-    console.log(values);
+  function handleDelete() {
+    console.log("delete");
   }
 
   return (
@@ -54,7 +61,21 @@ export default function EditCharacterSheet() {
           <SheetTitle>{t("label")}</SheetTitle>
           <SheetDescription>{t("description")}</SheetDescription>
         </SheetHeader>
-        <EditCharacterForm />
+        <CharacterForm
+          onSubmit={handleSubmit}
+          onDelete={handleDelete}
+          disabled={mutation.isPending}
+          id={character?.id}
+          defaultValues={{
+            name: character?.name || "",
+            pronouns: character?.pronouns || "",
+            look: character?.look || "",
+            playbook: character?.playbook || "",
+            userId: character?.userId || "",
+            dateOfBirth: character?.dateOfBirth || "",
+            dateOfDeath: character?.dateOfDeath || "",
+          }}
+        />
         <SheetFooter>
           <SheetClose asChild>
             <Button variant="outline" type="submit">

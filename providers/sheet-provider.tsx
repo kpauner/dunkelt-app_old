@@ -4,10 +4,10 @@ import React from "react";
 import { useMountedState } from "react-use";
 
 import AddNewItemSheet from "@/features/items/components/add-new-item-sheet";
-import AddCharacterDialog from "@/features/characters/components/create-character-dialog";
 import EditMovesSheet from "@/features/moves/components/edit-moves-sheet";
 import EditInventorySheet from "@/features/characters/components/edit-inventory-sheet";
 import EditCharacterSheet from "@/features/characters/components/edit-character-sheet";
+import CreateCharacterDialog from "@/features/characters/components/create-character-dialog";
 
 export default function SheetProvider() {
   const isMounted = useMountedState();
@@ -17,7 +17,7 @@ export default function SheetProvider() {
     <>
       <EditInventorySheet />
       <AddNewItemSheet buttonText="teext" />
-      <AddCharacterDialog />
+      <CreateCharacterDialog />
       <EditMovesSheet />
       <EditCharacterSheet />
     </>

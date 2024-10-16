@@ -1,6 +1,6 @@
 import { client } from "@/lib/hono";
 import { InferResponseType } from "hono/client";
-import { createSelectSchema } from "drizzle-zod";
+import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { mysteries } from "@/db/schema";
 import { z } from "zod";
 
@@ -8,9 +8,13 @@ import { z } from "zod";
 export const SelectMysteriesSchema = createSelectSchema(mysteries, {
   description: z.array(z.string()),
 });
+export const InsertMysteriesSchema = createInsertSchema(mysteries, {
+  description: z.array(z.string()),
+});
 
 // TYPES
 export type SelectMysteries = z.infer<typeof SelectMysteriesSchema>;
+export type InsertMysteries = z.infer<typeof InsertMysteriesSchema>;
 
 // API RESPONSE TYPES
 export type SelectMysteriesResponseType = InferResponseType<

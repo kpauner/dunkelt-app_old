@@ -11,10 +11,9 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import CharacterForm, { CharacterFormValues } from "./create-character-form";
+import CharacterForm, { CharacterFormValues } from "./character-form";
 
-export default function AddCharacterDialog() {
-  const { character } = useCharacterStore();
+export default function CreateCharacterDialog() {
   const { isOpen, onOpen, onClose } = useAddCharacterDialog();
   const mutation = useCreateCharacter();
 
@@ -36,15 +35,15 @@ export default function AddCharacterDialog() {
         <CharacterForm
           onSubmit={onSubmit}
           disabled={mutation.isPending}
-          id={character?.id || undefined}
+          id={undefined}
           defaultValues={{
-            name: character?.name || "",
-            pronouns: character?.pronouns || "",
-            look: character?.look || "",
-            playbook: character?.playbook || "",
-            userId: character?.userId || "",
-            dateOfBirth: character?.dateOfBirth || "",
-            dateOfDeath: character?.dateOfDeath || "",
+            name: "",
+            pronouns: "",
+            look: "",
+            playbook: "",
+            userId: "",
+            dateOfBirth: "",
+            dateOfDeath: "",
           }}
         />
       </DialogContent>

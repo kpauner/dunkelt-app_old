@@ -58,6 +58,7 @@ import { Dialog, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { DialogContent } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { useLocale } from "next-intl";
+import InvitePlayerDialog from "./invite-player-dialog";
 
 type MysteryDetailsCardProps = {
   id: string;
@@ -95,7 +96,7 @@ export default function MysteryDetailsCard({
           </CardDescription>
         </div>
         <div className="ml-auto flex items-center gap-1">
-          <InviteDialog triggerTitle="Invite players" mysteryId={id} />
+          <InvitePlayerDialog triggerTitle="Invite players" mysteryId={id} />
           <MysteryDetailsCardMenu />
         </div>
       </CardHeader>
@@ -130,8 +131,8 @@ export default function MysteryDetailsCard({
             {participants.map((participant) => (
               <DescriptionListItem
                 key={participant.id}
-                term="Hunter"
-                description={participant.name}
+                term={participant.userName}
+                description={participant.name || "not assigned"}
               />
             ))}
           </DescriptionList>
@@ -162,95 +163,5 @@ function MysteryDetailsCardMenu() {
         <DropdownMenuItem>Trash</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-}
-
-function InviteDialog({
-  triggerTitle,
-  mysteryId,
-}: {
-  triggerTitle: string;
-  mysteryId: string;
-}) {
-  const [isCopied, setIsCopied] = useState(false);
-  const locale = useLocale();
-  const inviteLink = `${process.env.NEXT_PUBLIC_APP_URL}/${locale}/mysteries/join/${mysteryId}`;
-
-  const handleCopyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(inviteLink);
-      setIsCopied(true);
-      toast("The invite link has been copied to your clipboard.");
-      // Reset the "Copied" state after 2 seconds
-      setTimeout(() => setIsCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy text: ", err);
-      toast("Failed to copy the invite link. Please try again.");
-    }
-  };
-
-  const handleResetLink = () => {
-    toast("Reset link has been disabled");
-  };
-
-  return (
-    <Dialog modal={false}>
-      <DialogTrigger asChild>
-        <Button size="sm" variant="outline" className="h-8 gap-2">
-          <Icons.invite className="h-3.5 w-3.5 " />
-          <span className="lg:sr-only xl:not-sr-only xl:whitespace-nowrap">
-            {triggerTitle}
-          </span>
-        </Button>
-      </DialogTrigger>
-      <DialogContent className="overflow-hidden">
-        <DialogHeader>
-          <DialogTitle>Invite</DialogTitle>
-          <DialogDescription>
-            Send this invite link to your players, to have them join your
-            mystery.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="flex justify-between gap-2">
-          <Label htmlFor="link" className="sr-only">
-            Link
-          </Label>
-          <Input
-            id="link"
-            value={inviteLink}
-            readOnly
-            className="border-dashed"
-          />
-          <Button
-            variant="secondary"
-            className="w-24 shrink-0"
-            onClick={handleCopyLink}
-          >
-            {isCopied ? "Copied!" : "Copy Link"}
-          </Button>
-        </div>
-        <Separator className="my-4" />
-        <div>
-          <Input
-            id="link"
-            value={inviteLink}
-            readOnly
-            className="border-dashed"
-          />
-        </div>
-        <DialogFooter className="flex sm:justify-between w-full pt-4 ">
-          <Button
-            variant="link"
-            className="dark:text-warning hover:text-destructive-foreground/80 border border-warning "
-            onClick={handleResetLink}
-          >
-            Reset link
-          </Button>
-          <DialogClose>
-            <Button variant="outline">Close</Button>
-          </DialogClose>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
   );
 }

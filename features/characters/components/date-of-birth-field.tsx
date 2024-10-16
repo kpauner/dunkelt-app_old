@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { UseFormReturn } from "react-hook-form";
-import { CharacterFormValues } from "./create-character-form";
+import { CharacterFormValues } from "./character-form";
 import { useState, useEffect } from "react";
 
 type DateOfBirthFieldProps = {

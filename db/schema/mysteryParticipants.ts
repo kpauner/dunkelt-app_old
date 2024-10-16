@@ -15,6 +15,8 @@ const mysteryParticipants = sqliteTable("mystery_participants", {
   joinedAt: integer("joined_at", { mode: "timestamp" }).default(
     sql`CURRENT_TIMESTAMP`
   ),
+  invitedEmail: text("invited_email"), // Add this field
+  inviteStatus: text("invite_status").default("pending"),
 });
 
 export const mysteryParticipantsRelations = relations(

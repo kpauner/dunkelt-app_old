@@ -3,12 +3,18 @@ import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
 import { Session } from "next-auth";
 import { db } from "@/db";
-import { mysteries, npcs } from "@/db/schema";
-import { and, eq } from "drizzle-orm";
+import { mysteries, mysteryParticipants, npcs, users } from "@/db/schema";
+import { and, eq, inArray } from "drizzle-orm";
 
 type CustomVariableMap = {
   session: Session | null;
 };
+
+function isValidSession(
+  session: Session | null
+): session is Session & { user: { id: string } } {
+  return !!session && !!session.user && typeof session.user.id === "string";
+}
 
 const app = new Hono<{ Variables: CustomVariableMap }>()
   .get("/", async (c) => {
@@ -50,7 +56,13 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
     }
 
     const transformedMysteryParticipants = query.mysteryParticipants.map(
-      (mp) => mp.character
+      (mp) => ({
+        ...mp.character,
+        userId: mp.userId,
+        userName: mp.user?.name || null,
+        invitedEmail: mp.invitedEmail,
+        inviteStatus: mp.inviteStatus,
+      })
     );
     const transformedMystery = {
       ...query,
@@ -58,6 +70,94 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
     };
 
     return c.json({ data: transformedMystery });
-  });
+  })
+  .post(
+    "/:id/participants",
+    zValidator("param", z.object({ id: z.string() })),
+    zValidator("json", z.object({ emails: z.array(z.string().email()) })),
+    async (c) => {
+      const { id: mysteryId } = c.req.valid("param");
+      const { emails } = c.req.valid("json");
+      const session = c.get("session");
+
+      // Check if user is authenticated
+      if (!isValidSession(session)) {
+        return c.json({ message: "Unauthorized" }, 401);
+      }
+
+      // Check if the mystery exists and if the current user is the owner
+      const mystery = await db.query.mysteries.findFirst({
+        where: and(
+          eq(mysteries.id, mysteryId),
+          eq(mysteries.userId, session.user.id)
+        ),
+      });
+
+      if (!mystery) {
+        return c.json(
+          { message: "Mystery not found or you're not the owner" },
+          404
+        );
+      }
+
+      // Get current participants
+      const currentParticipants = await db.query.mysteryParticipants.findMany({
+        where: eq(mysteryParticipants.mysteryId, mysteryId),
+      });
+
+      const currentEmails = currentParticipants
+        .map((p) => p.invitedEmail)
+        .filter((email): email is string => email !== null);
+
+      // Emails to add
+      const emailsToAdd = emails.filter(
+        (email) => !currentEmails.includes(email)
+      );
+
+      // Emails to remove
+      const emailsToRemove = currentEmails.filter(
+        (email) => !emails.includes(email)
+      );
+
+      // Add new participants
+      const addResults = await Promise.all(
+        emailsToAdd.map(async (email) => {
+          const existingUser = await db.query.users.findFirst({
+            where: eq(users.email, email),
+          });
+
+          await db.insert(mysteryParticipants).values({
+            mysteryId,
+            userId: existingUser?.id,
+            invitedEmail: email,
+            inviteStatus: "pending",
+          });
+
+          // TODO: Send invitation email
+
+          return { email, status: "invited" };
+        })
+      );
+
+      // Remove participants
+      if (emailsToRemove.length > 0) {
+        await db
+          .delete(mysteryParticipants)
+          .where(
+            and(
+              eq(mysteryParticipants.mysteryId, mysteryId),
+              inArray(mysteryParticipants.invitedEmail, emailsToRemove)
+            )
+          );
+      }
+
+      const removeResults = emailsToRemove.map((email) => ({
+        email,
+        status: "removed",
+      }));
+
+      return c.json({ data: [...addResults, ...removeResults] });
+    }
+  );
 
 export default app;
