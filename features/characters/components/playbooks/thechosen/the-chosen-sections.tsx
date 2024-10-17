@@ -7,17 +7,25 @@ import { useImprovements } from "@/features/characters/hooks/use-calculate-impro
 import useCharacterStore from "@/features/characters/hooks/use-character-store";
 import { TheChosenPlaybook } from "@/types/playbooks";
 import { CharacterSheetBlock } from "@/components/ui/character-sheet";
+import { Separator } from "@/components/ui/separator";
+
+const ADVANCED_IMPROVEMENTS_THRESHOLD = 25;
 
 export default function ThechosenSections() {
   const t = useTranslations("playbooks");
-  const chosenPlaybook = useCharacterStore((state) =>
-    state.character?.characterPlaybooks.find((p) => p.name === "thechosen")
-  );
+  const { character } = useCharacterStore();
   const { showNotice } = useImprovements();
 
-  if (!chosenPlaybook) {
+  if (!character) {
     return null;
   }
+
+  const chosenPlaybook = character.characterPlaybooks.find(
+    (p) => p.name === "thechosen"
+  );
+  const currentExperience = character.experience;
+  const canShowAdvancedImprovements =
+    currentExperience >= ADVANCED_IMPROVEMENTS_THRESHOLD;
 
   return (
     <>
@@ -35,7 +43,13 @@ export default function ThechosenSections() {
           </>
         }
       >
-        <Improvements />
+        <Improvements category="improvements" />
+        {canShowAdvancedImprovements && (
+          <>
+            <Separator className="my-4" />
+            <Improvements category="advanced_improvements" />
+          </>
+        )}
       </CharacterSheetBlock>
     </>
   );

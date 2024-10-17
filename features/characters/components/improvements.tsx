@@ -3,39 +3,39 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import useCharacterStore from "../hooks/use-character-store";
-import { ImprovementType } from "@/types/characters";
+import {
+  ImprovementType,
+  SelectcharacterImprovements,
+} from "@/types/characters";
 import { toast } from "sonner";
 import { useMemo } from "react";
 
 type Improvement = {
   label: string;
   type: ImprovementType;
+  category: "improvements" | "advanced_improvements";
   value: string | number;
   name: string;
 };
 
-type SelectcharacterImprovements = {
-  id: number;
-  characterId: number;
-  type: ImprovementType | null;
-  name: string;
-  value: string;
-};
-
-export default function Improvements() {
+export default function Improvements({
+  category,
+}: {
+  category: "improvements" | "advanced_improvements";
+}) {
   const t = useTranslations("playbooks");
   const { character, updateCharacter } = useCharacterStore();
 
   const playbookImprovements = useMemo(() => {
     const improvementsData = t.raw(
-      `${character?.playbook}.improvements.options`
+      `${character?.playbook}.${category}.options`
     );
     return (
       typeof improvementsData === "string"
         ? JSON.parse(improvementsData)
         : improvementsData
     ) as Improvement[];
-  }, [t, character?.playbook]);
+  }, [t, character?.playbook, category]);
 
   const experiencePoints = character?.experience || 0;
   const maxImprovements = Math.floor(experiencePoints / 5);

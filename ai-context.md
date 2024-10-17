@@ -6,10 +6,9 @@ Dunkelt is a digital toolset and online platform for the popular tabletop role-p
 
 Digital character sheets: Users can create and manage their MotW characters online, with automatic calculations for stats, skills, and abilities.
 Rules compendium: It provides digital access to official MotW rulebooks and sourcebooks.
-Monster manual: A searchable database of creatures and NPCs.
-Campaign management: Features for organizing and tracking ongoing MotW campaigns.
-Encounter builder: Tools to help Dungeon Masters create and balance combat encounters.
-Homebrew content: Users can create and share custom content like races, classes, and items.
+Bestiary: A searchable database of creatures and NPCs.
+Campaign/Mystery management: Features for organizing and tracking ongoing MotW campaigns.
+Homebrew content: Users can create and share custom content like monsters, bystanders, locations, and items.
 Digital dice roller: An integrated tool for rolling virtual dice.
 Forums and community features: Spaces for MotW players to connect and share ideas.
 

@@ -107,9 +107,6 @@ export default function UserCharacterSheet({
 
         <CharacterSheetColumn>
           <CharacterPlaybookBlocks />
-          <pre>
-            <code>{JSON.stringify(character, null, 2)}</code>
-          </pre>
         </CharacterSheetColumn>
 
         <CharacterSheetColumn>
