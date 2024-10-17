@@ -118,7 +118,75 @@
       },
       "improvements": {
         "label": "Improvements",
-        "description": "When you have filled all five experience boxes, you level up. Pick an improvement from the following list:",
+        "description": "When you have filled all five experience boxes, you level up. Pick an improvement from the following list",
+        "tooltip": "Your first improvement is at level 2, and 1 for each level after that.",
+        "alert": "You have reached the maximum number of improvements.",
+        "options": [
+          {
+            "label": "+1 Charm",
+            "type": "charm",
+            "value": 1,
+            "name": "charm_1"
+          },
+          {
+            "label": "+1 Cool",
+            "type": "cool",
+            "value": 1,
+            "name": "cool_1"
+          },
+          {
+            "label": "+1 Sharp",
+            "type": "sharp",
+            "value": 1,
+            "name": "sharp_1"
+          },
+          {
+            "label": "+1 Tough",
+            "type": "tough",
+            "value": 1,
+            "name": "tough_1"
+          },
+          {
+            "label": "+1 Weird",
+            "type": "weird",
+            "value": 1,
+            "name": "weird_1"
+          },
+          {
+            "label": "Move from another playbook",
+            "type": "improvement",
+            "value": "move_from_another_playbook_1",
+            "name": "move_from_another_playbook_1"
+          },
+          {
+            "label": "Move from another playbook",
+            "type": "improvement",
+            "value": "move_from_another_playbook_2",
+            "name": "move_from_another_playbook_2"
+          },
+          {
+            "label": "Move from the chosen playbook",
+            "type": "improvement",
+            "value": "move_from_chosen_playbook_1",
+            "name": "move_from_chosen_playbook_1"
+          },
+          {
+            "label": "Move from the chosen playbook",
+            "type": "improvement",
+            "value": "move_from_chosen_playbook_2",
+            "name": "move_from_chosen_playbook_2"
+          },
+          {
+            "label": "Gain an ally",
+            "type": "improvement",
+            "value": "gain_an_ally_1",
+            "name": "gain_an_ally_1"
+          }
+        ]
+      },
+      "advanced_improvements": {
+        "label": "Advanced Improvements",
+        "description": "When you have filled all five experience boxes, you level up. Pick an improvement from the following list",
         "tooltip": "Your first improvement is at level 2, and 1 for each level after that.",
         "alert": "You have reached the maximum number of improvements.",
         "options": [

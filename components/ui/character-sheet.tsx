@@ -12,6 +12,10 @@ import {
 } from "./card";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
 import ActionBar from "../characters/action-bar";
+import dynamic from "next/dynamic";
+const DynamicActionBar = dynamic(() => import("../characters/action-bar"), {
+  ssr: false,
+});
 
 const CharacterSheet = React.forwardRef<
   HTMLDivElement,
@@ -67,30 +71,39 @@ type CharacterSheetBlockProps = {
   alert?: string;
 };
 
-const CharacterSheetBlock = ({
-  className,
-  label,
-  description,
-  children,
-  footer,
-  tooltip,
-  notice,
-  alert,
-}: CharacterSheetBlockProps) => (
-  <Card className={cn("flex flex-col", className)}>
-    <CardHeader>
-      <CardTitle>{label}</CardTitle>
-      <CardDescription>{description}</CardDescription>
-    </CardHeader>
-    <CardContent className="flex-grow">{children}</CardContent>
+const CharacterSheetBlock = React.memo(
+  ({
+    className,
+    label,
+    description,
+    children,
+    footer,
+    tooltip,
+    notice,
+    alert,
+  }: CharacterSheetBlockProps) => {
+    const memoizedFooter = React.useMemo(
+      () =>
+        (footer || tooltip || notice || alert) && (
+          <CardFooter>
+            {footer}
+            <DynamicActionBar tooltip={tooltip} notice={notice} alert={alert} />
+          </CardFooter>
+        ),
+      [footer, tooltip, notice, alert]
+    );
 
-    {(footer || tooltip || notice || alert) && (
-      <CardFooter>
-        {footer}
-        <ActionBar tooltip={tooltip} notice={notice} alert={alert} />
-      </CardFooter>
-    )}
-  </Card>
+    return (
+      <Card className={cn("flex flex-col", className)}>
+        <CardHeader>
+          <CardTitle>{label}</CardTitle>
+          <CardDescription>{description}</CardDescription>
+        </CardHeader>
+        <CardContent className="flex-grow">{children}</CardContent>
+        {memoizedFooter}
+      </Card>
+    );
+  }
 );
 CharacterSheetBlock.displayName = "CharacterSheetBlock";
 

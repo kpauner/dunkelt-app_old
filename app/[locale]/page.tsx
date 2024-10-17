@@ -40,8 +40,11 @@ export default async function HomePage() {
             src="/images/hero-papers_0.png"
             alt="keeper"
             width={200}
-            height={100}
+            height={200}
             className="w-full h-full absolute top-0 left-0 object-cover opacity-20"
+            priority
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAACklEQVR4nGMAAQAABQABDQottAAAAABJRU5ErkJggg=="
           />
         </Card>
         <Card className="col-span-1 row-span-1 relative overflow-hidden">

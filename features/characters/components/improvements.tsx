@@ -4,6 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import useCharacterStore from "../hooks/use-character-store";
 import { ImprovementType } from "@/types/characters";
+import { toast } from "sonner";
+import { useMemo } from "react";
 
 type Improvement = {
   label: string;
@@ -24,7 +26,7 @@ export default function Improvements() {
   const t = useTranslations("playbooks");
   const { character, updateCharacter } = useCharacterStore();
 
-  const playbookImprovements = React.useMemo(() => {
+  const playbookImprovements = useMemo(() => {
     const improvementsData = t.raw(
       `${character?.playbook}.improvements.options`
     );
@@ -51,9 +53,6 @@ export default function Improvements() {
   const toggleImprovement = (improvement: Improvement) => {
     if (!character) return;
 
-    console.log("Toggling improvement:", improvement);
-    console.log("Current selected improvements:", selectedImprovements);
-    console.log("Max improvements:", maxImprovements);
     const existingAttribute = character.characterImprovements.find(
       (imp) => imp.type === improvement.type && imp.name === improvement.name
     );
@@ -86,8 +85,7 @@ export default function Improvements() {
           ],
         });
       } else {
-        // Optionally, show an error message or notification here
-        console.log(
+        toast.error(
           "Maximum improvements reached based on current experience."
         );
       }
