@@ -1,31 +1,14 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React from "react";
 import {
   Card,
   CardDescription,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { toast } from "sonner";
-import Grid from "@/components/layout/grid";
-import { Avatar } from "@/components/ui/avatar";
-import { AVATARS } from "@/constants/constants";
+import { Copy, MoreVertical } from "lucide-react";
 
-import Image from "next/image";
-import Link from "next/link";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Copy,
-  CreditCard,
-  File,
-  ListFilter,
-  MoreVertical,
-  Truck,
-} from "lucide-react";
-
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { CardContent, CardFooter } from "@/components/ui/card";
 import {
@@ -37,27 +20,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-} from "@/components/ui/pagination";
 import { Separator } from "@/components/ui/separator";
-import Icons from "@/components/icons";
-import { useGetMysteryByIdWithParticipants } from "../queries/use-get-mystery-by-id-with-participants";
 import { DescriptionListItem } from "@/components/layout/description-list";
 import { DescriptionList } from "@/components/layout/description-list";
-import {
-  DialogClose,
-  DialogDescription,
-  DialogFooter,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Dialog, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { DialogContent } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
-import { useLocale } from "next-intl";
 import InvitePlayerDialog from "./invite-player-dialog";
 
 type MysteryDetailsCardProps = {
@@ -127,15 +92,21 @@ export default function MysteryDetailsCard({
         <Separator className="my-4" />
         <div className="grid gap-3">
           <div className="font-semibold">Players</div>
-          <DescriptionList>
-            {participants.map((participant) => (
-              <DescriptionListItem
-                key={participant.id}
-                term={participant.userName}
-                description={participant.name || "not assigned"}
-              />
-            ))}
-          </DescriptionList>
+          {participants.length > 0 ? (
+            <DescriptionList>
+              {participants.map((participant) => (
+                <DescriptionListItem
+                  key={participant.id}
+                  term={participant.userName}
+                  description={participant.name || "not assigned"}
+                />
+              ))}
+            </DescriptionList>
+          ) : (
+            <p className="text-sm text-muted-foreground">
+              No players yet. Invite players to join this mystery.
+            </p>
+          )}
         </div>
       </CardContent>
       <CardFooter className="flex flex-row items-center border-t border-border py-3">

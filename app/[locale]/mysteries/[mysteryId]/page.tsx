@@ -61,6 +61,9 @@ export default async function MysteryPage({ params }: MysteryPageProps) {
   //   return <div>You are not a participant in this mystery</div>;
   // }
 
+  // Add this console log to check the mystery data
+  console.log("Mystery data:", JSON.stringify(mystery, null, 2));
+
   return (
     <PageLayout contentLayout="list" variant="default">
       <Alert variant="warning">
@@ -71,6 +74,7 @@ export default async function MysteryPage({ params }: MysteryPageProps) {
         </AlertDescription>
       </Alert>
       <main className="grid flex-1 items-start gap-4 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
+        <pre>{JSON.stringify(mystery, null, 2)}</pre>
         <div className="grid grid-cols-3 items-start gap-4 lg:col-span-2">
           {mystery.mysteryParticipants.map((participant) => (
             <div key={participant.id} className="flex flex-col gap-4">
