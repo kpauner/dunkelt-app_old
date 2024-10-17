@@ -17,7 +17,7 @@ async function seedDatabase() {
     schema.locationMoves,
     schema.characterMoves,
     schema.characterItems,
-    schema.characterAttributes,
+    schema.characterImprovements,
     schema.characters,
     schema.locations,
     schema.items,
@@ -43,7 +43,7 @@ async function seedDatabase() {
   await seeds.npcPowers(db);
   await seeds.characters(db);
   await seeds.characterMoves(db);
-  await seeds.characterAttributes(db);
+  await seeds.characterImprovements(db);
   await seeds.items(db);
   await seeds.characterItems(db);
   await seeds.tags(db);

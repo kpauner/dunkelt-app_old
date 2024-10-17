@@ -1,0 +1,37 @@
+[
+  {
+    "id": 6,
+    "characterId": 1,
+    "name": "charm",
+    "type": "charm",
+    "value": "1"
+  },
+  {
+    "id": 7,
+    "characterId": 1,
+    "name": "sharp",
+    "type": "sharp",
+    "value": "1"
+  },
+  {
+    "id": 8,
+    "characterId": 1,
+    "name": "move_from_another_playbook_1",
+    "type": "improvement",
+    "value": "Telepathy"
+  },
+  {
+    "id": 9,
+    "characterId": 1,
+    "name": "move_from_another_playbook_2",
+    "type": "improvement",
+    "value": "Telekinesis"
+  },
+  {
+    "id": 10,
+    "characterId": 1,
+    "name": "gain_an_ally_1",
+    "type": "improvement",
+    "value": "Detective Smith"
+  }
+]

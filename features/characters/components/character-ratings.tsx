@@ -17,7 +17,7 @@ export default function CharacterRatings() {
     );
   }
   const sumAttributeValues = (type: string) => {
-    return character.characterAttributes
+    return character.characterImprovements
       .filter((attr) => attr.type === type)
       .reduce((sum, attr) => sum + parseInt(attr.value), 0);
   };

@@ -1,5 +1,5 @@
 import {
-  characterAttributes,
+  characterImprovements,
   characterItems,
   characterMoves,
   characters,
@@ -10,17 +10,26 @@ import { InferResponseType } from "hono";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod";
 
+export type ImprovementType =
+  | "charm"
+  | "cool"
+  | "sharp"
+  | "tough"
+  | "weird"
+  | "move"
+  | "improvement"
+  | "advanced_improvement";
 // SELECT SCHEMAS
 export const SelectCharacterSchema = createSelectSchema(characters);
-export const SelectCharacterAttributesSchema =
-  createSelectSchema(characterAttributes);
-
+export const SelectcharacterImprovementsSchema = createSelectSchema(
+  characterImprovements
+);
 // INSERT SCHEMAS
 export const InsertCharacterSchema = createInsertSchema(characters);
 
 export type SelectCharacter = InferSelectModel<typeof characters>;
-export type SelectCharacterAttributes = InferSelectModel<
-  typeof characterAttributes
+export type SelectcharacterImprovements = InferSelectModel<
+  typeof characterImprovements
 >;
 
 export type CharacterResponseType = InferResponseType<

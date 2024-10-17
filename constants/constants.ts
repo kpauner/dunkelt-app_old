@@ -18,7 +18,7 @@ export const AVATARS = {
   DEFAULT: "/images/avatars/default_512.jpg",
   BESTIARY: "https://media.dunkelt.app/avatars/default_512.jpg",
   BYSTANDERS: "/images/avatars/bystander_512.jpg",
-  LOCATIONS: "https://media.dunkelt.app/avatars/default_512.jpg",
+  LOCATIONS: "https://media.dunkelt.app/avatars/locations_512.jpg",
   ITEMS: "https://media.dunkelt.app/avatars/items_512.jpg",
 };
 

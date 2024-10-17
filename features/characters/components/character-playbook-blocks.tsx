@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/button";
 import Improvements from "./improvements";
 import YourFate from "./playbooks/your-fate";
 import { TheChosenPlaybook } from "@/types/playbooks";
+import { ImprovementInfo } from "./improvement-info";
+import { useImprovements } from "../hooks/use-calculate-improvements";
+import { useTranslations } from "next-intl";
 
 export function CharacterPlaybookBlocks() {
   const { character } = useCharacterStore();
@@ -21,9 +24,11 @@ export function CharacterPlaybookBlocks() {
 }
 
 function ChosenSections() {
+  const t = useTranslations("playbooks");
   const chosenPlaybook = useCharacterStore((state) =>
     state.character?.characterPlaybooks.find((p) => p.name === "thechosen")
   );
+  const { showNotice } = useImprovements();
 
   if (!chosenPlaybook) {
     return null;
@@ -33,13 +38,15 @@ function ChosenSections() {
     <>
       <YourFate />
       <CharacterSheetBlock
-        label="Improvements"
-        description="The Chosen's fate"
-        tooltip="Fate is a measure of how lucky a character is."
-        notice="You haven't selected 3 moves"
+        label={t("thechosen.improvements.label")}
+        description={t("thechosen.improvements.description")}
+        tooltip={t("thechosen.improvements.tooltip")}
+        notice={
+          showNotice ? "You have improvements available to select" : undefined
+        }
         footer={
           <>
-            <Button>Edit Fate</Button>
+            <ImprovementInfo />
           </>
         }
       >

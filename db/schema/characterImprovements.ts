@@ -7,7 +7,7 @@ import {
 import characters from "./characters";
 import { relations } from "drizzle-orm";
 
-const characterAttributes = sqliteTable("character_attributes", {
+const characterImprovements = sqliteTable("character_improvements", {
   id: integer("id").primaryKey(),
   characterId: integer("character_id")
     .notNull()
@@ -22,28 +22,20 @@ const characterAttributes = sqliteTable("character_attributes", {
       "move",
       "improvement",
       "advanced_improvement",
-      "playbook_move",
-      "ally",
-      "luck",
-      "hunter_type",
-      "additional_hunter",
-      "advanced_move",
-      "retire",
     ],
   }),
+  name: text("name").notNull(),
   value: text("value").notNull(),
-  level: integer("level").notNull().default(0),
-  description: text("description").notNull().default(""),
 });
 
-export const characterAttributesRelations = relations(
-  characterAttributes,
+export const characterImprovementsRelations = relations(
+  characterImprovements,
   ({ one }) => ({
     character: one(characters, {
-      fields: [characterAttributes.characterId],
+      fields: [characterImprovements.characterId],
       references: [characters.id],
     }),
   })
 );
 
-export default characterAttributes;
+export default characterImprovements;

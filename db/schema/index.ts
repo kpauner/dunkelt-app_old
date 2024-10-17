@@ -10,9 +10,9 @@ export {
 } from "./characterMoves";
 
 export {
-  default as characterAttributes,
-  characterAttributesRelations,
-} from "./characterAttributes";
+  default as characterImprovements,
+  characterImprovementsRelations,
+} from "./characterImprovements";
 
 export { default as items, itemsRelations } from "./items";
 export {

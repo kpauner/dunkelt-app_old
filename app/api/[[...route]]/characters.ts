@@ -5,7 +5,7 @@ import { Session } from "next-auth";
 import { db } from "@/db";
 import { and, eq } from "drizzle-orm";
 import {
-  characterAttributes,
+  characterImprovements,
   characterItems,
   characterMoves,
   characters,
@@ -37,14 +37,14 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
           },
           columns: {},
         },
-        characterAttributes: true,
+        characterImprovements: true,
       },
     });
     const transformedData = data.map((character) => ({
       ...character,
       characterItems: character.characterItems.map(({ item }) => item),
       characterMoves: character.characterMoves.map(({ move }) => move),
-      characterAttributes: character.characterAttributes,
+      characterImprovements: character.characterImprovements,
     }));
     return c.json({ data: transformedData });
   })
@@ -84,7 +84,7 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
               item: true,
             },
           },
-          characterAttributes: true,
+          characterImprovements: true,
         },
       });
       if (!data) {
@@ -97,7 +97,7 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
           quantity: characterItem.quantity,
         })),
         characterMoves: data.characterMoves.map(({ move }) => move),
-        characterAttributes: data.characterAttributes,
+        characterImprovements: data.characterImprovements,
         characterPlaybooks: [
           {
             name: "thechosen",
@@ -161,7 +161,7 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
       }
 
       const {
-        characterAttributes: attributes,
+        characterImprovements: attributes,
         characterItems: items,
         characterMoves: moves,
 
@@ -196,11 +196,11 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
 
         // if (attributes) {
         //   await tx
-        //     .delete(characterAttributes)
-        //     .where(eq(characterAttributes.characterId, id));
+        //     .delete(characterImprovements)
+        //     .where(eq(characterImprovements.characterId, id));
 
         //   if (attributes.length > 0) {
-        //     await tx.insert(characterAttributes).values(
+        //     await tx.insert(characterImprovements).values(
         //       attributes.map((attr) => ({
         //         ...attr,
         //         characterId: id,
