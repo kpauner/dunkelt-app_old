@@ -41,7 +41,8 @@ type MysteryPageProps = {
 };
 
 export default async function MysteryPage({ params }: MysteryPageProps) {
-  const mystery = await GetMysteryByIdWithParticipants(params.mysteryId);
+  // const mystery = await GetMysteryByIdWithParticipants(params.mysteryId);
+  const mystery = await GetMysteryByIdWithParticipants("l55n7y8az19hzuwp");
   const session = await auth();
   if (!mystery || !mystery.mysteryParticipants) {
     return <div>Mystery not found</div>;
