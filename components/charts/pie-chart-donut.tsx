@@ -47,7 +47,7 @@ export function PieChartDonut<T extends string>({
   const totalVisitors = React.useMemo(() => {
     return data.reduce((acc, curr) => acc + curr.value, 0);
   }, [data]);
-  console.log(totalVisitors);
+
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">

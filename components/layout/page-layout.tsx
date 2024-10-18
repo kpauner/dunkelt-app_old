@@ -4,6 +4,7 @@ import React from "react";
 import Heading from "./heading";
 import Link from "next/link";
 import { useLocale } from "next-intl";
+import { Paragraph } from "../ui/paragraph";
 
 const pageLayoutVariants = cva("mx-auto w-full", {
   variants: {
@@ -113,22 +114,34 @@ PageLayout.displayName = "PageLayout";
 
 const PageSection = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ children, className, title, ...props }, ref) => {
+  React.HTMLAttributes<HTMLDivElement> & {
+    title?: string;
+    description?: string;
+  }
+>(({ children, className, title, description, ...props }, ref) => {
   return (
     <section
       ref={ref}
       className={cn("flex flex-col gap-4 py-4", className)}
       {...props}
     >
-      {title && (
-        <Heading
-          as="h2"
-          size="lg"
-          className="text-accent-foreground text-center uppercase font-mono font-extrabold tracking-wide"
-        >
-          {title}
-        </Heading>
+      {(title || description) && (
+        <header>
+          {title && (
+            <Heading
+              as="h2"
+              size="md"
+              className="text-accent-foreground text-center font-mono font-extrabold tracking-wide uppercase pb-2"
+            >
+              {title}
+            </Heading>
+          )}
+          {description && (
+            <p className="text-sm text-muted-foreground dark:text-muted-foreground text-center">
+              {description}
+            </p>
+          )}
+        </header>
       )}
       {children}
     </section>

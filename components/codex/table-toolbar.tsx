@@ -22,7 +22,6 @@ export default function TableToolbar<TData>({
   showFacetedFilter = true,
   showViewOptions = true,
 }: TableToolbarProps<TData>) {
-  console.log("FILTERS", filters);
   const availableFilters = filters.filter((filter) => {
     const column = table
       .getAllColumns()
@@ -37,7 +36,6 @@ export default function TableToolbar<TData>({
           placeholder="Filter ..."
           value={globalFilter}
           onChange={(e) => {
-            console.log("Global filter changed:", e.target.value);
             setGlobalFilter(e.target.value);
           }}
           className="w-full max-w-md"

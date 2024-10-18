@@ -12,6 +12,7 @@ export const QUERY_KEYS = {
   BESTIARY: "bestiary",
   BESTIARIES: "bestiaries",
   BYSTANDERS: "bystanders",
+  POSTS: "posts",
 };
 
 export const AVATARS = {
@@ -28,4 +29,6 @@ export const IMAGES = {
   BYSTANDERS: "/images/bystanders.jpg",
   LOCATIONS: "/images/locations.jpg",
   ITEMS: "/images/items.jpg",
+  POSTS: "/images/bystanders.jpg",
+  NOT_FOUND: "https://media.dunkelt.app/avatars/items_512.jpg",
 };

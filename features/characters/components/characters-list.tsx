@@ -28,6 +28,7 @@ import {
 import { CharacterResponseType } from "@/types/characters";
 import Icons from "@/components/icons";
 import { Session } from "next-auth";
+import CharacterCard from "./character-card";
 
 type CharactersListProps = {
   session: Session | null;
@@ -48,70 +49,21 @@ export default function CharactersList({ session }: CharactersListProps) {
   return (
     <Grid>
       {characters?.map((character) => (
-        <CharacterCards key={character.id} character={character} />
+        <CharacterCard
+          key={character.id}
+          name={character.name}
+          avatar={character.avatar}
+          look={character.look || ""}
+          playbook={character.playbook || ""}
+          experience={character.experience}
+          dateOfBirth={character.dateOfBirth || "unknown"}
+          dateOfDeath={character.dateOfDeath || "unknown"}
+          characterId={character.id}
+          showDetails={true}
+        />
       ))}
       <AddNewCharacterCard />
     </Grid>
-  );
-}
-
-function CharacterCards({ character }: { character: CharacterResponseType }) {
-  const locale = useLocale();
-  const details = [
-    { label: "Dob", value: character.dateOfBirth },
-    { label: "Dod", value: character.dateOfDeath },
-  ];
-
-  return (
-    <Card className="overflow-hidden">
-      <Avatar
-        src={character.avatar || AVATARS.DEFAULT}
-        size="full"
-        variant="square"
-        className="h-56 rounded-none"
-      />
-
-      <CardHeader className="">
-        <span className="text-sm text-muted-foreground leading-none tracking-tight flex gap-2">
-          <span className="font-bold text-foreground">
-            {character.playbook}
-          </span>
-          <span className="font-bold uppercase">
-            Lv. {calculateLevel(character.experience).level}
-          </span>
-        </span>
-        <CardTitle>{character.name} </CardTitle>
-        <CardDescription>
-          Snake tattoo on right forearm, scar on left cheek
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="">
-        <List>
-          {details.map((detail, index) => (
-            <ListItem
-              index={index}
-              className={cn(
-                "h-8 px-2 flex items-center justify-between",
-                index % 2 === 0 ? "bg-muted" : ""
-              )}
-              key={detail.label}
-            >
-              <ListTitle>{detail.label}</ListTitle>
-              <ListDescription>{detail.value}</ListDescription>
-            </ListItem>
-          ))}
-        </List>
-      </CardContent>
-      <CardFooter className="">
-        <Link
-          prefetch={false}
-          href={`/${locale}/characters/${character.id}`}
-          className={cn(buttonVariants({ variant: "ghost", size: "icon" }))}
-        >
-          <Icons.editcharacter />
-        </Link>
-      </CardFooter>
-    </Card>
   );
 }
 

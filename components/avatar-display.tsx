@@ -10,7 +10,15 @@ type Avatar = {
   image: string;
 };
 
-export default function AvatarDisplay({ avatars }: { avatars: Avatar[] }) {
+type AvatarDisplayProps = {
+  avatars: Avatar[];
+  variant: "circle" | "square";
+};
+
+export default function AvatarDisplay({
+  avatars,
+  variant = "circle",
+}: AvatarDisplayProps) {
   return (
     <div className="flex -space-x-2 py-2">
       {avatars.map((avatar) => (
@@ -20,7 +28,7 @@ export default function AvatarDisplay({ avatars }: { avatars: Avatar[] }) {
               <Avatar
                 src={avatar.image || AVATARS.DEFAULT}
                 size="sm"
-                variant="circle"
+                variant={variant}
                 className="inline-block h-8 w-8 ring-2 ring-primary"
                 alt={avatar.name}
               />

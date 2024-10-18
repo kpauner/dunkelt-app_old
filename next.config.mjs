@@ -9,6 +9,7 @@ const nextConfig = {
       { hostname: "static.wikia.nocookie.net" },
       { hostname: "lh3.googleusercontent.com" },
       { hostname: "media.dunkelt.app" },
+      { hostname: "backend.dunkelt.app" },
     ],
   },
 };

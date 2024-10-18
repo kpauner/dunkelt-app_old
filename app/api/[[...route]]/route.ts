@@ -31,7 +31,7 @@ app.use(
   })
 );
 
-app.use("*", logger());
+// app.use("*", logger());
 
 app.use("*", async (c, next) => {
   const session = await auth();

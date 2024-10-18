@@ -18,6 +18,7 @@ export const env = createEnv({
   },
   client: {
     NEXT_PUBLIC_APP_URL: z.string().optional(),
+    NEXT_PUBLIC_POCKETBASE_URL: z.string().optional(),
   },
   shared: {
     NODE_ENV: z.enum(["test", "development", "production"]),
@@ -29,6 +30,7 @@ export const env = createEnv({
     DB_SEEDING: process.env.DB_SEEDING || "false",
     LOGTAIL_SOURCE_TOKEN: process.env.LOGTAIL_SOURCE_TOKEN,
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL,
+    NEXT_PUBLIC_POCKETBASE_URL: process.env.NEXT_PUBLIC_POCKETBASE_URL,
     NODE_ENV: process.env.NODE_ENV,
   },
 });
