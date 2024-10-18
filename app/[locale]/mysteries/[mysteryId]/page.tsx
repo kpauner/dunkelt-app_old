@@ -32,6 +32,7 @@ import SelectCharacterDialog from "@/features/mysteries/components/select-charac
 import { auth } from "@/lib/auth";
 import { isValidSession } from "@/lib/session";
 import { redirect } from "next/navigation";
+import { getLocale } from "next-intl/server";
 
 type MysteryPageProps = {
   params: {
@@ -41,9 +42,9 @@ type MysteryPageProps = {
 };
 
 export default async function MysteryPage({ params }: MysteryPageProps) {
-  // const mystery = await GetMysteryByIdWithParticipants(params.mysteryId);
-  const mystery = await GetMysteryByIdWithParticipants("l55n7y8az19hzuwp");
+  const mystery = await GetMysteryByIdWithParticipants(params.mysteryId);
   const session = await auth();
+  const locale = await getLocale();
   if (!mystery || !mystery.mysteryParticipants) {
     return <div>Mystery not found</div>;
   }
@@ -63,19 +64,22 @@ export default async function MysteryPage({ params }: MysteryPageProps) {
   // }
 
   // Add this console log to check the mystery data
-  console.log("Mystery data:", JSON.stringify(mystery, null, 2));
-
   return (
     <PageLayout contentLayout="list" variant="default">
       <Alert variant="warning">
         <AlertTitle>DEMO CONTENT</AlertTitle>
         <AlertDescription>
           This is demo content. Mysteries will eventually be moved to the user
-          menu
+          menu. See Demo Character{" "}
+          <Link
+            href={`${process.env.NEXT_PUBLIC_APP_URL}/${locale}/characters/1`}
+          >
+            here
+          </Link>
+          .
         </AlertDescription>
       </Alert>
       <main className="grid flex-1 items-start gap-4 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
-        <pre>{JSON.stringify(mystery, null, 2)}</pre>
         <div className="grid grid-cols-3 items-start gap-4 lg:col-span-2">
           {mystery.mysteryParticipants.map((participant) => (
             <div key={participant.id} className="flex flex-col gap-4">

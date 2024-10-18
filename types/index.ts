@@ -1,3 +1,4 @@
+import { IMAGES } from "@/constants/constants";
 import { z } from "zod";
 
 export type EntityType =
@@ -29,3 +30,13 @@ export const SignInSchema = z.object({
     .string()
     .min(8, { message: "Password must be at least 8 characters long" }),
 });
+
+// CODEX
+
+export type Category = {
+  key: string;
+  label: string;
+  description: string;
+  href: string;
+  image: keyof typeof IMAGES;
+};

@@ -20,6 +20,7 @@ import { auth } from "@/lib/auth";
 import IntlClientProvider from "@/providers/intl-client-provider";
 import QueryProvider from "@/providers/query-provider";
 import SheetProvider from "@/providers/sheet-provider";
+import Footer from "@/components/footer";
 
 export default async function LocaleLayout({
   children,
@@ -63,7 +64,7 @@ export default async function LocaleLayout({
                         {children}
                       </DashboardContent>
                       <DashboardFooter className="text-muted-foreground text-sm ml-0 sm:ml-20">
-                        <span>connection established ...</span>
+                        <Footer />
                       </DashboardFooter>
                     </Dashboard>
                     <SheetProvider />

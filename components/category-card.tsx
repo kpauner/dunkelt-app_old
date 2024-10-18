@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Separator } from "./ui/separator";
 import Link from "next/link";
 import { LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type IconType = React.ElementType;
 
@@ -14,7 +15,12 @@ type CategoryCardProps = {
   description: string;
   image: string;
   href: string;
+  className?: string;
 };
+
+// ... existing imports ...
+
+// ... existing type definitions ...
 
 const CategoryCard: React.FC<CategoryCardProps> = ({
   icon: Icon,
@@ -22,10 +28,17 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   description,
   image,
   href,
+  className,
 }: CategoryCardProps) => {
   return (
     <Link href={href}>
-      <Card className="col-span-1 row-span-1 relative overflow-hidden min-h-[600px] flex flex-col group cursor-pointer py-10">
+      <Card
+        className={cn(
+          "col-span-1 row-span-1 relative overflow-hidden flex flex-col group cursor-pointer",
+          className
+        )}
+      >
+        {/* Image container */}
         <div className="absolute inset-0 overflow-hidden">
           <Image
             src={image}
@@ -35,9 +48,13 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
             className="w-full h-full object-cover opacity-20 transition-transform duration-300 ease-in-out group-hover:scale-110"
           />
         </div>
+
+        {/* Spacer to push content to the bottom */}
         <div className="flex-grow" />
-        <CardHeader className="space-y-4 relative z-10 flex flex-col items-center text-center h-2/3 ">
-          <div className=" flex flex-col items-center justify-end">
+
+        {/* Card content moved to the bottom */}
+        <CardHeader className="relative z-10 flex flex-col items-center text-center p-6">
+          <div className="flex flex-col items-center justify-end mb-4">
             {Icon && <Icon className="size-8 mb-2" />}
             <Heading
               as="h6"
@@ -47,8 +64,8 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
               {title}
             </Heading>
           </div>
-          <Separator className="w-1/2" />
-          <CardDescription className="dark:text-stone-300 overflow-y-auto h-full">
+          <Separator className="w-1/2 mb-4" />
+          <CardDescription className="dark:text-stone-300">
             {description}
           </CardDescription>
         </CardHeader>
@@ -56,4 +73,5 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
     </Link>
   );
 };
+
 export default CategoryCard;

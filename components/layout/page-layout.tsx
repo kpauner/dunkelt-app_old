@@ -111,4 +111,29 @@ const PageLayout = React.forwardRef<HTMLDivElement, PageLayoutProps>(
 );
 PageLayout.displayName = "PageLayout";
 
-export { PageLayout };
+const PageSection = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ children, className, title, ...props }, ref) => {
+  return (
+    <section
+      ref={ref}
+      className={cn("flex flex-col gap-4 py-4", className)}
+      {...props}
+    >
+      {title && (
+        <Heading
+          as="h2"
+          size="lg"
+          className="text-accent-foreground text-center uppercase font-mono font-extrabold tracking-wide"
+        >
+          {title}
+        </Heading>
+      )}
+      {children}
+    </section>
+  );
+});
+PageSection.displayName = "PageSection";
+
+export { PageLayout, PageSection };

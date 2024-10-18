@@ -50,10 +50,8 @@ const app = new Hono<{ Variables: CustomVariableMap }>()
         },
       },
     });
-    console.log("Raw query result:", JSON.stringify(query, null, 2));
 
     if (!query) {
-      console.log("Mystery not found");
       return c.json({ message: "Item not found" }, 404);
     }
 
