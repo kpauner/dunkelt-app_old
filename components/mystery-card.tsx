@@ -61,7 +61,7 @@ export default function MysteryCard({ mystery }: MysteryCardProps) {
       </CardHeader>
 
       <CardFooter className="flex justify-between items-center">
-        <AvatarDisplay avatars={mystery.mysteryParticipants} />
+        <AvatarDisplay variant="circle" avatars={mystery.mysteryParticipants} />
         <Link
           prefetch={false}
           href={`/${locale}/mysteries/${mystery.id}`}

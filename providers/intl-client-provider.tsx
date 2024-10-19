@@ -33,6 +33,8 @@ export default function IntlClientProvider({
     key: string;
     error: IntlError;
   }) {
+    console.log("getMessageFallback called:", { namespace, key, error });
+
     const path = [namespace, key].filter((part) => part != null).join(".");
     const rawKey = key.split(".").slice(-2)[0];
     if (error.code === IntlErrorCode.MISSING_MESSAGE) {

@@ -58,12 +58,12 @@ export default async function HomePage() {
             <PostCard
               key={post.id}
               title={post.title}
-              image={post.image}
+              image={post.imageUrl}
               url={`/${locale}/posts/${post.id}`}
               year={post.year}
               updatedAt={post.updated}
               excerpt={post.excerpt}
-              author={{ name: "name", image: IMAGES.BESTIARY }}
+              author={post.author}
               categories={post.categories}
             />
           ))}

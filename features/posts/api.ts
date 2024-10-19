@@ -1,7 +1,7 @@
 import { IMAGES } from "@/constants/constants";
 import { env } from "@/lib/env";
 import { getImageUrl } from "@/lib/utils/url-helpers";
-import { PostsResponse } from "@/types/posts";
+import { Post, PostsResponse } from "@/types/posts";
 import axios from "axios";
 
 const axiosInstance = axios.create({
@@ -12,7 +12,7 @@ export async function getPosts(): Promise<PostsResponse> {
   try {
     const response = await axiosInstance.get("/api/collections/posts/records", {
       params: {
-        expand: "categories",
+        expand: "author,categories",
         filter: "isPublished=true",
         sort: "-created",
       },
@@ -23,7 +23,7 @@ export async function getPosts(): Promise<PostsResponse> {
       title: post.title,
       content: post.content,
       excerpt: post.excerpt,
-      image:
+      imageUrl:
         getImageUrl(post.collectionId, post.id, post.image) || IMAGES.NOT_FOUND,
       created: post.created,
       updated: post.updated,
@@ -31,6 +31,16 @@ export async function getPosts(): Promise<PostsResponse> {
       isPublished: post.isPublished,
       categories:
         post.expand?.categories?.map((category: any) => category.title) || [],
+      author: {
+        id: post.expand.author.id,
+        username: post.expand.author.username,
+        avatarUrl:
+          getImageUrl(
+            post.expand.author.collectionId,
+            post.expand.author.id,
+            post.expand.author.avatar
+          ) || IMAGES.NOT_FOUND,
+      },
     }));
 
     return {
@@ -49,5 +59,53 @@ export async function getPosts(): Promise<PostsResponse> {
       console.error("Unknown error:", error);
     }
     throw new Error("Failed to fetch posts", { cause: error });
+  }
+}
+
+export async function getPostById(id: string): Promise<Post> {
+  try {
+    const response = await axiosInstance.get(
+      `/api/collections/posts/records/${id}`,
+      {
+        params: {
+          expand: "author,categories",
+          filter: "isPublished=true",
+        },
+      }
+    );
+
+    const post = response.data;
+
+    return {
+      id: post.id,
+      title: post.title,
+      content: post.content,
+      excerpt: post.excerpt,
+      imageUrl:
+        getImageUrl(post.collectionId, post.id, post.image) || IMAGES.NOT_FOUND,
+      created: post.created,
+      updated: post.updated,
+      year: post.year,
+      isPublished: post.isPublished,
+      categories:
+        post.expand?.categories?.map((category: any) => category.title) || [],
+      author: {
+        id: post.expand.author.id,
+        username: post.expand.author.username,
+        avatarUrl:
+          getImageUrl(
+            post.expand.author.collectionId,
+            post.expand.author.id,
+            post.expand.author.avatar
+          ) || IMAGES.NOT_FOUND,
+      },
+    };
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("Axios error:", error.response?.data || error.message);
+    } else {
+      console.error("Unknown error:", error);
+    }
+    throw new Error(`Failed to fetch post with id ${id}`, { cause: error });
   }
 }

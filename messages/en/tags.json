@@ -167,6 +167,10 @@
     "wilds": {
       "name": "wilds",
       "description": "to contain hidden things"
+    },
+    "post": {
+      "name": "post",
+      "description": "Post"
     }
   }
 }

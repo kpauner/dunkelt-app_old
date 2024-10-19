@@ -28,12 +28,16 @@ const config = {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "var(--background)",
-        foreground: "var(--foreground)",
+        foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
           light: "#9df2f0",
           dark: "#142027",
+        },
+        secondary: {
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         muted: {
           DEFAULT: "var(--muted)",
@@ -54,10 +58,6 @@ const config = {
         destructive: {
           DEFAULT: "var(--destructive)",
           foreground: "var(--destructive-foreground)",
-        },
-        secondary: {
-          DEFAULT: "#15474c",
-          foreground: "#9df2f0",
         },
         accent: {
           DEFAULT: "#DF9B0A",
@@ -81,7 +81,7 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("@tailwindcss/typography"), require("tailwindcss-animate")],
 } satisfies Config;
 
 export default config;
