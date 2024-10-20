@@ -20,10 +20,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { AVATARS } from "@/constants/constants";
+import { AVATARS, IMAGES } from "@/constants/constants";
 import MarketplaceCarousel from "@/features/marketplace/components/marketplace-carousel";
 import MarketplaceHeader from "@/features/marketplace/components/marketplace-header";
-import React from "react";
+import products from "@/db/seeds/data/products.json";
+
+type Product = {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+};
 
 export default function MarketplacePage() {
   return (
@@ -31,7 +39,7 @@ export default function MarketplacePage() {
       <div className="flex flex-col gap-12">
         <MarketplaceHeader />
         <section>
-          <MarketplaceCarousel />
+          <MarketplaceCarousel title="Featured Products" products={products} />
         </section>
       </div>
     </PageLayout>
