@@ -94,7 +94,7 @@ export function StatisticsRadarChart({
             <PolarGrid gridType="circle" />
             <PolarAngleAxis
               dataKey="category"
-              tick={{ fill: "var(--foreground)", fontSize: 12 }}
+              tick={{ fill: "hsl(var(--warning))", fontSize: 12 }}
             />
             <PolarRadiusAxis
               domain={[0, maxValue]}
@@ -107,10 +107,12 @@ export function StatisticsRadarChart({
               dataKey="invertedRank"
               fill="var(--color-statistics)"
               fillOpacity={0.4}
+              stroke={color}
               dot={{
                 r: 4,
                 fillOpacity: 1,
               }}
+              className="text-muted-foreground"
             />
           </RadarChart>
         </ChartContainer>

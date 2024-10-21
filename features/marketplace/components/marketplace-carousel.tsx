@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/carousel";
 import { Product } from "@/types/marketplace";
 import Image from "next/image";
-import React from "react";
 
 type MarketplaceCarouselProps = {
   title?: string;

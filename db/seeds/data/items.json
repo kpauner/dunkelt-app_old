@@ -1,6 +1,21 @@
 [
   {
     "id": 1,
+    "name": "the funen bracteate",
+    "description": "An ancient gold medallion from 5th century Denmark, depicting a warrior with a suebian knot. The runes inscribed around its edge writes houaz laþu aaduaaaliia a-- and pulse with a faint, otherworldly energy.",
+    "type": "artifact",
+    "harm": 0,
+    "armor": 0,
+    "value": 2,
+    "tags": ["magical"],
+    "history": "This bracteate from the island of Funen (Denmark) and over a thousand of its kind were inspired by commemorative gold medallions minted for Roman emperors.",
+    "origins": ["denmark"],
+    "homebrew": false,
+    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
+    "isPublic": true
+  },
+  {
+    "id": 2,
     "name": "Silver Dagger",
     "description": "A sharp dagger made of pure silver, effective against werewolves and other supernatural creatures.",
     "type": "weapon",
@@ -15,7 +30,7 @@
     "isPublic": true
   },
   {
-    "id": 2,
+    "id": 3,
     "name": "Shotgun",
     "description": "A powerful shotgun, great for close-range combat against monsters.",
     "type": "weapon",
@@ -30,7 +45,7 @@
     "isPublic": true
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "Holy Water",
     "description": "Blessed water that can harm unholy creatures.",
     "type": "consumable",
@@ -45,7 +60,7 @@
     "isPublic": true
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "Leather Jacket",
     "description": "A sturdy leather jacket that provides some protection against physical attacks.",
     "type": "armor",
@@ -60,7 +75,7 @@
     "isPublic": true
   },
   {
-    "id": 5,
+    "id": 6,
     "name": "EMF Detector",
     "description": "A device that detects electromagnetic fields, useful for ghost hunting.",
     "type": "other",
@@ -75,7 +90,7 @@
     "isPublic": true
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "Spellbook",
     "description": "An ancient tome containing various spells and rituals.",
     "type": "other",
@@ -90,7 +105,7 @@
     "isPublic": true
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "First Aid Kit",
     "description": "A basic medical kit for treating injuries.",
     "type": "consumable",
@@ -105,7 +120,7 @@
     "isPublic": true
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "Silver Bullets",
     "description": "Ammunition made of silver, effective against supernatural creatures.",
     "type": "other",
@@ -120,7 +135,7 @@
     "isPublic": true
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "Protective Amulet",
     "description": "A magical amulet that provides protection against curses and hexes.",
     "type": "artifact",
@@ -135,7 +150,7 @@
     "isPublic": true
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "Flamethrower",
     "description": "A powerful weapon that shoots streams of fire.",
     "type": "weapon",
@@ -150,7 +165,7 @@
     "isPublic": true
   },
   {
-    "id": 11,
+    "id": 12,
     "name": "Baseball Bat",
     "description": "A sharp dagger made of pure silver, effective against werewolves and other supernatural creatures.",
     "type": "weapon",
@@ -165,7 +180,7 @@
     "isPublic": false
   },
   {
-    "id": 12,
+    "id": 13,
     "name": "brass knuckles",
     "description": "desc",
     "type": "weapon",
@@ -180,7 +195,7 @@
     "isPublic": true
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "9mm",
     "description": "desc",
     "type": "weapon",
@@ -190,21 +205,6 @@
     "tags": ["reload", "loud"],
     "history": "Found in a secret chamber in the old castle",
     "origins": ["unknown"],
-    "homebrew": false,
-    "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
-    "isPublic": true
-  },
-  {
-    "id": 14,
-    "name": "the funen bracteate",
-    "description": "An ancient gold medallion from 5th century Denmark, depicting a warrior with a suebian knot. The runes inscribed around its edge writes houaz laþu aaduaaaliia a-- and pulse with a faint, otherworldly energy.",
-    "type": "artifact",
-    "harm": 0,
-    "armor": 0,
-    "value": 2,
-    "tags": ["magical"],
-    "history": "This bracteate from the island of Funen (Denmark) and over a thousand of its kind were inspired by commemorative gold medallions minted for Roman emperors.",
-    "origins": ["denmark"],
     "homebrew": false,
     "userId": "35e5d1bf-75a3-4b0f-aef1-f47d875d0b4e",
     "isPublic": true
