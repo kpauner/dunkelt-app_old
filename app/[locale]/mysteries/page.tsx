@@ -1,5 +1,5 @@
 import { PageLayout } from "@/components/layout/page-layout";
-import MysteriesList from "@/components/mysteries/mystery-list";
+import MysteriesList from "@/features/mysteries/components/mystery-list";
 import React from "react";
 
 export default function MysteriesPage() {

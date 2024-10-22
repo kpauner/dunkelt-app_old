@@ -6,5 +6,7 @@ export function useGetMysteries() {
   return useQuery({
     queryKey: [QUERY_KEYS.MYSTERIES],
     queryFn: GetMysteries,
+    retry: 3,
+    throwOnError: true,
   });
 }
